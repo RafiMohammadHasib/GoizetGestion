@@ -1,0 +1,92 @@
+@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400&family=Plus+Jakarta+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400&display=swap');
+@import "tailwindcss";
+
+:root {
+  --font-serif: 'Cormorant Garamond', Georgia, serif;
+  --font-sans: 'Plus Jakarta Sans', system-ui, -apple-system, sans-serif;
+
+  --color-ivory: #F7F5F0;
+  --color-surface: #FAF9F6;
+  --color-obsidian: #171512;
+  --color-charcoal: #2C2723;
+  --color-taupe: #6F6255;
+  --color-sand: #EAE6DF;
+  --color-bordeaux: #7A2234;
+  --color-bordeaux-dark: #5C1D27;
+  --color-bordeaux-light: #9B2D43;
+}
+
+@layer base {
+  * {
+    border-color: rgba(23, 21, 18, 0.1);
+  }
+
+  html {
+    scroll-behavior: smooth;
+    background-color: var(--color-ivory);
+    color: var(--color-obsidian);
+    font-family: var(--font-sans);
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+  ::selection {
+    background-color: rgba(122, 34, 52, 0.15);
+    color: var(--color-bordeaux-dark);
+  }
+}
+
+/* Custom typography classes */
+.font-serif-display {
+  font-family: var(--font-serif);
+}
+
+.font-sans-ui {
+  font-family: var(--font-sans);
+}
+
+/* Custom Glassmorphism Surface */
+.glass-panel {
+  background: rgba(255, 255, 255, 0.78);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid rgba(23, 21, 18, 0.08);
+}
+
+.glass-panel-dark {
+  background: rgba(23, 21, 18, 0.82);
+  backdrop-filter: blur(18px);
+  -webkit-backdrop-filter: blur(18px);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+/* Text stroke & luxury editorial helpers */
+.editorial-lead {
+  font-family: var(--font-serif);
+  font-weight: 400;
+  letter-spacing: -0.02em;
+  line-height: 1.15;
+}
+
+/* Custom Hide Scrollbar */
+.no-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+.no-scrollbar {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+/* Image reveal animation */
+@keyframes imageZoomIn {
+  from {
+    transform: scale(1.08);
+  }
+  to {
+    transform: scale(1);
+  }
+}
+
+.animate-image-zoom {
+  animation: imageZoomIn 1.4s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}

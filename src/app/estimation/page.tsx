@@ -1,0 +1,500 @@
+'use client';
+
+import React, { useState } from 'react';
+import confetti from 'canvas-confetti';
+import Breadcrumbs from '@/components/ui/Breadcrumbs';
+import { Calculator, ArrowRight, CheckCircle2, Building, Home, MapPin, Sparkles, Phone, Mail, User, ShieldCheck, AlertCircle } from 'lucide-react';
+import { motion, AnimatePresence } from 'framer-motion';
+import { sanitizeInjection, isValidEmail, isValidPhone } from '@/lib/security';
+import { useLanguage } from '@/context/LanguageContext';
+
+export default function EstimationPage() {
+  const { language, t } = useLanguage();
+  const [step, setStep] = useState(1);
+  const [errorMsg, setErrorMsg] = useState('');
+  const [loading, setLoading] = useState(false);
+
+  const [formData, setFormData] = useState({
+    propertyType: 'appartement',
+    neighborhood: 'chartrons',
+    address: '',
+    surface: 75,
+    rooms: 3,
+    condition: 'excellent',
+    objective: 'location',
+    firstName: '',
+    lastName: '',
+    email: '',
+    phone: ''
+  });
+
+  const [estimatedYield, setEstimatedYield] = useState<{ rentMin: number; rentMax: number; saleMin: number; saleMax: number } | null>(null);
+
+  const handleNextStep = async (e: React.FormEvent) => {
+    e.preventDefault();
+    setErrorMsg('');
+
+    if (step === 3) {
+      const cleanFirst = sanitizeInjection(formData.firstName);
+      const cleanLast = sanitizeInjection(formData.lastName);
+      const cleanEmail = formData.email.trim();
+      const cleanPhone = formData.phone.trim();
+
+      if (!cleanFirst || !cleanLast) {
+        setErrorMsg(language === 'fr' ? 'Veuillez renseigner votre prénom et nom.' : 'Please enter your first and last name.');
+        return;
+      }
+
+      if (!isValidEmail(cleanEmail)) {
+        setErrorMsg(language === 'fr' ? 'Adresse email invalide.' : 'Invalid email address.');
+        return;
+      }
+
+      if (!isValidPhone(cleanPhone)) {
+        setErrorMsg(language === 'fr' ? 'Numéro de téléphone invalide.' : 'Invalid phone number.');
+        return;
+      }
+
+      setLoading(true);
+
+      try {
+        const res = await fetch('/api/estimation', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({
+            propertyType: formData.propertyType,
+            neighborhood: formData.neighborhood,
+            address: sanitizeInjection(formData.address),
+            surface: formData.surface,
+            rooms: formData.rooms,
+            condition: formData.condition,
+            firstName: cleanFirst,
+            lastName: cleanLast,
+            email: cleanEmail,
+            phone: cleanPhone
+          })
+        });
+
+        const data = await res.json();
+        if (!res.ok) {
+          throw new Error(data.error || 'Erreur d\'estimation');
+        }
+
+        setEstimatedYield(data.valuation);
+        setStep(4);
+        confetti({
+          particleCount: 80,
+          spread: 70,
+          origin: { y: 0.6 }
+        });
+      } catch (err: any) {
+        setErrorMsg(err.message || (language === 'fr' ? 'Erreur lors du calcul d\'estimation.' : 'Valuation calculation error.'));
+      } finally {
+        setLoading(false);
+      }
+    } else {
+      setStep(step + 1);
+    }
+  };
+
+  return (
+    <div className="pt-32 pb-24 px-4 sm:px-6 lg:px-8 max-w-4xl mx-auto space-y-10">
+      
+      {/* Breadcrumbs */}
+      <Breadcrumbs items={[{ label: language === 'fr' ? 'Estimation en Ligne' : 'Property Valuation' }]} />
+
+      {/* Header Banner */}
+      <div className="text-center space-y-4 max-w-2xl mx-auto">
+        <div className="inline-flex items-center space-x-2 text-xs font-semibold uppercase tracking-widest text-[#7A2234] bg-[#7A2234]/10 px-3.5 py-1 rounded-full border border-[#7A2234]/20 whitespace-nowrap">
+          <Calculator className="w-3.5 h-3.5" />
+          <span>{language === 'fr' ? 'ESTIMATION EN LIGNE SÉCURISÉE BORDEAUX' : 'SECURE ONLINE BORDEAUX VALUATION'}</span>
+        </div>
+        <h1 className="font-serif-display text-4xl sm:text-6xl font-light text-[#171512] leading-tight">
+          {language === 'fr' ? 'Combien vaut votre bien à Bordeaux ?' : 'What is your property worth in Bordeaux?'}
+        </h1>
+        <p className="text-sm text-[#6F6255] font-light leading-relaxed">
+          {language === 'fr'
+            ? 'Estimez en 2 minutes la valeur locative ou de vente de votre appartement ou échoppe bordelaise.'
+            : 'Get a 2-minute rental and sales valuation estimate for your Bordeaux property.'}
+        </p>
+      </div>
+
+      {/* Multi-step Progress Indicator */}
+      <div className="flex items-center justify-between max-w-lg mx-auto relative px-4">
+        <div className="absolute top-1/2 left-0 right-0 h-0.5 bg-[#171512]/10 -translate-y-1/2 z-0" />
+        {[1, 2, 3, 4].map((num) => (
+          <div
+            key={num}
+            className={`relative z-10 w-9 h-9 rounded-full font-semibold text-xs flex items-center justify-center transition-all ${
+              step >= num
+                ? 'bg-[#7A2234] text-white shadow-md'
+                : 'bg-white text-[#6F6255] border border-[#171512]/20'
+            }`}
+          >
+            {step > num ? <CheckCircle2 className="w-5 h-5" /> : num}
+          </div>
+        ))}
+      </div>
+
+      {errorMsg && (
+        <div className="p-4 bg-red-50 border border-red-200 rounded-xl text-xs text-red-700 flex items-center space-x-2 max-w-lg mx-auto">
+          <AlertCircle className="w-4 h-4 text-red-600 shrink-0" />
+          <span>{errorMsg}</span>
+        </div>
+      )}
+
+      {/* Main Multi-Step Form Container */}
+      <div className="bg-white rounded-3xl p-6 sm:p-10 border border-[#171512]/10 shadow-2xl relative overflow-hidden">
+        <AnimatePresence mode="wait">
+          
+          {/* STEP 1 */}
+          {step === 1 && (
+            <motion.form
+              key="step1"
+              initial={{ opacity: 0, x: 20 }}
+              animate={{ opacity: 1, x: 0 }}
+              exit={{ opacity: 0, x: -20 }}
+              onSubmit={handleNextStep}
+              className="space-y-6"
+            >
+              <div className="space-y-1">
+                <span className="text-[10px] font-bold uppercase tracking-wider text-[#7A2234]">
+                  {language === 'fr' ? 'Étape 1 sur 3' : 'Step 1 of 3'}
+                </span>
+                <h2 className="font-serif-display text-2xl font-medium text-[#171512]">
+                  {language === 'fr' ? 'Caractéristiques principales de votre bien' : 'Property Type & Sector'}
+                </h2>
+              </div>
+
+              <div className="grid grid-cols-1 sm:grid-cols-3 gap-3">
+                {[
+                  { id: 'appartement', label: language === 'fr' ? 'Appartement' : 'Apartment', icon: Building },
+                  { id: 'echoppe', label: language === 'fr' ? 'Échoppe bordelaise' : 'Townhouse', icon: Home },
+                  { id: 'maison', label: language === 'fr' ? 'Maison / Villa' : 'House / Villa', icon: Home }
+                ].map((item) => {
+                  const Icon = item.icon;
+                  const isSel = formData.propertyType === item.id;
+                  return (
+                    <div
+                      key={item.id}
+                      onClick={() => setFormData({ ...formData, propertyType: item.id as any })}
+                      className={`p-4 rounded-2xl border-2 cursor-pointer text-center space-y-2 transition-all ${
+                        isSel ? 'border-[#7A2234] bg-[#7A2234]/5 text-[#7A2234]' : 'border-[#171512]/10 hover:border-[#171512]/30 text-[#171512]'
+                      }`}
+                    >
+                      <Icon className="w-6 h-6 mx-auto" />
+                      <span className="text-xs font-semibold block">{item.label}</span>
+                    </div>
+                  );
+                })}
+              </div>
+
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 text-xs">
+                <div>
+                  <label className="block font-semibold uppercase tracking-wider text-[#171512] mb-1">
+                    {language === 'fr' ? 'Secteur / Quartier à Bordeaux *' : 'Bordeaux District *'}
+                  </label>
+                  <select
+                    value={formData.neighborhood}
+                    onChange={(e) => setFormData({ ...formData, neighborhood: e.target.value })}
+                    className="w-full px-4 py-3 bg-[#FAF9F6] border border-[#171512]/15 rounded-xl font-medium focus:outline-none focus:border-[#7A2234] focus:ring-1 focus:ring-[#7A2234] transition-all"
+                  >
+                    <option value="chartrons">Chartrons (33000)</option>
+                    <option value="cauderan">Caudéran (33200)</option>
+                    <option value="triangle-dor">Triangle d'Or / Centre (33000)</option>
+                    <option value="bastide">Bastide Rive Droite (33100)</option>
+                    <option value="saint-michel">Saint-Michel & Capucins (33000)</option>
+                    <option value="saint-augustin">Saint-Augustin (33000)</option>
+                  </select>
+                </div>
+
+                <div>
+                  <label className="block font-semibold uppercase tracking-wider text-[#171512] mb-1">
+                    {language === 'fr' ? 'Adresse ou Rue (facultatif)' : 'Address / Street (Optional)'}
+                  </label>
+                  <input
+                    type="text"
+                    placeholder="Ex: Cours Portal, Rue Notre-Dame..."
+                    value={formData.address}
+                    onChange={(e) => setFormData({ ...formData, address: e.target.value })}
+                    className="w-full px-4 py-3 bg-[#FAF9F6] border border-[#171512]/15 rounded-xl font-medium focus:outline-none focus:border-[#7A2234] focus:ring-1 focus:ring-[#7A2234] transition-all"
+                  />
+                </div>
+              </div>
+
+              <div className="pt-4 flex justify-end">
+                <button
+                  type="submit"
+                  className="bg-[#7A2234] hover:bg-[#5C1D27] text-white px-8 py-3.5 rounded-full text-xs font-semibold shadow-md flex items-center space-x-2 transition-all whitespace-nowrap"
+                >
+                  <span>{language === 'fr' ? 'Étape suivante' : 'Next Step'}</span>
+                  <ArrowRight className="w-4 h-4" />
+                </button>
+              </div>
+            </motion.form>
+          )}
+
+          {/* STEP 2 */}
+          {step === 2 && (
+            <motion.form
+              key="step2"
+              initial={{ opacity: 0, x: 20 }}
+              animate={{ opacity: 1, x: 0 }}
+              exit={{ opacity: 0, x: -20 }}
+              onSubmit={handleNextStep}
+              className="space-y-6"
+            >
+              <div className="space-y-1">
+                <span className="text-[10px] font-bold uppercase tracking-wider text-[#7A2234]">
+                  {language === 'fr' ? 'Étape 2 sur 3' : 'Step 2 of 3'}
+                </span>
+                <h2 className="font-serif-display text-2xl font-medium text-[#171512]">
+                  {language === 'fr' ? 'Superficie & Prestations' : 'Surface Area & Condition'}
+                </h2>
+              </div>
+
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 text-xs">
+                <div>
+                  <label className="block font-semibold uppercase tracking-wider text-[#171512] mb-1">
+                    {language === 'fr' ? `Surface Habitable (${formData.surface} m²)` : `Surface Area (${formData.surface} m²)`}
+                  </label>
+                  <input
+                    type="range"
+                    min="15"
+                    max="350"
+                    value={formData.surface}
+                    onChange={(e) => setFormData({ ...formData, surface: parseInt(e.target.value, 10) })}
+                    className="w-full accent-[#7A2234] cursor-pointer h-2 bg-[#171512]/10 rounded-lg"
+                  />
+                  <div className="flex justify-between text-[10px] text-[#6F6255] mt-1">
+                    <span>15 m²</span>
+                    <span>350 m²</span>
+                  </div>
+                </div>
+
+                <div>
+                  <label className="block font-semibold uppercase tracking-wider text-[#171512] mb-1">
+                    {language === 'fr' ? 'Nombre de pièces' : 'Number of Rooms'}
+                  </label>
+                  <select
+                    value={formData.rooms}
+                    onChange={(e) => setFormData({ ...formData, rooms: parseInt(e.target.value, 10) })}
+                    className="w-full px-4 py-3 bg-[#FAF9F6] border border-[#171512]/15 rounded-xl font-medium focus:outline-none focus:border-[#7A2234] focus:ring-1 focus:ring-[#7A2234] transition-all"
+                  >
+                    <option value={1}>1 {language === 'fr' ? 'pièce (Studio/T1)' : 'room (Studio)'}</option>
+                    <option value={2}>2 {language === 'fr' ? 'pièces (T2)' : 'rooms (1 Bed)'}</option>
+                    <option value={3}>3 {language === 'fr' ? 'pièces (T3)' : 'rooms (2 Bed)'}</option>
+                    <option value={4}>4 {language === 'fr' ? 'pièces (T4)' : 'rooms (3 Bed)'}</option>
+                    <option value={5}>5 {language === 'fr' ? 'pièces et plus' : 'rooms +'}</option>
+                  </select>
+                </div>
+              </div>
+
+              <div className="space-y-2 text-xs">
+                <label className="block font-semibold uppercase tracking-wider text-[#171512]">
+                  {language === 'fr' ? 'État du bien' : 'Condition'}
+                </label>
+                <div className="grid grid-cols-2 sm:grid-cols-4 gap-2">
+                  {[
+                    { id: 'neuf', label: language === 'fr' ? 'Neuf / Rénové' : 'Renovated' },
+                    { id: 'excellent', label: language === 'fr' ? 'Excellent état' : 'Excellent' },
+                    { id: 'bon', label: language === 'fr' ? 'Bon état' : 'Good' },
+                    { id: 'a-renover', label: language === 'fr' ? 'À rafraîchir' : 'Needs Work' }
+                  ].map((cond) => (
+                    <button
+                      type="button"
+                      key={cond.id}
+                      onClick={() => setFormData({ ...formData, condition: cond.id as any })}
+                      className={`p-3 rounded-xl border text-xs font-semibold transition-all whitespace-nowrap ${
+                        formData.condition === cond.id
+                          ? 'border-[#7A2234] bg-[#7A2234] text-white shadow'
+                          : 'border-[#171512]/15 bg-white text-[#171512]'
+                      }`}
+                    >
+                      {cond.label}
+                    </button>
+                  ))}
+                </div>
+              </div>
+
+              <div className="pt-4 flex items-center justify-between">
+                <button
+                  type="button"
+                  onClick={() => setStep(1)}
+                  className="text-xs font-semibold text-[#6F6255] hover:text-[#171512]"
+                >
+                  {language === 'fr' ? 'Retour' : 'Back'}
+                </button>
+                <button
+                  type="submit"
+                  className="bg-[#7A2234] hover:bg-[#5C1D27] text-white px-8 py-3.5 rounded-full text-xs font-semibold shadow-md flex items-center space-x-2 transition-all whitespace-nowrap"
+                >
+                  <span>{language === 'fr' ? 'Étape suivante' : 'Next Step'}</span>
+                  <ArrowRight className="w-4 h-4" />
+                </button>
+              </div>
+            </motion.form>
+          )}
+
+          {/* STEP 3 */}
+          {step === 3 && (
+            <motion.form
+              key="step3"
+              initial={{ opacity: 0, x: 20 }}
+              animate={{ opacity: 1, x: 0 }}
+              exit={{ opacity: 0, x: -20 }}
+              onSubmit={handleNextStep}
+              className="space-y-6"
+            >
+              <div className="space-y-1">
+                <span className="text-[10px] font-bold uppercase tracking-wider text-[#7A2234]">
+                  {language === 'fr' ? 'Dernière étape' : 'Final Step'}
+                </span>
+                <h2 className="font-serif-display text-2xl font-medium text-[#171512]">
+                  {language === 'fr' ? 'Vos coordonnées' : 'Contact Information'}
+                </h2>
+              </div>
+
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 text-xs">
+                <div>
+                  <label className="block font-semibold uppercase tracking-wider text-[#171512] mb-1">
+                    {language === 'fr' ? 'Prénom *' : 'First Name *'}
+                  </label>
+                  <input
+                    type="text"
+                    required
+                    placeholder="Marc"
+                    value={formData.firstName}
+                    onChange={(e) => setFormData({ ...formData, firstName: e.target.value })}
+                    className="w-full px-4 py-3 bg-[#FAF9F6] border border-[#171512]/15 rounded-xl font-medium focus:outline-none focus:border-[#7A2234] focus:ring-1 focus:ring-[#7A2234] transition-all"
+                  />
+                </div>
+                <div>
+                  <label className="block font-semibold uppercase tracking-wider text-[#171512] mb-1">
+                    {language === 'fr' ? 'Nom *' : 'Last Name *'}
+                  </label>
+                  <input
+                    type="text"
+                    required
+                    placeholder="Dubois"
+                    value={formData.lastName}
+                    onChange={(e) => setFormData({ ...formData, lastName: e.target.value })}
+                    className="w-full px-4 py-3 bg-[#FAF9F6] border border-[#171512]/15 rounded-xl font-medium focus:outline-none focus:border-[#7A2234] focus:ring-1 focus:ring-[#7A2234] transition-all"
+                  />
+                </div>
+              </div>
+
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 text-xs">
+                <div>
+                  <label className="block font-semibold uppercase tracking-wider text-[#171512] mb-1">
+                    {language === 'fr' ? 'Adresse Email *' : 'Email Address *'}
+                  </label>
+                  <input
+                    type="email"
+                    required
+                    placeholder="marc.dubois@exemple.fr"
+                    value={formData.email}
+                    onChange={(e) => setFormData({ ...formData, email: e.target.value })}
+                    className="w-full px-4 py-3 bg-[#FAF9F6] border border-[#171512]/15 rounded-xl font-medium focus:outline-none focus:border-[#7A2234] focus:ring-1 focus:ring-[#7A2234] transition-all"
+                  />
+                </div>
+                <div>
+                  <label className="block font-semibold uppercase tracking-wider text-[#171512] mb-1">
+                    {language === 'fr' ? 'Téléphone *' : 'Phone Number *'}
+                  </label>
+                  <input
+                    type="tel"
+                    required
+                    placeholder="06 12 34 56 78"
+                    value={formData.phone}
+                    onChange={(e) => setFormData({ ...formData, phone: e.target.value })}
+                    className="w-full px-4 py-3 bg-[#FAF9F6] border border-[#171512]/15 rounded-xl font-medium focus:outline-none focus:border-[#7A2234] focus:ring-1 focus:ring-[#7A2234] transition-all"
+                  />
+                </div>
+              </div>
+
+              <div className="pt-4 flex items-center justify-between">
+                <button
+                  type="button"
+                  onClick={() => setStep(2)}
+                  className="text-xs font-semibold text-[#6F6255] hover:text-[#171512]"
+                >
+                  {language === 'fr' ? 'Retour' : 'Back'}
+                </button>
+                <button
+                  type="submit"
+                  disabled={loading}
+                  className="bg-[#7A2234] hover:bg-[#5C1D27] text-white px-8 py-4 rounded-full text-xs font-semibold shadow-xl flex items-center space-x-2 transition-all whitespace-nowrap disabled:opacity-50"
+                >
+                  <Sparkles className="w-4 h-4" />
+                  <span>{loading ? (language === 'fr' ? 'Calcul sécurisé...' : 'Calculating...') : (language === 'fr' ? 'Obtenir mon estimation' : 'Calculate Valuation')}</span>
+                </button>
+              </div>
+            </motion.form>
+          )}
+
+          {/* STEP 4 */}
+          {step === 4 && estimatedYield && (
+            <motion.div
+              key="step4"
+              initial={{ opacity: 0, scale: 0.95 }}
+              animate={{ opacity: 1, scale: 1 }}
+              className="text-center space-y-8 py-4"
+            >
+              <div className="w-16 h-16 bg-[#7A2234]/10 text-[#7A2234] rounded-full flex items-center justify-center mx-auto">
+                <CheckCircle2 className="w-10 h-10" />
+              </div>
+
+              <div className="space-y-2">
+                <span className="text-xs font-bold uppercase tracking-widest text-[#7A2234]">
+                  {language === 'fr' ? 'ESTIMATION CALCULÉE AVEC SUCCÈS' : 'VALUATION REPORT GENERATED'}
+                </span>
+                <h2 className="font-serif-display text-3xl sm:text-4xl font-light text-[#171512]">
+                  {language === 'fr' ? `Estimation pour votre bien (${formData.surface} m²)` : `Valuation Results (${formData.surface} m²)`}
+                </h2>
+              </div>
+
+              {/* Yield Cards */}
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-6 max-w-2xl mx-auto">
+                <div className="bg-[#FAF9F6] p-6 rounded-2xl border border-[#7A2234]/20 space-y-2 text-center shadow-sm">
+                  <span className="text-[10px] font-bold uppercase tracking-wider text-[#6F6255]">
+                    {language === 'fr' ? 'VALEUR LOCATIVE MENSUELLE ESTIMÉE' : 'ESTIMATED MONTHLY RENTAL VALUE'}
+                  </span>
+                  <div className="font-serif-display text-3xl sm:text-4xl font-bold text-[#7A2234]">
+                    {estimatedYield.rentMin.toLocaleString('fr-FR')} € — {estimatedYield.rentMax.toLocaleString('fr-FR')} €
+                  </div>
+                  <span className="text-[11px] text-[#6F6255] block">/ {language === 'fr' ? 'mois CC' : 'mo inc. charges'}</span>
+                </div>
+
+                <div className="bg-[#FAF9F6] p-6 rounded-2xl border border-[#171512]/10 space-y-2 text-center shadow-sm">
+                  <span className="text-[10px] font-bold uppercase tracking-wider text-[#6F6255]">
+                    {language === 'fr' ? 'VALEUR PATRIMONIALE DE VENTE' : 'ESTIMATED PROPERTY SALES VALUE'}
+                  </span>
+                  <div className="font-serif-display text-3xl sm:text-4xl font-bold text-[#171512]">
+                    {estimatedYield.saleMin.toLocaleString('fr-FR')} € — {estimatedYield.saleMax.toLocaleString('fr-FR')} €
+                  </div>
+                  <span className="text-[11px] text-[#6F6255] block">{language === 'fr' ? 'Valeur vénale FAI' : 'Market valuation'}</span>
+                </div>
+              </div>
+
+              <div className="p-6 bg-[#171512] text-white rounded-2xl max-w-2xl mx-auto space-y-4 text-left">
+                <div className="flex items-center space-x-2">
+                  <ShieldCheck className="w-5 h-5 text-[#7A2234]" />
+                  <h3 className="font-serif-display text-xl font-medium">
+                    {language === 'fr' ? 'Un rapport d\'expertise complet est en cours d\'envoi' : 'Full appraisal report is on its way'}
+                  </h3>
+                </div>
+                <p className="text-xs text-[#9E9285] leading-relaxed">
+                  Merci <strong>{formData.firstName} {formData.lastName}</strong>. Notre directeur de secteur Bordeaux vous contactera au <strong>{formData.phone}</strong> sous 24h. Traitement confidentiel et sécurisé.
+                </p>
+              </div>
+
+            </motion.div>
+          )}
+
+        </AnimatePresence>
+      </div>
+
+    </div>
+  );
+}

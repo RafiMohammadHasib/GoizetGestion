@@ -1,0 +1,3643 @@
+{
+  "users": [
+    {
+      "id": "usr_1",
+      "name": "Alexandre de Saint-Clair",
+      "email": "admin@maison-meridia.fr",
+      "role": "Super Admin",
+      "avatar": "https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=400&q=80",
+      "active": true,
+      "createdAt": "2026-01-10T10:00:00Z"
+    },
+    {
+      "id": "usr_2",
+      "name": "Sophie Martin",
+      "email": "s.martin@maison-meridia.fr",
+      "role": "Administrator",
+      "avatar": "https://images.unsplash.com/photo-1580489944761-15a19d654956?auto=format&fit=crop&w=400&q=80",
+      "active": true,
+      "createdAt": "2026-01-15T11:00:00Z"
+    },
+    {
+      "id": "usr_3",
+      "name": "Thomas Bernard",
+      "email": "t.bernard@maison-meridia.fr",
+      "role": "Property Manager",
+      "avatar": "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&w=400&q=80",
+      "active": true,
+      "createdAt": "2026-02-01T14:30:00Z"
+    },
+    {
+      "id": "usr_4",
+      "name": "Claire Dubois",
+      "email": "c.dubois@maison-meridia.fr",
+      "role": "Content Manager",
+      "avatar": "https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?auto=format&fit=crop&w=400&q=80",
+      "active": true,
+      "createdAt": "2026-02-10T09:00:00Z"
+    },
+    {
+      "id": "usr_5",
+      "name": "Julien Moreau",
+      "email": "j.moreau@maison-meridia.fr",
+      "role": "Sales Agent",
+      "avatar": "https://images.unsplash.com/photo-1500648767791-00dcc994a43e?auto=format&fit=crop&w=400&q=80",
+      "active": true,
+      "createdAt": "2026-02-15T16:00:00Z"
+    }
+  ],
+  "properties": [
+    {
+      "id": "prop_1",
+      "reference": "BDX-2026-101",
+      "title": "Appartement Haussmannien avec Moulures & Balcon - Chartrons",
+      "slug": "appartement-haussmannien-avec-moulures-balcon-chartrons-1",
+      "description": "Exceptionnel bien immobilier situé au cœur du quartier Chartrons à Bordeaux. Finitions raffinées, prestations haut de gamme et luminosité optimale.",
+      "shortDescription": "Superbe propriété de 39 m² à Chartrons disponible immédiatement.",
+      "transactionType": "louer",
+      "propertyType": "appartement",
+      "price": 820,
+      "charges": 85,
+      "deposit": 820,
+      "surface": 39,
+      "rooms": 1,
+      "bedrooms": 1,
+      "bathrooms": 1,
+      "floor": 1,
+      "totalFloors": 4,
+      "yearBuilt": 1883,
+      "energyRating": "B",
+      "gesRating": "B",
+      "address": "11 Rue Chartrons",
+      "postalCode": "33000",
+      "city": "Bordeaux",
+      "neighborhoodSlug": "chartrons",
+      "neighborhoodName": "Chartrons",
+      "isExclusive": false,
+      "status": "Published",
+      "features": [
+        "Parquet massif",
+        "Balcon filant",
+        "Climatisation",
+        "Cave privative",
+        "Ascenseur"
+      ],
+      "images": [
+        "https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=1600&q=80",
+        "https://images.unsplash.com/photo-1600566753190-17f0baa2a6c3?auto=format&fit=crop&w=1600&q=80"
+      ],
+      "coverImage": "https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=1600&q=80",
+      "views": 135,
+      "enquiriesCount": 7,
+      "ownerId": "own_2",
+      "ownerName": "Propriétaire Chartrons",
+      "seoTitle": "Appartement Haussmannien avec Moulures & Balcon - Chartrons | Maison Méridia",
+      "seoDescription": "Location et vente d'exception à Chartrons Bordeaux.",
+      "updatedAt": "2026-08-19T07:29:59.855Z"
+    },
+    {
+      "id": "prop_2",
+      "reference": "BDX-2026-102",
+      "title": "Échoppe Bordelaise Rénovée avec Jardin & Piscine - Caudéran",
+      "slug": "choppe-bordelaise-r-nov-e-avec-jardin-piscine-caud-ran-2",
+      "description": "Exceptionnel bien immobilier situé au cœur du quartier Caudéran à Bordeaux. Finitions raffinées, prestations haut de gamme et luminosité optimale.",
+      "shortDescription": "Superbe propriété de 43 m² à Caudéran disponible immédiatement.",
+      "transactionType": "acheter",
+      "propertyType": "appartement",
+      "price": 290000,
+      "surface": 43,
+      "rooms": 1,
+      "bedrooms": 1,
+      "bathrooms": 1,
+      "floor": 2,
+      "totalFloors": 4,
+      "yearBuilt": 1886,
+      "energyRating": "C",
+      "gesRating": "C",
+      "address": "12 Rue Caudéran",
+      "postalCode": "33000",
+      "city": "Bordeaux",
+      "neighborhoodSlug": "cauderan",
+      "neighborhoodName": "Caudéran",
+      "isExclusive": false,
+      "status": "Published",
+      "features": [
+        "Parquet massif",
+        "Balcon filant",
+        "Climatisation",
+        "Cave privative",
+        "Ascenseur"
+      ],
+      "images": [
+        "https://images.unsplash.com/photo-1600566753190-17f0baa2a6c3?auto=format&fit=crop&w=1600&q=80",
+        "https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?auto=format&fit=crop&w=1600&q=80"
+      ],
+      "coverImage": "https://images.unsplash.com/photo-1600566753190-17f0baa2a6c3?auto=format&fit=crop&w=1600&q=80",
+      "views": 150,
+      "enquiriesCount": 9,
+      "ownerId": "own_3",
+      "ownerName": "Propriétaire Caudéran",
+      "seoTitle": "Échoppe Bordelaise Rénovée avec Jardin & Piscine - Caudéran | Maison Méridia",
+      "seoDescription": "Location et vente d'exception à Caudéran Bordeaux.",
+      "updatedAt": "2026-08-19T06:29:59.856Z"
+    },
+    {
+      "id": "prop_3",
+      "reference": "BDX-2026-103",
+      "title": "Penthouse Vue Dégagée sur la Garonne - Triangle d'Or / Centre",
+      "slug": "penthouse-vue-d-gag-e-sur-la-garonne-triangle-d-or-centre-3",
+      "description": "Exceptionnel bien immobilier situé au cœur du quartier Triangle d'Or / Centre à Bordeaux. Finitions raffinées, prestations haut de gamme et luminosité optimale.",
+      "shortDescription": "Superbe propriété de 47 m² à Triangle d'Or / Centre disponible immédiatement.",
+      "transactionType": "louer",
+      "propertyType": "appartement",
+      "price": 960,
+      "charges": 95,
+      "deposit": 960,
+      "surface": 47,
+      "rooms": 1,
+      "bedrooms": 1,
+      "bathrooms": 1,
+      "floor": 3,
+      "totalFloors": 4,
+      "yearBuilt": 1889,
+      "energyRating": "D",
+      "gesRating": "A",
+      "address": "13 Rue Triangle d'Or / Centre",
+      "postalCode": "33000",
+      "city": "Bordeaux",
+      "neighborhoodSlug": "triangle-dor",
+      "neighborhoodName": "Triangle d'Or / Centre",
+      "isExclusive": true,
+      "status": "Published",
+      "features": [
+        "Parquet massif",
+        "Balcon filant",
+        "Climatisation",
+        "Cave privative",
+        "Ascenseur"
+      ],
+      "images": [
+        "https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?auto=format&fit=crop&w=1600&q=80",
+        "https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?auto=format&fit=crop&w=1600&q=80"
+      ],
+      "coverImage": "https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?auto=format&fit=crop&w=1600&q=80",
+      "views": 165,
+      "enquiriesCount": 11,
+      "ownerId": "own_4",
+      "ownerName": "Propriétaire Triangle d'Or / Centre",
+      "seoTitle": "Penthouse Vue Dégagée sur la Garonne - Triangle d'Or / Centre | Maison Méridia",
+      "seoDescription": "Location et vente d'exception à Triangle d'Or / Centre Bordeaux.",
+      "updatedAt": "2026-08-19T05:29:59.856Z"
+    },
+    {
+      "id": "prop_4",
+      "reference": "BDX-2026-104",
+      "title": "Loft Contemporain sous Verrière d'Architecte - Bastide Rive Droite",
+      "slug": "loft-contemporain-sous-verri-re-d-architecte-bastide-rive-droite-4",
+      "description": "Exceptionnel bien immobilier situé au cœur du quartier Bastide Rive Droite à Bordeaux. Finitions raffinées, prestations haut de gamme et luminosité optimale.",
+      "shortDescription": "Superbe propriété de 51 m² à Bastide Rive Droite disponible immédiatement.",
+      "transactionType": "acheter",
+      "propertyType": "appartement",
+      "price": 360000,
+      "surface": 51,
+      "rooms": 2,
+      "bedrooms": 1,
+      "bathrooms": 1,
+      "floor": 0,
+      "totalFloors": 4,
+      "yearBuilt": 1892,
+      "energyRating": "A",
+      "gesRating": "B",
+      "address": "14 Rue Bastide Rive Droite",
+      "postalCode": "33000",
+      "city": "Bordeaux",
+      "neighborhoodSlug": "bastide",
+      "neighborhoodName": "Bastide Rive Droite",
+      "isExclusive": false,
+      "status": "Published",
+      "features": [
+        "Parquet massif",
+        "Balcon filant",
+        "Climatisation",
+        "Cave privative",
+        "Ascenseur"
+      ],
+      "images": [
+        "https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?auto=format&fit=crop&w=1600&q=80",
+        "https://images.unsplash.com/photo-1600566753086-35f138c65da1?auto=format&fit=crop&w=1600&q=80"
+      ],
+      "coverImage": "https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?auto=format&fit=crop&w=1600&q=80",
+      "views": 180,
+      "enquiriesCount": 13,
+      "ownerId": "own_5",
+      "ownerName": "Propriétaire Bastide Rive Droite",
+      "seoTitle": "Loft Contemporain sous Verrière d'Architecte - Bastide Rive Droite | Maison Méridia",
+      "seoDescription": "Location et vente d'exception à Bastide Rive Droite Bordeaux.",
+      "updatedAt": "2026-08-19T04:29:59.856Z"
+    },
+    {
+      "id": "prop_5",
+      "reference": "BDX-2026-105",
+      "title": "Hôtel Particulier du XVIIIe siècle avec Cour Pavée - Saint-Michel",
+      "slug": "h-tel-particulier-du-xviiie-si-cle-avec-cour-pav-e-saint-michel-5",
+      "description": "Exceptionnel bien immobilier situé au cœur du quartier Saint-Michel à Bordeaux. Finitions raffinées, prestations haut de gamme et luminosité optimale.",
+      "shortDescription": "Superbe propriété de 55 m² à Saint-Michel disponible immédiatement.",
+      "transactionType": "louer",
+      "propertyType": "echoppe",
+      "price": 1100,
+      "charges": 105,
+      "deposit": 1100,
+      "surface": 55,
+      "rooms": 2,
+      "bedrooms": 1,
+      "bathrooms": 1,
+      "floor": 1,
+      "totalFloors": 4,
+      "yearBuilt": 1895,
+      "energyRating": "B",
+      "gesRating": "C",
+      "address": "15 Rue Saint-Michel",
+      "postalCode": "33000",
+      "city": "Bordeaux",
+      "neighborhoodSlug": "saint-michel",
+      "neighborhoodName": "Saint-Michel",
+      "isExclusive": false,
+      "status": "Reserved",
+      "features": [
+        "Parquet massif",
+        "Balcon filant",
+        "Climatisation",
+        "Cave privative",
+        "Ascenseur"
+      ],
+      "images": [
+        "https://images.unsplash.com/photo-1600566753086-35f138c65da1?auto=format&fit=crop&w=1600&q=80",
+        "https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=1600&q=80"
+      ],
+      "coverImage": "https://images.unsplash.com/photo-1600566753086-35f138c65da1?auto=format&fit=crop&w=1600&q=80",
+      "views": 195,
+      "enquiriesCount": 15,
+      "ownerId": "own_6",
+      "ownerName": "Propriétaire Saint-Michel",
+      "seoTitle": "Hôtel Particulier du XVIIIe siècle avec Cour Pavée - Saint-Michel | Maison Méridia",
+      "seoDescription": "Location et vente d'exception à Saint-Michel Bordeaux.",
+      "updatedAt": "2026-08-19T03:29:59.856Z"
+    },
+    {
+      "id": "prop_6",
+      "reference": "BDX-2026-106",
+      "title": "T2 Moderne avec Parking Sécurisé & Balcon - Saint-Augustin",
+      "slug": "t2-moderne-avec-parking-s-curis-balcon-saint-augustin-6",
+      "description": "Exceptionnel bien immobilier situé au cœur du quartier Saint-Augustin à Bordeaux. Finitions raffinées, prestations haut de gamme et luminosité optimale.",
+      "shortDescription": "Superbe propriété de 59 m² à Saint-Augustin disponible immédiatement.",
+      "transactionType": "acheter",
+      "propertyType": "appartement",
+      "price": 430000,
+      "surface": 59,
+      "rooms": 2,
+      "bedrooms": 1,
+      "bathrooms": 1,
+      "floor": 2,
+      "totalFloors": 4,
+      "yearBuilt": 1898,
+      "energyRating": "C",
+      "gesRating": "A",
+      "address": "16 Rue Saint-Augustin",
+      "postalCode": "33000",
+      "city": "Bordeaux",
+      "neighborhoodSlug": "saint-augustin",
+      "neighborhoodName": "Saint-Augustin",
+      "isExclusive": true,
+      "status": "Published",
+      "features": [
+        "Parquet massif",
+        "Balcon filant",
+        "Climatisation",
+        "Cave privative",
+        "Ascenseur"
+      ],
+      "images": [
+        "https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=1600&q=80",
+        "https://images.unsplash.com/photo-1600566753190-17f0baa2a6c3?auto=format&fit=crop&w=1600&q=80"
+      ],
+      "coverImage": "https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=1600&q=80",
+      "views": 210,
+      "enquiriesCount": 17,
+      "ownerId": "own_7",
+      "ownerName": "Propriétaire Saint-Augustin",
+      "seoTitle": "T2 Moderne avec Parking Sécurisé & Balcon - Saint-Augustin | Maison Méridia",
+      "seoDescription": "Location et vente d'exception à Saint-Augustin Bordeaux.",
+      "updatedAt": "2026-08-19T02:29:59.856Z"
+    },
+    {
+      "id": "prop_7",
+      "reference": "BDX-2026-107",
+      "title": "Échoppe Double de Caractère avec Patio - Nansouty",
+      "slug": "choppe-double-de-caract-re-avec-patio-nansouty-7",
+      "description": "Exceptionnel bien immobilier situé au cœur du quartier Nansouty à Bordeaux. Finitions raffinées, prestations haut de gamme et luminosité optimale.",
+      "shortDescription": "Superbe propriété de 63 m² à Nansouty disponible immédiatement.",
+      "transactionType": "louer",
+      "propertyType": "loft",
+      "price": 1240,
+      "charges": 115,
+      "deposit": 1240,
+      "surface": 63,
+      "rooms": 2,
+      "bedrooms": 1,
+      "bathrooms": 1,
+      "floor": 3,
+      "totalFloors": 4,
+      "yearBuilt": 1901,
+      "energyRating": "D",
+      "gesRating": "B",
+      "address": "17 Rue Nansouty",
+      "postalCode": "33000",
+      "city": "Bordeaux",
+      "neighborhoodSlug": "nansouty",
+      "neighborhoodName": "Nansouty",
+      "isExclusive": false,
+      "status": "Published",
+      "features": [
+        "Parquet massif",
+        "Balcon filant",
+        "Climatisation",
+        "Cave privative",
+        "Ascenseur"
+      ],
+      "images": [
+        "https://images.unsplash.com/photo-1600566753190-17f0baa2a6c3?auto=format&fit=crop&w=1600&q=80",
+        "https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?auto=format&fit=crop&w=1600&q=80"
+      ],
+      "coverImage": "https://images.unsplash.com/photo-1600566753190-17f0baa2a6c3?auto=format&fit=crop&w=1600&q=80",
+      "views": 225,
+      "enquiriesCount": 19,
+      "ownerId": "own_8",
+      "ownerName": "Propriétaire Nansouty",
+      "seoTitle": "Échoppe Double de Caractère avec Patio - Nansouty | Maison Méridia",
+      "seoDescription": "Location et vente d'exception à Nansouty Bordeaux.",
+      "updatedAt": "2026-08-19T01:29:59.856Z"
+    },
+    {
+      "id": "prop_8",
+      "reference": "BDX-2026-108",
+      "title": "Duplex de Prestige avec Terrasse Panoramique - Bacalan",
+      "slug": "duplex-de-prestige-avec-terrasse-panoramique-bacalan-8",
+      "description": "Exceptionnel bien immobilier situé au cœur du quartier Bacalan à Bordeaux. Finitions raffinées, prestations haut de gamme et luminosité optimale.",
+      "shortDescription": "Superbe propriété de 67 m² à Bacalan disponible immédiatement.",
+      "transactionType": "acheter",
+      "propertyType": "appartement",
+      "price": 500000,
+      "surface": 67,
+      "rooms": 2,
+      "bedrooms": 1,
+      "bathrooms": 1,
+      "floor": 0,
+      "totalFloors": 4,
+      "yearBuilt": 1904,
+      "energyRating": "A",
+      "gesRating": "C",
+      "address": "18 Rue Bacalan",
+      "postalCode": "33000",
+      "city": "Bordeaux",
+      "neighborhoodSlug": "bacalan",
+      "neighborhoodName": "Bacalan",
+      "isExclusive": false,
+      "status": "Rented",
+      "features": [
+        "Parquet massif",
+        "Balcon filant",
+        "Climatisation",
+        "Cave privative",
+        "Ascenseur"
+      ],
+      "images": [
+        "https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?auto=format&fit=crop&w=1600&q=80",
+        "https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?auto=format&fit=crop&w=1600&q=80"
+      ],
+      "coverImage": "https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?auto=format&fit=crop&w=1600&q=80",
+      "views": 240,
+      "enquiriesCount": 21,
+      "ownerId": "own_9",
+      "ownerName": "Propriétaire Bacalan",
+      "seoTitle": "Duplex de Prestige avec Terrasse Panoramique - Bacalan | Maison Méridia",
+      "seoDescription": "Location et vente d'exception à Bacalan Bordeaux.",
+      "updatedAt": "2026-08-19T00:29:59.857Z"
+    },
+    {
+      "id": "prop_9",
+      "reference": "BDX-2026-109",
+      "title": "Studio Meublé Design Haut de Gamme - Talence",
+      "slug": "studio-meubl-design-haut-de-gamme-talence-9",
+      "description": "Exceptionnel bien immobilier situé au cœur du quartier Talence à Bordeaux. Finitions raffinées, prestations haut de gamme et luminosité optimale.",
+      "shortDescription": "Superbe propriété de 71 m² à Talence disponible immédiatement.",
+      "transactionType": "louer",
+      "propertyType": "appartement",
+      "price": 1380,
+      "charges": 125,
+      "deposit": 1380,
+      "surface": 71,
+      "rooms": 2,
+      "bedrooms": 2,
+      "bathrooms": 1,
+      "floor": 1,
+      "totalFloors": 4,
+      "yearBuilt": 1907,
+      "energyRating": "B",
+      "gesRating": "A",
+      "address": "19 Rue Talence",
+      "postalCode": "33000",
+      "city": "Bordeaux",
+      "neighborhoodSlug": "talence",
+      "neighborhoodName": "Talence",
+      "isExclusive": true,
+      "status": "Published",
+      "features": [
+        "Parquet massif",
+        "Balcon filant",
+        "Climatisation",
+        "Cave privative",
+        "Ascenseur"
+      ],
+      "images": [
+        "https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?auto=format&fit=crop&w=1600&q=80",
+        "https://images.unsplash.com/photo-1600566753086-35f138c65da1?auto=format&fit=crop&w=1600&q=80"
+      ],
+      "coverImage": "https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?auto=format&fit=crop&w=1600&q=80",
+      "views": 255,
+      "enquiriesCount": 23,
+      "ownerId": "own_10",
+      "ownerName": "Propriétaire Talence",
+      "seoTitle": "Studio Meublé Design Haut de Gamme - Talence | Maison Méridia",
+      "seoDescription": "Location et vente d'exception à Talence Bordeaux.",
+      "updatedAt": "2026-08-18T23:29:59.857Z"
+    },
+    {
+      "id": "prop_10",
+      "reference": "BDX-2026-110",
+      "title": "Villa Familiale avec Parc Paysagé & Piscine - Mérignac",
+      "slug": "villa-familiale-avec-parc-paysag-piscine-m-rignac-10",
+      "description": "Exceptionnel bien immobilier situé au cœur du quartier Mérignac à Bordeaux. Finitions raffinées, prestations haut de gamme et luminosité optimale.",
+      "shortDescription": "Superbe propriété de 75 m² à Mérignac disponible immédiatement.",
+      "transactionType": "acheter",
+      "propertyType": "echoppe",
+      "price": 570000,
+      "surface": 75,
+      "rooms": 3,
+      "bedrooms": 2,
+      "bathrooms": 1,
+      "floor": 2,
+      "totalFloors": 4,
+      "yearBuilt": 1910,
+      "energyRating": "C",
+      "gesRating": "B",
+      "address": "20 Rue Mérignac",
+      "postalCode": "33000",
+      "city": "Bordeaux",
+      "neighborhoodSlug": "merignac",
+      "neighborhoodName": "Mérignac",
+      "isExclusive": false,
+      "status": "Reserved",
+      "features": [
+        "Parquet massif",
+        "Balcon filant",
+        "Climatisation",
+        "Cave privative",
+        "Ascenseur"
+      ],
+      "images": [
+        "https://images.unsplash.com/photo-1600566753086-35f138c65da1?auto=format&fit=crop&w=1600&q=80",
+        "https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=1600&q=80"
+      ],
+      "coverImage": "https://images.unsplash.com/photo-1600566753086-35f138c65da1?auto=format&fit=crop&w=1600&q=80",
+      "views": 270,
+      "enquiriesCount": 25,
+      "ownerId": "own_11",
+      "ownerName": "Propriétaire Mérignac",
+      "seoTitle": "Villa Familiale avec Parc Paysagé & Piscine - Mérignac | Maison Méridia",
+      "seoDescription": "Location et vente d'exception à Mérignac Bordeaux.",
+      "updatedAt": "2026-08-18T22:29:59.857Z"
+    },
+    {
+      "id": "prop_11",
+      "reference": "BDX-2026-111",
+      "title": "T3 Lumineux avec Parquet Massif & Cheminée - Pessac",
+      "slug": "t3-lumineux-avec-parquet-massif-chemin-e-pessac-11",
+      "description": "Exceptionnel bien immobilier situé au cœur du quartier Pessac à Bordeaux. Finitions raffinées, prestations haut de gamme et luminosité optimale.",
+      "shortDescription": "Superbe propriété de 79 m² à Pessac disponible immédiatement.",
+      "transactionType": "louer",
+      "propertyType": "hotel-particulier",
+      "price": 1520,
+      "charges": 135,
+      "deposit": 1520,
+      "surface": 79,
+      "rooms": 3,
+      "bedrooms": 2,
+      "bathrooms": 1,
+      "floor": 3,
+      "totalFloors": 4,
+      "yearBuilt": 1913,
+      "energyRating": "D",
+      "gesRating": "C",
+      "address": "21 Rue Pessac",
+      "postalCode": "33000",
+      "city": "Bordeaux",
+      "neighborhoodSlug": "pessac",
+      "neighborhoodName": "Pessac",
+      "isExclusive": false,
+      "status": "Published",
+      "features": [
+        "Parquet massif",
+        "Balcon filant",
+        "Climatisation",
+        "Cave privative",
+        "Ascenseur"
+      ],
+      "images": [
+        "https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=1600&q=80",
+        "https://images.unsplash.com/photo-1600566753190-17f0baa2a6c3?auto=format&fit=crop&w=1600&q=80"
+      ],
+      "coverImage": "https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=1600&q=80",
+      "views": 285,
+      "enquiriesCount": 27,
+      "ownerId": "own_12",
+      "ownerName": "Propriétaire Pessac",
+      "seoTitle": "T3 Lumineux avec Parquet Massif & Cheminée - Pessac | Maison Méridia",
+      "seoDescription": "Location et vente d'exception à Pessac Bordeaux.",
+      "updatedAt": "2026-08-18T21:29:59.857Z"
+    },
+    {
+      "id": "prop_12",
+      "reference": "BDX-2026-112",
+      "title": "Appartement Bourgeois avec Hauteur sous Plafond - Bègles",
+      "slug": "appartement-bourgeois-avec-hauteur-sous-plafond-b-gles-12",
+      "description": "Exceptionnel bien immobilier situé au cœur du quartier Bègles à Bordeaux. Finitions raffinées, prestations haut de gamme et luminosité optimale.",
+      "shortDescription": "Superbe propriété de 83 m² à Bègles disponible immédiatement.",
+      "transactionType": "acheter",
+      "propertyType": "appartement",
+      "price": 640000,
+      "surface": 83,
+      "rooms": 3,
+      "bedrooms": 2,
+      "bathrooms": 1,
+      "floor": 0,
+      "totalFloors": 4,
+      "yearBuilt": 1916,
+      "energyRating": "A",
+      "gesRating": "A",
+      "address": "22 Rue Bègles",
+      "postalCode": "33000",
+      "city": "Bordeaux",
+      "neighborhoodSlug": "begles",
+      "neighborhoodName": "Bègles",
+      "isExclusive": true,
+      "status": "Published",
+      "features": [
+        "Parquet massif",
+        "Balcon filant",
+        "Climatisation",
+        "Cave privative",
+        "Ascenseur"
+      ],
+      "images": [
+        "https://images.unsplash.com/photo-1600566753190-17f0baa2a6c3?auto=format&fit=crop&w=1600&q=80",
+        "https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?auto=format&fit=crop&w=1600&q=80"
+      ],
+      "coverImage": "https://images.unsplash.com/photo-1600566753190-17f0baa2a6c3?auto=format&fit=crop&w=1600&q=80",
+      "views": 300,
+      "enquiriesCount": 29,
+      "ownerId": "own_13",
+      "ownerName": "Propriétaire Bègles",
+      "seoTitle": "Appartement Bourgeois avec Hauteur sous Plafond - Bègles | Maison Méridia",
+      "seoDescription": "Location et vente d'exception à Bègles Bordeaux.",
+      "updatedAt": "2026-08-18T20:29:59.857Z"
+    },
+    {
+      "id": "prop_13",
+      "reference": "BDX-2026-113",
+      "title": "Appartement Haussmannien avec Moulures & Balcon - Chartrons",
+      "slug": "appartement-haussmannien-avec-moulures-balcon-chartrons-13",
+      "description": "Exceptionnel bien immobilier situé au cœur du quartier Chartrons à Bordeaux. Finitions raffinées, prestations haut de gamme et luminosité optimale.",
+      "shortDescription": "Superbe propriété de 87 m² à Chartrons disponible immédiatement.",
+      "transactionType": "louer",
+      "propertyType": "appartement",
+      "price": 1660,
+      "charges": 145,
+      "deposit": 1660,
+      "surface": 87,
+      "rooms": 3,
+      "bedrooms": 2,
+      "bathrooms": 1,
+      "floor": 1,
+      "totalFloors": 4,
+      "yearBuilt": 1919,
+      "energyRating": "B",
+      "gesRating": "B",
+      "address": "23 Rue Chartrons",
+      "postalCode": "33000",
+      "city": "Bordeaux",
+      "neighborhoodSlug": "chartrons",
+      "neighborhoodName": "Chartrons",
+      "isExclusive": false,
+      "status": "Published",
+      "features": [
+        "Parquet massif",
+        "Balcon filant",
+        "Climatisation",
+        "Cave privative",
+        "Ascenseur"
+      ],
+      "images": [
+        "https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?auto=format&fit=crop&w=1600&q=80",
+        "https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?auto=format&fit=crop&w=1600&q=80"
+      ],
+      "coverImage": "https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?auto=format&fit=crop&w=1600&q=80",
+      "views": 315,
+      "enquiriesCount": 31,
+      "ownerId": "own_14",
+      "ownerName": "Propriétaire Chartrons",
+      "seoTitle": "Appartement Haussmannien avec Moulures & Balcon - Chartrons | Maison Méridia",
+      "seoDescription": "Location et vente d'exception à Chartrons Bordeaux.",
+      "updatedAt": "2026-08-18T19:29:59.857Z"
+    },
+    {
+      "id": "prop_14",
+      "reference": "BDX-2026-114",
+      "title": "Échoppe Bordelaise Rénovée avec Jardin & Piscine - Caudéran",
+      "slug": "choppe-bordelaise-r-nov-e-avec-jardin-piscine-caud-ran-14",
+      "description": "Exceptionnel bien immobilier situé au cœur du quartier Caudéran à Bordeaux. Finitions raffinées, prestations haut de gamme et luminosité optimale.",
+      "shortDescription": "Superbe propriété de 91 m² à Caudéran disponible immédiatement.",
+      "transactionType": "acheter",
+      "propertyType": "loft",
+      "price": 710000,
+      "surface": 91,
+      "rooms": 3,
+      "bedrooms": 2,
+      "bathrooms": 1,
+      "floor": 2,
+      "totalFloors": 4,
+      "yearBuilt": 1922,
+      "energyRating": "C",
+      "gesRating": "C",
+      "address": "24 Rue Caudéran",
+      "postalCode": "33000",
+      "city": "Bordeaux",
+      "neighborhoodSlug": "cauderan",
+      "neighborhoodName": "Caudéran",
+      "isExclusive": false,
+      "status": "Published",
+      "features": [
+        "Parquet massif",
+        "Balcon filant",
+        "Climatisation",
+        "Cave privative",
+        "Ascenseur"
+      ],
+      "images": [
+        "https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?auto=format&fit=crop&w=1600&q=80",
+        "https://images.unsplash.com/photo-1600566753086-35f138c65da1?auto=format&fit=crop&w=1600&q=80"
+      ],
+      "coverImage": "https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?auto=format&fit=crop&w=1600&q=80",
+      "views": 330,
+      "enquiriesCount": 33,
+      "ownerId": "own_15",
+      "ownerName": "Propriétaire Caudéran",
+      "seoTitle": "Échoppe Bordelaise Rénovée avec Jardin & Piscine - Caudéran | Maison Méridia",
+      "seoDescription": "Location et vente d'exception à Caudéran Bordeaux.",
+      "updatedAt": "2026-08-18T18:29:59.857Z"
+    },
+    {
+      "id": "prop_15",
+      "reference": "BDX-2026-115",
+      "title": "Penthouse Vue Dégagée sur la Garonne - Triangle d'Or / Centre",
+      "slug": "penthouse-vue-d-gag-e-sur-la-garonne-triangle-d-or-centre-15",
+      "description": "Exceptionnel bien immobilier situé au cœur du quartier Triangle d'Or / Centre à Bordeaux. Finitions raffinées, prestations haut de gamme et luminosité optimale.",
+      "shortDescription": "Superbe propriété de 95 m² à Triangle d'Or / Centre disponible immédiatement.",
+      "transactionType": "louer",
+      "propertyType": "echoppe",
+      "price": 1800,
+      "charges": 155,
+      "deposit": 1800,
+      "surface": 95,
+      "rooms": 3,
+      "bedrooms": 2,
+      "bathrooms": 1,
+      "floor": 3,
+      "totalFloors": 4,
+      "yearBuilt": 1925,
+      "energyRating": "D",
+      "gesRating": "A",
+      "address": "25 Rue Triangle d'Or / Centre",
+      "postalCode": "33000",
+      "city": "Bordeaux",
+      "neighborhoodSlug": "triangle-dor",
+      "neighborhoodName": "Triangle d'Or / Centre",
+      "isExclusive": true,
+      "status": "Reserved",
+      "features": [
+        "Parquet massif",
+        "Balcon filant",
+        "Climatisation",
+        "Cave privative",
+        "Ascenseur"
+      ],
+      "images": [
+        "https://images.unsplash.com/photo-1600566753086-35f138c65da1?auto=format&fit=crop&w=1600&q=80",
+        "https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=1600&q=80"
+      ],
+      "coverImage": "https://images.unsplash.com/photo-1600566753086-35f138c65da1?auto=format&fit=crop&w=1600&q=80",
+      "views": 345,
+      "enquiriesCount": 35,
+      "ownerId": "own_1",
+      "ownerName": "Propriétaire Triangle d'Or / Centre",
+      "seoTitle": "Penthouse Vue Dégagée sur la Garonne - Triangle d'Or / Centre | Maison Méridia",
+      "seoDescription": "Location et vente d'exception à Triangle d'Or / Centre Bordeaux.",
+      "updatedAt": "2026-08-18T17:29:59.857Z"
+    },
+    {
+      "id": "prop_16",
+      "reference": "BDX-2026-116",
+      "title": "Loft Contemporain sous Verrière d'Architecte - Bastide Rive Droite",
+      "slug": "loft-contemporain-sous-verri-re-d-architecte-bastide-rive-droite-16",
+      "description": "Exceptionnel bien immobilier situé au cœur du quartier Bastide Rive Droite à Bordeaux. Finitions raffinées, prestations haut de gamme et luminosité optimale.",
+      "shortDescription": "Superbe propriété de 99 m² à Bastide Rive Droite disponible immédiatement.",
+      "transactionType": "acheter",
+      "propertyType": "appartement",
+      "price": 780000,
+      "surface": 99,
+      "rooms": 3,
+      "bedrooms": 2,
+      "bathrooms": 1,
+      "floor": 0,
+      "totalFloors": 4,
+      "yearBuilt": 1928,
+      "energyRating": "A",
+      "gesRating": "B",
+      "address": "26 Rue Bastide Rive Droite",
+      "postalCode": "33000",
+      "city": "Bordeaux",
+      "neighborhoodSlug": "bastide",
+      "neighborhoodName": "Bastide Rive Droite",
+      "isExclusive": false,
+      "status": "Rented",
+      "features": [
+        "Parquet massif",
+        "Balcon filant",
+        "Climatisation",
+        "Cave privative",
+        "Ascenseur"
+      ],
+      "images": [
+        "https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=1600&q=80",
+        "https://images.unsplash.com/photo-1600566753190-17f0baa2a6c3?auto=format&fit=crop&w=1600&q=80"
+      ],
+      "coverImage": "https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=1600&q=80",
+      "views": 360,
+      "enquiriesCount": 37,
+      "ownerId": "own_2",
+      "ownerName": "Propriétaire Bastide Rive Droite",
+      "seoTitle": "Loft Contemporain sous Verrière d'Architecte - Bastide Rive Droite | Maison Méridia",
+      "seoDescription": "Location et vente d'exception à Bastide Rive Droite Bordeaux.",
+      "updatedAt": "2026-08-18T16:29:59.857Z"
+    },
+    {
+      "id": "prop_17",
+      "reference": "BDX-2026-117",
+      "title": "Hôtel Particulier du XVIIIe siècle avec Cour Pavée - Saint-Michel",
+      "slug": "h-tel-particulier-du-xviiie-si-cle-avec-cour-pav-e-saint-michel-17",
+      "description": "Exceptionnel bien immobilier situé au cœur du quartier Saint-Michel à Bordeaux. Finitions raffinées, prestations haut de gamme et luminosité optimale.",
+      "shortDescription": "Superbe propriété de 103 m² à Saint-Michel disponible immédiatement.",
+      "transactionType": "louer",
+      "propertyType": "appartement",
+      "price": 1940,
+      "charges": 165,
+      "deposit": 1940,
+      "surface": 103,
+      "rooms": 4,
+      "bedrooms": 2,
+      "bathrooms": 1,
+      "floor": 1,
+      "totalFloors": 4,
+      "yearBuilt": 1931,
+      "energyRating": "B",
+      "gesRating": "C",
+      "address": "27 Rue Saint-Michel",
+      "postalCode": "33000",
+      "city": "Bordeaux",
+      "neighborhoodSlug": "saint-michel",
+      "neighborhoodName": "Saint-Michel",
+      "isExclusive": false,
+      "status": "Published",
+      "features": [
+        "Parquet massif",
+        "Balcon filant",
+        "Climatisation",
+        "Cave privative",
+        "Ascenseur"
+      ],
+      "images": [
+        "https://images.unsplash.com/photo-1600566753190-17f0baa2a6c3?auto=format&fit=crop&w=1600&q=80",
+        "https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?auto=format&fit=crop&w=1600&q=80"
+      ],
+      "coverImage": "https://images.unsplash.com/photo-1600566753190-17f0baa2a6c3?auto=format&fit=crop&w=1600&q=80",
+      "views": 375,
+      "enquiriesCount": 39,
+      "ownerId": "own_3",
+      "ownerName": "Propriétaire Saint-Michel",
+      "seoTitle": "Hôtel Particulier du XVIIIe siècle avec Cour Pavée - Saint-Michel | Maison Méridia",
+      "seoDescription": "Location et vente d'exception à Saint-Michel Bordeaux.",
+      "updatedAt": "2026-08-18T15:29:59.857Z"
+    },
+    {
+      "id": "prop_18",
+      "reference": "BDX-2026-118",
+      "title": "T2 Moderne avec Parking Sécurisé & Balcon - Saint-Augustin",
+      "slug": "t2-moderne-avec-parking-s-curis-balcon-saint-augustin-18",
+      "description": "Exceptionnel bien immobilier situé au cœur du quartier Saint-Augustin à Bordeaux. Finitions raffinées, prestations haut de gamme et luminosité optimale.",
+      "shortDescription": "Superbe propriété de 107 m² à Saint-Augustin disponible immédiatement.",
+      "transactionType": "acheter",
+      "propertyType": "appartement",
+      "price": 850000,
+      "surface": 107,
+      "rooms": 4,
+      "bedrooms": 3,
+      "bathrooms": 1,
+      "floor": 2,
+      "totalFloors": 4,
+      "yearBuilt": 1934,
+      "energyRating": "C",
+      "gesRating": "A",
+      "address": "28 Rue Saint-Augustin",
+      "postalCode": "33000",
+      "city": "Bordeaux",
+      "neighborhoodSlug": "saint-augustin",
+      "neighborhoodName": "Saint-Augustin",
+      "isExclusive": true,
+      "status": "Published",
+      "features": [
+        "Parquet massif",
+        "Balcon filant",
+        "Climatisation",
+        "Cave privative",
+        "Ascenseur"
+      ],
+      "images": [
+        "https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?auto=format&fit=crop&w=1600&q=80",
+        "https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?auto=format&fit=crop&w=1600&q=80"
+      ],
+      "coverImage": "https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?auto=format&fit=crop&w=1600&q=80",
+      "views": 390,
+      "enquiriesCount": 41,
+      "ownerId": "own_4",
+      "ownerName": "Propriétaire Saint-Augustin",
+      "seoTitle": "T2 Moderne avec Parking Sécurisé & Balcon - Saint-Augustin | Maison Méridia",
+      "seoDescription": "Location et vente d'exception à Saint-Augustin Bordeaux.",
+      "updatedAt": "2026-08-18T14:29:59.857Z"
+    },
+    {
+      "id": "prop_19",
+      "reference": "BDX-2026-119",
+      "title": "Échoppe Double de Caractère avec Patio - Nansouty",
+      "slug": "choppe-double-de-caract-re-avec-patio-nansouty-19",
+      "description": "Exceptionnel bien immobilier situé au cœur du quartier Nansouty à Bordeaux. Finitions raffinées, prestations haut de gamme et luminosité optimale.",
+      "shortDescription": "Superbe propriété de 111 m² à Nansouty disponible immédiatement.",
+      "transactionType": "louer",
+      "propertyType": "appartement",
+      "price": 2080,
+      "charges": 175,
+      "deposit": 2080,
+      "surface": 111,
+      "rooms": 4,
+      "bedrooms": 3,
+      "bathrooms": 1,
+      "floor": 3,
+      "totalFloors": 4,
+      "yearBuilt": 1937,
+      "energyRating": "D",
+      "gesRating": "B",
+      "address": "29 Rue Nansouty",
+      "postalCode": "33000",
+      "city": "Bordeaux",
+      "neighborhoodSlug": "nansouty",
+      "neighborhoodName": "Nansouty",
+      "isExclusive": false,
+      "status": "Published",
+      "features": [
+        "Parquet massif",
+        "Balcon filant",
+        "Climatisation",
+        "Cave privative",
+        "Ascenseur"
+      ],
+      "images": [
+        "https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?auto=format&fit=crop&w=1600&q=80",
+        "https://images.unsplash.com/photo-1600566753086-35f138c65da1?auto=format&fit=crop&w=1600&q=80"
+      ],
+      "coverImage": "https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?auto=format&fit=crop&w=1600&q=80",
+      "views": 405,
+      "enquiriesCount": 43,
+      "ownerId": "own_5",
+      "ownerName": "Propriétaire Nansouty",
+      "seoTitle": "Échoppe Double de Caractère avec Patio - Nansouty | Maison Méridia",
+      "seoDescription": "Location et vente d'exception à Nansouty Bordeaux.",
+      "updatedAt": "2026-08-18T13:29:59.857Z"
+    },
+    {
+      "id": "prop_20",
+      "reference": "BDX-2026-120",
+      "title": "Duplex de Prestige avec Terrasse Panoramique - Bacalan",
+      "slug": "duplex-de-prestige-avec-terrasse-panoramique-bacalan-20",
+      "description": "Exceptionnel bien immobilier situé au cœur du quartier Bacalan à Bordeaux. Finitions raffinées, prestations haut de gamme et luminosité optimale.",
+      "shortDescription": "Superbe propriété de 115 m² à Bacalan disponible immédiatement.",
+      "transactionType": "acheter",
+      "propertyType": "echoppe",
+      "price": 920000,
+      "surface": 115,
+      "rooms": 4,
+      "bedrooms": 3,
+      "bathrooms": 1,
+      "floor": 0,
+      "totalFloors": 4,
+      "yearBuilt": 1940,
+      "energyRating": "A",
+      "gesRating": "C",
+      "address": "30 Rue Bacalan",
+      "postalCode": "33000",
+      "city": "Bordeaux",
+      "neighborhoodSlug": "bacalan",
+      "neighborhoodName": "Bacalan",
+      "isExclusive": false,
+      "status": "Reserved",
+      "features": [
+        "Parquet massif",
+        "Balcon filant",
+        "Climatisation",
+        "Cave privative",
+        "Ascenseur"
+      ],
+      "images": [
+        "https://images.unsplash.com/photo-1600566753086-35f138c65da1?auto=format&fit=crop&w=1600&q=80",
+        "https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=1600&q=80"
+      ],
+      "coverImage": "https://images.unsplash.com/photo-1600566753086-35f138c65da1?auto=format&fit=crop&w=1600&q=80",
+      "views": 420,
+      "enquiriesCount": 45,
+      "ownerId": "own_6",
+      "ownerName": "Propriétaire Bacalan",
+      "seoTitle": "Duplex de Prestige avec Terrasse Panoramique - Bacalan | Maison Méridia",
+      "seoDescription": "Location et vente d'exception à Bacalan Bordeaux.",
+      "updatedAt": "2026-08-18T12:29:59.857Z"
+    },
+    {
+      "id": "prop_21",
+      "reference": "BDX-2026-121",
+      "title": "Studio Meublé Design Haut de Gamme - Talence",
+      "slug": "studio-meubl-design-haut-de-gamme-talence-21",
+      "description": "Exceptionnel bien immobilier situé au cœur du quartier Talence à Bordeaux. Finitions raffinées, prestations haut de gamme et luminosité optimale.",
+      "shortDescription": "Superbe propriété de 119 m² à Talence disponible immédiatement.",
+      "transactionType": "louer",
+      "propertyType": "loft",
+      "price": 2220,
+      "charges": 185,
+      "deposit": 2220,
+      "surface": 119,
+      "rooms": 4,
+      "bedrooms": 3,
+      "bathrooms": 1,
+      "floor": 1,
+      "totalFloors": 4,
+      "yearBuilt": 1943,
+      "energyRating": "B",
+      "gesRating": "A",
+      "address": "31 Rue Talence",
+      "postalCode": "33000",
+      "city": "Bordeaux",
+      "neighborhoodSlug": "talence",
+      "neighborhoodName": "Talence",
+      "isExclusive": true,
+      "status": "Published",
+      "features": [
+        "Parquet massif",
+        "Balcon filant",
+        "Climatisation",
+        "Cave privative",
+        "Ascenseur"
+      ],
+      "images": [
+        "https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=1600&q=80",
+        "https://images.unsplash.com/photo-1600566753190-17f0baa2a6c3?auto=format&fit=crop&w=1600&q=80"
+      ],
+      "coverImage": "https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=1600&q=80",
+      "views": 435,
+      "enquiriesCount": 47,
+      "ownerId": "own_7",
+      "ownerName": "Propriétaire Talence",
+      "seoTitle": "Studio Meublé Design Haut de Gamme - Talence | Maison Méridia",
+      "seoDescription": "Location et vente d'exception à Talence Bordeaux.",
+      "updatedAt": "2026-08-18T11:29:59.857Z"
+    },
+    {
+      "id": "prop_22",
+      "reference": "BDX-2026-122",
+      "title": "Villa Familiale avec Parc Paysagé & Piscine - Mérignac",
+      "slug": "villa-familiale-avec-parc-paysag-piscine-m-rignac-22",
+      "description": "Exceptionnel bien immobilier situé au cœur du quartier Mérignac à Bordeaux. Finitions raffinées, prestations haut de gamme et luminosité optimale.",
+      "shortDescription": "Superbe propriété de 123 m² à Mérignac disponible immédiatement.",
+      "transactionType": "acheter",
+      "propertyType": "hotel-particulier",
+      "price": 990000,
+      "surface": 123,
+      "rooms": 4,
+      "bedrooms": 3,
+      "bathrooms": 2,
+      "floor": 2,
+      "totalFloors": 4,
+      "yearBuilt": 1946,
+      "energyRating": "C",
+      "gesRating": "B",
+      "address": "32 Rue Mérignac",
+      "postalCode": "33000",
+      "city": "Bordeaux",
+      "neighborhoodSlug": "merignac",
+      "neighborhoodName": "Mérignac",
+      "isExclusive": false,
+      "status": "Published",
+      "features": [
+        "Parquet massif",
+        "Balcon filant",
+        "Climatisation",
+        "Cave privative",
+        "Ascenseur"
+      ],
+      "images": [
+        "https://images.unsplash.com/photo-1600566753190-17f0baa2a6c3?auto=format&fit=crop&w=1600&q=80",
+        "https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?auto=format&fit=crop&w=1600&q=80"
+      ],
+      "coverImage": "https://images.unsplash.com/photo-1600566753190-17f0baa2a6c3?auto=format&fit=crop&w=1600&q=80",
+      "views": 450,
+      "enquiriesCount": 49,
+      "ownerId": "own_8",
+      "ownerName": "Propriétaire Mérignac",
+      "seoTitle": "Villa Familiale avec Parc Paysagé & Piscine - Mérignac | Maison Méridia",
+      "seoDescription": "Location et vente d'exception à Mérignac Bordeaux.",
+      "updatedAt": "2026-08-18T10:29:59.857Z"
+    },
+    {
+      "id": "prop_23",
+      "reference": "BDX-2026-123",
+      "title": "T3 Lumineux avec Parquet Massif & Cheminée - Pessac",
+      "slug": "t3-lumineux-avec-parquet-massif-chemin-e-pessac-23",
+      "description": "Exceptionnel bien immobilier situé au cœur du quartier Pessac à Bordeaux. Finitions raffinées, prestations haut de gamme et luminosité optimale.",
+      "shortDescription": "Superbe propriété de 127 m² à Pessac disponible immédiatement.",
+      "transactionType": "louer",
+      "propertyType": "appartement",
+      "price": 2360,
+      "charges": 195,
+      "deposit": 2360,
+      "surface": 127,
+      "rooms": 5,
+      "bedrooms": 3,
+      "bathrooms": 2,
+      "floor": 3,
+      "totalFloors": 4,
+      "yearBuilt": 1949,
+      "energyRating": "D",
+      "gesRating": "C",
+      "address": "33 Rue Pessac",
+      "postalCode": "33000",
+      "city": "Bordeaux",
+      "neighborhoodSlug": "pessac",
+      "neighborhoodName": "Pessac",
+      "isExclusive": false,
+      "status": "Published",
+      "features": [
+        "Parquet massif",
+        "Balcon filant",
+        "Climatisation",
+        "Cave privative",
+        "Ascenseur"
+      ],
+      "images": [
+        "https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?auto=format&fit=crop&w=1600&q=80",
+        "https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?auto=format&fit=crop&w=1600&q=80"
+      ],
+      "coverImage": "https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?auto=format&fit=crop&w=1600&q=80",
+      "views": 465,
+      "enquiriesCount": 51,
+      "ownerId": "own_9",
+      "ownerName": "Propriétaire Pessac",
+      "seoTitle": "T3 Lumineux avec Parquet Massif & Cheminée - Pessac | Maison Méridia",
+      "seoDescription": "Location et vente d'exception à Pessac Bordeaux.",
+      "updatedAt": "2026-08-18T09:29:59.857Z"
+    },
+    {
+      "id": "prop_24",
+      "reference": "BDX-2026-124",
+      "title": "Appartement Bourgeois avec Hauteur sous Plafond - Bègles",
+      "slug": "appartement-bourgeois-avec-hauteur-sous-plafond-b-gles-24",
+      "description": "Exceptionnel bien immobilier situé au cœur du quartier Bègles à Bordeaux. Finitions raffinées, prestations haut de gamme et luminosité optimale.",
+      "shortDescription": "Superbe propriété de 131 m² à Bègles disponible immédiatement.",
+      "transactionType": "acheter",
+      "propertyType": "appartement",
+      "price": 1060000,
+      "surface": 131,
+      "rooms": 5,
+      "bedrooms": 3,
+      "bathrooms": 2,
+      "floor": 0,
+      "totalFloors": 4,
+      "yearBuilt": 1952,
+      "energyRating": "A",
+      "gesRating": "A",
+      "address": "34 Rue Bègles",
+      "postalCode": "33000",
+      "city": "Bordeaux",
+      "neighborhoodSlug": "begles",
+      "neighborhoodName": "Bègles",
+      "isExclusive": true,
+      "status": "Rented",
+      "features": [
+        "Parquet massif",
+        "Balcon filant",
+        "Climatisation",
+        "Cave privative",
+        "Ascenseur"
+      ],
+      "images": [
+        "https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?auto=format&fit=crop&w=1600&q=80",
+        "https://images.unsplash.com/photo-1600566753086-35f138c65da1?auto=format&fit=crop&w=1600&q=80"
+      ],
+      "coverImage": "https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?auto=format&fit=crop&w=1600&q=80",
+      "views": 480,
+      "enquiriesCount": 53,
+      "ownerId": "own_10",
+      "ownerName": "Propriétaire Bègles",
+      "seoTitle": "Appartement Bourgeois avec Hauteur sous Plafond - Bègles | Maison Méridia",
+      "seoDescription": "Location et vente d'exception à Bègles Bordeaux.",
+      "updatedAt": "2026-08-18T08:29:59.857Z"
+    },
+    {
+      "id": "prop_25",
+      "reference": "BDX-2026-125",
+      "title": "Appartement Haussmannien avec Moulures & Balcon - Chartrons",
+      "slug": "appartement-haussmannien-avec-moulures-balcon-chartrons-25",
+      "description": "Exceptionnel bien immobilier situé au cœur du quartier Chartrons à Bordeaux. Finitions raffinées, prestations haut de gamme et luminosité optimale.",
+      "shortDescription": "Superbe propriété de 135 m² à Chartrons disponible immédiatement.",
+      "transactionType": "louer",
+      "propertyType": "echoppe",
+      "price": 2500,
+      "charges": 205,
+      "deposit": 2500,
+      "surface": 135,
+      "rooms": 5,
+      "bedrooms": 3,
+      "bathrooms": 2,
+      "floor": 1,
+      "totalFloors": 4,
+      "yearBuilt": 1955,
+      "energyRating": "B",
+      "gesRating": "B",
+      "address": "35 Rue Chartrons",
+      "postalCode": "33000",
+      "city": "Bordeaux",
+      "neighborhoodSlug": "chartrons",
+      "neighborhoodName": "Chartrons",
+      "isExclusive": false,
+      "status": "Reserved",
+      "features": [
+        "Parquet massif",
+        "Balcon filant",
+        "Climatisation",
+        "Cave privative",
+        "Ascenseur"
+      ],
+      "images": [
+        "https://images.unsplash.com/photo-1600566753086-35f138c65da1?auto=format&fit=crop&w=1600&q=80",
+        "https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=1600&q=80"
+      ],
+      "coverImage": "https://images.unsplash.com/photo-1600566753086-35f138c65da1?auto=format&fit=crop&w=1600&q=80",
+      "views": 495,
+      "enquiriesCount": 55,
+      "ownerId": "own_11",
+      "ownerName": "Propriétaire Chartrons",
+      "seoTitle": "Appartement Haussmannien avec Moulures & Balcon - Chartrons | Maison Méridia",
+      "seoDescription": "Location et vente d'exception à Chartrons Bordeaux.",
+      "updatedAt": "2026-08-18T07:29:59.857Z"
+    },
+    {
+      "id": "prop_26",
+      "reference": "BDX-2026-126",
+      "title": "Échoppe Bordelaise Rénovée avec Jardin & Piscine - Caudéran",
+      "slug": "choppe-bordelaise-r-nov-e-avec-jardin-piscine-caud-ran-26",
+      "description": "Exceptionnel bien immobilier situé au cœur du quartier Caudéran à Bordeaux. Finitions raffinées, prestations haut de gamme et luminosité optimale.",
+      "shortDescription": "Superbe propriété de 139 m² à Caudéran disponible immédiatement.",
+      "transactionType": "acheter",
+      "propertyType": "appartement",
+      "price": 1130000,
+      "surface": 139,
+      "rooms": 5,
+      "bedrooms": 3,
+      "bathrooms": 2,
+      "floor": 2,
+      "totalFloors": 4,
+      "yearBuilt": 1958,
+      "energyRating": "C",
+      "gesRating": "C",
+      "address": "36 Rue Caudéran",
+      "postalCode": "33000",
+      "city": "Bordeaux",
+      "neighborhoodSlug": "cauderan",
+      "neighborhoodName": "Caudéran",
+      "isExclusive": false,
+      "status": "Published",
+      "features": [
+        "Parquet massif",
+        "Balcon filant",
+        "Climatisation",
+        "Cave privative",
+        "Ascenseur"
+      ],
+      "images": [
+        "https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=1600&q=80",
+        "https://images.unsplash.com/photo-1600566753190-17f0baa2a6c3?auto=format&fit=crop&w=1600&q=80"
+      ],
+      "coverImage": "https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=1600&q=80",
+      "views": 510,
+      "enquiriesCount": 57,
+      "ownerId": "own_12",
+      "ownerName": "Propriétaire Caudéran",
+      "seoTitle": "Échoppe Bordelaise Rénovée avec Jardin & Piscine - Caudéran | Maison Méridia",
+      "seoDescription": "Location et vente d'exception à Caudéran Bordeaux.",
+      "updatedAt": "2026-08-18T06:29:59.857Z"
+    },
+    {
+      "id": "prop_27",
+      "reference": "BDX-2026-127",
+      "title": "Penthouse Vue Dégagée sur la Garonne - Triangle d'Or / Centre",
+      "slug": "penthouse-vue-d-gag-e-sur-la-garonne-triangle-d-or-centre-27",
+      "description": "Exceptionnel bien immobilier situé au cœur du quartier Triangle d'Or / Centre à Bordeaux. Finitions raffinées, prestations haut de gamme et luminosité optimale.",
+      "shortDescription": "Superbe propriété de 143 m² à Triangle d'Or / Centre disponible immédiatement.",
+      "transactionType": "louer",
+      "propertyType": "appartement",
+      "price": 2640,
+      "charges": 215,
+      "deposit": 2640,
+      "surface": 143,
+      "rooms": 5,
+      "bedrooms": 4,
+      "bathrooms": 2,
+      "floor": 3,
+      "totalFloors": 4,
+      "yearBuilt": 1961,
+      "energyRating": "D",
+      "gesRating": "A",
+      "address": "37 Rue Triangle d'Or / Centre",
+      "postalCode": "33000",
+      "city": "Bordeaux",
+      "neighborhoodSlug": "triangle-dor",
+      "neighborhoodName": "Triangle d'Or / Centre",
+      "isExclusive": true,
+      "status": "Published",
+      "features": [
+        "Parquet massif",
+        "Balcon filant",
+        "Climatisation",
+        "Cave privative",
+        "Ascenseur"
+      ],
+      "images": [
+        "https://images.unsplash.com/photo-1600566753190-17f0baa2a6c3?auto=format&fit=crop&w=1600&q=80",
+        "https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?auto=format&fit=crop&w=1600&q=80"
+      ],
+      "coverImage": "https://images.unsplash.com/photo-1600566753190-17f0baa2a6c3?auto=format&fit=crop&w=1600&q=80",
+      "views": 525,
+      "enquiriesCount": 59,
+      "ownerId": "own_13",
+      "ownerName": "Propriétaire Triangle d'Or / Centre",
+      "seoTitle": "Penthouse Vue Dégagée sur la Garonne - Triangle d'Or / Centre | Maison Méridia",
+      "seoDescription": "Location et vente d'exception à Triangle d'Or / Centre Bordeaux.",
+      "updatedAt": "2026-08-18T05:29:59.857Z"
+    },
+    {
+      "id": "prop_28",
+      "reference": "BDX-2026-128",
+      "title": "Loft Contemporain sous Verrière d'Architecte - Bastide Rive Droite",
+      "slug": "loft-contemporain-sous-verri-re-d-architecte-bastide-rive-droite-28",
+      "description": "Exceptionnel bien immobilier situé au cœur du quartier Bastide Rive Droite à Bordeaux. Finitions raffinées, prestations haut de gamme et luminosité optimale.",
+      "shortDescription": "Superbe propriété de 147 m² à Bastide Rive Droite disponible immédiatement.",
+      "transactionType": "acheter",
+      "propertyType": "loft",
+      "price": 1200000,
+      "surface": 147,
+      "rooms": 5,
+      "bedrooms": 4,
+      "bathrooms": 2,
+      "floor": 0,
+      "totalFloors": 4,
+      "yearBuilt": 1964,
+      "energyRating": "A",
+      "gesRating": "B",
+      "address": "38 Rue Bastide Rive Droite",
+      "postalCode": "33000",
+      "city": "Bordeaux",
+      "neighborhoodSlug": "bastide",
+      "neighborhoodName": "Bastide Rive Droite",
+      "isExclusive": false,
+      "status": "Published",
+      "features": [
+        "Parquet massif",
+        "Balcon filant",
+        "Climatisation",
+        "Cave privative",
+        "Ascenseur"
+      ],
+      "images": [
+        "https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?auto=format&fit=crop&w=1600&q=80",
+        "https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?auto=format&fit=crop&w=1600&q=80"
+      ],
+      "coverImage": "https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?auto=format&fit=crop&w=1600&q=80",
+      "views": 540,
+      "enquiriesCount": 61,
+      "ownerId": "own_14",
+      "ownerName": "Propriétaire Bastide Rive Droite",
+      "seoTitle": "Loft Contemporain sous Verrière d'Architecte - Bastide Rive Droite | Maison Méridia",
+      "seoDescription": "Location et vente d'exception à Bastide Rive Droite Bordeaux.",
+      "updatedAt": "2026-08-18T04:29:59.857Z"
+    },
+    {
+      "id": "prop_29",
+      "reference": "BDX-2026-129",
+      "title": "Hôtel Particulier du XVIIIe siècle avec Cour Pavée - Saint-Michel",
+      "slug": "h-tel-particulier-du-xviiie-si-cle-avec-cour-pav-e-saint-michel-29",
+      "description": "Exceptionnel bien immobilier situé au cœur du quartier Saint-Michel à Bordeaux. Finitions raffinées, prestations haut de gamme et luminosité optimale.",
+      "shortDescription": "Superbe propriété de 151 m² à Saint-Michel disponible immédiatement.",
+      "transactionType": "louer",
+      "propertyType": "appartement",
+      "price": 2780,
+      "charges": 225,
+      "deposit": 2780,
+      "surface": 151,
+      "rooms": 6,
+      "bedrooms": 4,
+      "bathrooms": 2,
+      "floor": 1,
+      "totalFloors": 4,
+      "yearBuilt": 1967,
+      "energyRating": "B",
+      "gesRating": "C",
+      "address": "39 Rue Saint-Michel",
+      "postalCode": "33000",
+      "city": "Bordeaux",
+      "neighborhoodSlug": "saint-michel",
+      "neighborhoodName": "Saint-Michel",
+      "isExclusive": false,
+      "status": "Published",
+      "features": [
+        "Parquet massif",
+        "Balcon filant",
+        "Climatisation",
+        "Cave privative",
+        "Ascenseur"
+      ],
+      "images": [
+        "https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?auto=format&fit=crop&w=1600&q=80",
+        "https://images.unsplash.com/photo-1600566753086-35f138c65da1?auto=format&fit=crop&w=1600&q=80"
+      ],
+      "coverImage": "https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?auto=format&fit=crop&w=1600&q=80",
+      "views": 555,
+      "enquiriesCount": 63,
+      "ownerId": "own_15",
+      "ownerName": "Propriétaire Saint-Michel",
+      "seoTitle": "Hôtel Particulier du XVIIIe siècle avec Cour Pavée - Saint-Michel | Maison Méridia",
+      "seoDescription": "Location et vente d'exception à Saint-Michel Bordeaux.",
+      "updatedAt": "2026-08-18T03:29:59.857Z"
+    },
+    {
+      "id": "prop_30",
+      "reference": "BDX-2026-130",
+      "title": "T2 Moderne avec Parking Sécurisé & Balcon - Saint-Augustin",
+      "slug": "t2-moderne-avec-parking-s-curis-balcon-saint-augustin-30",
+      "description": "Exceptionnel bien immobilier situé au cœur du quartier Saint-Augustin à Bordeaux. Finitions raffinées, prestations haut de gamme et luminosité optimale.",
+      "shortDescription": "Superbe propriété de 155 m² à Saint-Augustin disponible immédiatement.",
+      "transactionType": "acheter",
+      "propertyType": "echoppe",
+      "price": 1270000,
+      "surface": 155,
+      "rooms": 6,
+      "bedrooms": 4,
+      "bathrooms": 2,
+      "floor": 2,
+      "totalFloors": 4,
+      "yearBuilt": 1970,
+      "energyRating": "C",
+      "gesRating": "A",
+      "address": "40 Rue Saint-Augustin",
+      "postalCode": "33000",
+      "city": "Bordeaux",
+      "neighborhoodSlug": "saint-augustin",
+      "neighborhoodName": "Saint-Augustin",
+      "isExclusive": true,
+      "status": "Reserved",
+      "features": [
+        "Parquet massif",
+        "Balcon filant",
+        "Climatisation",
+        "Cave privative",
+        "Ascenseur"
+      ],
+      "images": [
+        "https://images.unsplash.com/photo-1600566753086-35f138c65da1?auto=format&fit=crop&w=1600&q=80",
+        "https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=1600&q=80"
+      ],
+      "coverImage": "https://images.unsplash.com/photo-1600566753086-35f138c65da1?auto=format&fit=crop&w=1600&q=80",
+      "views": 570,
+      "enquiriesCount": 65,
+      "ownerId": "own_1",
+      "ownerName": "Propriétaire Saint-Augustin",
+      "seoTitle": "T2 Moderne avec Parking Sécurisé & Balcon - Saint-Augustin | Maison Méridia",
+      "seoDescription": "Location et vente d'exception à Saint-Augustin Bordeaux.",
+      "updatedAt": "2026-08-18T02:29:59.857Z"
+    },
+    {
+      "id": "prop_31",
+      "reference": "BDX-2026-131",
+      "title": "Échoppe Double de Caractère avec Patio - Nansouty",
+      "slug": "choppe-double-de-caract-re-avec-patio-nansouty-31",
+      "description": "Exceptionnel bien immobilier situé au cœur du quartier Nansouty à Bordeaux. Finitions raffinées, prestations haut de gamme et luminosité optimale.",
+      "shortDescription": "Superbe propriété de 159 m² à Nansouty disponible immédiatement.",
+      "transactionType": "louer",
+      "propertyType": "appartement",
+      "price": 2920,
+      "charges": 235,
+      "deposit": 2920,
+      "surface": 159,
+      "rooms": 6,
+      "bedrooms": 4,
+      "bathrooms": 2,
+      "floor": 3,
+      "totalFloors": 4,
+      "yearBuilt": 1973,
+      "energyRating": "D",
+      "gesRating": "B",
+      "address": "41 Rue Nansouty",
+      "postalCode": "33000",
+      "city": "Bordeaux",
+      "neighborhoodSlug": "nansouty",
+      "neighborhoodName": "Nansouty",
+      "isExclusive": false,
+      "status": "Draft",
+      "features": [
+        "Parquet massif",
+        "Balcon filant",
+        "Climatisation",
+        "Cave privative",
+        "Ascenseur"
+      ],
+      "images": [
+        "https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=1600&q=80",
+        "https://images.unsplash.com/photo-1600566753190-17f0baa2a6c3?auto=format&fit=crop&w=1600&q=80"
+      ],
+      "coverImage": "https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=1600&q=80",
+      "views": 585,
+      "enquiriesCount": 67,
+      "ownerId": "own_2",
+      "ownerName": "Propriétaire Nansouty",
+      "seoTitle": "Échoppe Double de Caractère avec Patio - Nansouty | Maison Méridia",
+      "seoDescription": "Location et vente d'exception à Nansouty Bordeaux.",
+      "updatedAt": "2026-08-18T01:29:59.857Z"
+    },
+    {
+      "id": "prop_32",
+      "reference": "BDX-2026-132",
+      "title": "Duplex de Prestige avec Terrasse Panoramique - Bacalan",
+      "slug": "duplex-de-prestige-avec-terrasse-panoramique-bacalan-32",
+      "description": "Exceptionnel bien immobilier situé au cœur du quartier Bacalan à Bordeaux. Finitions raffinées, prestations haut de gamme et luminosité optimale.",
+      "shortDescription": "Superbe propriété de 163 m² à Bacalan disponible immédiatement.",
+      "transactionType": "acheter",
+      "propertyType": "appartement",
+      "price": 1340000,
+      "surface": 163,
+      "rooms": 6,
+      "bedrooms": 4,
+      "bathrooms": 2,
+      "floor": 0,
+      "totalFloors": 4,
+      "yearBuilt": 1976,
+      "energyRating": "A",
+      "gesRating": "C",
+      "address": "42 Rue Bacalan",
+      "postalCode": "33000",
+      "city": "Bordeaux",
+      "neighborhoodSlug": "bacalan",
+      "neighborhoodName": "Bacalan",
+      "isExclusive": false,
+      "status": "Draft",
+      "features": [
+        "Parquet massif",
+        "Balcon filant",
+        "Climatisation",
+        "Cave privative",
+        "Ascenseur"
+      ],
+      "images": [
+        "https://images.unsplash.com/photo-1600566753190-17f0baa2a6c3?auto=format&fit=crop&w=1600&q=80",
+        "https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?auto=format&fit=crop&w=1600&q=80"
+      ],
+      "coverImage": "https://images.unsplash.com/photo-1600566753190-17f0baa2a6c3?auto=format&fit=crop&w=1600&q=80",
+      "views": 600,
+      "enquiriesCount": 69,
+      "ownerId": "own_3",
+      "ownerName": "Propriétaire Bacalan",
+      "seoTitle": "Duplex de Prestige avec Terrasse Panoramique - Bacalan | Maison Méridia",
+      "seoDescription": "Location et vente d'exception à Bacalan Bordeaux.",
+      "updatedAt": "2026-08-18T00:29:59.857Z"
+    },
+    {
+      "id": "prop_33",
+      "reference": "BDX-2026-133",
+      "title": "Studio Meublé Design Haut de Gamme - Talence",
+      "slug": "studio-meubl-design-haut-de-gamme-talence-33",
+      "description": "Exceptionnel bien immobilier situé au cœur du quartier Talence à Bordeaux. Finitions raffinées, prestations haut de gamme et luminosité optimale.",
+      "shortDescription": "Superbe propriété de 167 m² à Talence disponible immédiatement.",
+      "transactionType": "louer",
+      "propertyType": "hotel-particulier",
+      "price": 3060,
+      "charges": 245,
+      "deposit": 3060,
+      "surface": 167,
+      "rooms": 6,
+      "bedrooms": 4,
+      "bathrooms": 2,
+      "floor": 1,
+      "totalFloors": 4,
+      "yearBuilt": 1979,
+      "energyRating": "B",
+      "gesRating": "A",
+      "address": "43 Rue Talence",
+      "postalCode": "33000",
+      "city": "Bordeaux",
+      "neighborhoodSlug": "talence",
+      "neighborhoodName": "Talence",
+      "isExclusive": true,
+      "status": "Draft",
+      "features": [
+        "Parquet massif",
+        "Balcon filant",
+        "Climatisation",
+        "Cave privative",
+        "Ascenseur"
+      ],
+      "images": [
+        "https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?auto=format&fit=crop&w=1600&q=80",
+        "https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?auto=format&fit=crop&w=1600&q=80"
+      ],
+      "coverImage": "https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?auto=format&fit=crop&w=1600&q=80",
+      "views": 615,
+      "enquiriesCount": 71,
+      "ownerId": "own_4",
+      "ownerName": "Propriétaire Talence",
+      "seoTitle": "Studio Meublé Design Haut de Gamme - Talence | Maison Méridia",
+      "seoDescription": "Location et vente d'exception à Talence Bordeaux.",
+      "updatedAt": "2026-08-17T23:29:59.857Z"
+    },
+    {
+      "id": "prop_34",
+      "reference": "BDX-2026-134",
+      "title": "Villa Familiale avec Parc Paysagé & Piscine - Mérignac",
+      "slug": "villa-familiale-avec-parc-paysag-piscine-m-rignac-34",
+      "description": "Exceptionnel bien immobilier situé au cœur du quartier Mérignac à Bordeaux. Finitions raffinées, prestations haut de gamme et luminosité optimale.",
+      "shortDescription": "Superbe propriété de 171 m² à Mérignac disponible immédiatement.",
+      "transactionType": "acheter",
+      "propertyType": "appartement",
+      "price": 1410000,
+      "surface": 171,
+      "rooms": 6,
+      "bedrooms": 4,
+      "bathrooms": 2,
+      "floor": 2,
+      "totalFloors": 4,
+      "yearBuilt": 1982,
+      "energyRating": "C",
+      "gesRating": "B",
+      "address": "44 Rue Mérignac",
+      "postalCode": "33000",
+      "city": "Bordeaux",
+      "neighborhoodSlug": "merignac",
+      "neighborhoodName": "Mérignac",
+      "isExclusive": false,
+      "status": "Draft",
+      "features": [
+        "Parquet massif",
+        "Balcon filant",
+        "Climatisation",
+        "Cave privative",
+        "Ascenseur"
+      ],
+      "images": [
+        "https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?auto=format&fit=crop&w=1600&q=80",
+        "https://images.unsplash.com/photo-1600566753086-35f138c65da1?auto=format&fit=crop&w=1600&q=80"
+      ],
+      "coverImage": "https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?auto=format&fit=crop&w=1600&q=80",
+      "views": 630,
+      "enquiriesCount": 73,
+      "ownerId": "own_5",
+      "ownerName": "Propriétaire Mérignac",
+      "seoTitle": "Villa Familiale avec Parc Paysagé & Piscine - Mérignac | Maison Méridia",
+      "seoDescription": "Location et vente d'exception à Mérignac Bordeaux.",
+      "updatedAt": "2026-08-17T22:29:59.857Z"
+    },
+    {
+      "id": "prop_35",
+      "reference": "BDX-2026-135",
+      "title": "T3 Lumineux avec Parquet Massif & Cheminée - Pessac",
+      "slug": "t3-lumineux-avec-parquet-massif-chemin-e-pessac-35",
+      "description": "Exceptionnel bien immobilier situé au cœur du quartier Pessac à Bordeaux. Finitions raffinées, prestations haut de gamme et luminosité optimale.",
+      "shortDescription": "Superbe propriété de 175 m² à Pessac disponible immédiatement.",
+      "transactionType": "louer",
+      "propertyType": "echoppe",
+      "price": 3200,
+      "charges": 255,
+      "deposit": 3200,
+      "surface": 175,
+      "rooms": 7,
+      "bedrooms": 5,
+      "bathrooms": 2,
+      "floor": 3,
+      "totalFloors": 4,
+      "yearBuilt": 1985,
+      "energyRating": "D",
+      "gesRating": "C",
+      "address": "45 Rue Pessac",
+      "postalCode": "33000",
+      "city": "Bordeaux",
+      "neighborhoodSlug": "pessac",
+      "neighborhoodName": "Pessac",
+      "isExclusive": false,
+      "status": "Draft",
+      "features": [
+        "Parquet massif",
+        "Balcon filant",
+        "Climatisation",
+        "Cave privative",
+        "Ascenseur"
+      ],
+      "images": [
+        "https://images.unsplash.com/photo-1600566753086-35f138c65da1?auto=format&fit=crop&w=1600&q=80",
+        "https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=1600&q=80"
+      ],
+      "coverImage": "https://images.unsplash.com/photo-1600566753086-35f138c65da1?auto=format&fit=crop&w=1600&q=80",
+      "views": 645,
+      "enquiriesCount": 75,
+      "ownerId": "own_6",
+      "ownerName": "Propriétaire Pessac",
+      "seoTitle": "T3 Lumineux avec Parquet Massif & Cheminée - Pessac | Maison Méridia",
+      "seoDescription": "Location et vente d'exception à Pessac Bordeaux.",
+      "updatedAt": "2026-08-17T21:29:59.857Z"
+    },
+    {
+      "id": "prop_36",
+      "reference": "BDX-2026-136",
+      "title": "Appartement Bourgeois avec Hauteur sous Plafond - Bègles",
+      "slug": "appartement-bourgeois-avec-hauteur-sous-plafond-b-gles-36",
+      "description": "Exceptionnel bien immobilier situé au cœur du quartier Bègles à Bordeaux. Finitions raffinées, prestations haut de gamme et luminosité optimale.",
+      "shortDescription": "Superbe propriété de 179 m² à Bègles disponible immédiatement.",
+      "transactionType": "acheter",
+      "propertyType": "appartement",
+      "price": 1480000,
+      "surface": 179,
+      "rooms": 7,
+      "bedrooms": 5,
+      "bathrooms": 2,
+      "floor": 0,
+      "totalFloors": 4,
+      "yearBuilt": 1988,
+      "energyRating": "A",
+      "gesRating": "A",
+      "address": "46 Rue Bègles",
+      "postalCode": "33000",
+      "city": "Bordeaux",
+      "neighborhoodSlug": "begles",
+      "neighborhoodName": "Bègles",
+      "isExclusive": true,
+      "status": "Draft",
+      "features": [
+        "Parquet massif",
+        "Balcon filant",
+        "Climatisation",
+        "Cave privative",
+        "Ascenseur"
+      ],
+      "images": [
+        "https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=1600&q=80",
+        "https://images.unsplash.com/photo-1600566753190-17f0baa2a6c3?auto=format&fit=crop&w=1600&q=80"
+      ],
+      "coverImage": "https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=1600&q=80",
+      "views": 660,
+      "enquiriesCount": 77,
+      "ownerId": "own_7",
+      "ownerName": "Propriétaire Bègles",
+      "seoTitle": "Appartement Bourgeois avec Hauteur sous Plafond - Bègles | Maison Méridia",
+      "seoDescription": "Location et vente d'exception à Bègles Bordeaux.",
+      "updatedAt": "2026-08-17T20:29:59.857Z"
+    }
+  ],
+  "leads": [
+    {
+      "id": "lead_1",
+      "name": "Prospect Sarah Martin #1",
+      "email": "prospect1@domaine.fr",
+      "phone": "06 80 70 60 50",
+      "leadType": "Owner Enquiry",
+      "status": "NEW",
+      "subject": "Demande d'information #1",
+      "message": "Bonjour, je souhaite obtenir des renseignements complémentaires concernant vos services d'accompagnement immobilier à Bordeaux.",
+      "propertyAddress": "5 Allée de Tourny, 33000 Bordeaux",
+      "budget": "800 € / mois",
+      "surface": "45 m²",
+      "source": "Website Form",
+      "assignedTo": "Alexandre de Saint-Clair",
+      "createdAt": "2026-08-19T08:29:59.857Z",
+      "notes": [
+        {
+          "id": "n_0_1",
+          "author": "Alexandre de Saint-Clair",
+          "text": "Premier contact qualifié avec succès par l'équipe commercial.",
+          "date": "Il y a 2 jours"
+        }
+      ],
+      "activities": [
+        {
+          "id": "a_0_1",
+          "text": "Demande enregistrée en base CRM.",
+          "date": "Il y a 3 jours"
+        }
+      ]
+    },
+    {
+      "id": "lead_2",
+      "name": "Prospect Henri Lemaire #2",
+      "email": "prospect2@domaine.fr",
+      "phone": "06 79 69 59 49",
+      "leadType": "Tenant Request",
+      "status": "CONTACTED",
+      "subject": "Demande d'information #2",
+      "message": "Bonjour, je souhaite obtenir des renseignements complémentaires concernant vos services d'accompagnement immobilier à Bordeaux.",
+      "propertyAddress": "6 Allée de Tourny, 33000 Bordeaux",
+      "budget": "850 € / mois",
+      "surface": "47 m²",
+      "source": "Property Page",
+      "assignedTo": "Sophie Martin",
+      "createdAt": "2026-08-18T08:29:59.857Z",
+      "notes": [
+        {
+          "id": "n_1_1",
+          "author": "Sophie Martin",
+          "text": "Premier contact qualifié avec succès par l'équipe commercial.",
+          "date": "Il y a 2 jours"
+        }
+      ],
+      "activities": [
+        {
+          "id": "a_1_1",
+          "text": "Demande enregistrée en base CRM.",
+          "date": "Il y a 3 jours"
+        }
+      ]
+    },
+    {
+      "id": "lead_3",
+      "name": "Prospect Élodie Roux #3",
+      "email": "prospect3@domaine.fr",
+      "phone": "06 78 68 58 48",
+      "leadType": "Buyer Request",
+      "status": "QUALIFIED",
+      "subject": "Demande d'information #3",
+      "message": "Bonjour, je souhaite obtenir des renseignements complémentaires concernant vos services d'accompagnement immobilier à Bordeaux.",
+      "propertyAddress": "7 Allée de Tourny, 33000 Bordeaux",
+      "budget": "900 € / mois",
+      "surface": "49 m²",
+      "source": "Google Search",
+      "assignedTo": "Thomas Bernard",
+      "createdAt": "2026-08-17T08:29:59.857Z",
+      "notes": [
+        {
+          "id": "n_2_1",
+          "author": "Thomas Bernard",
+          "text": "Premier contact qualifié avec succès par l'équipe commercial.",
+          "date": "Il y a 2 jours"
+        }
+      ],
+      "activities": [
+        {
+          "id": "a_2_1",
+          "text": "Demande enregistrée en base CRM.",
+          "date": "Il y a 3 jours"
+        }
+      ]
+    },
+    {
+      "id": "lead_4",
+      "name": "Prospect Antoine Mercier #4",
+      "email": "prospect4@domaine.fr",
+      "phone": "06 77 67 57 47",
+      "leadType": "Seller Request",
+      "status": "APPOINTMENT",
+      "subject": "Demande d'information #4",
+      "message": "Bonjour, je souhaite obtenir des renseignements complémentaires concernant vos services d'accompagnement immobilier à Bordeaux.",
+      "propertyAddress": "8 Allée de Tourny, 33000 Bordeaux",
+      "budget": "950 € / mois",
+      "surface": "51 m²",
+      "source": "Facebook Ads",
+      "assignedTo": "Claire Dubois",
+      "createdAt": "2026-08-16T08:29:59.857Z",
+      "notes": [
+        {
+          "id": "n_3_1",
+          "author": "Claire Dubois",
+          "text": "Premier contact qualifié avec succès par l'équipe commercial.",
+          "date": "Il y a 2 jours"
+        }
+      ],
+      "activities": [
+        {
+          "id": "a_3_1",
+          "text": "Demande enregistrée en base CRM.",
+          "date": "Il y a 3 jours"
+        }
+      ]
+    },
+    {
+      "id": "lead_5",
+      "name": "Prospect Camille Vasseur #5",
+      "email": "prospect5@domaine.fr",
+      "phone": "06 76 66 56 46",
+      "leadType": "Valuation Request",
+      "status": "IN_PROGRESS",
+      "subject": "Demande d'information #5",
+      "message": "Bonjour, je souhaite obtenir des renseignements complémentaires concernant vos services d'accompagnement immobilier à Bordeaux.",
+      "propertyAddress": "9 Allée de Tourny, 33000 Bordeaux",
+      "budget": "1000 € / mois",
+      "surface": "53 m²",
+      "source": "Referral Direct",
+      "assignedTo": "Julien Moreau",
+      "createdAt": "2026-08-15T08:29:59.857Z",
+      "notes": [
+        {
+          "id": "n_4_1",
+          "author": "Julien Moreau",
+          "text": "Premier contact qualifié avec succès par l'équipe commercial.",
+          "date": "Il y a 2 jours"
+        }
+      ],
+      "activities": [
+        {
+          "id": "a_4_1",
+          "text": "Demande enregistrée en base CRM.",
+          "date": "Il y a 3 jours"
+        }
+      ]
+    },
+    {
+      "id": "lead_6",
+      "name": "Prospect Sarah Martin #6",
+      "email": "prospect6@domaine.fr",
+      "phone": "06 75 65 55 45",
+      "leadType": "Callback Request",
+      "status": "CONVERTED",
+      "subject": "Demande d'information #6",
+      "message": "Bonjour, je souhaite obtenir des renseignements complémentaires concernant vos services d'accompagnement immobilier à Bordeaux.",
+      "propertyAddress": "10 Allée de Tourny, 33000 Bordeaux",
+      "budget": "1050 € / mois",
+      "surface": "55 m²",
+      "source": "Blog Article",
+      "assignedTo": "Alexandre de Saint-Clair",
+      "createdAt": "2026-08-14T08:29:59.857Z",
+      "notes": [
+        {
+          "id": "n_5_1",
+          "author": "Alexandre de Saint-Clair",
+          "text": "Premier contact qualifié avec succès par l'équipe commercial.",
+          "date": "Il y a 2 jours"
+        }
+      ],
+      "activities": [
+        {
+          "id": "a_5_1",
+          "text": "Demande enregistrée en base CRM.",
+          "date": "Il y a 3 jours"
+        }
+      ]
+    },
+    {
+      "id": "lead_7",
+      "name": "Prospect Henri Lemaire #7",
+      "email": "prospect7@domaine.fr",
+      "phone": "06 74 64 54 44",
+      "leadType": "Contact Message",
+      "status": "LOST",
+      "subject": "Demande d'information #7",
+      "message": "Bonjour, je souhaite obtenir des renseignements complémentaires concernant vos services d'accompagnement immobilier à Bordeaux.",
+      "propertyAddress": "11 Allée de Tourny, 33000 Bordeaux",
+      "budget": "1100 € / mois",
+      "surface": "57 m²",
+      "source": "Website Form",
+      "assignedTo": "Sophie Martin",
+      "createdAt": "2026-08-13T08:29:59.858Z",
+      "notes": [
+        {
+          "id": "n_6_1",
+          "author": "Sophie Martin",
+          "text": "Premier contact qualifié avec succès par l'équipe commercial.",
+          "date": "Il y a 2 jours"
+        }
+      ],
+      "activities": [
+        {
+          "id": "a_6_1",
+          "text": "Demande enregistrée en base CRM.",
+          "date": "Il y a 3 jours"
+        }
+      ]
+    },
+    {
+      "id": "lead_8",
+      "name": "Prospect Élodie Roux #8",
+      "email": "prospect8@domaine.fr",
+      "phone": "06 73 63 53 43",
+      "leadType": "Owner Enquiry",
+      "status": "NEW",
+      "subject": "Demande d'information #8",
+      "message": "Bonjour, je souhaite obtenir des renseignements complémentaires concernant vos services d'accompagnement immobilier à Bordeaux.",
+      "propertyAddress": "12 Allée de Tourny, 33000 Bordeaux",
+      "budget": "1150 € / mois",
+      "surface": "59 m²",
+      "source": "Property Page",
+      "assignedTo": "Thomas Bernard",
+      "createdAt": "2026-08-12T08:29:59.858Z",
+      "notes": [
+        {
+          "id": "n_7_1",
+          "author": "Thomas Bernard",
+          "text": "Premier contact qualifié avec succès par l'équipe commercial.",
+          "date": "Il y a 2 jours"
+        }
+      ],
+      "activities": [
+        {
+          "id": "a_7_1",
+          "text": "Demande enregistrée en base CRM.",
+          "date": "Il y a 3 jours"
+        }
+      ]
+    },
+    {
+      "id": "lead_9",
+      "name": "Prospect Antoine Mercier #9",
+      "email": "prospect9@domaine.fr",
+      "phone": "06 72 62 52 42",
+      "leadType": "Tenant Request",
+      "status": "CONTACTED",
+      "subject": "Demande d'information #9",
+      "message": "Bonjour, je souhaite obtenir des renseignements complémentaires concernant vos services d'accompagnement immobilier à Bordeaux.",
+      "propertyAddress": "13 Allée de Tourny, 33000 Bordeaux",
+      "budget": "1200 € / mois",
+      "surface": "61 m²",
+      "source": "Google Search",
+      "assignedTo": "Claire Dubois",
+      "createdAt": "2026-08-11T08:29:59.858Z",
+      "notes": [
+        {
+          "id": "n_8_1",
+          "author": "Claire Dubois",
+          "text": "Premier contact qualifié avec succès par l'équipe commercial.",
+          "date": "Il y a 2 jours"
+        }
+      ],
+      "activities": [
+        {
+          "id": "a_8_1",
+          "text": "Demande enregistrée en base CRM.",
+          "date": "Il y a 3 jours"
+        }
+      ]
+    },
+    {
+      "id": "lead_10",
+      "name": "Prospect Camille Vasseur #10",
+      "email": "prospect10@domaine.fr",
+      "phone": "06 71 61 51 41",
+      "leadType": "Buyer Request",
+      "status": "QUALIFIED",
+      "subject": "Demande d'information #10",
+      "message": "Bonjour, je souhaite obtenir des renseignements complémentaires concernant vos services d'accompagnement immobilier à Bordeaux.",
+      "propertyAddress": "14 Allée de Tourny, 33000 Bordeaux",
+      "budget": "1250 € / mois",
+      "surface": "63 m²",
+      "source": "Facebook Ads",
+      "assignedTo": "Julien Moreau",
+      "createdAt": "2026-08-10T08:29:59.858Z",
+      "notes": [
+        {
+          "id": "n_9_1",
+          "author": "Julien Moreau",
+          "text": "Premier contact qualifié avec succès par l'équipe commercial.",
+          "date": "Il y a 2 jours"
+        }
+      ],
+      "activities": [
+        {
+          "id": "a_9_1",
+          "text": "Demande enregistrée en base CRM.",
+          "date": "Il y a 3 jours"
+        }
+      ]
+    },
+    {
+      "id": "lead_11",
+      "name": "Prospect Sarah Martin #11",
+      "email": "prospect11@domaine.fr",
+      "phone": "06 70 60 50 40",
+      "leadType": "Seller Request",
+      "status": "APPOINTMENT",
+      "subject": "Demande d'information #11",
+      "message": "Bonjour, je souhaite obtenir des renseignements complémentaires concernant vos services d'accompagnement immobilier à Bordeaux.",
+      "propertyAddress": "15 Allée de Tourny, 33000 Bordeaux",
+      "budget": "1300 € / mois",
+      "surface": "65 m²",
+      "source": "Referral Direct",
+      "assignedTo": "Alexandre de Saint-Clair",
+      "createdAt": "2026-08-09T08:29:59.858Z",
+      "notes": [
+        {
+          "id": "n_10_1",
+          "author": "Alexandre de Saint-Clair",
+          "text": "Premier contact qualifié avec succès par l'équipe commercial.",
+          "date": "Il y a 2 jours"
+        }
+      ],
+      "activities": [
+        {
+          "id": "a_10_1",
+          "text": "Demande enregistrée en base CRM.",
+          "date": "Il y a 3 jours"
+        }
+      ]
+    },
+    {
+      "id": "lead_12",
+      "name": "Prospect Henri Lemaire #12",
+      "email": "prospect12@domaine.fr",
+      "phone": "06 69 59 49 39",
+      "leadType": "Valuation Request",
+      "status": "IN_PROGRESS",
+      "subject": "Demande d'information #12",
+      "message": "Bonjour, je souhaite obtenir des renseignements complémentaires concernant vos services d'accompagnement immobilier à Bordeaux.",
+      "propertyAddress": "16 Allée de Tourny, 33000 Bordeaux",
+      "budget": "1350 € / mois",
+      "surface": "67 m²",
+      "source": "Blog Article",
+      "assignedTo": "Sophie Martin",
+      "createdAt": "2026-08-08T08:29:59.858Z",
+      "notes": [
+        {
+          "id": "n_11_1",
+          "author": "Sophie Martin",
+          "text": "Premier contact qualifié avec succès par l'équipe commercial.",
+          "date": "Il y a 2 jours"
+        }
+      ],
+      "activities": [
+        {
+          "id": "a_11_1",
+          "text": "Demande enregistrée en base CRM.",
+          "date": "Il y a 3 jours"
+        }
+      ]
+    },
+    {
+      "id": "lead_13",
+      "name": "Prospect Élodie Roux #13",
+      "email": "prospect13@domaine.fr",
+      "phone": "06 68 58 48 38",
+      "leadType": "Callback Request",
+      "status": "CONVERTED",
+      "subject": "Demande d'information #13",
+      "message": "Bonjour, je souhaite obtenir des renseignements complémentaires concernant vos services d'accompagnement immobilier à Bordeaux.",
+      "propertyAddress": "17 Allée de Tourny, 33000 Bordeaux",
+      "budget": "1400 € / mois",
+      "surface": "69 m²",
+      "source": "Website Form",
+      "assignedTo": "Thomas Bernard",
+      "createdAt": "2026-08-07T08:29:59.858Z",
+      "notes": [
+        {
+          "id": "n_12_1",
+          "author": "Thomas Bernard",
+          "text": "Premier contact qualifié avec succès par l'équipe commercial.",
+          "date": "Il y a 2 jours"
+        }
+      ],
+      "activities": [
+        {
+          "id": "a_12_1",
+          "text": "Demande enregistrée en base CRM.",
+          "date": "Il y a 3 jours"
+        }
+      ]
+    },
+    {
+      "id": "lead_14",
+      "name": "Prospect Antoine Mercier #14",
+      "email": "prospect14@domaine.fr",
+      "phone": "06 67 57 47 37",
+      "leadType": "Contact Message",
+      "status": "LOST",
+      "subject": "Demande d'information #14",
+      "message": "Bonjour, je souhaite obtenir des renseignements complémentaires concernant vos services d'accompagnement immobilier à Bordeaux.",
+      "propertyAddress": "18 Allée de Tourny, 33000 Bordeaux",
+      "budget": "1450 € / mois",
+      "surface": "71 m²",
+      "source": "Property Page",
+      "assignedTo": "Claire Dubois",
+      "createdAt": "2026-08-06T08:29:59.858Z",
+      "notes": [
+        {
+          "id": "n_13_1",
+          "author": "Claire Dubois",
+          "text": "Premier contact qualifié avec succès par l'équipe commercial.",
+          "date": "Il y a 2 jours"
+        }
+      ],
+      "activities": [
+        {
+          "id": "a_13_1",
+          "text": "Demande enregistrée en base CRM.",
+          "date": "Il y a 3 jours"
+        }
+      ]
+    },
+    {
+      "id": "lead_15",
+      "name": "Prospect Camille Vasseur #15",
+      "email": "prospect15@domaine.fr",
+      "phone": "06 66 56 46 36",
+      "leadType": "Owner Enquiry",
+      "status": "NEW",
+      "subject": "Demande d'information #15",
+      "message": "Bonjour, je souhaite obtenir des renseignements complémentaires concernant vos services d'accompagnement immobilier à Bordeaux.",
+      "propertyAddress": "19 Allée de Tourny, 33000 Bordeaux",
+      "budget": "1500 € / mois",
+      "surface": "73 m²",
+      "source": "Google Search",
+      "assignedTo": "Julien Moreau",
+      "createdAt": "2026-08-05T08:29:59.858Z",
+      "notes": [
+        {
+          "id": "n_14_1",
+          "author": "Julien Moreau",
+          "text": "Premier contact qualifié avec succès par l'équipe commercial.",
+          "date": "Il y a 2 jours"
+        }
+      ],
+      "activities": [
+        {
+          "id": "a_14_1",
+          "text": "Demande enregistrée en base CRM.",
+          "date": "Il y a 3 jours"
+        }
+      ]
+    },
+    {
+      "id": "lead_16",
+      "name": "Prospect Sarah Martin #16",
+      "email": "prospect16@domaine.fr",
+      "phone": "06 65 55 45 35",
+      "leadType": "Tenant Request",
+      "status": "CONTACTED",
+      "subject": "Demande d'information #16",
+      "message": "Bonjour, je souhaite obtenir des renseignements complémentaires concernant vos services d'accompagnement immobilier à Bordeaux.",
+      "propertyAddress": "20 Allée de Tourny, 33000 Bordeaux",
+      "budget": "1550 € / mois",
+      "surface": "75 m²",
+      "source": "Facebook Ads",
+      "assignedTo": "Alexandre de Saint-Clair",
+      "createdAt": "2026-08-04T08:29:59.858Z",
+      "notes": [
+        {
+          "id": "n_15_1",
+          "author": "Alexandre de Saint-Clair",
+          "text": "Premier contact qualifié avec succès par l'équipe commercial.",
+          "date": "Il y a 2 jours"
+        }
+      ],
+      "activities": [
+        {
+          "id": "a_15_1",
+          "text": "Demande enregistrée en base CRM.",
+          "date": "Il y a 3 jours"
+        }
+      ]
+    },
+    {
+      "id": "lead_17",
+      "name": "Prospect Henri Lemaire #17",
+      "email": "prospect17@domaine.fr",
+      "phone": "06 64 54 44 34",
+      "leadType": "Buyer Request",
+      "status": "QUALIFIED",
+      "subject": "Demande d'information #17",
+      "message": "Bonjour, je souhaite obtenir des renseignements complémentaires concernant vos services d'accompagnement immobilier à Bordeaux.",
+      "propertyAddress": "21 Allée de Tourny, 33000 Bordeaux",
+      "budget": "1600 € / mois",
+      "surface": "77 m²",
+      "source": "Referral Direct",
+      "assignedTo": "Sophie Martin",
+      "createdAt": "2026-08-03T08:29:59.858Z",
+      "notes": [
+        {
+          "id": "n_16_1",
+          "author": "Sophie Martin",
+          "text": "Premier contact qualifié avec succès par l'équipe commercial.",
+          "date": "Il y a 2 jours"
+        }
+      ],
+      "activities": [
+        {
+          "id": "a_16_1",
+          "text": "Demande enregistrée en base CRM.",
+          "date": "Il y a 3 jours"
+        }
+      ]
+    },
+    {
+      "id": "lead_18",
+      "name": "Prospect Élodie Roux #18",
+      "email": "prospect18@domaine.fr",
+      "phone": "06 63 53 43 33",
+      "leadType": "Seller Request",
+      "status": "APPOINTMENT",
+      "subject": "Demande d'information #18",
+      "message": "Bonjour, je souhaite obtenir des renseignements complémentaires concernant vos services d'accompagnement immobilier à Bordeaux.",
+      "propertyAddress": "22 Allée de Tourny, 33000 Bordeaux",
+      "budget": "1650 € / mois",
+      "surface": "79 m²",
+      "source": "Blog Article",
+      "assignedTo": "Thomas Bernard",
+      "createdAt": "2026-08-02T08:29:59.858Z",
+      "notes": [
+        {
+          "id": "n_17_1",
+          "author": "Thomas Bernard",
+          "text": "Premier contact qualifié avec succès par l'équipe commercial.",
+          "date": "Il y a 2 jours"
+        }
+      ],
+      "activities": [
+        {
+          "id": "a_17_1",
+          "text": "Demande enregistrée en base CRM.",
+          "date": "Il y a 3 jours"
+        }
+      ]
+    },
+    {
+      "id": "lead_19",
+      "name": "Prospect Antoine Mercier #19",
+      "email": "prospect19@domaine.fr",
+      "phone": "06 62 52 42 32",
+      "leadType": "Valuation Request",
+      "status": "IN_PROGRESS",
+      "subject": "Demande d'information #19",
+      "message": "Bonjour, je souhaite obtenir des renseignements complémentaires concernant vos services d'accompagnement immobilier à Bordeaux.",
+      "propertyAddress": "23 Allée de Tourny, 33000 Bordeaux",
+      "budget": "1700 € / mois",
+      "surface": "81 m²",
+      "source": "Website Form",
+      "assignedTo": "Claire Dubois",
+      "createdAt": "2026-08-01T08:29:59.858Z",
+      "notes": [
+        {
+          "id": "n_18_1",
+          "author": "Claire Dubois",
+          "text": "Premier contact qualifié avec succès par l'équipe commercial.",
+          "date": "Il y a 2 jours"
+        }
+      ],
+      "activities": [
+        {
+          "id": "a_18_1",
+          "text": "Demande enregistrée en base CRM.",
+          "date": "Il y a 3 jours"
+        }
+      ]
+    },
+    {
+      "id": "lead_20",
+      "name": "Prospect Camille Vasseur #20",
+      "email": "prospect20@domaine.fr",
+      "phone": "06 61 51 41 31",
+      "leadType": "Callback Request",
+      "status": "CONVERTED",
+      "subject": "Demande d'information #20",
+      "message": "Bonjour, je souhaite obtenir des renseignements complémentaires concernant vos services d'accompagnement immobilier à Bordeaux.",
+      "propertyAddress": "24 Allée de Tourny, 33000 Bordeaux",
+      "budget": "1750 € / mois",
+      "surface": "83 m²",
+      "source": "Property Page",
+      "assignedTo": "Julien Moreau",
+      "createdAt": "2026-07-31T08:29:59.858Z",
+      "notes": [
+        {
+          "id": "n_19_1",
+          "author": "Julien Moreau",
+          "text": "Premier contact qualifié avec succès par l'équipe commercial.",
+          "date": "Il y a 2 jours"
+        }
+      ],
+      "activities": [
+        {
+          "id": "a_19_1",
+          "text": "Demande enregistrée en base CRM.",
+          "date": "Il y a 3 jours"
+        }
+      ]
+    },
+    {
+      "id": "lead_21",
+      "name": "Prospect Sarah Martin #21",
+      "email": "prospect21@domaine.fr",
+      "phone": "06 60 50 40 30",
+      "leadType": "Contact Message",
+      "status": "LOST",
+      "subject": "Demande d'information #21",
+      "message": "Bonjour, je souhaite obtenir des renseignements complémentaires concernant vos services d'accompagnement immobilier à Bordeaux.",
+      "propertyAddress": "25 Allée de Tourny, 33000 Bordeaux",
+      "budget": "1800 € / mois",
+      "surface": "85 m²",
+      "source": "Google Search",
+      "assignedTo": "Alexandre de Saint-Clair",
+      "createdAt": "2026-07-30T08:29:59.858Z",
+      "notes": [
+        {
+          "id": "n_20_1",
+          "author": "Alexandre de Saint-Clair",
+          "text": "Premier contact qualifié avec succès par l'équipe commercial.",
+          "date": "Il y a 2 jours"
+        }
+      ],
+      "activities": [
+        {
+          "id": "a_20_1",
+          "text": "Demande enregistrée en base CRM.",
+          "date": "Il y a 3 jours"
+        }
+      ]
+    },
+    {
+      "id": "lead_22",
+      "name": "Prospect Henri Lemaire #22",
+      "email": "prospect22@domaine.fr",
+      "phone": "06 59 49 39 29",
+      "leadType": "Owner Enquiry",
+      "status": "NEW",
+      "subject": "Demande d'information #22",
+      "message": "Bonjour, je souhaite obtenir des renseignements complémentaires concernant vos services d'accompagnement immobilier à Bordeaux.",
+      "propertyAddress": "26 Allée de Tourny, 33000 Bordeaux",
+      "budget": "1850 € / mois",
+      "surface": "87 m²",
+      "source": "Facebook Ads",
+      "assignedTo": "Sophie Martin",
+      "createdAt": "2026-07-29T08:29:59.858Z",
+      "notes": [
+        {
+          "id": "n_21_1",
+          "author": "Sophie Martin",
+          "text": "Premier contact qualifié avec succès par l'équipe commercial.",
+          "date": "Il y a 2 jours"
+        }
+      ],
+      "activities": [
+        {
+          "id": "a_21_1",
+          "text": "Demande enregistrée en base CRM.",
+          "date": "Il y a 3 jours"
+        }
+      ]
+    },
+    {
+      "id": "lead_23",
+      "name": "Prospect Élodie Roux #23",
+      "email": "prospect23@domaine.fr",
+      "phone": "06 58 48 38 28",
+      "leadType": "Tenant Request",
+      "status": "CONTACTED",
+      "subject": "Demande d'information #23",
+      "message": "Bonjour, je souhaite obtenir des renseignements complémentaires concernant vos services d'accompagnement immobilier à Bordeaux.",
+      "propertyAddress": "27 Allée de Tourny, 33000 Bordeaux",
+      "budget": "1900 € / mois",
+      "surface": "89 m²",
+      "source": "Referral Direct",
+      "assignedTo": "Thomas Bernard",
+      "createdAt": "2026-07-28T08:29:59.858Z",
+      "notes": [
+        {
+          "id": "n_22_1",
+          "author": "Thomas Bernard",
+          "text": "Premier contact qualifié avec succès par l'équipe commercial.",
+          "date": "Il y a 2 jours"
+        }
+      ],
+      "activities": [
+        {
+          "id": "a_22_1",
+          "text": "Demande enregistrée en base CRM.",
+          "date": "Il y a 3 jours"
+        }
+      ]
+    },
+    {
+      "id": "lead_24",
+      "name": "Prospect Antoine Mercier #24",
+      "email": "prospect24@domaine.fr",
+      "phone": "06 57 47 37 27",
+      "leadType": "Buyer Request",
+      "status": "QUALIFIED",
+      "subject": "Demande d'information #24",
+      "message": "Bonjour, je souhaite obtenir des renseignements complémentaires concernant vos services d'accompagnement immobilier à Bordeaux.",
+      "propertyAddress": "28 Allée de Tourny, 33000 Bordeaux",
+      "budget": "1950 € / mois",
+      "surface": "91 m²",
+      "source": "Blog Article",
+      "assignedTo": "Claire Dubois",
+      "createdAt": "2026-07-27T08:29:59.858Z",
+      "notes": [
+        {
+          "id": "n_23_1",
+          "author": "Claire Dubois",
+          "text": "Premier contact qualifié avec succès par l'équipe commercial.",
+          "date": "Il y a 2 jours"
+        }
+      ],
+      "activities": [
+        {
+          "id": "a_23_1",
+          "text": "Demande enregistrée en base CRM.",
+          "date": "Il y a 3 jours"
+        }
+      ]
+    },
+    {
+      "id": "lead_25",
+      "name": "Prospect Camille Vasseur #25",
+      "email": "prospect25@domaine.fr",
+      "phone": "06 56 46 36 26",
+      "leadType": "Seller Request",
+      "status": "APPOINTMENT",
+      "subject": "Demande d'information #25",
+      "message": "Bonjour, je souhaite obtenir des renseignements complémentaires concernant vos services d'accompagnement immobilier à Bordeaux.",
+      "propertyAddress": "29 Allée de Tourny, 33000 Bordeaux",
+      "budget": "2000 € / mois",
+      "surface": "93 m²",
+      "source": "Website Form",
+      "assignedTo": "Julien Moreau",
+      "createdAt": "2026-07-26T08:29:59.858Z",
+      "notes": [
+        {
+          "id": "n_24_1",
+          "author": "Julien Moreau",
+          "text": "Premier contact qualifié avec succès par l'équipe commercial.",
+          "date": "Il y a 2 jours"
+        }
+      ],
+      "activities": [
+        {
+          "id": "a_24_1",
+          "text": "Demande enregistrée en base CRM.",
+          "date": "Il y a 3 jours"
+        }
+      ]
+    },
+    {
+      "id": "lead_26",
+      "name": "Prospect Sarah Martin #26",
+      "email": "prospect26@domaine.fr",
+      "phone": "06 55 45 35 25",
+      "leadType": "Valuation Request",
+      "status": "IN_PROGRESS",
+      "subject": "Demande d'information #26",
+      "message": "Bonjour, je souhaite obtenir des renseignements complémentaires concernant vos services d'accompagnement immobilier à Bordeaux.",
+      "propertyAddress": "30 Allée de Tourny, 33000 Bordeaux",
+      "budget": "2050 € / mois",
+      "surface": "95 m²",
+      "source": "Property Page",
+      "assignedTo": "Alexandre de Saint-Clair",
+      "createdAt": "2026-07-25T08:29:59.858Z",
+      "notes": [
+        {
+          "id": "n_25_1",
+          "author": "Alexandre de Saint-Clair",
+          "text": "Premier contact qualifié avec succès par l'équipe commercial.",
+          "date": "Il y a 2 jours"
+        }
+      ],
+      "activities": [
+        {
+          "id": "a_25_1",
+          "text": "Demande enregistrée en base CRM.",
+          "date": "Il y a 3 jours"
+        }
+      ]
+    },
+    {
+      "id": "lead_27",
+      "name": "Prospect Henri Lemaire #27",
+      "email": "prospect27@domaine.fr",
+      "phone": "06 54 44 34 24",
+      "leadType": "Callback Request",
+      "status": "CONVERTED",
+      "subject": "Demande d'information #27",
+      "message": "Bonjour, je souhaite obtenir des renseignements complémentaires concernant vos services d'accompagnement immobilier à Bordeaux.",
+      "propertyAddress": "31 Allée de Tourny, 33000 Bordeaux",
+      "budget": "2100 € / mois",
+      "surface": "97 m²",
+      "source": "Google Search",
+      "assignedTo": "Sophie Martin",
+      "createdAt": "2026-07-24T08:29:59.858Z",
+      "notes": [
+        {
+          "id": "n_26_1",
+          "author": "Sophie Martin",
+          "text": "Premier contact qualifié avec succès par l'équipe commercial.",
+          "date": "Il y a 2 jours"
+        }
+      ],
+      "activities": [
+        {
+          "id": "a_26_1",
+          "text": "Demande enregistrée en base CRM.",
+          "date": "Il y a 3 jours"
+        }
+      ]
+    },
+    {
+      "id": "lead_28",
+      "name": "Prospect Élodie Roux #28",
+      "email": "prospect28@domaine.fr",
+      "phone": "06 53 43 33 23",
+      "leadType": "Contact Message",
+      "status": "LOST",
+      "subject": "Demande d'information #28",
+      "message": "Bonjour, je souhaite obtenir des renseignements complémentaires concernant vos services d'accompagnement immobilier à Bordeaux.",
+      "propertyAddress": "32 Allée de Tourny, 33000 Bordeaux",
+      "budget": "2150 € / mois",
+      "surface": "99 m²",
+      "source": "Facebook Ads",
+      "assignedTo": "Thomas Bernard",
+      "createdAt": "2026-07-23T08:29:59.858Z",
+      "notes": [
+        {
+          "id": "n_27_1",
+          "author": "Thomas Bernard",
+          "text": "Premier contact qualifié avec succès par l'équipe commercial.",
+          "date": "Il y a 2 jours"
+        }
+      ],
+      "activities": [
+        {
+          "id": "a_27_1",
+          "text": "Demande enregistrée en base CRM.",
+          "date": "Il y a 3 jours"
+        }
+      ]
+    },
+    {
+      "id": "lead_29",
+      "name": "Prospect Antoine Mercier #29",
+      "email": "prospect29@domaine.fr",
+      "phone": "06 52 42 32 22",
+      "leadType": "Owner Enquiry",
+      "status": "NEW",
+      "subject": "Demande d'information #29",
+      "message": "Bonjour, je souhaite obtenir des renseignements complémentaires concernant vos services d'accompagnement immobilier à Bordeaux.",
+      "propertyAddress": "33 Allée de Tourny, 33000 Bordeaux",
+      "budget": "2200 € / mois",
+      "surface": "101 m²",
+      "source": "Referral Direct",
+      "assignedTo": "Claire Dubois",
+      "createdAt": "2026-07-22T08:29:59.858Z",
+      "notes": [
+        {
+          "id": "n_28_1",
+          "author": "Claire Dubois",
+          "text": "Premier contact qualifié avec succès par l'équipe commercial.",
+          "date": "Il y a 2 jours"
+        }
+      ],
+      "activities": [
+        {
+          "id": "a_28_1",
+          "text": "Demande enregistrée en base CRM.",
+          "date": "Il y a 3 jours"
+        }
+      ]
+    },
+    {
+      "id": "lead_30",
+      "name": "Prospect Camille Vasseur #30",
+      "email": "prospect30@domaine.fr",
+      "phone": "06 51 41 31 21",
+      "leadType": "Tenant Request",
+      "status": "CONTACTED",
+      "subject": "Demande d'information #30",
+      "message": "Bonjour, je souhaite obtenir des renseignements complémentaires concernant vos services d'accompagnement immobilier à Bordeaux.",
+      "propertyAddress": "34 Allée de Tourny, 33000 Bordeaux",
+      "budget": "2250 € / mois",
+      "surface": "103 m²",
+      "source": "Blog Article",
+      "assignedTo": "Julien Moreau",
+      "createdAt": "2026-07-21T08:29:59.858Z",
+      "notes": [
+        {
+          "id": "n_29_1",
+          "author": "Julien Moreau",
+          "text": "Premier contact qualifié avec succès par l'équipe commercial.",
+          "date": "Il y a 2 jours"
+        }
+      ],
+      "activities": [
+        {
+          "id": "a_29_1",
+          "text": "Demande enregistrée en base CRM.",
+          "date": "Il y a 3 jours"
+        }
+      ]
+    },
+    {
+      "id": "lead_31",
+      "name": "Prospect Sarah Martin #31",
+      "email": "prospect31@domaine.fr",
+      "phone": "06 50 40 30 20",
+      "leadType": "Buyer Request",
+      "status": "QUALIFIED",
+      "subject": "Demande d'information #31",
+      "message": "Bonjour, je souhaite obtenir des renseignements complémentaires concernant vos services d'accompagnement immobilier à Bordeaux.",
+      "propertyAddress": "35 Allée de Tourny, 33000 Bordeaux",
+      "budget": "2300 € / mois",
+      "surface": "105 m²",
+      "source": "Website Form",
+      "assignedTo": "Alexandre de Saint-Clair",
+      "createdAt": "2026-07-20T08:29:59.858Z",
+      "notes": [
+        {
+          "id": "n_30_1",
+          "author": "Alexandre de Saint-Clair",
+          "text": "Premier contact qualifié avec succès par l'équipe commercial.",
+          "date": "Il y a 2 jours"
+        }
+      ],
+      "activities": [
+        {
+          "id": "a_30_1",
+          "text": "Demande enregistrée en base CRM.",
+          "date": "Il y a 3 jours"
+        }
+      ]
+    },
+    {
+      "id": "lead_32",
+      "name": "Prospect Henri Lemaire #32",
+      "email": "prospect32@domaine.fr",
+      "phone": "06 49 39 29 19",
+      "leadType": "Seller Request",
+      "status": "APPOINTMENT",
+      "subject": "Demande d'information #32",
+      "message": "Bonjour, je souhaite obtenir des renseignements complémentaires concernant vos services d'accompagnement immobilier à Bordeaux.",
+      "propertyAddress": "36 Allée de Tourny, 33000 Bordeaux",
+      "budget": "2350 € / mois",
+      "surface": "107 m²",
+      "source": "Property Page",
+      "assignedTo": "Sophie Martin",
+      "createdAt": "2026-07-19T08:29:59.858Z",
+      "notes": [
+        {
+          "id": "n_31_1",
+          "author": "Sophie Martin",
+          "text": "Premier contact qualifié avec succès par l'équipe commercial.",
+          "date": "Il y a 2 jours"
+        }
+      ],
+      "activities": [
+        {
+          "id": "a_31_1",
+          "text": "Demande enregistrée en base CRM.",
+          "date": "Il y a 3 jours"
+        }
+      ]
+    },
+    {
+      "id": "lead_33",
+      "name": "Prospect Élodie Roux #33",
+      "email": "prospect33@domaine.fr",
+      "phone": "06 48 38 28 18",
+      "leadType": "Valuation Request",
+      "status": "IN_PROGRESS",
+      "subject": "Demande d'information #33",
+      "message": "Bonjour, je souhaite obtenir des renseignements complémentaires concernant vos services d'accompagnement immobilier à Bordeaux.",
+      "propertyAddress": "37 Allée de Tourny, 33000 Bordeaux",
+      "budget": "2400 € / mois",
+      "surface": "109 m²",
+      "source": "Google Search",
+      "assignedTo": "Thomas Bernard",
+      "createdAt": "2026-07-18T08:29:59.858Z",
+      "notes": [
+        {
+          "id": "n_32_1",
+          "author": "Thomas Bernard",
+          "text": "Premier contact qualifié avec succès par l'équipe commercial.",
+          "date": "Il y a 2 jours"
+        }
+      ],
+      "activities": [
+        {
+          "id": "a_32_1",
+          "text": "Demande enregistrée en base CRM.",
+          "date": "Il y a 3 jours"
+        }
+      ]
+    },
+    {
+      "id": "lead_34",
+      "name": "Prospect Antoine Mercier #34",
+      "email": "prospect34@domaine.fr",
+      "phone": "06 47 37 27 17",
+      "leadType": "Callback Request",
+      "status": "CONVERTED",
+      "subject": "Demande d'information #34",
+      "message": "Bonjour, je souhaite obtenir des renseignements complémentaires concernant vos services d'accompagnement immobilier à Bordeaux.",
+      "propertyAddress": "38 Allée de Tourny, 33000 Bordeaux",
+      "budget": "2450 € / mois",
+      "surface": "111 m²",
+      "source": "Facebook Ads",
+      "assignedTo": "Claire Dubois",
+      "createdAt": "2026-07-17T08:29:59.858Z",
+      "notes": [
+        {
+          "id": "n_33_1",
+          "author": "Claire Dubois",
+          "text": "Premier contact qualifié avec succès par l'équipe commercial.",
+          "date": "Il y a 2 jours"
+        }
+      ],
+      "activities": [
+        {
+          "id": "a_33_1",
+          "text": "Demande enregistrée en base CRM.",
+          "date": "Il y a 3 jours"
+        }
+      ]
+    },
+    {
+      "id": "lead_35",
+      "name": "Prospect Camille Vasseur #35",
+      "email": "prospect35@domaine.fr",
+      "phone": "06 46 36 26 16",
+      "leadType": "Contact Message",
+      "status": "LOST",
+      "subject": "Demande d'information #35",
+      "message": "Bonjour, je souhaite obtenir des renseignements complémentaires concernant vos services d'accompagnement immobilier à Bordeaux.",
+      "propertyAddress": "39 Allée de Tourny, 33000 Bordeaux",
+      "budget": "2500 € / mois",
+      "surface": "113 m²",
+      "source": "Referral Direct",
+      "assignedTo": "Julien Moreau",
+      "createdAt": "2026-07-16T08:29:59.858Z",
+      "notes": [
+        {
+          "id": "n_34_1",
+          "author": "Julien Moreau",
+          "text": "Premier contact qualifié avec succès par l'équipe commercial.",
+          "date": "Il y a 2 jours"
+        }
+      ],
+      "activities": [
+        {
+          "id": "a_34_1",
+          "text": "Demande enregistrée en base CRM.",
+          "date": "Il y a 3 jours"
+        }
+      ]
+    },
+    {
+      "id": "lead_36",
+      "name": "Prospect Sarah Martin #36",
+      "email": "prospect36@domaine.fr",
+      "phone": "06 45 35 25 15",
+      "leadType": "Owner Enquiry",
+      "status": "NEW",
+      "subject": "Demande d'information #36",
+      "message": "Bonjour, je souhaite obtenir des renseignements complémentaires concernant vos services d'accompagnement immobilier à Bordeaux.",
+      "propertyAddress": "40 Allée de Tourny, 33000 Bordeaux",
+      "budget": "2550 € / mois",
+      "surface": "115 m²",
+      "source": "Blog Article",
+      "assignedTo": "Alexandre de Saint-Clair",
+      "createdAt": "2026-07-15T08:29:59.858Z",
+      "notes": [
+        {
+          "id": "n_35_1",
+          "author": "Alexandre de Saint-Clair",
+          "text": "Premier contact qualifié avec succès par l'équipe commercial.",
+          "date": "Il y a 2 jours"
+        }
+      ],
+      "activities": [
+        {
+          "id": "a_35_1",
+          "text": "Demande enregistrée en base CRM.",
+          "date": "Il y a 3 jours"
+        }
+      ]
+    },
+    {
+      "id": "lead_37",
+      "name": "Prospect Henri Lemaire #37",
+      "email": "prospect37@domaine.fr",
+      "phone": "06 44 34 24 14",
+      "leadType": "Tenant Request",
+      "status": "CONTACTED",
+      "subject": "Demande d'information #37",
+      "message": "Bonjour, je souhaite obtenir des renseignements complémentaires concernant vos services d'accompagnement immobilier à Bordeaux.",
+      "propertyAddress": "41 Allée de Tourny, 33000 Bordeaux",
+      "budget": "2600 € / mois",
+      "surface": "117 m²",
+      "source": "Website Form",
+      "assignedTo": "Sophie Martin",
+      "createdAt": "2026-07-14T08:29:59.858Z",
+      "notes": [
+        {
+          "id": "n_36_1",
+          "author": "Sophie Martin",
+          "text": "Premier contact qualifié avec succès par l'équipe commercial.",
+          "date": "Il y a 2 jours"
+        }
+      ],
+      "activities": [
+        {
+          "id": "a_36_1",
+          "text": "Demande enregistrée en base CRM.",
+          "date": "Il y a 3 jours"
+        }
+      ]
+    },
+    {
+      "id": "lead_38",
+      "name": "Prospect Élodie Roux #38",
+      "email": "prospect38@domaine.fr",
+      "phone": "06 43 33 23 13",
+      "leadType": "Buyer Request",
+      "status": "QUALIFIED",
+      "subject": "Demande d'information #38",
+      "message": "Bonjour, je souhaite obtenir des renseignements complémentaires concernant vos services d'accompagnement immobilier à Bordeaux.",
+      "propertyAddress": "42 Allée de Tourny, 33000 Bordeaux",
+      "budget": "2650 € / mois",
+      "surface": "119 m²",
+      "source": "Property Page",
+      "assignedTo": "Thomas Bernard",
+      "createdAt": "2026-07-13T08:29:59.858Z",
+      "notes": [
+        {
+          "id": "n_37_1",
+          "author": "Thomas Bernard",
+          "text": "Premier contact qualifié avec succès par l'équipe commercial.",
+          "date": "Il y a 2 jours"
+        }
+      ],
+      "activities": [
+        {
+          "id": "a_37_1",
+          "text": "Demande enregistrée en base CRM.",
+          "date": "Il y a 3 jours"
+        }
+      ]
+    },
+    {
+      "id": "lead_39",
+      "name": "Prospect Antoine Mercier #39",
+      "email": "prospect39@domaine.fr",
+      "phone": "06 42 32 22 12",
+      "leadType": "Seller Request",
+      "status": "APPOINTMENT",
+      "subject": "Demande d'information #39",
+      "message": "Bonjour, je souhaite obtenir des renseignements complémentaires concernant vos services d'accompagnement immobilier à Bordeaux.",
+      "propertyAddress": "43 Allée de Tourny, 33000 Bordeaux",
+      "budget": "2700 € / mois",
+      "surface": "121 m²",
+      "source": "Google Search",
+      "assignedTo": "Claire Dubois",
+      "createdAt": "2026-07-12T08:29:59.858Z",
+      "notes": [
+        {
+          "id": "n_38_1",
+          "author": "Claire Dubois",
+          "text": "Premier contact qualifié avec succès par l'équipe commercial.",
+          "date": "Il y a 2 jours"
+        }
+      ],
+      "activities": [
+        {
+          "id": "a_38_1",
+          "text": "Demande enregistrée en base CRM.",
+          "date": "Il y a 3 jours"
+        }
+      ]
+    },
+    {
+      "id": "lead_40",
+      "name": "Prospect Camille Vasseur #40",
+      "email": "prospect40@domaine.fr",
+      "phone": "06 41 31 21 11",
+      "leadType": "Valuation Request",
+      "status": "IN_PROGRESS",
+      "subject": "Demande d'information #40",
+      "message": "Bonjour, je souhaite obtenir des renseignements complémentaires concernant vos services d'accompagnement immobilier à Bordeaux.",
+      "propertyAddress": "44 Allée de Tourny, 33000 Bordeaux",
+      "budget": "2750 € / mois",
+      "surface": "123 m²",
+      "source": "Facebook Ads",
+      "assignedTo": "Julien Moreau",
+      "createdAt": "2026-07-11T08:29:59.858Z",
+      "notes": [
+        {
+          "id": "n_39_1",
+          "author": "Julien Moreau",
+          "text": "Premier contact qualifié avec succès par l'équipe commercial.",
+          "date": "Il y a 2 jours"
+        }
+      ],
+      "activities": [
+        {
+          "id": "a_39_1",
+          "text": "Demande enregistrée en base CRM.",
+          "date": "Il y a 3 jours"
+        }
+      ]
+    },
+    {
+      "id": "lead_41",
+      "name": "Prospect Sarah Martin #41",
+      "email": "prospect41@domaine.fr",
+      "phone": "06 40 30 20 10",
+      "leadType": "Callback Request",
+      "status": "CONVERTED",
+      "subject": "Demande d'information #41",
+      "message": "Bonjour, je souhaite obtenir des renseignements complémentaires concernant vos services d'accompagnement immobilier à Bordeaux.",
+      "propertyAddress": "45 Allée de Tourny, 33000 Bordeaux",
+      "budget": "2800 € / mois",
+      "surface": "125 m²",
+      "source": "Referral Direct",
+      "assignedTo": "Alexandre de Saint-Clair",
+      "createdAt": "2026-07-10T08:29:59.858Z",
+      "notes": [
+        {
+          "id": "n_40_1",
+          "author": "Alexandre de Saint-Clair",
+          "text": "Premier contact qualifié avec succès par l'équipe commercial.",
+          "date": "Il y a 2 jours"
+        }
+      ],
+      "activities": [
+        {
+          "id": "a_40_1",
+          "text": "Demande enregistrée en base CRM.",
+          "date": "Il y a 3 jours"
+        }
+      ]
+    },
+    {
+      "id": "lead_42",
+      "name": "Prospect Henri Lemaire #42",
+      "email": "prospect42@domaine.fr",
+      "phone": "06 39 29 19 9",
+      "leadType": "Contact Message",
+      "status": "LOST",
+      "subject": "Demande d'information #42",
+      "message": "Bonjour, je souhaite obtenir des renseignements complémentaires concernant vos services d'accompagnement immobilier à Bordeaux.",
+      "propertyAddress": "46 Allée de Tourny, 33000 Bordeaux",
+      "budget": "2850 € / mois",
+      "surface": "127 m²",
+      "source": "Blog Article",
+      "assignedTo": "Sophie Martin",
+      "createdAt": "2026-07-09T08:29:59.858Z",
+      "notes": [
+        {
+          "id": "n_41_1",
+          "author": "Sophie Martin",
+          "text": "Premier contact qualifié avec succès par l'équipe commercial.",
+          "date": "Il y a 2 jours"
+        }
+      ],
+      "activities": [
+        {
+          "id": "a_41_1",
+          "text": "Demande enregistrée en base CRM.",
+          "date": "Il y a 3 jours"
+        }
+      ]
+    },
+    {
+      "id": "lead_43",
+      "name": "Prospect Élodie Roux #43",
+      "email": "prospect43@domaine.fr",
+      "phone": "06 38 28 18 8",
+      "leadType": "Owner Enquiry",
+      "status": "NEW",
+      "subject": "Demande d'information #43",
+      "message": "Bonjour, je souhaite obtenir des renseignements complémentaires concernant vos services d'accompagnement immobilier à Bordeaux.",
+      "propertyAddress": "47 Allée de Tourny, 33000 Bordeaux",
+      "budget": "2900 € / mois",
+      "surface": "129 m²",
+      "source": "Website Form",
+      "assignedTo": "Thomas Bernard",
+      "createdAt": "2026-07-08T08:29:59.858Z",
+      "notes": [
+        {
+          "id": "n_42_1",
+          "author": "Thomas Bernard",
+          "text": "Premier contact qualifié avec succès par l'équipe commercial.",
+          "date": "Il y a 2 jours"
+        }
+      ],
+      "activities": [
+        {
+          "id": "a_42_1",
+          "text": "Demande enregistrée en base CRM.",
+          "date": "Il y a 3 jours"
+        }
+      ]
+    },
+    {
+      "id": "lead_44",
+      "name": "Prospect Antoine Mercier #44",
+      "email": "prospect44@domaine.fr",
+      "phone": "06 37 27 17 7",
+      "leadType": "Tenant Request",
+      "status": "CONTACTED",
+      "subject": "Demande d'information #44",
+      "message": "Bonjour, je souhaite obtenir des renseignements complémentaires concernant vos services d'accompagnement immobilier à Bordeaux.",
+      "propertyAddress": "48 Allée de Tourny, 33000 Bordeaux",
+      "budget": "2950 € / mois",
+      "surface": "131 m²",
+      "source": "Property Page",
+      "assignedTo": "Claire Dubois",
+      "createdAt": "2026-07-07T08:29:59.858Z",
+      "notes": [
+        {
+          "id": "n_43_1",
+          "author": "Claire Dubois",
+          "text": "Premier contact qualifié avec succès par l'équipe commercial.",
+          "date": "Il y a 2 jours"
+        }
+      ],
+      "activities": [
+        {
+          "id": "a_43_1",
+          "text": "Demande enregistrée en base CRM.",
+          "date": "Il y a 3 jours"
+        }
+      ]
+    },
+    {
+      "id": "lead_45",
+      "name": "Prospect Camille Vasseur #45",
+      "email": "prospect45@domaine.fr",
+      "phone": "06 36 26 16 6",
+      "leadType": "Buyer Request",
+      "status": "QUALIFIED",
+      "subject": "Demande d'information #45",
+      "message": "Bonjour, je souhaite obtenir des renseignements complémentaires concernant vos services d'accompagnement immobilier à Bordeaux.",
+      "propertyAddress": "49 Allée de Tourny, 33000 Bordeaux",
+      "budget": "3000 € / mois",
+      "surface": "133 m²",
+      "source": "Google Search",
+      "assignedTo": "Julien Moreau",
+      "createdAt": "2026-07-06T08:29:59.858Z",
+      "notes": [
+        {
+          "id": "n_44_1",
+          "author": "Julien Moreau",
+          "text": "Premier contact qualifié avec succès par l'équipe commercial.",
+          "date": "Il y a 2 jours"
+        }
+      ],
+      "activities": [
+        {
+          "id": "a_44_1",
+          "text": "Demande enregistrée en base CRM.",
+          "date": "Il y a 3 jours"
+        }
+      ]
+    },
+    {
+      "id": "lead_46",
+      "name": "Prospect Sarah Martin #46",
+      "email": "prospect46@domaine.fr",
+      "phone": "06 35 25 15 5",
+      "leadType": "Seller Request",
+      "status": "APPOINTMENT",
+      "subject": "Demande d'information #46",
+      "message": "Bonjour, je souhaite obtenir des renseignements complémentaires concernant vos services d'accompagnement immobilier à Bordeaux.",
+      "propertyAddress": "50 Allée de Tourny, 33000 Bordeaux",
+      "budget": "3050 € / mois",
+      "surface": "135 m²",
+      "source": "Facebook Ads",
+      "assignedTo": "Alexandre de Saint-Clair",
+      "createdAt": "2026-07-05T08:29:59.858Z",
+      "notes": [
+        {
+          "id": "n_45_1",
+          "author": "Alexandre de Saint-Clair",
+          "text": "Premier contact qualifié avec succès par l'équipe commercial.",
+          "date": "Il y a 2 jours"
+        }
+      ],
+      "activities": [
+        {
+          "id": "a_45_1",
+          "text": "Demande enregistrée en base CRM.",
+          "date": "Il y a 3 jours"
+        }
+      ]
+    },
+    {
+      "id": "lead_47",
+      "name": "Prospect Henri Lemaire #47",
+      "email": "prospect47@domaine.fr",
+      "phone": "06 34 24 14 4",
+      "leadType": "Valuation Request",
+      "status": "IN_PROGRESS",
+      "subject": "Demande d'information #47",
+      "message": "Bonjour, je souhaite obtenir des renseignements complémentaires concernant vos services d'accompagnement immobilier à Bordeaux.",
+      "propertyAddress": "51 Allée de Tourny, 33000 Bordeaux",
+      "budget": "3100 € / mois",
+      "surface": "137 m²",
+      "source": "Referral Direct",
+      "assignedTo": "Sophie Martin",
+      "createdAt": "2026-07-04T08:29:59.858Z",
+      "notes": [
+        {
+          "id": "n_46_1",
+          "author": "Sophie Martin",
+          "text": "Premier contact qualifié avec succès par l'équipe commercial.",
+          "date": "Il y a 2 jours"
+        }
+      ],
+      "activities": [
+        {
+          "id": "a_46_1",
+          "text": "Demande enregistrée en base CRM.",
+          "date": "Il y a 3 jours"
+        }
+      ]
+    },
+    {
+      "id": "lead_48",
+      "name": "Prospect Élodie Roux #48",
+      "email": "prospect48@domaine.fr",
+      "phone": "06 33 23 13 3",
+      "leadType": "Callback Request",
+      "status": "CONVERTED",
+      "subject": "Demande d'information #48",
+      "message": "Bonjour, je souhaite obtenir des renseignements complémentaires concernant vos services d'accompagnement immobilier à Bordeaux.",
+      "propertyAddress": "52 Allée de Tourny, 33000 Bordeaux",
+      "budget": "3150 € / mois",
+      "surface": "139 m²",
+      "source": "Blog Article",
+      "assignedTo": "Thomas Bernard",
+      "createdAt": "2026-07-03T08:29:59.858Z",
+      "notes": [
+        {
+          "id": "n_47_1",
+          "author": "Thomas Bernard",
+          "text": "Premier contact qualifié avec succès par l'équipe commercial.",
+          "date": "Il y a 2 jours"
+        }
+      ],
+      "activities": [
+        {
+          "id": "a_47_1",
+          "text": "Demande enregistrée en base CRM.",
+          "date": "Il y a 3 jours"
+        }
+      ]
+    },
+    {
+      "id": "lead_49",
+      "name": "Prospect Antoine Mercier #49",
+      "email": "prospect49@domaine.fr",
+      "phone": "06 32 22 12 2",
+      "leadType": "Contact Message",
+      "status": "LOST",
+      "subject": "Demande d'information #49",
+      "message": "Bonjour, je souhaite obtenir des renseignements complémentaires concernant vos services d'accompagnement immobilier à Bordeaux.",
+      "propertyAddress": "53 Allée de Tourny, 33000 Bordeaux",
+      "budget": "3200 € / mois",
+      "surface": "141 m²",
+      "source": "Website Form",
+      "assignedTo": "Claire Dubois",
+      "createdAt": "2026-07-02T08:29:59.858Z",
+      "notes": [
+        {
+          "id": "n_48_1",
+          "author": "Claire Dubois",
+          "text": "Premier contact qualifié avec succès par l'équipe commercial.",
+          "date": "Il y a 2 jours"
+        }
+      ],
+      "activities": [
+        {
+          "id": "a_48_1",
+          "text": "Demande enregistrée en base CRM.",
+          "date": "Il y a 3 jours"
+        }
+      ]
+    },
+    {
+      "id": "lead_50",
+      "name": "Prospect Camille Vasseur #50",
+      "email": "prospect50@domaine.fr",
+      "phone": "06 31 21 11 1",
+      "leadType": "Owner Enquiry",
+      "status": "NEW",
+      "subject": "Demande d'information #50",
+      "message": "Bonjour, je souhaite obtenir des renseignements complémentaires concernant vos services d'accompagnement immobilier à Bordeaux.",
+      "propertyAddress": "54 Allée de Tourny, 33000 Bordeaux",
+      "budget": "3250 € / mois",
+      "surface": "143 m²",
+      "source": "Property Page",
+      "assignedTo": "Julien Moreau",
+      "createdAt": "2026-07-01T08:29:59.858Z",
+      "notes": [
+        {
+          "id": "n_49_1",
+          "author": "Julien Moreau",
+          "text": "Premier contact qualifié avec succès par l'équipe commercial.",
+          "date": "Il y a 2 jours"
+        }
+      ],
+      "activities": [
+        {
+          "id": "a_49_1",
+          "text": "Demande enregistrée en base CRM.",
+          "date": "Il y a 3 jours"
+        }
+      ]
+    },
+    {
+      "id": "lead_51",
+      "name": "Prospect Sarah Martin #51",
+      "email": "prospect51@domaine.fr",
+      "phone": "06 30 20 10 0",
+      "leadType": "Tenant Request",
+      "status": "CONTACTED",
+      "subject": "Demande d'information #51",
+      "message": "Bonjour, je souhaite obtenir des renseignements complémentaires concernant vos services d'accompagnement immobilier à Bordeaux.",
+      "propertyAddress": "55 Allée de Tourny, 33000 Bordeaux",
+      "budget": "3300 € / mois",
+      "surface": "145 m²",
+      "source": "Google Search",
+      "assignedTo": "Alexandre de Saint-Clair",
+      "createdAt": "2026-06-30T08:29:59.858Z",
+      "notes": [
+        {
+          "id": "n_50_1",
+          "author": "Alexandre de Saint-Clair",
+          "text": "Premier contact qualifié avec succès par l'équipe commercial.",
+          "date": "Il y a 2 jours"
+        }
+      ],
+      "activities": [
+        {
+          "id": "a_50_1",
+          "text": "Demande enregistrée en base CRM.",
+          "date": "Il y a 3 jours"
+        }
+      ]
+    },
+    {
+      "id": "lead_52",
+      "name": "Prospect Henri Lemaire #52",
+      "email": "prospect52@domaine.fr",
+      "phone": "06 29 19 9 -1",
+      "leadType": "Buyer Request",
+      "status": "QUALIFIED",
+      "subject": "Demande d'information #52",
+      "message": "Bonjour, je souhaite obtenir des renseignements complémentaires concernant vos services d'accompagnement immobilier à Bordeaux.",
+      "propertyAddress": "56 Allée de Tourny, 33000 Bordeaux",
+      "budget": "3350 € / mois",
+      "surface": "147 m²",
+      "source": "Facebook Ads",
+      "assignedTo": "Sophie Martin",
+      "createdAt": "2026-06-29T08:29:59.858Z",
+      "notes": [
+        {
+          "id": "n_51_1",
+          "author": "Sophie Martin",
+          "text": "Premier contact qualifié avec succès par l'équipe commercial.",
+          "date": "Il y a 2 jours"
+        }
+      ],
+      "activities": [
+        {
+          "id": "a_51_1",
+          "text": "Demande enregistrée en base CRM.",
+          "date": "Il y a 3 jours"
+        }
+      ]
+    }
+  ],
+  "owners": [
+    {
+      "id": "own_1",
+      "name": "Propriétaire 1 (Marie Laurent)",
+      "email": "proprietaire1@exemple.fr",
+      "phone": "06 10 20 30 40",
+      "address": "15 Cours Portal, 33000 Bordeaux",
+      "notes": "Propriétaire bailleur sous gestion locative exclusive Maison Méridia.",
+      "status": "Managed",
+      "propertiesCount": 1,
+      "createdAt": "2026-01-20T10:00:00Z"
+    },
+    {
+      "id": "own_2",
+      "name": "Propriétaire 2 (Jean Dupont)",
+      "email": "proprietaire2@exemple.fr",
+      "phone": "06 11 21 31 41",
+      "address": "16 Cours Portal, 33000 Bordeaux",
+      "notes": "Propriétaire bailleur sous gestion locative exclusive Maison Méridia.",
+      "status": "Qualified",
+      "propertiesCount": 2,
+      "createdAt": "2026-01-20T10:00:00Z"
+    },
+    {
+      "id": "own_3",
+      "name": "Propriétaire 3 (Sophie Bernard)",
+      "email": "proprietaire3@exemple.fr",
+      "phone": "06 12 22 32 42",
+      "address": "17 Cours Portal, 33000 Bordeaux",
+      "notes": "Propriétaire bailleur sous gestion locative exclusive Maison Méridia.",
+      "status": "New",
+      "propertiesCount": 3,
+      "createdAt": "2026-01-20T10:00:00Z"
+    },
+    {
+      "id": "own_4",
+      "name": "Propriétaire 4 (Marc Dubois)",
+      "email": "proprietaire4@exemple.fr",
+      "phone": "06 13 23 33 43",
+      "address": "18 Cours Portal, 33000 Bordeaux",
+      "notes": "Propriétaire bailleur sous gestion locative exclusive Maison Méridia.",
+      "status": "Contacted",
+      "propertiesCount": 1,
+      "createdAt": "2026-01-20T10:00:00Z"
+    },
+    {
+      "id": "own_5",
+      "name": "Propriétaire 5 (Claire Fontaine)",
+      "email": "proprietaire5@exemple.fr",
+      "phone": "06 14 24 34 44",
+      "address": "19 Cours Portal, 33000 Bordeaux",
+      "notes": "Propriétaire bailleur sous gestion locative exclusive Maison Méridia.",
+      "status": "Managed",
+      "propertiesCount": 2,
+      "createdAt": "2026-01-20T10:00:00Z"
+    },
+    {
+      "id": "own_6",
+      "name": "Propriétaire 6 (Marie Laurent)",
+      "email": "proprietaire6@exemple.fr",
+      "phone": "06 15 25 35 45",
+      "address": "20 Cours Portal, 33000 Bordeaux",
+      "notes": "Propriétaire bailleur sous gestion locative exclusive Maison Méridia.",
+      "status": "Qualified",
+      "propertiesCount": 3,
+      "createdAt": "2026-01-20T10:00:00Z"
+    },
+    {
+      "id": "own_7",
+      "name": "Propriétaire 7 (Jean Dupont)",
+      "email": "proprietaire7@exemple.fr",
+      "phone": "06 16 26 36 46",
+      "address": "21 Cours Portal, 33000 Bordeaux",
+      "notes": "Propriétaire bailleur sous gestion locative exclusive Maison Méridia.",
+      "status": "New",
+      "propertiesCount": 1,
+      "createdAt": "2026-01-20T10:00:00Z"
+    },
+    {
+      "id": "own_8",
+      "name": "Propriétaire 8 (Sophie Bernard)",
+      "email": "proprietaire8@exemple.fr",
+      "phone": "06 17 27 37 47",
+      "address": "22 Cours Portal, 33000 Bordeaux",
+      "notes": "Propriétaire bailleur sous gestion locative exclusive Maison Méridia.",
+      "status": "Contacted",
+      "propertiesCount": 2,
+      "createdAt": "2026-01-20T10:00:00Z"
+    },
+    {
+      "id": "own_9",
+      "name": "Propriétaire 9 (Marc Dubois)",
+      "email": "proprietaire9@exemple.fr",
+      "phone": "06 18 28 38 48",
+      "address": "23 Cours Portal, 33000 Bordeaux",
+      "notes": "Propriétaire bailleur sous gestion locative exclusive Maison Méridia.",
+      "status": "Managed",
+      "propertiesCount": 3,
+      "createdAt": "2026-01-20T10:00:00Z"
+    },
+    {
+      "id": "own_10",
+      "name": "Propriétaire 10 (Claire Fontaine)",
+      "email": "proprietaire10@exemple.fr",
+      "phone": "06 19 29 39 49",
+      "address": "24 Cours Portal, 33000 Bordeaux",
+      "notes": "Propriétaire bailleur sous gestion locative exclusive Maison Méridia.",
+      "status": "Qualified",
+      "propertiesCount": 1,
+      "createdAt": "2026-01-20T10:00:00Z"
+    },
+    {
+      "id": "own_11",
+      "name": "Propriétaire 11 (Marie Laurent)",
+      "email": "proprietaire11@exemple.fr",
+      "phone": "06 20 30 40 50",
+      "address": "25 Cours Portal, 33000 Bordeaux",
+      "notes": "Propriétaire bailleur sous gestion locative exclusive Maison Méridia.",
+      "status": "New",
+      "propertiesCount": 2,
+      "createdAt": "2026-01-20T10:00:00Z"
+    },
+    {
+      "id": "own_12",
+      "name": "Propriétaire 12 (Jean Dupont)",
+      "email": "proprietaire12@exemple.fr",
+      "phone": "06 21 31 41 51",
+      "address": "26 Cours Portal, 33000 Bordeaux",
+      "notes": "Propriétaire bailleur sous gestion locative exclusive Maison Méridia.",
+      "status": "Contacted",
+      "propertiesCount": 3,
+      "createdAt": "2026-01-20T10:00:00Z"
+    },
+    {
+      "id": "own_13",
+      "name": "Propriétaire 13 (Sophie Bernard)",
+      "email": "proprietaire13@exemple.fr",
+      "phone": "06 22 32 42 52",
+      "address": "27 Cours Portal, 33000 Bordeaux",
+      "notes": "Propriétaire bailleur sous gestion locative exclusive Maison Méridia.",
+      "status": "Managed",
+      "propertiesCount": 1,
+      "createdAt": "2026-01-20T10:00:00Z"
+    },
+    {
+      "id": "own_14",
+      "name": "Propriétaire 14 (Marc Dubois)",
+      "email": "proprietaire14@exemple.fr",
+      "phone": "06 23 33 43 53",
+      "address": "28 Cours Portal, 33000 Bordeaux",
+      "notes": "Propriétaire bailleur sous gestion locative exclusive Maison Méridia.",
+      "status": "Qualified",
+      "propertiesCount": 2,
+      "createdAt": "2026-01-20T10:00:00Z"
+    },
+    {
+      "id": "own_15",
+      "name": "Propriétaire 15 (Claire Fontaine)",
+      "email": "proprietaire15@exemple.fr",
+      "phone": "06 24 34 44 54",
+      "address": "29 Cours Portal, 33000 Bordeaux",
+      "notes": "Propriétaire bailleur sous gestion locative exclusive Maison Méridia.",
+      "status": "New",
+      "propertiesCount": 3,
+      "createdAt": "2026-01-20T10:00:00Z"
+    },
+    {
+      "id": "own_16",
+      "name": "Propriétaire 16 (Marie Laurent)",
+      "email": "proprietaire16@exemple.fr",
+      "phone": "06 25 35 45 55",
+      "address": "30 Cours Portal, 33000 Bordeaux",
+      "notes": "Propriétaire bailleur sous gestion locative exclusive Maison Méridia.",
+      "status": "Contacted",
+      "propertiesCount": 1,
+      "createdAt": "2026-01-20T10:00:00Z"
+    },
+    {
+      "id": "own_17",
+      "name": "Propriétaire 17 (Jean Dupont)",
+      "email": "proprietaire17@exemple.fr",
+      "phone": "06 26 36 46 56",
+      "address": "31 Cours Portal, 33000 Bordeaux",
+      "notes": "Propriétaire bailleur sous gestion locative exclusive Maison Méridia.",
+      "status": "Managed",
+      "propertiesCount": 2,
+      "createdAt": "2026-01-20T10:00:00Z"
+    },
+    {
+      "id": "own_18",
+      "name": "Propriétaire 18 (Sophie Bernard)",
+      "email": "proprietaire18@exemple.fr",
+      "phone": "06 27 37 47 57",
+      "address": "32 Cours Portal, 33000 Bordeaux",
+      "notes": "Propriétaire bailleur sous gestion locative exclusive Maison Méridia.",
+      "status": "Qualified",
+      "propertiesCount": 3,
+      "createdAt": "2026-01-20T10:00:00Z"
+    },
+    {
+      "id": "own_19",
+      "name": "Propriétaire 19 (Marc Dubois)",
+      "email": "proprietaire19@exemple.fr",
+      "phone": "06 28 38 48 58",
+      "address": "33 Cours Portal, 33000 Bordeaux",
+      "notes": "Propriétaire bailleur sous gestion locative exclusive Maison Méridia.",
+      "status": "New",
+      "propertiesCount": 1,
+      "createdAt": "2026-01-20T10:00:00Z"
+    },
+    {
+      "id": "own_20",
+      "name": "Propriétaire 20 (Claire Fontaine)",
+      "email": "proprietaire20@exemple.fr",
+      "phone": "06 29 39 49 59",
+      "address": "34 Cours Portal, 33000 Bordeaux",
+      "notes": "Propriétaire bailleur sous gestion locative exclusive Maison Méridia.",
+      "status": "Contacted",
+      "propertiesCount": 2,
+      "createdAt": "2026-01-20T10:00:00Z"
+    },
+    {
+      "id": "own_21",
+      "name": "Propriétaire 21 (Marie Laurent)",
+      "email": "proprietaire21@exemple.fr",
+      "phone": "06 30 40 50 60",
+      "address": "35 Cours Portal, 33000 Bordeaux",
+      "notes": "Propriétaire bailleur sous gestion locative exclusive Maison Méridia.",
+      "status": "Managed",
+      "propertiesCount": 3,
+      "createdAt": "2026-01-20T10:00:00Z"
+    },
+    {
+      "id": "own_22",
+      "name": "Propriétaire 22 (Jean Dupont)",
+      "email": "proprietaire22@exemple.fr",
+      "phone": "06 31 41 51 61",
+      "address": "36 Cours Portal, 33000 Bordeaux",
+      "notes": "Propriétaire bailleur sous gestion locative exclusive Maison Méridia.",
+      "status": "Qualified",
+      "propertiesCount": 1,
+      "createdAt": "2026-01-20T10:00:00Z"
+    },
+    {
+      "id": "own_23",
+      "name": "Propriétaire 23 (Sophie Bernard)",
+      "email": "proprietaire23@exemple.fr",
+      "phone": "06 32 42 52 62",
+      "address": "37 Cours Portal, 33000 Bordeaux",
+      "notes": "Propriétaire bailleur sous gestion locative exclusive Maison Méridia.",
+      "status": "New",
+      "propertiesCount": 2,
+      "createdAt": "2026-01-20T10:00:00Z"
+    },
+    {
+      "id": "own_24",
+      "name": "Propriétaire 24 (Marc Dubois)",
+      "email": "proprietaire24@exemple.fr",
+      "phone": "06 33 43 53 63",
+      "address": "38 Cours Portal, 33000 Bordeaux",
+      "notes": "Propriétaire bailleur sous gestion locative exclusive Maison Méridia.",
+      "status": "Contacted",
+      "propertiesCount": 3,
+      "createdAt": "2026-01-20T10:00:00Z"
+    },
+    {
+      "id": "own_25",
+      "name": "Propriétaire 25 (Claire Fontaine)",
+      "email": "proprietaire25@exemple.fr",
+      "phone": "06 34 44 54 64",
+      "address": "39 Cours Portal, 33000 Bordeaux",
+      "notes": "Propriétaire bailleur sous gestion locative exclusive Maison Méridia.",
+      "status": "Managed",
+      "propertiesCount": 1,
+      "createdAt": "2026-01-20T10:00:00Z"
+    }
+  ],
+  "activityLogs": [
+    {
+      "id": "log_seed_1",
+      "user": "System Seed Engine",
+      "action": "Base de données réinitialisée avec succès",
+      "object": "System Database",
+      "timestamp": "2026-08-19T08:29:59.858Z"
+    }
+  ]
+}
