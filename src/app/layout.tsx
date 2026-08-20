@@ -80,21 +80,14 @@ export default function RootLayout({
 
   return (
     <html lang="fr" suppressHydrationWarning>
-      <head>
-        <link rel="icon" href="/favicon.ico?v=5" sizes="any" />
-        <link rel="shortcut icon" href="/favicon.ico?v=5" />
-        <link rel="apple-touch-icon" href="/LOGOMARK_3@2x.png" />
-        <link rel="preconnect" href="https://fonts.googleapis.com" />
-        <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
-        <script
-          type="application/ld+json"
-          dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
-        />
-      </head>
       <body
         className="bg-[#F7F5F0] text-[#171512] font-sans-ui selection:bg-[#748C8C]/25 selection:text-[#171512] antialiased"
         suppressHydrationWarning
       >
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+        />
         <ClientLayoutWrapper>{children}</ClientLayoutWrapper>
       </body>
     </html>

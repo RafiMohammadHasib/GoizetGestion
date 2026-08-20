@@ -18,6 +18,7 @@ export const dictionary: Dictionary = {
   navBuy: { fr: 'Acheter', en: 'Buy' },
   navManagement: { fr: 'Gestion locative', en: 'Management' },
   navDistricts: { fr: 'Quartiers', en: 'Districts' },
+  navAbout: { fr: 'La Maison', en: 'About Us' },
   navJournal: { fr: 'Journal', en: 'Journal' },
   navContact: { fr: 'Contact', en: 'Contact' },
   btnCallback: { fr: 'Être rappelé', en: 'Request Callback' },

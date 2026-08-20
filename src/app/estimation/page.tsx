@@ -69,6 +69,7 @@ export default function EstimationPage() {
             surface: formData.surface,
             rooms: formData.rooms,
             condition: formData.condition,
+            name: `${cleanFirst} ${cleanLast}`,
             firstName: cleanFirst,
             lastName: cleanLast,
             email: cleanEmail,
@@ -78,7 +79,18 @@ export default function EstimationPage() {
 
         const data = await res.json();
         if (!res.ok) {
-          throw new Error(data.error || 'Erreur d\'estimation');
+          const serverErr = data.error || '';
+          let translatedErr = serverErr;
+          if (language === 'en') {
+            if (serverErr.includes('Identifiants') || serverErr.includes('email invalides')) {
+              translatedErr = 'Invalid name or email address.';
+            } else if (serverErr.includes('Trop de requêtes')) {
+              translatedErr = 'Too many requests. Please try again in a moment.';
+            } else {
+              translatedErr = 'Valuation calculation error. Please check your information.';
+            }
+          }
+          throw new Error(translatedErr || (language === 'fr' ? 'Erreur lors du calcul d\'estimation.' : 'Valuation calculation error.'));
         }
 
         setEstimatedYield(data.valuation);
@@ -145,7 +157,7 @@ export default function EstimationPage() {
       )}
 
       {/* Main Multi-Step Form Container */}
-      <div className="bg-white rounded-3xl p-6 sm:p-10 border border-[#171512]/10 shadow-2xl relative overflow-hidden">
+      <div className="bg-white rounded-3xl p-6 sm:p-10 border border-[#171512]/10 shadow-2xl relative">
         <AnimatePresence mode="wait">
           
           {/* STEP 1 */}
@@ -456,25 +468,41 @@ export default function EstimationPage() {
               </div>
 
               {/* Yield Cards */}
-              <div className="grid grid-cols-1 sm:grid-cols-2 gap-6 max-w-2xl mx-auto">
-                <div className="bg-[#FAF9F6] p-6 rounded-2xl border border-[#748C8C]/20 space-y-2 text-center shadow-sm">
-                  <span className="text-[10px] font-bold uppercase tracking-wider text-[#6F6255]">
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-5 max-w-4xl mx-auto">
+                <div className="bg-white p-6 sm:p-8 rounded-3xl border border-[#748C8C]/30 shadow-md flex flex-col justify-between space-y-4 text-center">
+                  <span className="text-[10px] font-bold uppercase tracking-wider text-[#748C8C] block">
                     {language === 'fr' ? 'VALEUR LOCATIVE MENSUELLE ESTIMÉE' : 'ESTIMATED MONTHLY RENTAL VALUE'}
                   </span>
-                  <div className="font-serif-display text-3xl sm:text-4xl font-bold text-[#748C8C]">
-                    {estimatedYield.rentMin.toLocaleString('fr-FR')} € — {estimatedYield.rentMax.toLocaleString('fr-FR')} €
+                  <div className="flex items-baseline justify-center space-x-1.5 sm:space-x-2 text-[#748C8C] whitespace-nowrap">
+                    <span className="font-serif-display text-xl sm:text-2xl lg:text-[26px] font-bold tracking-tight">
+                      {estimatedYield.rentMin.toLocaleString('fr-FR')}&nbsp;€
+                    </span>
+                    <span className="text-stone-300 font-light text-base sm:text-lg">—</span>
+                    <span className="font-serif-display text-xl sm:text-2xl lg:text-[26px] font-bold tracking-tight">
+                      {estimatedYield.rentMax.toLocaleString('fr-FR')}&nbsp;€
+                    </span>
                   </div>
-                  <span className="text-[11px] text-[#6F6255] block">/ {language === 'fr' ? 'mois CC' : 'mo inc. charges'}</span>
+                  <span className="text-[11px] text-[#6F6255] font-medium block">
+                    / {language === 'fr' ? 'mois charges comprises' : 'mo inc. charges'}
+                  </span>
                 </div>
 
-                <div className="bg-[#FAF9F6] p-6 rounded-2xl border border-[#171512]/10 space-y-2 text-center shadow-sm">
-                  <span className="text-[10px] font-bold uppercase tracking-wider text-[#6F6255]">
+                <div className="bg-white p-6 sm:p-8 rounded-3xl border border-[#171512]/10 shadow-md flex flex-col justify-between space-y-4 text-center">
+                  <span className="text-[10px] font-bold uppercase tracking-wider text-[#6F6255] block">
                     {language === 'fr' ? 'VALEUR PATRIMONIALE DE VENTE' : 'ESTIMATED PROPERTY SALES VALUE'}
                   </span>
-                  <div className="font-serif-display text-3xl sm:text-4xl font-bold text-[#171512]">
-                    {estimatedYield.saleMin.toLocaleString('fr-FR')} € — {estimatedYield.saleMax.toLocaleString('fr-FR')} €
+                  <div className="flex items-baseline justify-center space-x-1.5 sm:space-x-2 text-[#171512] whitespace-nowrap">
+                    <span className="font-serif-display text-xl sm:text-2xl lg:text-[26px] font-bold tracking-tight">
+                      {estimatedYield.saleMin.toLocaleString('fr-FR')}&nbsp;€
+                    </span>
+                    <span className="text-stone-300 font-light text-base sm:text-lg">—</span>
+                    <span className="font-serif-display text-xl sm:text-2xl lg:text-[26px] font-bold tracking-tight">
+                      {estimatedYield.saleMax.toLocaleString('fr-FR')}&nbsp;€
+                    </span>
                   </div>
-                  <span className="text-[11px] text-[#6F6255] block">{language === 'fr' ? 'Valeur vénale FAI' : 'Market valuation'}</span>
+                  <span className="text-[11px] text-[#6F6255] font-medium block">
+                    {language === 'fr' ? 'Valeur vénale FAI' : 'Market valuation'}
+                  </span>
                 </div>
               </div>
 

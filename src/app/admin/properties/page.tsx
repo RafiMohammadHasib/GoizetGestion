@@ -7,6 +7,7 @@ import {
   Archive, ArrowUpRight, Sparkles, RotateCcw, MoreHorizontal, Loader2 
 } from 'lucide-react';
 import { useLanguage } from '@/context/LanguageContext';
+import { supabase } from '@/lib/supabase';
 
 export default function AdminPropertiesPage() {
   const { language } = useLanguage();
@@ -17,6 +18,7 @@ export default function AdminPropertiesPage() {
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
+
     async function fetchProperties() {
       try {
         const res = await fetch('/api/properties');
@@ -31,6 +33,17 @@ export default function AdminPropertiesPage() {
       }
     }
     fetchProperties();
+
+    const channel = supabase
+      .channel('admin-properties-live')
+      .on('postgres_changes', { event: '*', schema: 'public', table: 'properties' }, () => {
+        fetchProperties();
+      })
+      .subscribe();
+
+    return () => {
+      supabase.removeChannel(channel);
+    };
   }, []);
 
   const filteredProperties = propertyList.filter(p => {

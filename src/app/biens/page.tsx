@@ -114,20 +114,20 @@ function PropertySearchContent() {
   ], [language]);
 
   return (
-    <div className="pt-32 pb-24 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto space-y-10">
+    <div suppressHydrationWarning className="pt-32 pb-24 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto space-y-10">
       
       {/* Breadcrumbs */}
       <Breadcrumbs items={[{ label: language === 'fr' ? 'Nos Biens' : 'Properties' }]} />
 
       {/* Header Banner */}
-      <div className="space-y-4 max-w-3xl">
-        <span className="text-xs font-semibold uppercase tracking-widest text-[#748C8C]">
+      <div suppressHydrationWarning className="space-y-4 max-w-3xl">
+        <span suppressHydrationWarning className="text-xs font-semibold uppercase tracking-widest text-[#748C8C]">
           {language === 'fr' ? 'CATALOGUE DYNAMIQUE DES BIENS' : 'DYNAMIC REAL ESTATE CATALOG'}
         </span>
-        <h1 className="font-serif-display text-4xl sm:text-6xl font-light text-[#171512] leading-tight">
+        <h1 suppressHydrationWarning className="font-serif-display text-4xl sm:text-6xl font-light text-[#171512] leading-tight">
           {language === 'fr' ? 'Trouver un bien d\'exception à Bordeaux.' : 'Find an exceptional property in Bordeaux.'}
         </h1>
-        <p className="text-sm text-[#6F6255] font-light leading-relaxed">
+        <p suppressHydrationWarning className="text-sm text-[#6F6255] font-light leading-relaxed">
           {language === 'fr'
             ? 'Explorez nos appartements, échoppes et lofts rigoureusement sélectionnés au cœur des plus beaux quartiers bordelais.'
             : 'Explore our curated selection of apartments, townhouses, and lofts across Bordeaux\'s prime districts.'}

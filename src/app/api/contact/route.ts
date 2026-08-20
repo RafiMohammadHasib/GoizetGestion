@@ -15,7 +15,7 @@ export async function POST(req: NextRequest) {
     }
 
     const body = await req.json();
-    const { fullName, name, email, phone, subject, message } = body;
+    const { fullName, name, email, phone, subject, message, propertyId, propertySlug, propertyTitle } = body;
 
     const sanitizedName = sanitizeInjection(fullName || name || '');
     const sanitizedSubject = sanitizeInjection(subject || 'Demande de contact');
@@ -31,19 +31,20 @@ export async function POST(req: NextRequest) {
       return NextResponse.json({ error: 'Adresse email invalide.' }, { status: 400 });
     }
 
-    // Append lead to Central Database Store
+    // Append lead to Central Database Store & Supabase
     const db = getDb();
     const newLead: CRMLead = {
       id: `lead_${Date.now()}`,
       name: sanitizedName,
       email: cleanEmail,
       phone: cleanPhone || 'Non renseigné',
-      leadType: 'Contact Message',
+      leadType: propertyId || propertySlug ? 'Tenant Request' : 'Contact Message',
       status: 'NEW',
       subject: sanitizedSubject,
       message: sanitizedMessage,
-      source: 'Formulaire de Contact Frontend',
-      assignedTo: 'Alexandre de Saint-Clair',
+      propertyAddress: propertyTitle || (propertySlug ? `Propriété: ${propertySlug}` : undefined),
+      source: propertySlug ? 'Page Détail Bien' : 'Formulaire de Contact Frontend',
+      assignedTo: 'Paul & Edgar Goizet',
       createdAt: new Date().toISOString(),
       notes: [],
       activities: [
@@ -51,13 +52,69 @@ export async function POST(req: NextRequest) {
       ]
     };
 
+    // If linked to a property, increment enquiries_count
+    if (propertyId || propertySlug) {
+      const prop = db.properties.find((p: any) => p.id === propertyId || p.slug === propertySlug);
+      if (prop) {
+        prop.enquiriesCount = (Number(prop.enquiriesCount) || 0) + 1;
+        newLead.propertyAddress = `${prop.title} (${prop.reference})`;
+      }
+    }
+
     db.leads.unshift(newLead);
     saveDb(db);
+
+    // Push to Supabase
+    try {
+      const { supabase } = await import('@/lib/supabase');
+      await supabase.from('crm_leads').insert({
+        id: newLead.id,
+        name: newLead.name,
+        email: newLead.email,
+        phone: newLead.phone,
+        lead_type: newLead.leadType,
+        status: newLead.status,
+        subject: newLead.subject,
+        message: newLead.message,
+        property_address: newLead.propertyAddress,
+        source: newLead.source,
+        assigned_to: newLead.assignedTo,
+        created_at: newLead.createdAt,
+        notes: newLead.notes,
+        activities: newLead.activities
+      });
+
+      // Increment enquiries_count on Supabase properties table
+      if (propertyId || propertySlug) {
+        let propQuery = supabase.from('properties').select('id, enquiries_count');
+        if (propertyId) propQuery = propQuery.eq('id', propertyId);
+        else if (propertySlug) propQuery = propQuery.eq('slug', propertySlug);
+
+        const { data: propData } = await propQuery.maybeSingle();
+        if (propData) {
+          const currentCount = Number(propData.enquiries_count) || 0;
+          await supabase
+            .from('properties')
+            .update({ enquiries_count: currentCount + 1, updated_at: new Date().toISOString() })
+            .eq('id', propData.id);
+        }
+      }
+
+      await supabase.from('activity_logs').insert({
+        id: `log_${Date.now()}`,
+        user_name: sanitizedName,
+        action: propertySlug ? `a envoyé une demande de visite pour ${propertyTitle || propertySlug}` : 'a envoyé un message de contact depuis le site public',
+        object: propertyTitle || sanitizedSubject,
+        timestamp: new Date().toISOString()
+      });
+    } catch (sbErr) {
+      console.warn('Supabase sync warning in contact route:', sbErr);
+    }
 
     return NextResponse.json(
       {
         success: true,
-        message: 'Votre demande a été transmise au CRM Maison Méridia.',
+        message: 'Votre demande a été transmise au CRM Goizet Gestion.',
         timestamp: new Date().toISOString()
       },
       { status: 200 }

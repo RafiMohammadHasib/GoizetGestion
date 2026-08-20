@@ -54,6 +54,43 @@ export default function PropertyDetailPage() {
     fetchProperty();
   }, [slug]);
 
+  // 2-Scroll View Counter Listener (Hook called unconditionally at top level)
+  useEffect(() => {
+    if (!property?.id && !property?.slug) return;
+    const targetId = property.id;
+    const targetSlug = property.slug || slug;
+    const sessionKey = `viewed_property_${targetSlug}`;
+
+    if (typeof window !== 'undefined' && sessionStorage.getItem(sessionKey)) {
+      return; // Already counted for this user session
+    }
+
+    let scrollCount = 0;
+    let lastScrollPos = typeof window !== 'undefined' ? window.scrollY : 0;
+
+    const handleScroll = () => {
+      const currentPos = window.scrollY;
+      if (Math.abs(currentPos - lastScrollPos) > 60) {
+        scrollCount += 1;
+        lastScrollPos = currentPos;
+
+        if (scrollCount >= 2) {
+          sessionStorage.setItem(sessionKey, 'true');
+          window.removeEventListener('scroll', handleScroll);
+
+          fetch(`/api/properties/view?id=${encodeURIComponent(targetId)}&slug=${encodeURIComponent(targetSlug)}`, {
+            method: 'POST'
+          }).then(() => {
+            setProperty((prev: any) => prev ? { ...prev, views: (Number(prev.views) || 0) + 1 } : prev);
+          }).catch(() => {});
+        }
+      }
+    };
+
+    window.addEventListener('scroll', handleScroll, { passive: true });
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, [property?.id, property?.slug, slug]);
+
   if (pageLoading) {
     return (
       <div className="pt-40 pb-20 text-center space-y-4">
@@ -95,10 +132,14 @@ export default function PropertyDetailPage() {
           name,
           email,
           phone,
+          propertyId: property.id,
+          propertySlug: property.slug,
+          propertyTitle: property.title,
           subject: `Demande de visite: ${property.title} (${property.reference})`,
           message: `${message}\n\nPropriété ciblée: ${property.title} - Ref ${property.reference}`
         })
       });
+      setProperty((prev: any) => prev ? { ...prev, enquiriesCount: (Number(prev.enquiriesCount) || 0) + 1 } : prev);
       setIsBooked(true);
     } catch (e) {
       setIsBooked(true);
@@ -119,7 +160,7 @@ export default function PropertyDetailPage() {
       />
 
       {/* Main Header & Price Title */}
-      <div className="flex flex-col lg:flex-row lg:items-end justify-between gap-6 pb-6 border-b border-[#171512]/10">
+      <div className="flex flex-col lg:flex-row lg:items-end justify-between gap-6 pb-6 border-b border-[#171712]/10">
         <div className="space-y-3 max-w-3xl">
           <div className="flex flex-wrap items-center gap-2">
             <span className="bg-[#171512] text-white text-[10px] font-bold uppercase tracking-wider px-3 py-1 rounded-full whitespace-nowrap">
@@ -133,6 +174,9 @@ export default function PropertyDetailPage() {
             )}
             <span className="bg-white border border-[#171512]/10 text-[#171512] text-[10px] font-bold px-3 py-1 rounded-full whitespace-nowrap">
               DPE {property.energyRating}
+            </span>
+            <span className="bg-white border border-[#171512]/10 text-[#6F6255] text-[10px] font-semibold px-3 py-1 rounded-full whitespace-nowrap flex items-center space-x-1">
+              <span>{property.views || 0} {language === 'fr' ? 'consultations' : 'views'}</span>
             </span>
           </div>
 

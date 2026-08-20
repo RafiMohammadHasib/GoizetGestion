@@ -15,19 +15,24 @@ export async function POST(req: NextRequest) {
     }
 
     const body = await req.json();
-    const { propertyType, surface, rooms, neighborhood, name, email, phone } = body;
+    const { propertyType, surface, rooms, neighborhood, email, phone } = body;
+    const rawName = body.name || [body.firstName, body.lastName].filter(Boolean).join(' ') || '';
 
-    const sanitizedName = sanitizeInjection(name || '');
+    const sanitizedName = sanitizeInjection(rawName);
     const cleanEmail = (email || '').trim().toLowerCase();
     const cleanPhone = (phone || '').trim();
 
-    if (!sanitizedName || !isValidEmail(cleanEmail)) {
+    if (!sanitizedName || sanitizedName.length < 2 || !isValidEmail(cleanEmail)) {
       return NextResponse.json({ error: 'Identifiants ou email invalides.' }, { status: 400 });
     }
 
     const surfNum = parseInt(surface, 10) || 50;
     const estMin = Math.round(surfNum * 14.5 * 0.95);
     const estMax = Math.round(surfNum * 17.5 * 1.05);
+
+    const propLabel = propertyType || 'Appartement';
+    const districtLabel = neighborhood || 'Bordeaux Centre';
+    const formattedAddress = `${propLabel} • ${districtLabel}, Bordeaux`;
 
     // Save lead to CRM database
     const db = getDb();
@@ -38,27 +43,68 @@ export async function POST(req: NextRequest) {
       phone: cleanPhone || 'Non renseigné',
       leadType: 'Valuation Request',
       status: 'NEW',
-      propertyAddress: `Secteur ${neighborhood || 'Bordeaux'}`,
+      propertyAddress: formattedAddress,
       budget: `Est. ${estMin} € - ${estMax} € / mois`,
-      surface: `${surfNum} m² (${rooms || 2} pièces)`,
+      surface: `${surfNum} m² • ${rooms || 2} pièces`,
+      subject: `Estimation Loyer: ${propLabel} (${surfNum} m²) à ${districtLabel}`,
+      message: `Formulaire d'estimation propriétaire reçu. Bien: ${propLabel}, Surface: ${surfNum} m², Pièces: ${rooms || 2}, Quartier: ${districtLabel}. Loyer estimé: ${estMin} € à ${estMax} € / mois.`,
       source: 'Calculateur Estimation En Ligne',
-      assignedTo: 'Alexandre de Saint-Clair',
+      assignedTo: 'Paul & Edgar Goizet',
       createdAt: new Date().toISOString(),
       notes: [
-        { id: `note_${Date.now()}`, author: 'Système Estimation', text: `Fourchette calculée: ${estMin} € - ${estMax} € / mo`, date: 'À l\'instant' }
+        { id: `note_${Date.now()}`, author: 'Calculateur Goizet', text: `Estimation indicative: ${estMin} € - ${estMax} € / mois (${surfNum} m² à ${districtLabel}).`, date: 'À l\'instant' }
       ],
       activities: [
-        { id: `act_${Date.now()}`, text: 'Demande d\'estimation enregistrée.', date: 'À l\'instant' }
+        { id: `act_${Date.now()}`, text: 'Formulaire d\'estimation propriétaire soumis.', date: 'À l\'instant' }
       ]
     };
 
     db.leads.unshift(newLead);
     saveDb(db);
 
+    // Push to Supabase
+    try {
+      const { supabase } = await import('@/lib/supabase');
+      await supabase.from('crm_leads').insert({
+        id: newLead.id,
+        name: newLead.name,
+        email: newLead.email,
+        phone: newLead.phone,
+        lead_type: newLead.leadType,
+        status: newLead.status,
+        subject: newLead.subject,
+        message: newLead.message,
+        property_address: newLead.propertyAddress,
+        budget: newLead.budget,
+        surface: newLead.surface,
+        source: newLead.source,
+        assigned_to: newLead.assignedTo,
+        created_at: newLead.createdAt,
+        notes: newLead.notes,
+        activities: newLead.activities
+      });
+
+      await supabase.from('activity_logs').insert({
+        id: `log_${Date.now()}`,
+        user_name: sanitizedName,
+        action: `a calculé une estimation loyer (${estMin}€ - ${estMax}€/mois)`,
+        object: newLead.propertyAddress || 'Bordeaux',
+        timestamp: new Date().toISOString()
+      });
+    } catch (sbErr) {
+      console.warn('Supabase sync warning in estimation route:', sbErr);
+    }
+
     return NextResponse.json({
       success: true,
       estimationMin: estMin,
       estimationMax: estMax,
+      valuation: {
+        rentMin: estMin,
+        rentMax: estMax,
+        saleMin: Math.round(surfNum * 4600 * 0.95),
+        saleMax: Math.round(surfNum * 5400 * 1.05)
+      },
       message: 'Votre estimation a été calculée et enregistrée en CRM.'
     });
   } catch (error) {

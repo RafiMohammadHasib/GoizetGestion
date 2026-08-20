@@ -31,12 +31,12 @@ export default function Header({ onOpenCallback }: HeaderProps) {
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
-  // Removed "Accueil" / "Home" button from header navigation per user request
   const navItems = [
     { label: t('navRent'), href: '/biens?type=louer' },
     { label: t('navBuy'), href: '/biens?type=acheter' },
     { label: t('navManagement'), href: '/gestion-locative' },
     { label: t('navDistricts'), href: '/quartiers' },
+    { label: t('navAbout'), href: '/a-propos' },
     { label: t('navJournal'), href: '/journal' },
     { label: t('navContact'), href: '/contact' },
   ];
