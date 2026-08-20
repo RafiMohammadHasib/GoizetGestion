@@ -18,8 +18,8 @@ export default function AdminBlogPage() {
     <div className="space-y-8 max-w-5xl mx-auto">
       <div className="flex items-center justify-between pb-4 border-b border-[#171717]/10">
         <div>
-          <span className="text-[10px] font-bold uppercase tracking-widest text-[#7A2234]">
-            MAISON MÉRIDIA BLOG CMS
+          <span className="text-[10px] font-bold uppercase tracking-widest text-[#748C8C]">
+            GOIZET GESTION BLOG CMS
           </span>
           <h1 className="font-serif-display text-3xl font-semibold text-[#171717]">
             Journal Immobilier Articles ({articles.length})
@@ -28,7 +28,7 @@ export default function AdminBlogPage() {
 
         <Link
           href="/admin/blog/new"
-          className="bg-[#7A2234] hover:bg-[#5C1D27] text-white px-5 py-2.5 rounded-xl text-xs font-semibold shadow flex items-center space-x-2 whitespace-nowrap"
+          className="bg-brand-gradient hover:bg-brand-gradient-hover text-white px-5 py-2.5 rounded-xl text-xs font-semibold shadow-brand flex items-center space-x-2 whitespace-nowrap"
         >
           <Plus className="w-4 h-4" />
           <span>New Article</span>
@@ -46,7 +46,7 @@ export default function AdminBlogPage() {
                   className="w-16 h-12 rounded-xl object-cover border border-[#171717]/10 shrink-0"
                 />
                 <div className="space-y-1">
-                  <span className="text-[10px] font-bold uppercase text-[#7A2234]">{art.category}</span>
+                  <span className="text-[10px] font-bold uppercase text-[#748C8C]">{art.category}</span>
                   <h3 className="font-serif-display font-medium text-base text-[#171717]">{art.title}</h3>
                   <div className="flex items-center space-x-3 text-[11px] text-[#6B6B6B]">
                     <span>By {art.author.name}</span>

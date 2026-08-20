@@ -17,7 +17,7 @@ export default function NewPropertyPage() {
   const [successMsg, setSuccessMsg] = useState('');
 
   const [formData, setFormData] = useState({
-    reference: `MM-3300${Math.floor(Math.random() * 90) + 10}`,
+    reference: `GG-3300${Math.floor(Math.random() * 90) + 10}`,
     title: '',
     slug: '',
     description: '',
@@ -91,7 +91,7 @@ export default function NewPropertyPage() {
             <ArrowLeft className="w-4 h-4" />
           </Link>
           <div>
-            <span className="text-[10px] font-bold uppercase tracking-widest text-[#7A2234]">
+            <span className="text-[10px] font-bold uppercase tracking-widest text-[#748C8C]">
               PROPERTY EDITOR & CREATOR
             </span>
             <h1 className="font-serif-display text-3xl font-semibold text-[#171717]">
@@ -103,7 +103,7 @@ export default function NewPropertyPage() {
         <button
           onClick={handleSubmit}
           disabled={saving}
-          className="bg-[#7A2234] hover:bg-[#5C1D27] text-white px-6 py-2.5 rounded-xl text-xs font-semibold shadow flex items-center space-x-2 whitespace-nowrap disabled:opacity-50"
+          className="bg-brand-gradient hover:bg-brand-gradient-hover text-white px-6 py-2.5 rounded-xl text-xs font-semibold shadow-brand flex items-center space-x-2 whitespace-nowrap disabled:opacity-50"
         >
           <Save className="w-4 h-4" />
           <span>{saving ? 'Saving...' : 'Save & Publish'}</span>
@@ -307,11 +307,10 @@ export default function NewPropertyPage() {
 
             <div>
               <label className="block font-semibold uppercase tracking-wider text-[#171717] mb-1">
-                Bedrooms *
+                Bedrooms (Chambres)
               </label>
               <input
                 type="number"
-                required
                 value={formData.bedrooms}
                 onChange={(e) => setFormData({ ...formData, bedrooms: parseInt(e.target.value, 10) })}
                 className="w-full px-3.5 py-2.5 bg-[#F7F7F5] border border-[#171717]/15 rounded-xl"
@@ -325,7 +324,7 @@ export default function NewPropertyPage() {
               <select
                 value={formData.energyRating}
                 onChange={(e) => setFormData({ ...formData, energyRating: e.target.value as any })}
-                className="w-full px-3.5 py-2.5 bg-[#F7F7F5] border border-[#171717]/15 rounded-xl font-bold text-[#7A2234]"
+                className="w-full px-3.5 py-2.5 bg-[#F7F7F5] border border-[#171717]/15 rounded-xl font-bold text-[#748C8C]"
               >
                 {['A', 'B', 'C', 'D', 'E', 'F', 'G'].map(r => (
                   <option key={r} value={r}>DPE Class {r}</option>
@@ -349,10 +348,10 @@ export default function NewPropertyPage() {
                   key={feat}
                   onClick={() => handleFeatureToggle(feat)}
                   className={`p-3 rounded-xl border cursor-pointer font-semibold transition-all flex items-center space-x-2 ${
-                    isChecked ? 'bg-[#7A2234]/10 border-[#7A2234] text-[#7A2234]' : 'bg-[#F7F7F5] border-[#171717]/10 text-[#6B6B6B]'
+                    isChecked ? 'bg-[#748C8C]/10 border-[#748C8C] text-[#748C8C]' : 'bg-[#F7F7F5] border-[#171717]/10 text-[#6B6B6B]'
                   }`}
                 >
-                  <div className={`w-4 h-4 rounded flex items-center justify-center text-white ${isChecked ? 'bg-[#7A2234]' : 'bg-[#171717]/20'}`}>
+                  <div className={`w-4 h-4 rounded flex items-center justify-center text-white ${isChecked ? 'bg-[#748C8C]' : 'bg-[#171717]/20'}`}>
                     {isChecked && <Check className="w-3 h-3" />}
                   </div>
                   <span className="truncate">{feat}</span>
@@ -367,7 +366,7 @@ export default function NewPropertyPage() {
           <button
             type="submit"
             disabled={saving}
-            className="bg-[#7A2234] hover:bg-[#5C1D27] text-white px-8 py-3.5 rounded-xl font-semibold text-xs shadow-xl flex items-center space-x-2 whitespace-nowrap disabled:opacity-50"
+            className="bg-brand-gradient hover:bg-brand-gradient-hover text-white px-8 py-3.5 rounded-xl font-semibold text-xs shadow-brand flex items-center space-x-2 whitespace-nowrap disabled:opacity-50"
           >
             <Save className="w-4 h-4" />
             <span>{saving ? 'Saving...' : 'Save & Publish Property'}</span>

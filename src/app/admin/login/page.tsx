@@ -62,15 +62,15 @@ export default function AdminLoginPage() {
         <div className="absolute inset-0 bg-gradient-to-t from-[#171512] via-[#171512]/40 to-transparent" />
 
         <div className="relative z-10 flex items-center space-x-3">
-          <span className="font-serif-display text-2xl font-medium tracking-tight">MAISON MÉRIDIA</span>
-          <span className="text-[10px] uppercase font-bold tracking-widest text-[#7A2234] bg-[#7A2234]/20 px-2.5 py-0.5 rounded-full border border-[#7A2234]/40">
+          <span className="font-serif-display text-2xl font-medium tracking-tight">GOIZET GESTION</span>
+          <span className="text-[10px] uppercase font-bold tracking-widest text-[#748C8C] bg-[#748C8C]/20 px-2.5 py-0.5 rounded-full border border-[#748C8C]/40">
             ADMIN SAAS OS
           </span>
         </div>
 
         <div className="relative z-10 space-y-4 max-w-lg">
           <div className="inline-flex items-center space-x-1.5 text-xs font-semibold text-[#EAE6DF] bg-white/10 backdrop-blur-md px-3.5 py-1 rounded-full border border-white/20">
-            <Sparkles className="w-3.5 h-3.5 text-[#7A2234]" />
+            <Sparkles className="w-3.5 h-3.5 text-[#748C8C]" />
             <span>Gestion Locative & Real Estate OS</span>
           </div>
           <h1 className="font-serif-display text-4xl sm:text-5xl font-light leading-tight">
@@ -82,9 +82,9 @@ export default function AdminLoginPage() {
         </div>
 
         <div className="relative z-10 text-[11px] text-[#9E9285] flex items-center justify-between border-t border-white/10 pt-4">
-          <span>© 2026 MAISON MÉRIDIA SARL</span>
+          <span>© 2026 GOIZET GESTION SARL</span>
           <span className="flex items-center space-x-1">
-            <ShieldCheck className="w-3.5 h-3.5 text-[#7A2234]" />
+            <ShieldCheck className="w-3.5 h-3.5 text-[#748C8C]" />
             <span>Connexion Sécurisée AES-256</span>
           </span>
         </div>
@@ -99,8 +99,8 @@ export default function AdminLoginPage() {
           className="w-full max-w-md space-y-8"
         >
           <div className="space-y-2">
-            <div className="w-10 h-10 rounded-xl bg-[#7A2234]/10 text-[#7A2234] flex items-center justify-center font-bold">
-              MM
+            <div className="w-10 h-10 rounded-xl bg-brand-gradient text-white flex items-center justify-center font-bold shadow-brand">
+              GG
             </div>
             <h2 className="font-serif-display text-3xl font-medium text-[#171717]">
               Welcome back.
@@ -134,10 +134,10 @@ export default function AdminLoginPage() {
                 <input
                   type="email"
                   required
-                  placeholder="admin@maison-meridia.fr"
+                  placeholder="admin@goizet-gestion.fr"
                   value={email}
                   onChange={(e) => setEmail(e.target.value)}
-                  className="w-full pl-10 pr-4 py-3 bg-[#F7F7F5] border border-[#171717]/15 rounded-xl font-medium text-[#171717] focus:outline-none focus:border-[#7A2234] focus:ring-1 focus:ring-[#7A2234] transition-all"
+                  className="w-full pl-10 pr-4 py-3 bg-[#F7F7F5] border border-[#171717]/15 rounded-xl font-medium text-[#171717] focus:outline-none focus:border-[#748C8C] focus:ring-1 focus:ring-[#748C8C] transition-all"
                 />
               </div>
             </div>
@@ -147,7 +147,7 @@ export default function AdminLoginPage() {
                 <label className="font-semibold uppercase tracking-wider text-[#171717]">
                   Password
                 </label>
-                <a href="#forgot" onClick={(e) => { e.preventDefault(); alert('Veuillez contacter le Super Admin pour réinitialiser.'); }} className="text-[11px] text-[#7A2234] hover:underline">
+                <a href="#forgot" onClick={(e) => { e.preventDefault(); alert('Veuillez contacter le Super Admin pour réinitialiser.'); }} className="text-[11px] text-[#748C8C] hover:underline">
                   Forgot password?
                 </a>
               </div>
@@ -159,7 +159,7 @@ export default function AdminLoginPage() {
                   placeholder="••••••••••••"
                   value={password}
                   onChange={(e) => setPassword(e.target.value)}
-                  className="w-full pl-10 pr-10 py-3 bg-[#F7F7F5] border border-[#171717]/15 rounded-xl font-medium text-[#171717] focus:outline-none focus:border-[#7A2234] focus:ring-1 focus:ring-[#7A2234] transition-all"
+                  className="w-full pl-10 pr-10 py-3 bg-[#F7F7F5] border border-[#171717]/15 rounded-xl font-medium text-[#171717] focus:outline-none focus:border-[#748C8C] focus:ring-1 focus:ring-[#748C8C] transition-all"
                 />
                 <button
                   type="button"
@@ -177,7 +177,7 @@ export default function AdminLoginPage() {
                   type="checkbox"
                   checked={rememberMe}
                   onChange={(e) => setRememberMe(e.target.checked)}
-                  className="w-4 h-4 rounded border-[#171717]/20 text-[#7A2234] focus:ring-[#7A2234]"
+                  className="w-4 h-4 rounded border-[#171717]/20 text-[#748C8C] focus:ring-[#748C8C]"
                 />
                 <span className="text-xs text-[#6B6B6B]">Remember me for 24h</span>
               </label>
@@ -186,7 +186,7 @@ export default function AdminLoginPage() {
             <button
               type="submit"
               disabled={loading || success}
-              className="w-full bg-[#171717] hover:bg-[#7A2234] text-white py-3.5 rounded-xl font-semibold text-xs transition-all shadow-md flex items-center justify-center space-x-2 whitespace-nowrap disabled:opacity-50"
+              className="w-full bg-brand-gradient hover:bg-brand-gradient-hover text-white py-3.5 rounded-xl font-semibold text-xs transition-all shadow-brand flex items-center justify-center space-x-2 whitespace-nowrap disabled:opacity-50"
             >
               <span>{loading ? 'Signing in...' : 'Sign in to Dashboard'}</span>
               <ArrowRight className="w-4 h-4" />
@@ -194,7 +194,7 @@ export default function AdminLoginPage() {
           </form>
 
           <div className="pt-4 text-center text-[11px] text-[#6B6B6B] border-t border-[#171717]/5">
-            Default credentials: <code className="bg-[#F7F7F5] px-2 py-0.5 rounded font-mono text-[#171717]">admin@maison-meridia.fr</code> / <code className="bg-[#F7F7F5] px-2 py-0.5 rounded font-mono text-[#171717]">Meridia2026!</code>
+            Default credentials: <code className="bg-[#F7F7F5] px-2 py-0.5 rounded font-mono text-[#171717]">admin@goizet-gestion.fr</code> / <code className="bg-[#F7F7F5] px-2 py-0.5 rounded font-mono text-[#171717]">Meridia2026!</code>
           </div>
         </motion.div>
       </div>

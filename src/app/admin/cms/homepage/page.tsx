@@ -57,8 +57,8 @@ export default function HomepageCMSEditor() {
       {/* Header */}
       <div className="flex items-center justify-between pb-4 border-b border-[#171717]/10">
         <div>
-          <span className="text-[10px] font-bold uppercase tracking-widest text-[#7A2234]">
-            MAISON MÉRIDIA HOMEPAGE CMS
+          <span className="text-[10px] font-bold uppercase tracking-widest text-[#748C8C]">
+            GOIZET GESTION HOMEPAGE CMS
           </span>
           <h1 className="font-serif-display text-3xl font-semibold text-[#171717]">
             Homepage Section Builder
@@ -68,7 +68,7 @@ export default function HomepageCMSEditor() {
         <button
           onClick={handleSave}
           disabled={saving}
-          className="bg-[#7A2234] hover:bg-[#5C1D27] text-white px-6 py-2.5 rounded-xl text-xs font-semibold shadow flex items-center space-x-2 whitespace-nowrap disabled:opacity-50"
+          className="bg-brand-gradient hover:bg-brand-gradient-hover text-white px-6 py-2.5 rounded-xl text-xs font-semibold shadow-brand flex items-center space-x-2 whitespace-nowrap disabled:opacity-50"
         >
           <Save className="w-4 h-4" />
           <span>{saving ? 'Publishing...' : 'Save & Publish Homepage'}</span>
@@ -88,7 +88,7 @@ export default function HomepageCMSEditor() {
         {/* Section 1: Hero Settings */}
         <div className="bg-white p-6 sm:p-8 rounded-3xl border border-[#171717]/10 shadow-xs space-y-6">
           <div className="flex items-center space-x-2 pb-3 border-b border-[#171717]/10">
-            <Sparkles className="w-5 h-5 text-[#7A2234]" />
+            <Sparkles className="w-5 h-5 text-[#748C8C]" />
             <h2 className="font-serif-display text-xl font-medium text-[#171717]">
               1. Hero Section Content & Typography
             </h2>
@@ -127,26 +127,51 @@ export default function HomepageCMSEditor() {
                   type="text"
                   value={cmsData.heroTitleLine2}
                   onChange={(e) => setCmsData({ ...cmsData, heroTitleLine2: e.target.value })}
-                  className="w-full px-3.5 py-2.5 bg-[#F7F7F5] border border-[#171717]/15 rounded-xl font-serif-display text-base italic"
+                  className="w-full px-3.5 py-2.5 bg-[#F7F7F5] border border-[#171717]/15 rounded-xl font-serif-display italic text-base"
                 />
               </div>
             </div>
 
             <div>
               <label className="block font-semibold uppercase tracking-wider text-[#171717] mb-1">
-                Subheading Paragraph
+                Sub-Headline Narrative
               </label>
               <textarea
                 rows={3}
                 value={cmsData.heroSub}
                 onChange={(e) => setCmsData({ ...cmsData, heroSub: e.target.value })}
-                className="w-full px-3.5 py-2.5 bg-[#F7F7F5] border border-[#171717]/15 rounded-xl leading-relaxed"
+                className="w-full px-3.5 py-2.5 bg-[#F7F7F5] border border-[#171717]/15 rounded-xl leading-relaxed font-sans-ui"
               />
+            </div>
+
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+              <div>
+                <label className="block font-semibold uppercase tracking-wider text-[#171717] mb-1">
+                  Primary CTA Text
+                </label>
+                <input
+                  type="text"
+                  value={cmsData.btnEstimateText}
+                  onChange={(e) => setCmsData({ ...cmsData, btnEstimateText: e.target.value })}
+                  className="w-full px-3.5 py-2.5 bg-[#F7F7F5] border border-[#171717]/15 rounded-xl font-medium"
+                />
+              </div>
+              <div>
+                <label className="block font-semibold uppercase tracking-wider text-[#171717] mb-1">
+                  Secondary CTA Text
+                </label>
+                <input
+                  type="text"
+                  value={cmsData.btnExploreText}
+                  onChange={(e) => setCmsData({ ...cmsData, btnExploreText: e.target.value })}
+                  className="w-full px-3.5 py-2.5 bg-[#F7F7F5] border border-[#171717]/15 rounded-xl font-medium"
+                />
+              </div>
             </div>
 
             <div>
               <label className="block font-semibold uppercase tracking-wider text-[#171717] mb-1">
-                Background Architectural Image Path
+                Background Architectural Image URL
               </label>
               <input
                 type="text"
@@ -161,7 +186,7 @@ export default function HomepageCMSEditor() {
         {/* Section 2: Enable/Disable Homepage Modules */}
         <div className="bg-white p-6 sm:p-8 rounded-3xl border border-[#171717]/10 shadow-xs space-y-6">
           <div className="flex items-center space-x-2 pb-3 border-b border-[#171717]/10">
-            <Layers className="w-5 h-5 text-[#7A2234]" />
+            <Layers className="w-5 h-5 text-[#748C8C]" />
             <h2 className="font-serif-display text-xl font-medium text-[#171717]">
               2. Homepage Module Display Controls
             </h2>
@@ -187,11 +212,11 @@ export default function HomepageCMSEditor() {
                   key={mod.key}
                   onClick={() => handleToggleSection(mod.key as any)}
                   className={`p-3.5 rounded-xl border cursor-pointer font-semibold transition-all flex items-center justify-between ${
-                    isEnabled ? 'bg-[#7A2234]/10 border-[#7A2234] text-[#7A2234]' : 'bg-[#F7F7F5] border-[#171717]/10 text-[#6B6B6B]'
+                    isEnabled ? 'bg-[#748C8C]/10 border-[#748C8C] text-[#748C8C]' : 'bg-[#F7F7F5] border-[#171717]/10 text-[#6B6B6B]'
                   }`}
                 >
                   <span className="truncate">{mod.label}</span>
-                  <span className={`text-[10px] font-bold uppercase px-2 py-0.5 rounded-full ${isEnabled ? 'bg-[#7A2234] text-white' : 'bg-gray-200 text-gray-600'}`}>
+                  <span className={`text-[10px] font-bold uppercase px-2 py-0.5 rounded-full ${isEnabled ? 'bg-[#748C8C] text-white' : 'bg-gray-200 text-gray-600'}`}>
                     {isEnabled ? 'Active' : 'Off'}
                   </span>
                 </div>
@@ -205,7 +230,7 @@ export default function HomepageCMSEditor() {
           <button
             type="submit"
             disabled={saving}
-            className="bg-[#7A2234] hover:bg-[#5C1D27] text-white px-8 py-3.5 rounded-xl font-semibold text-xs shadow-xl flex items-center space-x-2 whitespace-nowrap disabled:opacity-50"
+            className="bg-brand-gradient hover:bg-brand-gradient-hover text-white px-8 py-3.5 rounded-xl font-semibold text-xs shadow-brand flex items-center space-x-2 whitespace-nowrap disabled:opacity-50"
           >
             <Save className="w-4 h-4" />
             <span>{saving ? 'Publishing...' : 'Save & Publish Homepage'}</span>

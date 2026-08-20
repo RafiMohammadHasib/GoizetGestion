@@ -8,15 +8,17 @@ export default function AdminSettingsPage() {
   const [success, setSuccess] = useState(false);
 
   const [settings, setSettings] = useState({
-    siteName: 'MAISON MÉRIDIA',
+    siteName: 'GOIZET GESTION',
     tagline: 'Immobilier & Gestion Locative à Bordeaux',
-    phone: '05 56 00 12 34',
-    email: 'contact@maison-meridia.fr',
+    phone: '+33 6 95 57 70 33',
+    phoneEdgar: '+33 7 81 96 83 95',
+    email: 'Goizetgestion@gmail.com',
     address: '38 Cours Portal, 33000 Bordeaux',
-    licenseNumber: 'CPI 3301 2026 000 012 — CCI Bordeaux',
-    gaMeasurementId: 'G-MMBordeaux2026',
-    gtmContainerId: 'GTM-MERIDIA01',
-    defaultSeoTitle: 'MAISON MÉRIDIA | Immobilier & Gestion Locative à Bordeaux',
+    siret: '944 393 487 00011',
+    licenseNumber: 'CPI33012025000000128 — CCI Bordeaux',
+    gaMeasurementId: 'G-GOIZET2026',
+    gtmContainerId: 'GTM-GOIZET01',
+    defaultSeoTitle: 'GOIZET GESTION | Immobilier & Gestion Locative à Bordeaux',
     defaultMetaDescription: 'Maison de conseil immobilier et gestion locative sur-mesure à Bordeaux (Chartrons, Caudéran, Triangle d\'Or). Mandat transparent et rendement optimisé.'
   });
 
@@ -36,8 +38,8 @@ export default function AdminSettingsPage() {
       {/* Header */}
       <div className="flex items-center justify-between pb-4 border-b border-[#171717]/10">
         <div>
-          <span className="text-[10px] font-bold uppercase tracking-widest text-[#7A2234]">
-            MAISON MÉRIDIA CONFIGURATION
+          <span className="text-[10px] font-bold uppercase tracking-widest text-[#748C8C]">
+            GOIZET GESTION CONFIGURATION
           </span>
           <h1 className="font-serif-display text-3xl font-semibold text-[#171717]">
             Global Website Settings
@@ -47,7 +49,7 @@ export default function AdminSettingsPage() {
         <button
           onClick={handleSave}
           disabled={saving}
-          className="bg-[#7A2234] hover:bg-[#5C1D27] text-white px-6 py-2.5 rounded-xl text-xs font-semibold shadow flex items-center space-x-2 whitespace-nowrap disabled:opacity-50"
+          className="bg-brand-gradient hover:bg-brand-gradient-hover text-white px-6 py-2.5 rounded-xl text-xs font-semibold shadow-brand flex items-center space-x-2 whitespace-nowrap disabled:opacity-50"
         >
           <Save className="w-4 h-4" />
           <span>{saving ? 'Saving...' : 'Save Settings'}</span>
@@ -97,12 +99,23 @@ export default function AdminSettingsPage() {
           <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
             <div>
               <label className="block font-semibold uppercase tracking-wider text-[#171717] mb-1">
-                Phone Number
+                Paul Goizet Phone
               </label>
               <input
                 type="text"
                 value={settings.phone}
                 onChange={(e) => setSettings({ ...settings, phone: e.target.value })}
+                className="w-full px-3.5 py-2.5 bg-[#F7F7F5] border border-[#171717]/15 rounded-xl font-mono"
+              />
+            </div>
+            <div>
+              <label className="block font-semibold uppercase tracking-wider text-[#171717] mb-1">
+                Edgar Goizet Phone
+              </label>
+              <input
+                type="text"
+                value={settings.phoneEdgar}
+                onChange={(e) => setSettings({ ...settings, phoneEdgar: e.target.value })}
                 className="w-full px-3.5 py-2.5 bg-[#F7F7F5] border border-[#171717]/15 rounded-xl font-mono"
               />
             </div>
@@ -114,6 +127,31 @@ export default function AdminSettingsPage() {
                 type="email"
                 value={settings.email}
                 onChange={(e) => setSettings({ ...settings, email: e.target.value })}
+                className="w-full px-3.5 py-2.5 bg-[#F7F7F5] border border-[#171717]/15 rounded-xl font-mono"
+              />
+            </div>
+          </div>
+
+          <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
+            <div>
+              <label className="block font-semibold uppercase tracking-wider text-[#171717] mb-1">
+                SIRET Number
+              </label>
+              <input
+                type="text"
+                value={settings.siret}
+                onChange={(e) => setSettings({ ...settings, siret: e.target.value })}
+                className="w-full px-3.5 py-2.5 bg-[#F7F7F5] border border-[#171717]/15 rounded-xl font-mono"
+              />
+            </div>
+            <div>
+              <label className="block font-semibold uppercase tracking-wider text-[#171717] mb-1">
+                Professional License (Carte Pro CPI)
+              </label>
+              <input
+                type="text"
+                value={settings.licenseNumber}
+                onChange={(e) => setSettings({ ...settings, licenseNumber: e.target.value })}
                 className="w-full px-3.5 py-2.5 bg-[#F7F7F5] border border-[#171717]/15 rounded-xl font-mono"
               />
             </div>
@@ -168,7 +206,7 @@ export default function AdminSettingsPage() {
           <button
             type="submit"
             disabled={saving}
-            className="bg-[#7A2234] hover:bg-[#5C1D27] text-white px-8 py-3.5 rounded-xl font-semibold text-xs shadow-xl flex items-center space-x-2 whitespace-nowrap disabled:opacity-50"
+            className="bg-brand-gradient hover:bg-brand-gradient-hover text-white px-8 py-3.5 rounded-xl font-semibold text-xs shadow-brand flex items-center space-x-2 whitespace-nowrap disabled:opacity-50"
           >
             <Save className="w-4 h-4" />
             <span>{saving ? 'Saving...' : 'Save Settings'}</span>

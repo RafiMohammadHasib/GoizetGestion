@@ -51,7 +51,7 @@ export default function NewBlogPage() {
             <ArrowLeft className="w-4 h-4" />
           </Link>
           <div>
-            <span className="text-[10px] font-bold uppercase tracking-widest text-[#7A2234]">
+            <span className="text-[10px] font-bold uppercase tracking-widest text-[#748C8C]">
               BLOG ARTICLE EDITOR
             </span>
             <h1 className="font-serif-display text-3xl font-semibold text-[#171717]">
@@ -63,7 +63,7 @@ export default function NewBlogPage() {
         <button
           onClick={handleSubmit}
           disabled={saving}
-          className="bg-[#7A2234] hover:bg-[#5C1D27] text-white px-6 py-2.5 rounded-xl font-semibold shadow flex items-center space-x-2 whitespace-nowrap disabled:opacity-50"
+          className="bg-brand-gradient hover:bg-brand-gradient-hover text-white px-6 py-2.5 rounded-xl font-semibold shadow-brand flex items-center space-x-2 whitespace-nowrap disabled:opacity-50"
         >
           <Save className="w-4 h-4" />
           <span>{saving ? 'Publishing...' : 'Save & Publish'}</span>

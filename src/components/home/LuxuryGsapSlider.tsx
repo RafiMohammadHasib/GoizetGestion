@@ -83,7 +83,7 @@ export default function LuxuryGsapSlider() {
     return (
       <section className="py-24 px-4 sm:px-6 lg:px-8 bg-[#171512] text-white">
         <div className="max-w-7xl mx-auto text-center py-16">
-          <Loader2 className="w-8 h-8 text-[#7A2234] mx-auto animate-spin" />
+          <Loader2 className="w-8 h-8 text-[#748C8C] mx-auto animate-spin" />
         </div>
       </section>
     );
@@ -93,14 +93,14 @@ export default function LuxuryGsapSlider() {
     <section className="py-24 px-4 sm:px-6 lg:px-8 bg-[#171512] text-white relative overflow-hidden">
       
       {/* Background Decorative Ambient Lighting */}
-      <div className="absolute top-1/2 left-1/3 w-[500px] h-[500px] bg-[#7A2234]/15 blur-[160px] pointer-events-none rounded-full" />
+      <div className="absolute top-1/2 left-1/3 w-[500px] h-[500px] bg-[#748C8C]/15 blur-[160px] pointer-events-none rounded-full" />
 
       <div className="max-w-7xl mx-auto space-y-12 relative z-10">
         
         {/* Section Header */}
         <div className="flex flex-col md:flex-row md:items-end justify-between gap-6">
           <div className="space-y-3 max-w-2xl">
-            <div className="inline-flex items-center space-x-2 text-xs font-semibold uppercase tracking-widest text-[#7A2234] bg-[#7A2234]/20 px-3.5 py-1 rounded-full border border-[#7A2234]/30 whitespace-nowrap">
+            <div className="inline-flex items-center space-x-2 text-xs font-semibold uppercase tracking-widest text-[#748C8C] bg-[#748C8C]/20 px-3.5 py-1 rounded-full border border-[#748C8C]/30 whitespace-nowrap">
               <Sparkles className="w-3.5 h-3.5" />
               <span>{language === 'fr' ? 'COLLECTION EXCLUSIVE' : 'FEATURED GSAP CAROUSEL'}</span>
             </div>
@@ -125,7 +125,7 @@ export default function LuxuryGsapSlider() {
 
             <button
               onClick={handleNext}
-              className="w-12 h-12 rounded-full bg-[#7A2234] hover:bg-[#5C1D27] text-white flex items-center justify-center transition-all duration-300 shadow-xl group"
+              className="w-12 h-12 rounded-full bg-brand-gradient hover:bg-brand-gradient-hover text-white flex items-center justify-center transition-all duration-300 shadow-brand group"
               aria-label="Next Slide"
             >
               <ArrowRight className="w-5 h-5 group-hover:translate-x-0.5 transition-transform" />
@@ -134,7 +134,7 @@ export default function LuxuryGsapSlider() {
         </div>
 
         {/* GSAP Hero Showcase Container */}
-        <div ref={sliderRef} className="relative rounded-3xl overflow-hidden min-h-[520px] lg:min-h-[580px] grid grid-cols-1 lg:grid-cols-12 border border-white/15 shadow-2xl bg-[#12100E]">
+        <div ref={sliderRef} className="relative rounded-3xl overflow-hidden min-h-[520px] lg:min-h-[580px] grid grid-cols-1 lg:grid-cols-12 border border-white/15 shadow-2xl bg-[#131A1A]">
           
           {/* Left Column: High-Res Image with GSAP Zoom Effect */}
           <div className="lg:col-span-7 relative min-h-[320px] lg:min-h-full overflow-hidden">
@@ -144,11 +144,11 @@ export default function LuxuryGsapSlider() {
               alt={currentProperty.title}
               className="w-full h-full object-cover origin-center"
             />
-            <div className="absolute inset-0 bg-gradient-to-t from-[#12100E] via-transparent to-transparent lg:bg-gradient-to-r lg:from-transparent lg:to-[#12100E]" />
+            <div className="absolute inset-0 bg-gradient-to-t from-[#131A1A] via-transparent to-transparent lg:bg-gradient-to-r lg:from-transparent lg:to-[#131A1A]" />
 
             {/* Badges */}
             <div className="absolute top-6 left-6 flex flex-wrap gap-2">
-              <span className="bg-[#7A2234] text-white text-[10px] font-bold uppercase tracking-wider px-3.5 py-1 rounded-full shadow whitespace-nowrap">
+              <span className="bg-brand-gradient text-white text-[10px] font-bold uppercase tracking-wider px-3.5 py-1 rounded-full shadow-brand whitespace-nowrap">
                 {currentProperty.transactionType === 'louer' ? (language === 'fr' ? 'À Louer' : 'For Rent') : (language === 'fr' ? 'À Vendre' : 'For Sale')}
               </span>
               <span className="bg-white/90 backdrop-blur-md text-[#171512] text-[10px] font-bold px-3 py-1 rounded-full whitespace-nowrap">
@@ -161,7 +161,7 @@ export default function LuxuryGsapSlider() {
           <div ref={contentRef} className="lg:col-span-5 p-8 sm:p-12 flex flex-col justify-between space-y-8 relative z-10">
             
             <div className="space-y-4">
-              <div className="flex items-center space-x-2 text-xs text-[#7A2234] font-semibold">
+              <div className="flex items-center space-x-2 text-xs text-[#748C8C] font-semibold">
                 <MapPin className="w-4 h-4" />
                 <span>{currentProperty.address}</span>
               </div>
@@ -178,18 +178,18 @@ export default function LuxuryGsapSlider() {
             {/* Specs Bar */}
             <div className="grid grid-cols-3 gap-3 p-4 bg-white/5 backdrop-blur-md rounded-2xl border border-white/10 text-center text-xs">
               <div>
-                <span className="text-[10px] uppercase text-white/50 block">Prix</span>
-                <span className="font-serif-display text-base font-bold text-white">
-                  {currentProperty.price?.toLocaleString('fr-FR')} €
+                <span className="text-[10px] font-medium uppercase tracking-wider text-white/50 block mb-0.5">{language === 'fr' ? 'Prix' : 'Price'}</span>
+                <span className="text-base font-bold text-white tracking-tight">
+                  {currentProperty.price?.toLocaleString(language === 'fr' ? 'fr-FR' : 'en-US')} €
                 </span>
               </div>
               <div>
-                <span className="text-[10px] uppercase text-white/50 block">Surface</span>
-                <span className="font-semibold text-white">{currentProperty.surface} m²</span>
+                <span className="text-[10px] font-medium uppercase tracking-wider text-white/50 block mb-0.5">{language === 'fr' ? 'Surface' : 'Living Area'}</span>
+                <span className="text-base font-bold text-white tracking-tight">{currentProperty.surface} m²</span>
               </div>
               <div>
-                <span className="text-[10px] uppercase text-white/50 block">Chambres</span>
-                <span className="font-semibold text-white">{currentProperty.bedrooms}</span>
+                <span className="text-[10px] font-medium uppercase tracking-wider text-white/50 block mb-0.5">{language === 'fr' ? 'Chambres' : 'Bedrooms'}</span>
+                <span className="text-base font-bold text-white tracking-tight">{currentProperty.bedrooms}</span>
               </div>
             </div>
 
@@ -200,12 +200,12 @@ export default function LuxuryGsapSlider() {
                 className="w-full bg-white hover:bg-[#FAF9F6] text-[#171512] py-4 px-6 rounded-xl font-semibold text-xs transition-all shadow-lg flex items-center justify-center space-x-2 whitespace-nowrap"
               >
                 <span>{language === 'fr' ? 'Découvrir cette résidence d\'exception' : 'Explore Residence Details'}</span>
-                <ArrowUpRight className="w-4 h-4 text-[#7A2234]" />
+                <ArrowUpRight className="w-4 h-4 text-[#748C8C]" />
               </Link>
 
               {/* Animated Progress Bar */}
               <div className="w-full h-1 bg-white/10 rounded-full overflow-hidden">
-                <div ref={progressRef} className="h-full bg-[#7A2234] rounded-full" />
+                <div ref={progressRef} className="h-full bg-[#748C8C] rounded-full" />
               </div>
             </div>
 

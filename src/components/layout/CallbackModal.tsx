@@ -3,6 +3,8 @@
 import React, { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { X, PhoneCall, CheckCircle2, Clock, Calendar } from 'lucide-react';
+import { useLanguage } from '@/context/LanguageContext';
+import CustomSelect from '@/components/ui/CustomSelect';
 
 interface CallbackModalProps {
   isOpen: boolean;
@@ -10,6 +12,7 @@ interface CallbackModalProps {
 }
 
 export default function CallbackModal({ isOpen, onClose }: CallbackModalProps) {
+  const { language } = useLanguage();
   const [formData, setFormData] = useState({
     name: '',
     phone: '',
@@ -61,35 +64,41 @@ export default function CallbackModal({ isOpen, onClose }: CallbackModalProps) {
 
             {isSubmitted ? (
               <div className="py-8 text-center space-y-4">
-                <div className="w-16 h-16 bg-[#7A2234]/10 text-[#7A2234] rounded-full flex items-center justify-center mx-auto">
+                <div className="w-16 h-16 bg-[#748C8C]/10 text-[#748C8C] rounded-full flex items-center justify-center mx-auto">
                   <CheckCircle2 className="w-10 h-10" />
                 </div>
                 <h3 className="font-serif-display text-2xl font-medium text-[#171512]">
-                  Demande de rappel enregistrée
+                  {language === 'fr' ? 'Demande de rappel enregistrée' : 'Callback Request Confirmed'}
                 </h3>
                 <p className="text-sm text-[#6F6255] max-w-sm mx-auto">
-                  Un conseiller spécialisé Maison Méridia vous rappellera à la créneau souhaité (<span className="font-medium text-[#171512]">{formData.timeSlot}</span>).
+                  {language === 'fr' ? (
+                    <>Un conseiller spécialisé Goizet Gestion vous rappellera au créneau souhaité (<span className="font-medium text-[#171512]">{formData.timeSlot}</span>).</>
+                  ) : (
+                    <>A dedicated Goizet Gestion advisor will call you at your preferred time slot (<span className="font-medium text-[#171512]">{formData.timeSlot}</span>).</>
+                  )}
                 </p>
               </div>
             ) : (
               <div className="space-y-6">
                 <div>
-                  <div className="inline-flex items-center space-x-2 text-xs font-semibold uppercase tracking-wider text-[#7A2234] mb-2">
+                  <div className="inline-flex items-center space-x-2 text-xs font-semibold uppercase tracking-wider text-[#748C8C] mb-2">
                     <PhoneCall className="w-3.5 h-3.5" />
-                    <span>Rappel Gratuit & Immédiat</span>
+                    <span>{language === 'fr' ? 'Rappel Gratuit & Immédiat' : 'Free Priority Callback'}</span>
                   </div>
                   <h3 className="font-serif-display text-2xl sm:text-3xl font-light text-[#171512]">
-                    Échangez avec un expert immobilier à Bordeaux.
+                    {language === 'fr' ? 'Échangez avec un expert immobilier à Bordeaux.' : 'Speak with a Bordeaux real estate specialist.'}
                   </h3>
                   <p className="text-xs text-[#6F6255] mt-1">
-                    Indiquez vos coordonnées et votre projet. Nous vous contactons en moins de 2 heures.
+                    {language === 'fr'
+                      ? 'Indiquez vos coordonnées et votre projet. Nous vous contactons en moins de 2 heures.'
+                      : 'Provide your details and project outline. We will contact you within 2 hours.'}
                   </p>
                 </div>
 
                 <form onSubmit={handleSubmit} className="space-y-4">
                   <div>
                     <label className="block text-xs font-semibold uppercase tracking-wider text-[#171512] mb-1.5">
-                      Nom complet *
+                      {language === 'fr' ? 'Nom complet *' : 'Full Name *'}
                     </label>
                     <input
                       type="text"
@@ -97,13 +106,13 @@ export default function CallbackModal({ isOpen, onClose }: CallbackModalProps) {
                       placeholder="Ex: Martin Duprat"
                       value={formData.name}
                       onChange={(e) => setFormData({ ...formData, name: e.target.value })}
-                      className="w-full px-4 py-3 bg-white border border-[#171512]/15 rounded-xl text-sm focus:outline-none focus:border-[#7A2234] focus:ring-1 focus:ring-[#7A2234] transition-all"
+                      className="w-full px-4 py-3 bg-white border border-[#171512]/15 rounded-xl text-sm focus:outline-none focus:border-[#748C8C] focus:ring-1 focus:ring-[#748C8C] transition-all"
                     />
                   </div>
 
                   <div>
                     <label className="block text-xs font-semibold uppercase tracking-wider text-[#171512] mb-1.5">
-                      Téléphone de contact *
+                      {language === 'fr' ? 'Téléphone de contact *' : 'Contact Phone Number *'}
                     </label>
                     <input
                       type="tel"
@@ -111,56 +120,58 @@ export default function CallbackModal({ isOpen, onClose }: CallbackModalProps) {
                       placeholder="Ex: 06 12 34 56 78"
                       value={formData.phone}
                       onChange={(e) => setFormData({ ...formData, phone: e.target.value })}
-                      className="w-full px-4 py-3 bg-white border border-[#171512]/15 rounded-xl text-sm focus:outline-none focus:border-[#7A2234] focus:ring-1 focus:ring-[#7A2234] transition-all"
+                      className="w-full px-4 py-3 bg-white border border-[#171512]/15 rounded-xl text-sm focus:outline-none focus:border-[#748C8C] focus:ring-1 focus:ring-[#748C8C] transition-all"
                     />
                   </div>
 
                   <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
                     <div>
                       <label className="block text-xs font-semibold uppercase tracking-wider text-[#171512] mb-1.5">
-                        Votre projet
+                        {language === 'fr' ? 'Votre projet' : 'Project Type'}
                       </label>
-                      <select
+                      <CustomSelect
+                        options={[
+                          { value: 'Gestion locative', label: language === 'fr' ? 'Mettre en gestion' : 'Property Management' },
+                          { value: 'Estimation', label: language === 'fr' ? 'Estimation locative/vente' : 'Valuation / Rental Yield' },
+                          { value: 'Louer un bien', label: language === 'fr' ? 'Louer un appartement' : 'Renting a Residence' },
+                          { value: 'Acheter', label: language === 'fr' ? 'Projet d\'achat' : 'Property Acquisition' },
+                          { value: 'Autre', label: language === 'fr' ? 'Autre demande' : 'Other Advisory' },
+                        ]}
                         value={formData.project}
-                        onChange={(e) => setFormData({ ...formData, project: e.target.value })}
-                        className="w-full px-3 py-3 bg-white border border-[#171512]/15 rounded-xl text-sm focus:outline-none focus:border-[#7A2234] transition-all"
-                      >
-                        <option value="Gestion locative">Mettre en gestion</option>
-                        <option value="Estimation">Estimation locative/vente</option>
-                        <option value="Louer un bien">Louer un appartement</option>
-                        <option value="Acheter">Projet d'achat</option>
-                        <option value="Autre">Autre demande</option>
-                      </select>
+                        onChange={(val) => setFormData({ ...formData, project: val })}
+                      />
                     </div>
 
                     <div>
                       <label className="block text-xs font-semibold uppercase tracking-wider text-[#171512] mb-1.5">
-                        Créneau de rappel
+                        {language === 'fr' ? 'Créneau de rappel' : 'Preferred Timeslot'}
                       </label>
-                      <select
+                      <CustomSelect
+                        options={[
+                          { value: 'Matin (9h - 12h)', label: language === 'fr' ? 'Matin (9h - 12h)' : 'Morning (9:00 AM - 12:00 PM)' },
+                          { value: 'Après-midi (14h - 17h)', label: language === 'fr' ? 'Après-midi (14h - 17h)' : 'Afternoon (2:00 PM - 5:00 PM)' },
+                          { value: 'Fin de journée (17h - 19h)', label: language === 'fr' ? 'Fin de journée (17h - 19h)' : 'Evening (5:00 PM - 7:00 PM)' },
+                        ]}
                         value={formData.timeSlot}
-                        onChange={(e) => setFormData({ ...formData, timeSlot: e.target.value })}
-                        className="w-full px-3 py-3 bg-white border border-[#171512]/15 rounded-xl text-sm focus:outline-none focus:border-[#7A2234] transition-all"
-                      >
-                        <option value="Matin (9h - 12h)">Matin (9h - 12h)</option>
-                        <option value="Après-midi (14h - 17h)">Après-midi (14h - 17h)</option>
-                        <option value="Fin de journée (17h - 19h)">Fin de journée (17h - 19h)</option>
-                      </select>
+                        onChange={(val) => setFormData({ ...formData, timeSlot: val })}
+                      />
                     </div>
                   </div>
 
                   <div className="pt-2">
                     <button
                       type="submit"
-                      className="w-full bg-[#7A2234] hover:bg-[#5C1D27] text-white py-3.5 rounded-xl font-semibold text-sm transition-all duration-300 shadow-md flex items-center justify-center space-x-2"
+                      className="w-full bg-brand-gradient hover:bg-brand-gradient-hover text-white py-3.5 rounded-xl font-semibold text-sm transition-all duration-300 shadow-brand flex items-center justify-center space-x-2"
                     >
                       <PhoneCall className="w-4 h-4" />
-                      <span>Confirmer ma demande de rappel</span>
+                      <span>{language === 'fr' ? 'Confirmer ma demande de rappel' : 'Confirm Callback Request'}</span>
                     </button>
                   </div>
 
                   <p className="text-[10px] text-center text-[#6F6255] pt-1">
-                    Vos données restent strictement confidentielles selon les normes RGPD. Aucun spam.
+                    {language === 'fr'
+                      ? 'Vos données restent strictement confidentielles selon les normes RGPD. Aucun spam.'
+                      : 'Your data remains strictly confidential in compliance with GDPR standards.'}
                   </p>
                 </form>
               </div>

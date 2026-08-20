@@ -7,6 +7,7 @@ import Breadcrumbs from '@/components/ui/Breadcrumbs';
 import { Search, SlidersHorizontal, Grid, List, RotateCcw, Home, Loader2 } from 'lucide-react';
 import { PropertyType, TransactionType } from '@/types';
 import { useLanguage } from '@/context/LanguageContext';
+import CustomSelect from '@/components/ui/CustomSelect';
 
 function PropertySearchContent() {
   const searchParams = useSearchParams();
@@ -61,6 +62,57 @@ function PropertySearchContent() {
     setMinSurface('');
   };
 
+  const propertyTypeOptions = useMemo(() => [
+    { value: '', label: language === 'fr' ? 'Tous les types' : 'All Types' },
+    { value: 'appartement', label: language === 'fr' ? 'Appartement' : 'Apartment' },
+    { value: 'echoppe', label: language === 'fr' ? 'Échoppe bordelaise' : 'Townhouse' },
+    { value: 'maison', label: language === 'fr' ? 'Maison / Villa' : 'House / Villa' },
+    { value: 'loft', label: language === 'fr' ? 'Loft & Verrière' : 'Loft' },
+    { value: 'hotel-particulier', label: language === 'fr' ? 'Hôtel Particulier' : 'Mansion' },
+  ], [language]);
+
+  const neighborhoodOptions = useMemo(() => [
+    { value: '', label: language === 'fr' ? 'Tous les secteurs' : 'All Districts' },
+    { value: 'chartrons', label: 'Chartrons', sublabel: '33000' },
+    { value: 'cauderan', label: 'Caudéran', sublabel: '33200' },
+    { value: 'triangle-dor', label: "Triangle d'Or", sublabel: '33000' },
+    { value: 'bastide', label: 'Bastide', sublabel: '33100' },
+    { value: 'saint-michel', label: 'Saint-Michel', sublabel: '33000' },
+    { value: 'saint-augustin', label: 'Saint-Augustin', sublabel: '33000' },
+    { value: 'nansouty', label: 'Nansouty', sublabel: '33800' },
+    { value: 'bacalan', label: 'Bacalan', sublabel: '33300' },
+    { value: 'talence', label: 'Talence', sublabel: '33400' },
+    { value: 'merignac', label: 'Mérignac', sublabel: '33700' },
+    { value: 'pessac', label: 'Pessac', sublabel: '33600' },
+    { value: 'begles', label: 'Bègles', sublabel: '33130' },
+  ], [language]);
+
+  const priceOptions = useMemo(() => {
+    if (transactionType === 'louer') {
+      return [
+        { value: '', label: language === 'fr' ? 'Indifférent' : 'Any Price' },
+        { value: '1200', label: `1 200 € / ${language === 'fr' ? 'mois' : 'mo'}` },
+        { value: '1800', label: `1 800 € / ${language === 'fr' ? 'mois' : 'mo'}` },
+        { value: '2500', label: `2 500 € / ${language === 'fr' ? 'mois' : 'mo'}` },
+        { value: '4000', label: `4 000 € / ${language === 'fr' ? 'mois' : 'mo'}` },
+      ];
+    }
+    return [
+      { value: '', label: language === 'fr' ? 'Indifférent' : 'Any Price' },
+      { value: '500000', label: '500 000 €' },
+      { value: '1000000', label: '1 000 000 €' },
+      { value: '3000000', label: '3 000 000 €' },
+    ];
+  }, [transactionType, language]);
+
+  const surfaceOptions = useMemo(() => [
+    { value: '', label: language === 'fr' ? 'Toutes surfaces' : 'Any Area' },
+    { value: '40', label: '40 m² +' },
+    { value: '70', label: '70 m² +' },
+    { value: '100', label: '100 m² +' },
+    { value: '150', label: '150 m² +' },
+  ], [language]);
+
   return (
     <div className="pt-32 pb-24 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto space-y-10">
       
@@ -69,7 +121,7 @@ function PropertySearchContent() {
 
       {/* Header Banner */}
       <div className="space-y-4 max-w-3xl">
-        <span className="text-xs font-semibold uppercase tracking-widest text-[#7A2234]">
+        <span className="text-xs font-semibold uppercase tracking-widest text-[#748C8C]">
           {language === 'fr' ? 'CATALOGUE DYNAMIQUE DES BIENS' : 'DYNAMIC REAL ESTATE CATALOG'}
         </span>
         <h1 className="font-serif-display text-4xl sm:text-6xl font-light text-[#171512] leading-tight">
@@ -89,20 +141,26 @@ function PropertySearchContent() {
         <div className="flex items-center justify-between border-b border-[#171512]/10 pb-4">
           <div className="flex space-x-2 bg-[#FAF9F6] p-1 rounded-xl border border-[#171512]/5">
             <button
-              onClick={() => setTransactionType('louer')}
+              onClick={() => {
+                setTransactionType('louer');
+                setMaxPrice('');
+              }}
               className={`px-5 py-2 rounded-lg text-xs font-semibold uppercase tracking-wider transition-all whitespace-nowrap ${
                 transactionType === 'louer'
-                  ? 'bg-[#7A2234] text-white shadow-sm'
+                  ? 'bg-brand-gradient text-white shadow-brand'
                   : 'text-[#6F6255] hover:text-[#171512]'
               }`}
             >
               {language === 'fr' ? 'Biens à louer' : 'For Rent'}
             </button>
             <button
-              onClick={() => setTransactionType('acheter')}
+              onClick={() => {
+                setTransactionType('acheter');
+                setMaxPrice('');
+              }}
               className={`px-5 py-2 rounded-lg text-xs font-semibold uppercase tracking-wider transition-all whitespace-nowrap ${
                 transactionType === 'acheter'
-                  ? 'bg-[#171512] text-white shadow-sm'
+                  ? 'bg-brand-gradient text-white shadow-brand'
                   : 'text-[#6F6255] hover:text-[#171512]'
               }`}
             >
@@ -113,7 +171,7 @@ function PropertySearchContent() {
           <div className="flex items-center space-x-3">
             <button
               onClick={handleReset}
-              className="text-xs font-semibold text-[#6F6255] hover:text-[#7A2234] flex items-center space-x-1 transition-colors whitespace-nowrap"
+              className="text-xs font-semibold text-[#6F6255] hover:text-[#748C8C] flex items-center space-x-1 transition-colors whitespace-nowrap"
             >
               <RotateCcw className="w-3.5 h-3.5" />
               <span>{language === 'fr' ? 'Réinitialiser' : 'Reset Filters'}</span>
@@ -123,14 +181,14 @@ function PropertySearchContent() {
             <div className="hidden sm:flex items-center space-x-1 bg-[#FAF9F6] p-1 rounded-lg border border-[#171512]/10">
               <button
                 onClick={() => setViewMode('grid')}
-                className={`p-1.5 rounded ${viewMode === 'grid' ? 'bg-white shadow text-[#7A2234]' : 'text-[#6F6255]'}`}
+                className={`p-1.5 rounded ${viewMode === 'grid' ? 'bg-white shadow text-[#748C8C]' : 'text-[#6F6255]'}`}
                 aria-label="Vue grille"
               >
                 <Grid className="w-4 h-4" />
               </button>
               <button
                 onClick={() => setViewMode('list')}
-                className={`p-1.5 rounded ${viewMode === 'list' ? 'bg-white shadow text-[#7A2234]' : 'text-[#6F6255]'}`}
+                className={`p-1.5 rounded ${viewMode === 'list' ? 'bg-white shadow text-[#748C8C]' : 'text-[#6F6255]'}`}
                 aria-label="Vue liste"
               >
                 <List className="w-4 h-4" />
@@ -139,93 +197,54 @@ function PropertySearchContent() {
           </div>
         </div>
 
-        {/* Inputs Grid */}
+        {/* Inputs Grid with Custom Luxury Dropdowns */}
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 text-xs">
           <div>
             <label className="block text-[10px] font-bold uppercase tracking-wider text-[#6F6255] mb-1 whitespace-nowrap">
               {language === 'fr' ? 'Type de bien' : 'Property Type'}
             </label>
-            <select
+            <CustomSelect
+              options={propertyTypeOptions}
               value={propertyType}
-              onChange={(e) => setPropertyType(e.target.value)}
-              className="w-full px-3.5 py-2.5 bg-[#FAF9F6] border border-[#171512]/15 rounded-xl font-medium focus:outline-none focus:border-[#7A2234]"
-            >
-              <option value="">{language === 'fr' ? 'Tous les types' : 'All Types'}</option>
-              <option value="appartement">{language === 'fr' ? 'Appartement' : 'Apartment'}</option>
-              <option value="echoppe">{language === 'fr' ? 'Échoppe bordelaise' : 'Townhouse'}</option>
-              <option value="maison">{language === 'fr' ? 'Maison / Villa' : 'House / Villa'}</option>
-              <option value="loft">{language === 'fr' ? 'Loft & Verrière' : 'Loft'}</option>
-              <option value="hotel-particulier">{language === 'fr' ? 'Hôtel Particulier' : 'Mansion'}</option>
-            </select>
+              onChange={setPropertyType}
+              placeholder={language === 'fr' ? 'Tous les types' : 'All Types'}
+            />
           </div>
 
           <div>
             <label className="block text-[10px] font-bold uppercase tracking-wider text-[#6F6255] mb-1 whitespace-nowrap">
               {language === 'fr' ? 'Quartier' : 'District'}
             </label>
-            <select
+            <CustomSelect
+              options={neighborhoodOptions}
               value={neighborhood}
-              onChange={(e) => setNeighborhood(e.target.value)}
-              className="w-full px-3.5 py-2.5 bg-[#FAF9F6] border border-[#171512]/15 rounded-xl font-medium focus:outline-none focus:border-[#7A2234]"
-            >
-              <option value="">{language === 'fr' ? 'Tous les secteurs' : 'All Districts'}</option>
-              <option value="chartrons">Chartrons</option>
-              <option value="cauderan">Caudéran</option>
-              <option value="triangle-dor">Triangle d'Or</option>
-              <option value="bastide">Bastide</option>
-              <option value="saint-michel">Saint-Michel</option>
-              <option value="saint-augustin">Saint-Augustin</option>
-              <option value="nansouty">Nansouty</option>
-              <option value="bacalan">Bacalan</option>
-              <option value="talence">Talence</option>
-              <option value="merignac">Mérignac</option>
-              <option value="pessac">Pessac</option>
-              <option value="begles">Bègles</option>
-            </select>
+              onChange={setNeighborhood}
+              placeholder={language === 'fr' ? 'Tous les secteurs' : 'All Districts'}
+            />
           </div>
 
           <div>
             <label className="block text-[10px] font-bold uppercase tracking-wider text-[#6F6255] mb-1 whitespace-nowrap">
               {language === 'fr' ? 'Budget Max' : 'Max Budget'}
             </label>
-            <select
+            <CustomSelect
+              options={priceOptions}
               value={maxPrice}
-              onChange={(e) => setMaxPrice(e.target.value)}
-              className="w-full px-3.5 py-2.5 bg-[#FAF9F6] border border-[#171512]/15 rounded-xl font-medium focus:outline-none focus:border-[#7A2234]"
-            >
-              <option value="">{language === 'fr' ? 'Indifférent' : 'Any Price'}</option>
-              {transactionType === 'louer' ? (
-                <>
-                  <option value="1200">1 200 € / {language === 'fr' ? 'mois' : 'mo'}</option>
-                  <option value="1800">1 800 € / {language === 'fr' ? 'mois' : 'mo'}</option>
-                  <option value="2500">2 500 € / {language === 'fr' ? 'mois' : 'mo'}</option>
-                  <option value="4000">4 000 € / {language === 'fr' ? 'mois' : 'mo'}</option>
-                </>
-              ) : (
-                <>
-                  <option value="500000">500 000 €</option>
-                  <option value="1000000">1 000 000 €</option>
-                  <option value="3000000">3 000 000 €</option>
-                </>
-              )}
-            </select>
+              onChange={setMaxPrice}
+              placeholder={language === 'fr' ? 'Indifférent' : 'Any Price'}
+            />
           </div>
 
           <div>
             <label className="block text-[10px] font-bold uppercase tracking-wider text-[#6F6255] mb-1 whitespace-nowrap">
               {language === 'fr' ? 'Surface Min (m²)' : 'Min Area (m²)'}
             </label>
-            <select
+            <CustomSelect
+              options={surfaceOptions}
               value={minSurface}
-              onChange={(e) => setMinSurface(e.target.value)}
-              className="w-full px-3.5 py-2.5 bg-[#FAF9F6] border border-[#171512]/15 rounded-xl font-medium focus:outline-none focus:border-[#7A2234]"
-            >
-              <option value="">{language === 'fr' ? 'Toutes surfaces' : 'Any Area'}</option>
-              <option value="40">40 m² +</option>
-              <option value="70">70 m² +</option>
-              <option value="100">100 m² +</option>
-              <option value="150">150 m² +</option>
-            </select>
+              onChange={setMinSurface}
+              placeholder={language === 'fr' ? 'Toutes surfaces' : 'Any Area'}
+            />
           </div>
         </div>
 
@@ -241,7 +260,7 @@ function PropertySearchContent() {
       {/* Properties Display */}
       {pageLoading ? (
         <div className="py-20 text-center space-y-3">
-          <Loader2 className="w-8 h-8 text-[#7A2234] mx-auto animate-spin" />
+          <Loader2 className="w-8 h-8 text-[#748C8C] mx-auto animate-spin" />
           <p className="text-xs text-[#6F6255]">{language === 'fr' ? 'Chargement du catalogue…' : 'Loading catalog…'}</p>
         </div>
       ) : filteredProperties.length > 0 ? (
@@ -260,13 +279,13 @@ function PropertySearchContent() {
         </div>
       ) : (
         <div className="bg-white rounded-2xl p-12 text-center border border-[#171512]/10 space-y-4">
-          <Home className="w-12 h-12 text-[#7A2234]/40 mx-auto" />
+          <Home className="w-12 h-12 text-[#748C8C]/40 mx-auto" />
           <h3 className="font-serif-display text-2xl font-medium text-[#171512]">
             {language === 'fr' ? 'Aucun bien ne correspond exactement à votre recherche' : 'No exact property matches found'}
           </h3>
           <button
             onClick={handleReset}
-            className="bg-[#7A2234] text-white px-6 py-2.5 rounded-full text-xs font-semibold shadow hover:bg-[#5C1D27] transition-colors whitespace-nowrap"
+            className="bg-brand-gradient text-white px-6 py-2.5 rounded-full text-xs font-semibold shadow-brand hover:bg-brand-gradient-hover transition-colors whitespace-nowrap"
           >
             {language === 'fr' ? 'Réinitialiser les filtres' : 'Reset Filters'}
           </button>

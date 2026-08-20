@@ -84,13 +84,13 @@ export default function AdminLayout({ children }: { children: React.ReactNode })
           {/* Header Branding */}
           <div className="flex items-center justify-between">
             <Link href="/admin" className="flex items-center space-x-2.5 overflow-hidden">
-              <div className="w-8 h-8 rounded-lg bg-[#7A2234] text-white flex items-center justify-center font-serif-display font-bold shrink-0">
-                MM
+              <div className="w-8 h-8 rounded-lg bg-brand-gradient text-white flex items-center justify-center font-serif-display font-bold shrink-0 shadow-brand">
+                GG
               </div>
               {isSidebarOpen && (
                 <div className="truncate">
-                  <span className="font-serif-display font-semibold text-sm block leading-tight">MAISON MÉRIDIA</span>
-                  <span className="text-[9px] uppercase tracking-widest text-[#7A2234] font-bold">Admin OS</span>
+                  <span className="font-serif-display font-semibold text-sm block leading-tight">GOIZET GESTION</span>
+                  <span className="text-[9px] uppercase tracking-widest text-[#748C8C] font-bold">Admin OS</span>
                 </div>
               )}
             </Link>
@@ -122,7 +122,7 @@ export default function AdminLayout({ children }: { children: React.ReactNode })
                         href={item.href}
                         className={`flex items-center space-x-3 px-3 py-2 rounded-xl text-xs font-semibold transition-all ${
                           isActive
-                            ? 'bg-[#171717] text-white shadow-sm'
+                            ? 'bg-brand-gradient text-white shadow-brand'
                             : 'text-[#6B6B6B] hover:text-[#171717] hover:bg-[#F7F7F5]'
                         }`}
                         title={!isSidebarOpen ? item.label : undefined}
@@ -143,7 +143,7 @@ export default function AdminLayout({ children }: { children: React.ReactNode })
           <Link
             href="/"
             target="_blank"
-            className="flex items-center space-x-2 text-xs font-semibold text-[#7A2234] hover:underline px-2 py-1.5"
+            className="flex items-center space-x-2 text-xs font-semibold text-[#748C8C] hover:underline px-2 py-1.5"
           >
             <Globe className="w-3.5 h-3.5" />
             {isSidebarOpen && <span>View Live Site</span>}
@@ -152,12 +152,12 @@ export default function AdminLayout({ children }: { children: React.ReactNode })
 
           <div className="flex items-center justify-between pt-2 border-t border-[#171717]/5">
             <div className="flex items-center space-x-2.5 overflow-hidden">
-              <div className="w-8 h-8 rounded-full bg-[#7A2234]/20 text-[#7A2234] font-bold flex items-center justify-center shrink-0">
-                AS
+              <div className="w-8 h-8 rounded-full bg-[#748C8C]/20 text-[#748C8C] font-bold flex items-center justify-center shrink-0">
+                GG
               </div>
               {isSidebarOpen && (
                 <div className="truncate text-xs">
-                  <span className="font-semibold block truncate">Alexandre</span>
+                  <span className="font-semibold block truncate">Gestionnaire</span>
                   <span className="text-[10px] text-[#6B6B6B]">Super Admin</span>
                 </div>
               )}
@@ -200,7 +200,7 @@ export default function AdminLayout({ children }: { children: React.ReactNode })
             <div className="relative">
               <button
                 onClick={() => setIsQuickCreateOpen(!isQuickCreateOpen)}
-                className="bg-[#7A2234] hover:bg-[#5C1D27] text-white p-2 rounded-xl transition-all shadow text-xs flex items-center space-x-1"
+                className="bg-brand-gradient hover:bg-brand-gradient-hover text-white p-2 rounded-xl transition-all shadow-brand text-xs flex items-center space-x-1"
                 aria-label="Quick Create"
               >
                 <Plus className="w-4 h-4" />
@@ -214,7 +214,7 @@ export default function AdminLayout({ children }: { children: React.ReactNode })
                     onClick={() => setIsQuickCreateOpen(false)}
                     className="flex items-center space-x-2 p-2 hover:bg-[#F7F7F5] rounded-lg text-[#171717]"
                   >
-                    <Home className="w-3.5 h-3.5 text-[#7A2234]" />
+                    <Home className="w-3.5 h-3.5 text-[#748C8C]" />
                     <span>New Property</span>
                   </Link>
                   <Link
@@ -222,7 +222,7 @@ export default function AdminLayout({ children }: { children: React.ReactNode })
                     onClick={() => setIsQuickCreateOpen(false)}
                     className="flex items-center space-x-2 p-2 hover:bg-[#F7F7F5] rounded-lg text-[#171717]"
                   >
-                    <Users className="w-3.5 h-3.5 text-[#7A2234]" />
+                    <Users className="w-3.5 h-3.5 text-[#748C8C]" />
                     <span>New Lead</span>
                   </Link>
                   <Link
@@ -230,7 +230,7 @@ export default function AdminLayout({ children }: { children: React.ReactNode })
                     onClick={() => setIsQuickCreateOpen(false)}
                     className="flex items-center space-x-2 p-2 hover:bg-[#F7F7F5] rounded-lg text-[#171717]"
                   >
-                    <FileText className="w-3.5 h-3.5 text-[#7A2234]" />
+                    <FileText className="w-3.5 h-3.5 text-[#748C8C]" />
                     <span>New Blog Post</span>
                   </Link>
                 </div>
@@ -240,7 +240,7 @@ export default function AdminLayout({ children }: { children: React.ReactNode })
             {/* Notification Bell */}
             <button className="relative p-2 rounded-xl border border-[#171717]/10 hover:bg-[#F7F7F5] text-[#6B6B6B] hover:text-[#171717]">
               <Bell className="w-4 h-4" />
-              <span className="absolute top-1 right-1 w-2 h-2 rounded-full bg-[#7A2234]" />
+              <span className="absolute top-1 right-1 w-2 h-2 rounded-full bg-[#748C8C]" />
             </button>
 
           </div>

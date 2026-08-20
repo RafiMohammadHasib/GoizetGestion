@@ -7,11 +7,14 @@ export const NEIGHBORHOODS: Neighborhood[] = [
     slug: 'chartrons',
     postalCode: '33000',
     tagline: 'L\'esprit village, brocanteurs et quais de la Garonne',
+    taglineEn: 'Boutique village vibe, antique merchants, and Garonne riverfronts',
     description: 'Ancien quartier des négociants en vin, les Chartrons incarnent aujourd\'hui l\'élégance bohème chic de Bordeaux. Entre boutiques d\'antiquités de la rue Notre-Dame, terrasses de la Halle des Chartrons et balades sur les quais, c\'est le secteur numéro 1 recherché par les jeunes cadres et investisseurs.',
+    descriptionEn: 'Formerly the historic wine merchants quarter, Chartrons embodies bohemian chic elegance in Bordeaux. From antique boutiques along Rue Notre-Dame to vibrant terraces around Halle des Chartrons and scenic river quays, it is the premier district favored by executives and investors.',
     avgRentPerM2: 19.8,
     avgSalePerM2: 5450,
     demandScore: 9.8,
     highlights: ['Halle des Chartrons & Marché bio', 'Rue Notre-Dame & Brocanteurs', 'Proximité Tram B & Quais', 'Architecture néo-classique'],
+    highlightsEn: ['Halle des Chartrons & Organic Market', 'Rue Notre-Dame & Antique Dealers', 'Tram B & River Quayside', 'Neo-Classical Architecture'],
     image: 'https://images.unsplash.com/photo-1543783207-ec64e4d95325?auto=format&fit=crop&w=1200&q=85'
   },
   {
@@ -20,11 +23,14 @@ export const NEIGHBORHOODS: Neighborhood[] = [
     slug: 'cauderan',
     postalCode: '33200',
     tagline: 'Le Neuilly bordelais entre parc et échoppes familiales',
+    taglineEn: 'Prestigious residential district amidst lush parks and family townhouses',
     description: 'Réputé pour son calme résidentiel, ses espaces verts comme le Parc Bordelais et ses établissements scolaires d\'excellence. Caudéran attire une clientèle exigeante de familles recherchant échoppes à jardin, maisons d\'architecte et grands appartements sécurisés.',
+    descriptionEn: 'Renowned for tranquil residential living, expansive green spaces like the 28-hectare Parc Bordelais, and top-tier schools. Caudéran attracts discerning families seeking garden townhouses, architect-designed villas, and secure luxury residences.',
     avgRentPerM2: 16.5,
     avgSalePerM2: 4800,
     demandScore: 9.4,
     highlights: ['Parc Bordelais de 28 hectares', 'Écoles & Lycées d\'excellence', 'Échoppes familiales avec jardins', 'Cadre de vie paisible'],
+    highlightsEn: ['28-Hectare Parc Bordelais', 'Renowned Private & Public Schools', 'Family Townhouses with Private Gardens', 'Tranquil & Prestigious Setting'],
     image: 'https://images.unsplash.com/photo-1512917774080-9991f1c4c750?auto=format&fit=crop&w=1200&q=85'
   },
   {
@@ -33,11 +39,14 @@ export const NEIGHBORHOODS: Neighborhood[] = [
     slug: 'triangle-dor',
     postalCode: '33000',
     tagline: 'Le prestige architectural ultime entre Tourny, Intendance & Grands Hommes',
+    taglineEn: 'The pinnacle of architectural prestige between Tourny, Intendance & Grands Hommes',
     description: 'Bordé par les Cours de l\'Intendance, Georges Clemenceau et les Allées de Tourny, le Triangle d\'Or est l\'épicentre du luxe à Bordeaux. Immeubles XVIIIe inscrits au patrimoine UNESCO, boutiques haute couture et appartements de réception d\'une valeur patrimoniale inestimable.',
+    descriptionEn: 'Bounded by Cours de l\'Intendance, Georges Clemenceau, and Allées de Tourny, the Golden Triangle is the epicenter of luxury in Bordeaux. UNESCO-listed 18th-century mansions, haute couture boutiques, and prestigious reception apartments boasting timeless patrimonial value.',
     avgRentPerM2: 22.4,
     avgSalePerM2: 6900,
     demandScore: 9.9,
     highlights: ['Grand Théâtre & Place de la Comédie', 'Marche des Grands Hommes', 'Immeubles classés UNESCO', 'Rendement locatif VIP'],
+    highlightsEn: ['Grand Théâtre & Place de la Comédie', 'Grands Hommes Market Square', 'UNESCO Heritage Architecture', 'Prime Executive Rental Returns'],
     image: 'https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=1200&q=85'
   },
   {
@@ -46,11 +55,14 @@ export const NEIGHBORHOODS: Neighborhood[] = [
     slug: 'bastide',
     postalCode: '33100',
     tagline: 'Le renouveau contemporain avec vue imprenable sur la vieille ville',
+    taglineEn: 'Contemporary riverside renaissance with panoramic historic skyline views',
     description: 'Sur la rive droite connectée par le Pont de Pierre et le Pont Chaban-Delmas, la Bastide vit une métamorphose spectaculaire. Eco-quartier Darwin, cinéma Megarama, parcs botaniques et programmes immobiliers neufs HQE offrent un rendement locatif exceptionnel.',
+    descriptionEn: 'On the right bank linked by the historic Pont de Pierre and Pont Chaban-Delmas, Bastide is undergoing a spectacular modern metamorphosis. Featuring the Darwin eco-hub, botanical parks, and high-efficiency contemporary residences delivering outstanding rental yields.',
     avgRentPerM2: 17.2,
     avgSalePerM2: 4400,
     demandScore: 9.1,
     highlights: ['Espace alternatif Darwin', 'Parc aux Angéliques sur berges', 'Programmes neufs BBC', 'Vue dégagée rive gauche'],
+    highlightsEn: ['Darwin Eco-Cultural Space', 'Parc aux Angéliques Riverbank', 'High-Spec Modern Residences', 'Unobstructed Left Bank Views'],
     image: 'https://images.unsplash.com/photo-1600566753086-00f18fb6b3ea?auto=format&fit=crop&w=1200&q=85'
   },
   {
@@ -59,11 +71,14 @@ export const NEIGHBORHOODS: Neighborhood[] = [
     slug: 'saint-michel',
     postalCode: '33000',
     tagline: 'Vibration cosmopolite, création artistique et marché des Capucins',
+    taglineEn: 'Cosmopolitan pulse, artistic creativity, and iconic Capucins Market',
     description: 'Emblématique quartier populaire devenu le refuge des créatifs et étudiants. Entre la Flèche Saint-Michel, l\'École des Beaux-Arts et le mythique Marché des Capucins ("le ventre de Bordeaux"), ce secteur garantit une vacance locative quasi nulle.',
+    descriptionEn: 'An iconic historic district transformed into a vibrant cultural hub for creatives and students. Set between Saint-Michel Spire, the Fine Arts Academy, and the legendary Capucins Food Market, this vibrant district ensures virtually zero rental vacancy.',
     avgRentPerM2: 18.0,
     avgSalePerM2: 4650,
     demandScore: 9.6,
     highlights: ['Marché des Capucins', 'Flèche Saint-Michel & brocante', 'Quartier étudiants & artistes', 'Forte demande de petites surfaces'],
+    highlightsEn: ['Capucins Gourmet Food Market', 'Saint-Michel Spire & Flea Markets', 'Student & Creative Quarter', 'Exceptional Studio & 1-Bed Demand'],
     image: 'https://images.unsplash.com/photo-1560448204-e02f11c3d0e2?auto=format&fit=crop&w=1200&q=85'
   },
   {
@@ -72,11 +87,14 @@ export const NEIGHBORHOODS: Neighborhood[] = [
     slug: 'saint-augustin',
     postalCode: '33000',
     tagline: 'Secteur médical prisé, maisons bordelaises et tranquillité',
+    taglineEn: 'Sought-after healthcare district, classic townhouses and serene living',
     description: 'Articulé autour de l\'Hôpital Pellegrin et de la Faculté de Médecine, Saint-Augustin est l\'un des quartiers les plus recherchés par le personnel soignant et les universitaires. Atmosphère résidentielle très préservée.',
+    descriptionEn: 'Centred around Pellegrin University Hospital and the Faculty of Medicine, Saint-Augustin is highly sought after by medical professionals and academic faculty. A serene, well-preserved residential haven.',
     avgRentPerM2: 17.5,
     avgSalePerM2: 4900,
     demandScore: 9.3,
     highlights: ['Pôle santé CHU Pellegrin', 'Tram A direct centre & aéroport', 'Échoppes & petites copropriétés', 'Profils locataires très solvables'],
+    highlightsEn: ['Pellegrin Hospital Medical Hub', 'Tram Line A to City Centre & Airport', 'Classic Townhouses & Boutiques', 'Highly Solvency-Vetted Tenants'],
     image: 'https://images.unsplash.com/photo-1600585154526-990dced4db0d?auto=format&fit=crop&w=1200&q=85'
   }
 ];

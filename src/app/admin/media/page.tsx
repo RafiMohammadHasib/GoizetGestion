@@ -23,15 +23,15 @@ export default function AdminMediaPage() {
     <div className="space-y-8 max-w-5xl mx-auto">
       <div className="flex items-center justify-between pb-4 border-b border-[#171717]/10">
         <div>
-          <span className="text-[10px] font-bold uppercase tracking-widest text-[#7A2234]">
-            MAISON MÉRIDIA MEDIA ASSETS
+          <span className="text-[10px] font-bold uppercase tracking-widest text-[#748C8C]">
+            GOIZET GESTION MEDIA ASSETS
           </span>
           <h1 className="font-serif-display text-3xl font-semibold text-[#171717]">
             Media Library ({mediaAssets.length})
           </h1>
         </div>
 
-        <button className="bg-[#7A2234] hover:bg-[#5C1D27] text-white px-5 py-2.5 rounded-xl text-xs font-semibold shadow flex items-center space-x-2">
+        <button className="bg-brand-gradient hover:bg-brand-gradient-hover text-white px-5 py-2.5 rounded-xl text-xs font-semibold shadow-brand flex items-center space-x-2">
           <Upload className="w-4 h-4" />
           <span>Upload Media</span>
         </button>
@@ -54,7 +54,7 @@ export default function AdminMediaPage() {
               <div className="pt-2 flex justify-between items-center border-t border-[#171717]/5">
                 <button
                   onClick={() => handleCopy(asset.url, idx)}
-                  className="text-[10px] font-semibold text-[#7A2234] hover:underline flex items-center space-x-1"
+                  className="text-[10px] font-semibold text-[#748C8C] hover:underline flex items-center space-x-1"
                 >
                   {copiedIndex === idx ? <Check className="w-3 h-3 text-emerald-600" /> : <Copy className="w-3 h-3" />}
                   <span>{copiedIndex === idx ? 'Copied' : 'Copy URL'}</span>

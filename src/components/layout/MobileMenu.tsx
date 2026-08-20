@@ -4,6 +4,7 @@ import React from 'react';
 import Link from 'next/link';
 import { PhoneCall, ArrowUpRight, X, MapPin, Mail, Phone } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
+import { useLanguage } from '@/context/LanguageContext';
 
 interface MobileMenuProps {
   isOpen: boolean;
@@ -13,6 +14,8 @@ interface MobileMenuProps {
 }
 
 export default function MobileMenu({ isOpen, onClose, navItems, onOpenCallback }: MobileMenuProps) {
+  const { language, t } = useLanguage();
+
   return (
     <AnimatePresence>
       {isOpen && (
@@ -26,7 +29,7 @@ export default function MobileMenu({ isOpen, onClose, navItems, onOpenCallback }
           <div className="space-y-8">
             <div className="border-b border-white/10 pb-6">
               <span className="text-xs uppercase tracking-widest text-[#9E9285] block mb-4">
-                Navigation
+                {language === 'fr' ? 'Navigation' : 'Menu Navigation'}
               </span>
               <nav className="flex flex-col space-y-4">
                 {navItems.map((item, index) => (
@@ -54,9 +57,9 @@ export default function MobileMenu({ isOpen, onClose, navItems, onOpenCallback }
               <Link
                 href="/estimation"
                 onClick={onClose}
-                className="w-full bg-[#7A2234] text-white text-center py-3.5 rounded-full font-semibold text-sm flex items-center justify-center space-x-2"
+                className="w-full bg-brand-gradient text-white text-center py-3.5 rounded-full font-semibold text-sm flex items-center justify-center space-x-2 shadow-brand"
               >
-                <span>Estimer mon bien</span>
+                <span>{t('btnEstimate')}</span>
                 <ArrowUpRight className="w-4 h-4" />
               </Link>
 
@@ -65,27 +68,35 @@ export default function MobileMenu({ isOpen, onClose, navItems, onOpenCallback }
                   onClose();
                   if (onOpenCallback) onOpenCallback();
                 }}
-                className="w-full border border-white/20 text-white text-center py-3 rounded-full font-semibold text-sm flex items-center justify-center space-x-2"
+                className="w-full border border-white/20 text-white text-center py-3 rounded-full font-semibold text-sm flex items-center justify-center space-x-2 hover:bg-white/10"
               >
                 <PhoneCall className="w-4 h-4" />
-                <span>Demander à être rappelé</span>
+                <span>{t('btnCallback')}</span>
               </button>
             </div>
           </div>
 
           {/* Contact Details Footer */}
-          <div className="border-t border-white/10 pt-6 mt-8 space-y-3 text-xs text-[#9E9285]">
+          <div className="border-t border-white/10 pt-6 mt-8 space-y-2 text-xs text-[#9E9285]">
             <div className="flex items-center space-x-2">
-              <MapPin className="w-3.5 h-3.5 text-[#7A2234]" />
+              <MapPin className="w-3.5 h-3.5 text-[#748C8C] shrink-0" />
               <span>38 Cours Portal, 33000 Bordeaux</span>
             </div>
-            <div className="flex items-center space-x-2">
-              <Phone className="w-3.5 h-3.5 text-[#7A2234]" />
-              <span>05 56 00 12 34</span>
+            <div className="space-y-1 pt-1">
+              <a href="tel:+33695577033" className="flex items-center space-x-2 hover:text-white transition-colors">
+                <Phone className="w-3.5 h-3.5 text-[#748C8C] shrink-0" />
+                <span>Paul : +33 6 95 57 70 33</span>
+              </a>
+              <a href="tel:+33781968395" className="flex items-center space-x-2 hover:text-white transition-colors">
+                <Phone className="w-3.5 h-3.5 text-[#748C8C] shrink-0" />
+                <span>Edgar : +33 7 81 96 83 95</span>
+              </a>
             </div>
-            <div className="flex items-center space-x-2">
-              <Mail className="w-3.5 h-3.5 text-[#7A2234]" />
-              <span>contact@maison-meridia.fr</span>
+            <div className="pt-1">
+              <a href="mailto:Goizetgestion@gmail.com" className="flex items-center space-x-2 hover:text-white transition-colors">
+                <Mail className="w-3.5 h-3.5 text-[#748C8C] shrink-0" />
+                <span>Goizetgestion@gmail.com</span>
+              </a>
             </div>
           </div>
         </motion.div>

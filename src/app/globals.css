@@ -1,9 +1,10 @@
-@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400&family=Plus+Jakarta+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Urbanist:ital,wght@0,200;0,300;0,400;0,500;0,600;0,700;0,800;1,300;1,400;1,500&display=swap');
 @import "tailwindcss";
 
 :root {
-  --font-serif: 'Cormorant Garamond', Georgia, serif;
-  --font-sans: 'Plus Jakarta Sans', system-ui, -apple-system, sans-serif;
+  --font-serif: 'Urbanist', system-ui, -apple-system, sans-serif;
+  --font-sans: 'Urbanist', system-ui, -apple-system, sans-serif;
+  --font-display: 'Urbanist', system-ui, -apple-system, sans-serif;
 
   --color-ivory: #F7F5F0;
   --color-surface: #FAF9F6;
@@ -11,9 +12,19 @@
   --color-charcoal: #2C2723;
   --color-taupe: #6F6255;
   --color-sand: #EAE6DF;
-  --color-bordeaux: #7A2234;
-  --color-bordeaux-dark: #5C1D27;
-  --color-bordeaux-light: #9B2D43;
+  
+  /* GOIZET GESTION Brand Palette */
+  --color-brand: #748C8C;
+  --color-brand-dark: #4F6565;
+  --color-brand-deep: #283636;
+  --color-brand-light: #90A5A5;
+  --color-brand-soft: #DCE4E4;
+  --color-brand-cream: #EEEBE4;
+
+  /* Backward-compatible aliases for legacy theme mappings */
+  --color-bordeaux: #748C8C;
+  --color-bordeaux-dark: #4F6565;
+  --color-bordeaux-light: #90A5A5;
 }
 
 @layer base {
@@ -26,19 +37,22 @@
     background-color: var(--color-ivory);
     color: var(--color-obsidian);
     font-family: var(--font-sans);
+    letter-spacing: -0.015em;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
+    text-rendering: optimizeLegibility;
   }
 
   ::selection {
-    background-color: rgba(122, 34, 52, 0.15);
-    color: var(--color-bordeaux-dark);
+    background-color: rgba(116, 140, 140, 0.25);
+    color: #171512;
   }
 }
 
 /* Custom typography classes */
 .font-serif-display {
-  font-family: var(--font-serif);
+  font-family: var(--font-sans);
+  letter-spacing: -0.02em;
 }
 
 .font-sans-ui {
@@ -90,3 +104,39 @@
 .animate-image-zoom {
   animation: imageZoomIn 1.4s cubic-bezier(0.16, 1, 0.3, 1) forwards;
 }
+
+/* Brand Gradients & Signature Utilities */
+.bg-brand-gradient {
+  background: linear-gradient(135deg, #748C8C 0%, #4F6565 100%);
+}
+
+.bg-brand-gradient-hover:hover {
+  background: linear-gradient(135deg, #829C9C 0%, #445858 100%);
+}
+
+.bg-brand-gradient-light {
+  background: linear-gradient(135deg, #8EA6A6 0%, #748C8C 100%);
+}
+
+.bg-brand-subtle {
+  background: linear-gradient(180deg, rgba(116, 140, 140, 0.12) 0%, rgba(116, 140, 140, 0.02) 100%);
+}
+
+.bg-brand-dark-card {
+  background: linear-gradient(145deg, #1C2727 0%, #111A1A 100%);
+}
+
+.text-brand-gradient {
+  background: linear-gradient(135deg, #8EA6A6 0%, #597373 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.shadow-brand {
+  box-shadow: 0 10px 30px -10px rgba(116, 140, 140, 0.35);
+}
+
+.glow-brand {
+  filter: drop-shadow(0 0 20px rgba(116, 140, 140, 0.35));
+}
+

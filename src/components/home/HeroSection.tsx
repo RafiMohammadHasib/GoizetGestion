@@ -1,6 +1,6 @@
 'use client';
 
-import React, { useState, useEffect, useRef } from 'react';
+import React, { useState, useEffect, useRef, useMemo } from 'react';
 import Link from 'next/link';
 import { useRouter } from 'next/navigation';
 import { Search, ArrowUpRight, MapPin, Home, Euro } from 'lucide-react';
@@ -8,6 +8,7 @@ import { motion } from 'framer-motion';
 import { gsap } from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import { useLanguage } from '@/context/LanguageContext';
+import CustomSelect from '@/components/ui/CustomSelect';
 
 if (typeof window !== 'undefined') {
   gsap.registerPlugin(ScrollTrigger);
@@ -25,20 +26,59 @@ export default function HeroSection() {
   const [neighborhood, setNeighborhood] = useState<string>('');
   const [maxPrice, setMaxPrice] = useState<string>('');
 
+  const propertyTypeOptions = useMemo(() => [
+    { value: '', label: language === 'fr' ? 'Tous types de biens' : 'All Property Types' },
+    { value: 'appartement', label: language === 'fr' ? 'Appartement' : 'Apartment' },
+    { value: 'echoppe', label: language === 'fr' ? 'Échoppe bordelaise' : 'Bordeaux Townhouse' },
+    { value: 'maison', label: language === 'fr' ? 'Maison / Villa' : 'House / Villa' },
+    { value: 'loft', label: language === 'fr' ? 'Loft & Ateliers' : 'Loft & Studios' },
+    { value: 'hotel-particulier', label: language === 'fr' ? 'Hôtel Particulier' : 'Mansion / Estate' },
+  ], [language]);
+
+  const neighborhoodOptions = useMemo(() => [
+    { value: '', label: language === 'fr' ? 'Tous secteurs de Bordeaux' : 'All Bordeaux Areas' },
+    { value: 'chartrons', label: 'Chartrons', sublabel: '33000' },
+    { value: 'cauderan', label: 'Caudéran', sublabel: '33200' },
+    { value: 'triangle-dor', label: "Triangle d'Or / Centre", sublabel: '33000' },
+    { value: 'bastide', label: 'Bastide Rive Droite', sublabel: '33100' },
+    { value: 'saint-michel', label: 'Saint-Michel & Capucins', sublabel: '33000' },
+    { value: 'saint-augustin', label: 'Saint-Augustin & CHU', sublabel: '33000' },
+  ], [language]);
+
+  const priceOptions = useMemo(() => {
+    if (transactionType === 'louer') {
+      return [
+        { value: '', label: language === 'fr' ? 'Budget libre' : 'Any Budget' },
+        { value: '1000', label: `1 000 € / ${language === 'fr' ? 'mois' : 'mo'}` },
+        { value: '1500', label: `1 500 € / ${language === 'fr' ? 'mois' : 'mo'}` },
+        { value: '2000', label: `2 000 € / ${language === 'fr' ? 'mois' : 'mo'}` },
+        { value: '3000', label: `3 000 € / ${language === 'fr' ? 'mois' : 'mo'}` },
+      ];
+    }
+    return [
+      { value: '', label: language === 'fr' ? 'Budget libre' : 'Any Budget' },
+      { value: '400000', label: '400 000 €' },
+      { value: '600000', label: '600 000 €' },
+      { value: '1000000', label: '1 000 000 €' },
+      { value: '2500000', label: '2 500 000 €' },
+    ];
+  }, [transactionType, language]);
+
   useEffect(() => {
     if (!heroImageRef.current || !heroSectionRef.current) return;
 
-    // GSAP ScrollTrigger Parallax & Zoom Effect on Hero Image
+    // GSAP ScrollTrigger Parallax & Zoom Effect on Hero Image with 1:1 instant mouse-wheel synchronization
     const ctx = gsap.context(() => {
       gsap.to(heroImageRef.current, {
         scale: 1.25,
-        yPercent: 15,
+        yPercent: 12,
         ease: 'none',
         scrollTrigger: {
           trigger: heroSectionRef.current,
           start: 'top top',
           end: 'bottom top',
-          scrub: true
+          scrub: true, // 1:1 immediate response to every mouse scroll tick
+          invalidateOnRefresh: true,
         }
       });
     }, heroSectionRef);
@@ -65,7 +105,7 @@ export default function HeroSection() {
           ref={heroImageRef}
           src="/images/hero.jpg"
           alt="Luxury Haussmannian Bordeaux Architecture"
-          className="w-full h-full object-cover opacity-55 scale-105 origin-center transition-transform duration-300"
+          className="w-full h-full object-cover opacity-55 scale-105 origin-center will-change-transform"
         />
         <div className="absolute inset-0 bg-gradient-to-t from-[#171512] via-[#171512]/45 to-[#171512]/75" />
       </div>
@@ -80,7 +120,7 @@ export default function HeroSection() {
             transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
             className="inline-flex items-center space-x-2 text-xs font-semibold uppercase tracking-widest text-[#F7F5F0]/90 bg-white/10 backdrop-blur-md px-4 py-1.5 rounded-full border border-white/20 whitespace-nowrap"
           >
-            <span className="w-2 h-2 rounded-full bg-[#7A2234]" />
+            <span className="w-2 h-2 rounded-full bg-[#748C8C]" />
             <span>{t('heroBadge')}</span>
           </motion.div>
 
@@ -116,7 +156,10 @@ export default function HeroSection() {
             <div className="flex space-x-2 bg-[#EAE6DF]/60 p-1 rounded-xl shrink-0">
               <button
                 type="button"
-                onClick={() => setTransactionType('louer')}
+                onClick={() => {
+                  setTransactionType('louer');
+                  setMaxPrice('');
+                }}
                 className={`px-5 py-2 rounded-lg text-xs font-semibold uppercase tracking-wider transition-all whitespace-nowrap ${
                   transactionType === 'louer'
                     ? 'bg-[#171512] text-white shadow-sm'
@@ -127,7 +170,10 @@ export default function HeroSection() {
               </button>
               <button
                 type="button"
-                onClick={() => setTransactionType('acheter')}
+                onClick={() => {
+                  setTransactionType('acheter');
+                  setMaxPrice('');
+                }}
                 className={`px-5 py-2 rounded-lg text-xs font-semibold uppercase tracking-wider transition-all whitespace-nowrap ${
                   transactionType === 'acheter'
                     ? 'bg-[#171512] text-white shadow-sm'
@@ -140,7 +186,7 @@ export default function HeroSection() {
 
             <Link
               href="/estimation"
-              className="hidden sm:inline-flex items-center space-x-1 text-xs font-semibold text-[#7A2234] hover:underline whitespace-nowrap"
+              className="hidden sm:inline-flex items-center space-x-1 text-xs font-semibold text-[#748C8C] hover:underline whitespace-nowrap"
             >
               <span>{t('linkOwnerHero')}</span>
               <ArrowUpRight className="w-3.5 h-3.5" />
@@ -153,79 +199,50 @@ export default function HeroSection() {
             {/* Field 1: Property Type */}
             <div className="space-y-1">
               <label className="text-[10px] font-bold uppercase tracking-wider text-[#6F6255] flex items-center space-x-1 whitespace-nowrap">
-                <Home className="w-3 h-3 text-[#7A2234]" />
+                <Home className="w-3 h-3 text-[#748C8C]" />
                 <span>{t('fieldPropType')}</span>
               </label>
-              <select
+              <CustomSelect
+                options={propertyTypeOptions}
                 value={propertyType}
-                onChange={(e) => setPropertyType(e.target.value)}
-                className="w-full px-3 py-2.5 bg-white border border-[#171512]/10 rounded-xl text-xs font-medium focus:outline-none focus:border-[#7A2234]"
-              >
-                <option value="">{language === 'fr' ? 'Tous types de biens' : 'All Property Types'}</option>
-                <option value="appartement">{language === 'fr' ? 'Appartement' : 'Apartment'}</option>
-                <option value="echoppe">{language === 'fr' ? 'Échoppe bordelaise' : 'Bordeaux Townhouse'}</option>
-                <option value="maison">{language === 'fr' ? 'Maison / Villa' : 'House / Villa'}</option>
-                <option value="loft">{language === 'fr' ? 'Loft & Ateliers' : 'Loft & Studios'}</option>
-                <option value="hotel-particulier">{language === 'fr' ? 'Hôtel Particulier' : 'Mansion / Estate'}</option>
-              </select>
+                onChange={setPropertyType}
+                placeholder={language === 'fr' ? 'Tous types de biens' : 'All Property Types'}
+              />
             </div>
 
             {/* Field 2: Neighborhood */}
             <div className="space-y-1">
               <label className="text-[10px] font-bold uppercase tracking-wider text-[#6F6255] flex items-center space-x-1 whitespace-nowrap">
-                <MapPin className="w-3 h-3 text-[#7A2234]" />
+                <MapPin className="w-3 h-3 text-[#748C8C]" />
                 <span>{t('fieldSector')}</span>
               </label>
-              <select
+              <CustomSelect
+                options={neighborhoodOptions}
                 value={neighborhood}
-                onChange={(e) => setNeighborhood(e.target.value)}
-                className="w-full px-3 py-2.5 bg-white border border-[#171512]/10 rounded-xl text-xs font-medium focus:outline-none focus:border-[#7A2234]"
-              >
-                <option value="">{language === 'fr' ? 'Tous secteurs de Bordeaux' : 'All Bordeaux Areas'}</option>
-                <option value="chartrons">Chartrons</option>
-                <option value="cauderan">Caudéran</option>
-                <option value="triangle-dor">Triangle d'Or / Centre</option>
-                <option value="bastide">Bastide Rive Droite</option>
-                <option value="saint-michel">Saint-Michel & Capucins</option>
-                <option value="saint-augustin">Saint-Augustin & CHU</option>
-              </select>
+                onChange={setNeighborhood}
+                placeholder={language === 'fr' ? 'Tous secteurs de Bordeaux' : 'All Bordeaux Areas'}
+              />
             </div>
 
             {/* Field 3: Max Budget */}
             <div className="space-y-1">
               <label className="text-[10px] font-bold uppercase tracking-wider text-[#6F6255] flex items-center space-x-1 whitespace-nowrap">
-                <Euro className="w-3 h-3 text-[#7A2234]" />
+                <Euro className="w-3 h-3 text-[#748C8C]" />
                 <span>{t('fieldBudget')}</span>
               </label>
-              <select
+              <CustomSelect
+                options={priceOptions}
                 value={maxPrice}
-                onChange={(e) => setMaxPrice(e.target.value)}
-                className="w-full px-3 py-2.5 bg-white border border-[#171512]/10 rounded-xl text-xs font-medium focus:outline-none focus:border-[#7A2234]"
-              >
-                <option value="">{language === 'fr' ? 'Budget libre' : 'Any Budget'}</option>
-                {transactionType === 'louer' ? (
-                  <>
-                    <option value="1000">1 000 € / {language === 'fr' ? 'mois' : 'mo'}</option>
-                    <option value="1500">1 500 € / {language === 'fr' ? 'mois' : 'mo'}</option>
-                    <option value="2000">2 000 € / {language === 'fr' ? 'mois' : 'mo'}</option>
-                    <option value="3000">3 000 € / {language === 'fr' ? 'mois' : 'mo'}</option>
-                  </>
-                ) : (
-                  <>
-                    <option value="400000">400 000 €</option>
-                    <option value="600000">600 000 €</option>
-                    <option value="1000000">1 000 000 €</option>
-                    <option value="2500000">2 500 000 €</option>
-                  </>
-                )}
-              </select>
+                onChange={setMaxPrice}
+                placeholder={language === 'fr' ? 'Budget libre' : 'Any Budget'}
+              />
             </div>
 
             {/* Submit Button */}
             <div className="flex items-end">
               <button
                 type="submit"
-                className="w-full bg-[#7A2234] hover:bg-[#5C1D27] text-white py-2.5 px-4 rounded-xl text-xs font-semibold transition-all duration-300 shadow-md flex items-center justify-center space-x-2 h-[42px] whitespace-nowrap shrink-0"
+                className="w-full bg-brand-gradient hover:bg-brand-gradient-hover text-white py-2.5 px-4 rounded-xl text-xs font-semibold transition-all duration-300 shadow-brand flex items-center justify-center space-x-2 h-[42px] whitespace-nowrap shrink-0"
               >
                 <Search className="w-4 h-4" />
                 <span>{t('btnSearch')}</span>
@@ -246,7 +263,7 @@ export default function HeroSection() {
             className="bg-white text-[#171512] hover:bg-[#FAF9F6] px-6 py-3.5 rounded-full transition-all duration-300 shadow-lg flex items-center space-x-2 whitespace-nowrap shrink-0"
           >
             <span>{t('btnEstimate')}</span>
-            <ArrowUpRight className="w-4 h-4 text-[#7A2234]" />
+            <ArrowUpRight className="w-4 h-4 text-[#748C8C]" />
           </Link>
 
           <Link

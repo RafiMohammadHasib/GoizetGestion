@@ -74,7 +74,7 @@ export default function ServicesGrid() {
         {/* Section Header */}
         <div className="flex flex-col md:flex-row md:items-end justify-between gap-6">
           <div className="space-y-3 max-w-2xl">
-            <span className="text-xs font-semibold uppercase tracking-widest text-[#7A2234]">
+            <span className="text-xs font-semibold uppercase tracking-widest text-[#748C8C]">
               {t('servicesBadge')}
             </span>
             <h2 className="font-serif-display text-4xl sm:text-6xl font-light text-[#171512] leading-tight">
@@ -83,7 +83,7 @@ export default function ServicesGrid() {
           </div>
           <Link
             href="/gestion-locative"
-            className="inline-flex items-center space-x-2 text-xs font-semibold text-[#7A2234] hover:text-[#5C1D27] transition-colors whitespace-nowrap"
+            className="inline-flex items-center space-x-2 text-xs font-semibold text-[#748C8C] hover:text-[#4F6565] transition-colors whitespace-nowrap"
           >
             <span>{language === 'fr' ? 'Découvrir tous nos mandats' : 'Explore All Management Plans'}</span>
             <ArrowUpRight className="w-4 h-4" />
@@ -113,7 +113,7 @@ export default function ServicesGrid() {
                   />
                   <div className="absolute inset-0 bg-gradient-to-t from-[#171512]/70 via-transparent to-transparent" />
                   
-                  <div className="absolute top-4 right-4 bg-white/90 backdrop-blur-md px-3 py-1 rounded-full text-[10px] font-bold tracking-wider uppercase text-[#171512] whitespace-nowrap">
+                  <div suppressHydrationWarning className="absolute top-4 right-4 bg-white/90 backdrop-blur-md px-3 py-1 rounded-full text-[10px] font-bold tracking-wider uppercase text-[#171512] whitespace-nowrap">
                     {service.badge}
                   </div>
 
@@ -121,17 +121,17 @@ export default function ServicesGrid() {
                     <div className="w-10 h-10 rounded-full bg-white/20 backdrop-blur-md flex items-center justify-center shrink-0">
                       <Icon className="w-5 h-5 text-white" />
                     </div>
-                    <span className="text-xs font-light text-white/80 truncate pl-2">{service.subtitle}</span>
+                    <span suppressHydrationWarning className="text-xs font-light text-white/80 truncate pl-2">{service.subtitle}</span>
                   </div>
                 </div>
 
                 {/* Content Details */}
                 <div className="p-6 space-y-4 flex-1 flex flex-col justify-between">
                   <div className="space-y-2">
-                    <h3 className="font-serif-display text-2xl font-medium text-[#171512] group-hover:text-[#7A2234] transition-colors">
+                    <h3 suppressHydrationWarning className="font-serif-display text-2xl font-medium text-[#171512] group-hover:text-[#748C8C] transition-colors">
                       {service.title}
                     </h3>
-                    <p className="text-xs text-[#6F6255] leading-relaxed">
+                    <p suppressHydrationWarning className="text-xs text-[#6F6255] leading-relaxed">
                       {service.description}
                     </p>
                   </div>
@@ -139,7 +139,7 @@ export default function ServicesGrid() {
                   <div className="pt-4 border-t border-[#171512]/5 flex items-center justify-between">
                     <Link
                       href={service.href}
-                      className="text-xs font-semibold text-[#171512] group-hover:text-[#7A2234] inline-flex items-center space-x-1.5 transition-colors whitespace-nowrap"
+                      className="text-xs font-semibold text-[#171512] group-hover:text-[#748C8C] inline-flex items-center space-x-1.5 transition-colors whitespace-nowrap"
                     >
                       <span>{language === 'fr' ? 'En savoir plus' : 'Learn More'}</span>
                       <ArrowUpRight className="w-4 h-4 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform" />

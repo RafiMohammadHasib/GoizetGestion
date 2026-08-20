@@ -39,8 +39,8 @@ export default function AdminSEOPage() {
       {/* Header */}
       <div className="flex items-center justify-between pb-4 border-b border-[#171717]/10">
         <div>
-          <span className="text-[10px] font-bold uppercase tracking-widest text-[#7A2234]">
-            MAISON MÉRIDIA SEO ENGINE
+          <span className="text-[10px] font-bold uppercase tracking-widest text-[#748C8C]">
+            GOIZET GESTION SEO ENGINE
           </span>
           <h1 className="font-serif-display text-3xl font-semibold text-[#171717]">
             SEO Audit & Redirect Manager
@@ -50,7 +50,7 @@ export default function AdminSEOPage() {
         <button
           onClick={handleRevalidateSitemap}
           disabled={revalidating}
-          className="bg-[#171717] hover:bg-[#7A2234] text-white px-5 py-2.5 rounded-xl text-xs font-semibold shadow flex items-center space-x-2 transition-colors disabled:opacity-50"
+          className="bg-brand-gradient hover:bg-brand-gradient-hover text-white px-5 py-2.5 rounded-xl text-xs font-semibold shadow-brand flex items-center space-x-2 transition-all disabled:opacity-50"
         >
           <RefreshCw className={`w-4 h-4 ${revalidating ? 'animate-spin' : ''}`} />
           <span>{revalidating ? 'Regenerating...' : 'Regenerate Sitemap.xml'}</span>
@@ -97,7 +97,7 @@ export default function AdminSEOPage() {
       {/* Redirect Manager */}
       <div className="bg-white p-6 sm:p-8 rounded-3xl border border-[#171717]/10 shadow-xs space-y-6">
         <div className="space-y-1 pb-3 border-b border-[#171717]/10">
-          <span className="text-[10px] font-bold uppercase tracking-wider text-[#7A2234]">
+          <span className="text-[10px] font-bold uppercase tracking-wider text-[#748C8C]">
             301 / 302 REDIRECTS ENGINE
           </span>
           <h2 className="font-serif-display text-xl font-medium text-[#171717]">
@@ -114,7 +114,7 @@ export default function AdminSEOPage() {
                 <ArrowRight className="w-3.5 h-3.5 text-[#6B6B6B] shrink-0" />
                 <span className="text-emerald-700">{r.newUrl}</span>
               </div>
-              <span className="font-bold text-[#7A2234] bg-white px-2 py-0.5 rounded border ml-2">
+              <span className="font-bold text-[#748C8C] bg-white px-2 py-0.5 rounded border ml-2">
                 {r.type}
               </span>
             </div>
@@ -141,7 +141,7 @@ export default function AdminSEOPage() {
           />
           <button
             type="submit"
-            className="sm:col-span-2 bg-[#7A2234] text-white py-2.5 rounded-xl font-semibold hover:bg-[#5C1D27] transition-colors whitespace-nowrap"
+            className="sm:col-span-2 bg-brand-gradient hover:bg-brand-gradient-hover text-white py-2.5 rounded-xl font-semibold shadow-brand transition-colors whitespace-nowrap"
           >
             Add Redirect
           </button>

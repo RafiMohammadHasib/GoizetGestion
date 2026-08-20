@@ -19,7 +19,7 @@ export default function NeighborhoodsIndexPage() {
 
       {/* Header */}
       <div className="space-y-4 max-w-3xl">
-        <span className="text-xs font-semibold uppercase tracking-widest text-[#7A2234]">
+        <span className="text-xs font-semibold uppercase tracking-widest text-[#748C8C]">
           {language === 'fr' ? 'GUIDE DES QUARTIERS DE BORDEAUX' : 'BORDEAUX NEIGHBORHOOD GUIDE'}
         </span>
         <h1 className="font-serif-display text-4xl sm:text-6xl font-light text-[#171512] leading-tight">
@@ -51,7 +51,7 @@ export default function NeighborhoodsIndexPage() {
               <div className="absolute inset-0 bg-gradient-to-t from-[#171512]/80 via-transparent to-transparent" />
               
               <div className="absolute top-4 left-4 bg-white/90 backdrop-blur-md px-3 py-1 rounded-full text-[10px] font-bold text-[#171512] flex items-center space-x-1">
-                <MapPin className="w-3 h-3 text-[#7A2234]" />
+                <MapPin className="w-3 h-3 text-[#748C8C]" />
                 <span>{hood.postalCode} Bordeaux</span>
               </div>
 
@@ -82,7 +82,7 @@ export default function NeighborhoodsIndexPage() {
               <div className="pt-3 border-t border-[#171512]/10 flex items-center justify-between">
                 <Link
                   href={`/quartiers/${hood.slug}`}
-                  className="text-xs font-semibold text-[#7A2234] group-hover:underline inline-flex items-center space-x-1 whitespace-nowrap"
+                  className="text-xs font-semibold text-[#748C8C] group-hover:underline inline-flex items-center space-x-1 whitespace-nowrap"
                 >
                   <span>{language === 'fr' ? 'Guide complet du quartier' : 'District Guide'}</span>
                   <ArrowUpRight className="w-4 h-4" />

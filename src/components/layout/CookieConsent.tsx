@@ -77,7 +77,7 @@ export default function CookieConsent({ forceOpenModal, onCloseModal }: CookieCo
             className="fixed bottom-6 left-6 right-6 md:left-auto md:right-8 md:max-w-md z-50 bg-[#171512] text-[#F7F5F0] rounded-2xl p-6 shadow-2xl border border-white/15 space-y-4"
           >
             <div className="flex items-start space-x-3">
-              <div className="w-9 h-9 rounded-full bg-[#7A2234]/20 text-[#7A2234] flex items-center justify-center shrink-0 mt-0.5">
+              <div className="w-9 h-9 rounded-full bg-[#748C8C]/20 text-[#748C8C] flex items-center justify-center shrink-0 mt-0.5">
                 <Cookie className="w-5 h-5 text-white" />
               </div>
               <div className="space-y-1">
@@ -86,8 +86,8 @@ export default function CookieConsent({ forceOpenModal, onCloseModal }: CookieCo
                 </h4>
                 <p className="text-xs text-[#9E9285] leading-relaxed">
                   {language === 'fr'
-                    ? 'Maison Méridia utilise des cookies essentiels pour assurer le bon fonctionnement du site et mesurer notre audience de manière anonyme.'
-                    : 'Maison Méridia uses cookies to ensure smooth site navigation and measure audience statistics anonymously.'}
+                    ? 'Goizet Gestion utilise des cookies essentiels pour assurer le bon fonctionnement du site et mesurer notre audience de manière anonyme.'
+                    : 'Goizet Gestion uses cookies to ensure smooth site navigation and measure audience statistics anonymously.'}
                 </p>
               </div>
             </div>
@@ -95,7 +95,7 @@ export default function CookieConsent({ forceOpenModal, onCloseModal }: CookieCo
             <div className="flex flex-col sm:flex-row items-center gap-2 pt-2 text-xs font-semibold">
               <button
                 onClick={handleAcceptAll}
-                className="w-full sm:flex-1 bg-[#7A2234] hover:bg-[#5C1D27] text-white py-2.5 px-4 rounded-xl transition-all shadow text-center"
+                className="w-full sm:flex-1 bg-brand-gradient hover:bg-brand-gradient-hover text-white py-2.5 px-4 rounded-xl transition-all shadow text-center shadow-brand"
               >
                 {language === 'fr' ? 'Tout accepter' : 'Accept All'}
               </button>
@@ -125,31 +125,38 @@ export default function CookieConsent({ forceOpenModal, onCloseModal }: CookieCo
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               exit={{ opacity: 0 }}
-              onClick={() => {
-                setShowSettingsModal(false);
-                if (onCloseModal) onCloseModal();
-              }}
-              className="absolute inset-0 bg-black/60 backdrop-blur-sm"
+              onClick={() => setShowSettingsModal(false)}
+              className="absolute inset-0 bg-[#171512]/60 backdrop-blur-sm"
             />
 
             <motion.div
-              initial={{ opacity: 0, scale: 0.95, y: 10 }}
+              initial={{ opacity: 0, scale: 0.95, y: 20 }}
               animate={{ opacity: 1, scale: 1, y: 0 }}
-              exit={{ opacity: 0, scale: 0.95, y: 10 }}
-              className="relative w-full max-w-lg bg-[#FAF9F6] text-[#171512] rounded-2xl p-6 sm:p-8 shadow-2xl border border-[#171512]/10 z-10 space-y-6"
+              exit={{ opacity: 0, scale: 0.95, y: 20 }}
+              className="relative w-full max-w-lg bg-[#FAF9F6] rounded-2xl p-6 sm:p-8 shadow-2xl border border-[#171512]/10 z-10 space-y-6"
             >
-              <button
-                onClick={() => {
-                  setShowSettingsModal(false);
-                  if (onCloseModal) onCloseModal();
-                }}
-                className="absolute top-5 right-5 text-[#171512]/50 hover:text-[#171512] p-1.5 rounded-full hover:bg-[#171512]/5"
-              >
-                <X className="w-5 h-5" />
-              </button>
+              <div className="flex items-center justify-between">
+                <div className="flex items-center space-x-2">
+                  <div className="w-8 h-8 rounded-full bg-[#748C8C]/15 text-[#748C8C] flex items-center justify-center">
+                    <Cookie className="w-4 h-4 text-[#748C8C]" />
+                  </div>
+                  <span className="text-xs font-semibold uppercase tracking-widest text-[#6F6255]">
+                    Goizet Gestion
+                  </span>
+                </div>
+                <button
+                  onClick={() => {
+                    setShowSettingsModal(false);
+                    if (onCloseModal) onCloseModal();
+                  }}
+                  className="p-1.5 text-[#171512]/50 hover:text-[#171512] transition-colors rounded-full hover:bg-[#171512]/5"
+                >
+                  <X className="w-5 h-5" />
+                </button>
+              </div>
 
               <div className="space-y-1">
-                <div className="inline-flex items-center space-x-1.5 text-xs font-semibold uppercase tracking-widest text-[#7A2234]">
+                <div className="inline-flex items-center space-x-1.5 text-xs font-semibold uppercase tracking-widest text-[#748C8C]">
                   <ShieldCheck className="w-4 h-4" />
                   <span>{language === 'fr' ? 'GESTION DES COOKIES' : 'COOKIE PREFERENCES'}</span>
                 </div>
@@ -172,7 +179,7 @@ export default function CookieConsent({ forceOpenModal, onCloseModal }: CookieCo
                         : 'Required for secure browsing, property search, and estimation forms.'}
                     </p>
                   </div>
-                  <span className="text-[10px] font-bold uppercase text-[#7A2234] bg-[#7A2234]/10 px-2.5 py-1 rounded-full whitespace-nowrap">
+                  <span className="text-[10px] font-bold uppercase text-[#748C8C] bg-[#748C8C]/10 px-2.5 py-1 rounded-full whitespace-nowrap">
                     {language === 'fr' ? 'Toujours Actif' : 'Always Active'}
                   </span>
                 </div>
@@ -196,7 +203,7 @@ export default function CookieConsent({ forceOpenModal, onCloseModal }: CookieCo
                       onChange={(e) => setPreferences({ ...preferences, analytics: e.target.checked })}
                       className="sr-only peer"
                     />
-                    <div className="w-11 h-6 bg-[#171512]/20 peer-focus:outline-none rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-[#7A2234]" />
+                    <div className="w-11 h-6 bg-[#171512]/20 peer-focus:outline-none rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-[#748C8C]" />
                   </label>
                 </div>
 
@@ -219,7 +226,7 @@ export default function CookieConsent({ forceOpenModal, onCloseModal }: CookieCo
                       onChange={(e) => setPreferences({ ...preferences, marketing: e.target.checked })}
                       className="sr-only peer"
                     />
-                    <div className="w-11 h-6 bg-[#171512]/20 peer-focus:outline-none rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-[#7A2234]" />
+                    <div className="w-11 h-6 bg-[#171512]/20 peer-focus:outline-none rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-[#748C8C]" />
                   </label>
                 </div>
 
@@ -228,7 +235,7 @@ export default function CookieConsent({ forceOpenModal, onCloseModal }: CookieCo
               <div className="flex flex-col sm:flex-row gap-3 pt-2 text-xs font-semibold">
                 <button
                   onClick={handleSavePreferences}
-                  className="flex-1 bg-[#7A2234] hover:bg-[#5C1D27] text-white py-3 rounded-xl transition-all shadow text-center"
+                  className="flex-1 bg-brand-gradient hover:bg-brand-gradient-hover text-white py-3 rounded-xl transition-all shadow text-center shadow-brand"
                 >
                   {language === 'fr' ? 'Enregistrer mes choix' : 'Save Preferences'}
                 </button>

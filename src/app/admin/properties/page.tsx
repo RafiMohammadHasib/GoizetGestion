@@ -75,8 +75,8 @@ export default function AdminPropertiesPage() {
       {/* Header & Main Add CTA */}
       <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 pb-4 border-b border-[#171717]/10">
         <div>
-          <span className="text-[10px] font-bold uppercase tracking-widest text-[#7A2234]">
-            MAISON MÉRIDIA PROPERTY MANAGER
+          <span className="text-[10px] font-bold uppercase tracking-widest text-[#748C8C]">
+            GOIZET GESTION PROPERTY MANAGER
           </span>
           <h1 className="font-serif-display text-3xl font-semibold text-[#171717]">
             Property Inventory & Catalog
@@ -86,7 +86,7 @@ export default function AdminPropertiesPage() {
 
         <Link
           href="/admin/properties/new"
-          className="bg-[#7A2234] hover:bg-[#5C1D27] text-white px-5 py-2.5 rounded-xl text-xs font-semibold shadow flex items-center space-x-2 whitespace-nowrap self-start sm:self-auto"
+          className="bg-brand-gradient hover:bg-brand-gradient-hover text-white px-5 py-2.5 rounded-xl text-xs font-semibold shadow-brand flex items-center space-x-2 whitespace-nowrap self-start sm:self-auto"
         >
           <Plus className="w-4 h-4" />
           <span>Add New Property</span>
@@ -112,7 +112,7 @@ export default function AdminPropertiesPage() {
                 onClick={() => setStatusFilter(tab.id)}
                 className={`px-3.5 py-1.5 rounded-xl transition-all ${
                   statusFilter === tab.id
-                    ? 'bg-[#171717] text-white shadow'
+                    ? 'bg-brand-gradient text-white shadow-brand'
                     : 'bg-[#F7F7F5] text-[#6B6B6B] hover:text-[#171717]'
                 }`}
               >
@@ -129,7 +129,7 @@ export default function AdminPropertiesPage() {
               placeholder="Search reference, title or street address..."
               value={searchQuery}
               onChange={(e) => setSearchQuery(e.target.value)}
-              className="w-full pl-9 pr-4 py-2 bg-[#F7F7F5] border border-[#171717]/10 rounded-xl text-xs focus:outline-none focus:border-[#7A2234]"
+              className="w-full pl-9 pr-4 py-2 bg-[#F7F7F5] border border-[#171717]/10 rounded-xl text-xs focus:outline-none focus:border-[#748C8C]"
             />
           </div>
 
@@ -137,12 +137,12 @@ export default function AdminPropertiesPage() {
 
         {/* Bulk Action Controls */}
         {selectedIds.length > 0 && (
-          <div className="p-3 bg-[#7A2234]/10 border border-[#7A2234]/20 rounded-xl flex items-center justify-between text-xs text-[#7A2234]">
+          <div className="p-3 bg-[#748C8C]/10 border border-[#748C8C]/20 rounded-xl flex items-center justify-between text-xs text-[#748C8C]">
             <span className="font-semibold">{selectedIds.length} property(ies) selected</span>
             <div className="flex items-center space-x-2">
               <button
                 onClick={() => handleBulkStatus('Published')}
-                className="bg-[#171717] text-white px-3 py-1 rounded-lg text-[11px] font-semibold hover:bg-black"
+                className="bg-brand-gradient text-white px-3 py-1 rounded-lg text-[11px] font-semibold shadow-brand"
               >
                 Publish Selected
               </button>
@@ -169,7 +169,7 @@ export default function AdminPropertiesPage() {
                     type="checkbox"
                     checked={selectedIds.length === filteredProperties.length && filteredProperties.length > 0}
                     onChange={handleSelectAll}
-                    className="rounded border-[#171717]/20 text-[#7A2234]"
+                    className="rounded border-[#171717]/20 text-[#748C8C]"
                   />
                 </th>
                 <th className="p-4">Property</th>
@@ -187,7 +187,7 @@ export default function AdminPropertiesPage() {
               {loading ? (
                 <tr>
                   <td colSpan={9} className="p-8 text-center text-[#6B6B6B]">
-                    <Loader2 className="w-6 h-6 mx-auto animate-spin text-[#7A2234] mb-2" />
+                    <Loader2 className="w-6 h-6 mx-auto animate-spin text-[#748C8C] mb-2" />
                     Loading properties from database...
                   </td>
                 </tr>
@@ -200,7 +200,7 @@ export default function AdminPropertiesPage() {
                         type="checkbox"
                         checked={selectedIds.includes(property.id)}
                         onChange={() => handleSelectOne(property.id)}
-                        className="rounded border-[#171717]/20 text-[#7A2234]"
+                        className="rounded border-[#171717]/20 text-[#748C8C]"
                       />
                     </td>
 
@@ -212,7 +212,7 @@ export default function AdminPropertiesPage() {
                           className="w-12 h-12 rounded-xl object-cover border border-[#171717]/10 shrink-0"
                         />
                         <div className="max-w-xs truncate">
-                          <Link href={`/biens/${property.slug}`} target="_blank" className="font-semibold text-[#171717] hover:text-[#7A2234] truncate block">
+                          <Link href={`/biens/${property.slug}`} target="_blank" className="font-semibold text-[#171717] hover:text-[#748C8C] truncate block">
                             {property.title}
                           </Link>
                           <span className="text-[11px] text-[#6B6B6B] block truncate">{property.address}</span>
@@ -249,13 +249,13 @@ export default function AdminPropertiesPage() {
 
                     <td className="p-4 text-center font-mono">{property.views || 0}</td>
 
-                    <td className="p-4 text-center font-mono font-bold text-[#7A2234]">{property.enquiriesCount || 0}</td>
+                    <td className="p-4 text-center font-mono font-bold text-[#748C8C]">{property.enquiriesCount || 0}</td>
 
                     <td className="p-4 text-right space-x-2">
                       <Link
                         href={`/biens/${property.slug}`}
                         target="_blank"
-                        className="inline-flex p-1.5 rounded-lg border border-[#171717]/10 hover:bg-[#7A2234] hover:text-white hover:border-[#7A2234] transition-colors"
+                        className="inline-flex p-1.5 rounded-lg border border-[#171717]/10 hover:bg-brand-gradient hover:text-white hover:border-[#748C8C] transition-colors"
                         title="View on Public Website"
                       >
                         <Eye className="w-3.5 h-3.5" />

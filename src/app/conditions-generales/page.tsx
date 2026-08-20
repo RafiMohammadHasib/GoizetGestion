@@ -15,7 +15,7 @@ export default function TermsConditionsPage() {
       <Breadcrumbs items={[{ label: language === 'fr' ? 'Conditions Générales' : 'Terms & Conditions' }]} />
 
       <div className="space-y-4">
-        <div className="inline-flex items-center space-x-2 text-xs font-semibold uppercase tracking-widest text-[#7A2234] bg-[#7A2234]/10 px-3.5 py-1 rounded-full border border-[#7A2234]/20">
+        <div className="inline-flex items-center space-x-2 text-xs font-semibold uppercase tracking-widest text-[#748C8C] bg-[#748C8C]/10 px-3.5 py-1 rounded-full border border-[#748C8C]/20">
           <Scale className="w-3.5 h-3.5" />
           <span>{language === 'fr' ? 'CADRE JURIDIQUE & CONTRACTUEL' : 'LEGAL & CONTRACTUAL TERMS'}</span>
         </div>
@@ -24,8 +24,8 @@ export default function TermsConditionsPage() {
         </h1>
         <p className="text-sm text-[#6F6255] font-light leading-relaxed">
           {language === 'fr'
-            ? 'Réglementation et conditions régissant l\'utilisation de la plateforme MAISON MÉRIDIA et les prestations de gestion locative.'
-            : 'Legal framework governing the use of MAISON MÉRIDIA digital services and property management advisory.'}
+            ? 'Réglementation et conditions régissant l\'utilisation de la plateforme GOIZET GESTION et les prestations de gestion locative.'
+            : 'Legal framework governing the use of GOIZET GESTION digital services and property management advisory.'}
         </p>
       </div>
 
@@ -34,7 +34,7 @@ export default function TermsConditionsPage() {
         <section className="space-y-3">
           <h2 className="font-serif-display text-xl font-semibold text-[#171512]">1. Objet et Champ d'Application</h2>
           <p>
-            Les présentes Conditions Générales d'Utilisation (CGU) définissent les règles d'accès et d'utilisation du site web édité par la société <strong>MAISON MÉRIDIA SARL</strong>. Tout utilisateur naviguant sur le site accepte sans réserve les présentes conditions.
+            Les présentes Conditions Générales d'Utilisation (CGU) définissent les règles d'accès et d'utilisation du site web édité par la société <strong>GOIZET GESTION SARL</strong>. Tout utilisateur naviguant sur le site accepte sans réserve les présentes conditions.
           </p>
         </section>
 

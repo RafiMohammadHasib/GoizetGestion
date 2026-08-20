@@ -75,7 +75,7 @@ export default function AdminCRMPage() {
   ]);
 
   const stages = [
-    { id: 'NEW', title: 'New Enquiries', color: 'bg-[#7A2234]' },
+    { id: 'NEW', title: 'New Enquiries', color: 'bg-[#748C8C]' },
     { id: 'CONTACTED', title: 'Contacted', color: 'bg-amber-600' },
     { id: 'QUALIFIED', title: 'Qualified', color: 'bg-blue-600' },
     { id: 'APPOINTMENT', title: 'Appointment', color: 'bg-purple-600' },
@@ -120,8 +120,8 @@ export default function AdminCRMPage() {
       {/* Header & Filter Controls */}
       <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 pb-4 border-b border-[#171717]/10">
         <div>
-          <span className="text-[10px] font-bold uppercase tracking-widest text-[#7A2234]">
-            MAISON MÉRIDIA CRM PIPELINE
+          <span className="text-[10px] font-bold uppercase tracking-widest text-[#748C8C]">
+            GOIZET GESTION CRM PIPELINE
           </span>
           <h1 className="font-serif-display text-3xl font-semibold text-[#171717]">
             Lead Management & Sales Funnel
@@ -140,7 +140,7 @@ export default function AdminCRMPage() {
               key={f.id}
               onClick={() => setFilterType(f.id)}
               className={`px-3 py-1.5 rounded-xl transition-all ${
-                filterType === f.id ? 'bg-[#171717] text-white shadow' : 'bg-white border text-[#6B6B6B] hover:text-[#171717]'
+                filterType === f.id ? 'bg-brand-gradient text-white shadow-brand' : 'bg-white border text-[#6B6B6B] hover:text-[#171717]'
               }`}
             >
               {f.label}
@@ -178,7 +178,7 @@ export default function AdminCRMPage() {
                   >
                     <div className="flex items-start justify-between">
                       <span className="font-semibold text-xs text-[#171717]">{lead.name}</span>
-                      <span className="text-[9px] font-bold uppercase text-[#7A2234] bg-[#7A2234]/10 px-1.5 py-0.5 rounded">
+                      <span className="text-[9px] font-bold uppercase text-[#748C8C] bg-[#748C8C]/10 px-1.5 py-0.5 rounded">
                         {lead.leadType}
                       </span>
                     </div>
@@ -240,7 +240,7 @@ export default function AdminCRMPage() {
               {/* Lead Top Header */}
               <div className="space-y-2">
                 <div className="flex items-center space-x-2">
-                  <span className="text-[10px] font-bold uppercase tracking-widest text-[#7A2234] bg-[#7A2234]/10 px-2.5 py-0.5 rounded-full">
+                  <span className="text-[10px] font-bold uppercase tracking-widest text-[#748C8C] bg-[#748C8C]/10 px-2.5 py-0.5 rounded-full">
                     {selectedLead.leadType}
                   </span>
                   <span className="text-xs text-[#6B6B6B]">Source: {selectedLead.source}</span>
@@ -252,7 +252,7 @@ export default function AdminCRMPage() {
               <div className="grid grid-cols-2 sm:grid-cols-3 gap-4 p-4 bg-[#F7F7F5] rounded-2xl border border-[#171717]/10 text-xs">
                 <div>
                   <span className="text-[10px] uppercase text-[#6B6B6B] block">Email</span>
-                  <a href={`mailto:${selectedLead.email}`} className="font-semibold text-[#7A2234] hover:underline truncate block">
+                  <a href={`mailto:${selectedLead.email}`} className="font-semibold text-[#748C8C] hover:underline truncate block">
                     {selectedLead.email}
                   </a>
                 </div>
@@ -290,11 +290,11 @@ export default function AdminCRMPage() {
                     placeholder="Add internal CRM note..."
                     value={newNote}
                     onChange={(e) => setNewNote(e.target.value)}
-                    className="flex-1 px-3.5 py-2.5 bg-[#F7F7F5] border border-[#171717]/15 rounded-xl text-xs focus:outline-none focus:border-[#7A2234]"
+                    className="flex-1 px-3.5 py-2.5 bg-[#F7F7F5] border border-[#171717]/15 rounded-xl text-xs focus:outline-none focus:border-[#748C8C]"
                   />
                   <button
                     type="submit"
-                    className="bg-[#171717] text-white px-4 py-2.5 rounded-xl text-xs font-semibold hover:bg-[#7A2234] transition-colors"
+                    className="bg-brand-gradient hover:bg-brand-gradient-hover text-white px-4 py-2.5 rounded-xl text-xs font-semibold shadow-brand transition-colors"
                   >
                     Add Note
                   </button>

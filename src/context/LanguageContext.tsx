@@ -12,7 +12,7 @@ interface Dictionary {
 }
 
 export const dictionary: Dictionary = {
-  // Header & Nav
+  // Navigation & Header
   navHome: { fr: 'Accueil', en: 'Home' },
   navRent: { fr: 'Louer', en: 'Rent' },
   navBuy: { fr: 'Acheter', en: 'Buy' },
@@ -43,6 +43,9 @@ export const dictionary: Dictionary = {
   btnSearch: { fr: 'Trouver un bien', en: 'Search Properties' },
   btnExploreAll: { fr: 'Découvrir tous nos biens', en: 'Explore All Properties' },
   linkOwnerHero: { fr: 'Vous souhaitez louer votre bien ?', en: 'Looking to rent out your property?' },
+  allPropertyTypes: { fr: 'Tous types de biens', en: 'All Property Types' },
+  allDistricts: { fr: 'Tous secteurs de Bordeaux', en: 'All Bordeaux Districts' },
+  anyBudget: { fr: 'Indifférent', en: 'Any Budget' },
 
   // Value Strip
   trust1Title: { fr: 'Orienté Résultats', en: 'Results Driven' },
@@ -57,7 +60,39 @@ export const dictionary: Dictionary = {
   // Services
   servicesBadge: { fr: 'NOS SERVICES IMMOBILIERS', en: 'OUR REAL ESTATE SERVICES' },
   servicesTitle: { fr: 'Des prestations conçues pour maximiser votre patrimoine.', en: 'Tailored services engineered to maximize your portfolio.' },
-  
+  servicesLink: { fr: 'Découvrir tous nos mandats', en: 'Explore All Management Plans' },
+
+  // Luxury GSAP Slider
+  sliderBadge: { fr: 'COLLECTION EXCLUSIVE', en: 'EXCLUSIVE COLLECTION' },
+  sliderTitle: { fr: 'Les résidences d\'exception.', en: 'Luxury Bordeaux Residences.' },
+  sliderBtn: { fr: 'Découvrir cette résidence d\'exception', en: 'Explore Residence Details' },
+  price: { fr: 'Prix', en: 'Price' },
+  surface: { fr: 'Surface', en: 'Living Area' },
+  bedrooms: { fr: 'Chambres', en: 'Bedrooms' },
+  rooms: { fr: 'Pièces', en: 'Rooms' },
+  forRent: { fr: 'À Louer', en: 'For Rent' },
+  forSale: { fr: 'À Vendre', en: 'For Sale' },
+  exclusiveBadge: { fr: 'Exclusivité', en: 'Exclusive' },
+  perMonth: { fr: '/ mois', en: '/ mo' },
+
+  // Property Showcase Section
+  showcaseBadge: { fr: 'SÉLECTION PREMIUM DU MOMENT', en: 'CURRENT PREMIUM SELECTION' },
+  showcaseTitle: { fr: 'Nos dernières opportunités à Bordeaux.', en: 'Latest Featured Opportunities.' },
+  allPropertiesTab: { fr: 'Tous les biens', en: 'All Properties' },
+  apartmentsTab: { fr: 'Appartements', en: 'Apartments' },
+  townhousesTab: { fr: 'Échoppes & Maisons', en: 'Townhouses & Villas' },
+  salesTab: { fr: 'Ventes exclusives', en: 'Exclusive Sales' },
+  viewAllBtn: { fr: 'Voir tous les biens du catalogue', en: 'View All Available Properties' },
+
+  // Bordeaux Explorer
+  explorerBadge: { fr: 'EXPERTISES SECTORIELLES BORDEAUX', en: 'BORDEAUX DISTRICT EXPERTISE' },
+  explorerTitle: { fr: 'Bien plus qu\'une agence. Une parfaite maîtrise du territoire bordelais.', en: 'More Than An Agency. Comprehensive Mastery of Bordeaux.' },
+  explorerAll: { fr: 'Voir tous les secteurs de Bordeaux', en: 'View All Bordeaux Districts' },
+  avgRent: { fr: 'Loyer Moyen', en: 'Average Rent' },
+  avgSale: { fr: 'Prix Vente M2', en: 'Average Sale Price' },
+  demandScore: { fr: 'Tension', en: 'Demand' },
+  exploreDistrict: { fr: 'Explorer le quartier', en: 'Explore District' },
+
   // Landlord CTA
   ownerBadge: { fr: 'Propriétaires & Bailleurs à Bordeaux', en: 'Property Owners & Landlords in Bordeaux' },
   ownerTitle: { fr: 'Vous êtes propriétaire ?', en: 'Are you a property owner?' },
@@ -69,12 +104,42 @@ export const dictionary: Dictionary = {
   ownerStat1: { fr: 'de vacance locative moyenne', en: 'average vacancy duration' },
   ownerStat2: { fr: 'de garanties loyers impayés', en: 'rent default insurance coverage' },
   ownerStat3: { fr: 'de délai de réponse moyen', en: 'average advisory response time' },
+  ownerBtn: { fr: 'Estimer le loyer de mon bien', en: 'Valuate My Property Rent' },
+  ownerSecondaryBtn: { fr: 'Découvrir nos formules de gestion', en: 'Explore Management Plans' },
+
+  // Process Timeline
+  processBadge: { fr: 'LE PARCOURS PROPRIÉTAIRE', en: 'THE LANDLORD JOURNEY' },
+  processTitle: { fr: 'Une gestion locative fluide, étape par étape.', en: 'Seamless property management, step by step.' },
+  processSub: {
+    fr: 'Découvrez comment nous transformons la location de votre bien en une expérience sans friction.',
+    en: 'Discover how we turn renting out your property into a frictionless experience.'
+  },
+
+  // Testimonials
+  testimonialsBadge: { fr: 'TÉMOIGNAGES CLIENTS', en: 'CLIENT REVIEWS' },
+  testimonialsTitle: { fr: 'Ce que disent nos propriétaires & locataires.', en: 'What our owners & tenants say.' },
+  testimonialsSub: {
+    fr: 'Une confiance accordée au quotidien pour la gestion et la valorisation de leur patrimoine immobilier à Bordeaux.',
+    en: 'Daily trust placed in our team for managing and growing property wealth in Bordeaux.'
+  },
+
+  // Journal Section
+  journalBadge: { fr: 'LE JOURNAL IMMOBILIER', en: 'REAL ESTATE JOURNAL' },
+  journalTitle: { fr: 'Analyses, conseils & tendances du marché bordelais.', en: 'Market analysis, insights & Bordeaux trends.' },
+  journalAll: { fr: 'Consulter tous les articles du Journal', en: 'Browse All Journal Articles' },
+  readArticle: { fr: 'Lire l\'article', en: 'Read Article' },
 
   // Footer
   footerTagline: {
     fr: 'Une nouvelle vision de la gestion locative & de l\'immobilier bordelais.',
     en: 'A modern vision for property management & luxury real estate in Bordeaux.'
-  }
+  },
+
+  // Common UI
+  resetFilters: { fr: 'Réinitialiser', en: 'Reset Filters' },
+  loading: { fr: 'Chargement en cours…', en: 'Loading…' },
+  backToHome: { fr: 'Retour à l\'accueil', en: 'Back to Home' },
+  pageNotFound: { fr: 'Page non trouvée', en: 'Page Not Found' }
 };
 
 interface LanguageContextType {
@@ -86,7 +151,29 @@ interface LanguageContextType {
 const LanguageContext = createContext<LanguageContextType | undefined>(undefined);
 
 export function LanguageProvider({ children }: { children: React.ReactNode }) {
-  const [language, setLanguage] = useState<Language>('fr');
+  const [language, setLanguageState] = useState<Language>('fr');
+
+  useEffect(() => {
+    try {
+      const savedLang = localStorage.getItem('simplerent_lang') as Language;
+      if (savedLang === 'fr' || savedLang === 'en') {
+        setLanguageState(savedLang);
+        document.documentElement.lang = savedLang;
+      }
+    } catch {
+      // Ignore localStorage errors
+    }
+  }, []);
+
+  const setLanguage = (lang: Language) => {
+    setLanguageState(lang);
+    try {
+      localStorage.setItem('simplerent_lang', lang);
+      document.documentElement.lang = lang;
+    } catch {
+      // Ignore localStorage errors
+    }
+  };
 
   const t = (key: string): string => {
     if (dictionary[key]) {
@@ -109,3 +196,4 @@ export function useLanguage() {
   }
   return context;
 }
+

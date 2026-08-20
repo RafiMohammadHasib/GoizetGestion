@@ -31,8 +31,8 @@ export default function AdminOwnersPage() {
     <div className="space-y-8 max-w-5xl mx-auto">
       <div className="flex items-center justify-between pb-4 border-b border-[#171717]/10">
         <div>
-          <span className="text-[10px] font-bold uppercase tracking-widest text-[#7A2234]">
-            MAISON MÉRIDIA OWNER CRM
+          <span className="text-[10px] font-bold uppercase tracking-widest text-[#748C8C]">
+            GOIZET GESTION OWNER CRM
           </span>
           <h1 className="font-serif-display text-3xl font-semibold text-[#171717]">
             Property Owners Database ({owners.length})
@@ -45,7 +45,7 @@ export default function AdminOwnersPage() {
           <div key={owner.id} className="bg-white p-6 rounded-3xl border border-[#171717]/10 shadow-xs space-y-4">
             <div className="flex items-start justify-between">
               <div>
-                <span className="text-[10px] font-bold uppercase text-[#7A2234] bg-[#7A2234]/10 px-2.5 py-0.5 rounded-full">
+                <span className="text-[10px] font-bold uppercase text-[#748C8C] bg-[#748C8C]/10 px-2.5 py-0.5 rounded-full">
                   {owner.status}
                 </span>
                 <h2 className="font-serif-display text-2xl font-medium text-[#171717] mt-1">{owner.name}</h2>
@@ -57,15 +57,15 @@ export default function AdminOwnersPage() {
 
             <div className="space-y-2 text-[#6B6B6B]">
               <div className="flex items-center space-x-2">
-                <Mail className="w-3.5 h-3.5 text-[#7A2234]" />
+                <Mail className="w-3.5 h-3.5 text-[#748C8C]" />
                 <span>{owner.email}</span>
               </div>
               <div className="flex items-center space-x-2">
-                <Phone className="w-3.5 h-3.5 text-[#7A2234]" />
+                <Phone className="w-3.5 h-3.5 text-[#748C8C]" />
                 <span>{owner.phone}</span>
               </div>
               <div className="flex items-center space-x-2">
-                <MapPin className="w-3.5 h-3.5 text-[#7A2234]" />
+                <MapPin className="w-3.5 h-3.5 text-[#748C8C]" />
                 <span>{owner.address}</span>
               </div>
             </div>

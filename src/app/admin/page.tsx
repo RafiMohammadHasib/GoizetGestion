@@ -42,8 +42,8 @@ export default function AdminDashboardPage() {
       {/* Header Banner */}
       <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 pb-4 border-b border-[#171717]/10">
         <div>
-          <span className="text-[10px] font-bold uppercase tracking-widest text-[#7A2234]">
-            MAISON MÉRIDIA SAAS OS
+          <span className="text-[10px] font-bold uppercase tracking-widest text-[#748C8C]">
+            GOIZET GESTION SAAS OS
           </span>
           <h1 className="font-serif-display text-3xl font-semibold text-[#171717]">
             Real Estate Operations Overview
@@ -58,7 +58,7 @@ export default function AdminDashboardPage() {
                 key={period}
                 onClick={() => setTimeFilter(period)}
                 className={`px-3 py-1 rounded-lg transition-all ${
-                  timeFilter === period ? 'bg-[#171717] text-white' : 'text-[#6B6B6B] hover:text-[#171717]'
+                  timeFilter === period ? 'bg-brand-gradient text-white shadow-brand' : 'text-[#6B6B6B] hover:text-[#171717]'
                 }`}
               >
                 {period}
@@ -68,7 +68,7 @@ export default function AdminDashboardPage() {
 
           <Link
             href="/admin/properties/new"
-            className="bg-[#7A2234] hover:bg-[#5C1D27] text-white px-4 py-2 rounded-xl text-xs font-semibold shadow flex items-center space-x-1.5 whitespace-nowrap"
+            className="bg-brand-gradient hover:bg-brand-gradient-hover text-white px-4 py-2 rounded-xl text-xs font-semibold shadow-brand flex items-center space-x-1.5 whitespace-nowrap"
           >
             <Plus className="w-4 h-4" />
             <span>Add Property</span>
@@ -90,7 +90,7 @@ export default function AdminDashboardPage() {
             >
               <div className="flex items-center justify-between">
                 <span className="text-[11px] font-semibold text-[#6B6B6B] uppercase tracking-wider">{kpi.title}</span>
-                <div className="w-8 h-8 rounded-lg bg-[#7A2234]/10 text-[#7A2234] flex items-center justify-center">
+                <div className="w-8 h-8 rounded-lg bg-[#748C8C]/10 text-[#748C8C] flex items-center justify-center">
                   <Icon className="w-4 h-4" />
                 </div>
               </div>
@@ -128,7 +128,7 @@ export default function AdminDashboardPage() {
             {[45, 60, 52, 78, 85, 92, 110, 95, 120, 108, 128, 142].map((val, idx) => (
               <div key={idx} className="flex-1 flex flex-col items-center gap-2 group">
                 <div 
-                  className="w-full bg-[#171717] group-hover:bg-[#7A2234] rounded-t-lg transition-all duration-300 relative"
+                  className="w-full bg-[#171717] group-hover:bg-[#748C8C] rounded-t-lg transition-all duration-300 relative"
                   style={{ height: `${(val / 150) * 100}%` }}
                 >
                   <span className="opacity-0 group-hover:opacity-100 absolute -top-7 left-1/2 -translate-x-1/2 bg-[#171717] text-white text-[10px] px-1.5 py-0.5 rounded font-mono transition-opacity whitespace-nowrap">
@@ -162,16 +162,16 @@ export default function AdminDashboardPage() {
           <div className="bg-white p-6 rounded-3xl border border-[#171717]/10 shadow-xs space-y-4">
             <h2 className="font-serif-display text-xl font-medium text-[#171717]">Quick SaaS Actions</h2>
             <div className="grid grid-cols-2 gap-2 text-xs font-semibold">
-              <Link href="/admin/properties/new" className="p-3 bg-[#F7F7F5] hover:bg-[#7A2234] hover:text-white rounded-xl transition-colors text-center block">
+              <Link href="/admin/properties/new" className="p-3 bg-[#F7F7F5] hover:bg-[#748C8C] hover:text-white rounded-xl transition-colors text-center block">
                 + Property
               </Link>
-              <Link href="/admin/blog/new" className="p-3 bg-[#F7F7F5] hover:bg-[#7A2234] hover:text-white rounded-xl transition-colors text-center block">
+              <Link href="/admin/blog/new" className="p-3 bg-[#F7F7F5] hover:bg-[#748C8C] hover:text-white rounded-xl transition-colors text-center block">
                 + Blog Article
               </Link>
-              <Link href="/admin/owners" className="p-3 bg-[#F7F7F5] hover:bg-[#7A2234] hover:text-white rounded-xl transition-colors text-center block">
+              <Link href="/admin/owners" className="p-3 bg-[#F7F7F5] hover:bg-[#748C8C] hover:text-white rounded-xl transition-colors text-center block">
                 + Owner CRM
               </Link>
-              <Link href="/admin/cms/homepage" className="p-3 bg-[#F7F7F5] hover:bg-[#7A2234] hover:text-white rounded-xl transition-colors text-center block">
+              <Link href="/admin/cms/homepage" className="p-3 bg-[#F7F7F5] hover:bg-[#748C8C] hover:text-white rounded-xl transition-colors text-center block">
                 CMS Editor
               </Link>
             </div>
@@ -191,7 +191,7 @@ export default function AdminDashboardPage() {
                 <div key={idx} className="p-3 bg-[#F7F7F5] rounded-xl border border-[#171717]/5 space-y-1">
                   <div className="flex justify-between items-start">
                     <span className="font-semibold text-[#171717]">{t.title}</span>
-                    <span className="text-[10px] font-bold text-[#7A2234]">{t.priority}</span>
+                    <span className="text-[10px] font-bold text-[#748C8C]">{t.priority}</span>
                   </div>
                   <div className="flex justify-between text-[10px] text-[#6B6B6B]">
                     <span>Due: {t.due}</span>
@@ -210,7 +210,7 @@ export default function AdminDashboardPage() {
       <div className="bg-white p-6 rounded-3xl border border-[#171717]/10 shadow-xs space-y-4">
         <div className="flex items-center justify-between">
           <h2 className="font-serif-display text-xl font-medium text-[#171717]">Recent Business Activity</h2>
-          <Link href="/admin/crm" className="text-xs font-semibold text-[#7A2234] hover:underline flex items-center space-x-1">
+          <Link href="/admin/crm" className="text-xs font-semibold text-[#748C8C] hover:underline flex items-center space-x-1">
             <span>View All CRM Activities</span>
             <ArrowUpRight className="w-3.5 h-3.5" />
           </Link>
@@ -220,7 +220,7 @@ export default function AdminDashboardPage() {
           {recentActivities.map((act, idx) => (
             <div key={idx} className="py-3 flex items-center justify-between">
               <div className="flex items-center space-x-3">
-                <div className="w-2 h-2 rounded-full bg-[#7A2234]" />
+                <div className="w-2 h-2 rounded-full bg-[#748C8C]" />
                 <span>
                   <strong className="text-[#171717] font-semibold">{act.user}</strong> {act.action}
                 </span>

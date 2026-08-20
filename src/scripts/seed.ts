@@ -1,6 +1,6 @@
 import { resetAndSeedDb } from '../lib/db';
 
-console.log('🌱 Starting MAISON MÉRIDIA Database Seeding Process...');
+console.log('🌱 Starting GOIZET GESTION Database Seeding Process...');
 
 try {
   const seed = resetAndSeedDb();

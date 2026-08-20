@@ -46,7 +46,7 @@ export default function ValueStrip() {
                 transition={{ duration: 0.5, delay: index * 0.1 }}
                 className="flex items-start space-x-4 p-4 rounded-xl hover:bg-white transition-colors duration-300 border border-transparent hover:border-[#171512]/5"
               >
-                <div className="w-10 h-10 rounded-full bg-[#7A2234]/10 text-[#7A2234] flex items-center justify-center shrink-0">
+                <div className="w-10 h-10 rounded-full bg-[#748C8C]/15 text-[#748C8C] flex items-center justify-center shrink-0">
                   <Icon className="w-5 h-5" />
                 </div>
                 <div>

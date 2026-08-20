@@ -28,27 +28,37 @@ export default function Footer({ onOpenCallback, onOpenCookieSettings }: FooterP
   };
 
   return (
-    <footer className="bg-[#12100E] text-[#F7F5F0] pt-24 pb-12 border-t border-white/10 relative overflow-hidden">
+    <footer className="bg-[#121818] text-[#F7F5F0] pt-24 pb-12 border-t border-white/10 relative overflow-hidden">
       
       {/* Background Subtle Gradient Glow */}
-      <div className="absolute top-0 right-1/4 w-96 h-96 bg-[#7A2234]/10 blur-[140px] pointer-events-none" />
+      <div className="absolute top-0 right-1/4 w-[500px] h-[500px] bg-[#748C8C]/15 blur-[160px] pointer-events-none rounded-full" />
+      <div className="absolute bottom-0 left-1/4 w-[400px] h-[400px] bg-[#4F6565]/15 blur-[140px] pointer-events-none rounded-full" />
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 space-y-16">
         
         {/* Top Editorial Callout & Newsletter Glass Card */}
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 pb-16 border-b border-white/10 items-center">
           
-          <div className="lg:col-span-6 space-y-4">
-            <div className="inline-flex items-center space-x-2 text-[10px] font-bold uppercase tracking-widest text-[#7A2234] bg-[#7A2234]/15 px-3 py-1 rounded-full border border-[#7A2234]/30">
+          <div className="lg:col-span-6 space-y-5">
+            <div className="flex items-center space-x-3">
+              {/* eslint-disable-next-line @next/next/no-img-element */}
+              <img
+                src="/logo-cream.png"
+                alt="GOIZET GESTION"
+                className="h-10 w-auto object-contain"
+              />
+            </div>
+
+            <div className="inline-flex items-center space-x-2 text-[10px] font-bold uppercase tracking-widest text-[#748C8C] bg-[#748C8C]/15 px-3 py-1 rounded-full border border-[#748C8C]/30">
               <Sparkles className="w-3 h-3" />
-              <span>MAISON MÉRIDIA BORDEAUX</span>
+              <span>GOIZET GESTION BORDEAUX</span>
             </div>
 
             <h2 className="font-serif-display text-4xl sm:text-6xl font-light text-white leading-tight">
               {t('footerTagline')}
             </h2>
 
-            <p className="text-sm text-[#9E9285] max-w-xl font-light leading-relaxed">
+            <p className="text-sm text-[#A2B2B2] max-w-xl font-light leading-relaxed">
               {language === 'fr'
                 ? 'Nous allions la réactivité d\'une plateforme technologique moderne à l\'exigence d\'une maison de conseil immobilier sur-mesure. Transparence, valorisation et rendement optimisé.'
                 : 'We combine the speed of a modern technology platform with the standards of a boutique real estate advisory. Transparency, asset valuation, and optimized returns.'}
@@ -57,7 +67,7 @@ export default function Footer({ onOpenCallback, onOpenCookieSettings }: FooterP
             <div className="flex flex-wrap gap-3 pt-2">
               <Link
                 href="/estimation"
-                className="bg-[#7A2234] hover:bg-[#5C1D27] text-white py-3.5 px-6 rounded-full font-semibold text-xs transition-all duration-300 shadow-xl flex items-center space-x-2 whitespace-nowrap"
+                className="bg-brand-gradient hover:bg-brand-gradient-hover text-white py-3.5 px-6 rounded-full font-semibold text-xs transition-all duration-300 shadow-brand flex items-center space-x-2 whitespace-nowrap"
               >
                 <span>{t('btnEstimate')}</span>
                 <ArrowUpRight className="w-4 h-4" />
@@ -73,22 +83,23 @@ export default function Footer({ onOpenCallback, onOpenCookieSettings }: FooterP
           </div>
 
           {/* Newsletter Box */}
-          <div className="lg:col-span-6 bg-white/5 backdrop-blur-xl p-8 rounded-3xl border border-white/10 space-y-4">
-            <span className="text-[10px] font-bold uppercase tracking-widest text-[#7A2234] block">
+          <div className="lg:col-span-6 bg-white/5 backdrop-blur-xl p-8 rounded-3xl border border-white/10 space-y-4 shadow-2xl relative overflow-hidden">
+            <div className="absolute -top-12 -right-12 w-36 h-36 bg-[#748C8C]/20 blur-3xl pointer-events-none rounded-full" />
+            <span className="text-[10px] font-bold uppercase tracking-widest text-[#748C8C] block">
               {language === 'fr' ? 'LE JOURNAL & ANALYSES DE MARCHÉ' : 'NEWSLETTER & MARKET INSIGHTS'}
             </span>
             <h3 className="font-serif-display text-2xl font-medium text-white">
               {language === 'fr' ? 'Recevez nos études sur l\'immobilier à Bordeaux' : 'Receive our Bordeaux market reports'}
             </h3>
-            <p className="text-xs text-[#9E9285] leading-relaxed">
+            <p className="text-xs text-[#A2B2B2] leading-relaxed">
               {language === 'fr'
                 ? 'Analyses de la tension locative, plafonds de loyers et opportunités d\'investissement exclusives.'
                 : 'Quarterly rental yield reports, rent cap updates, and exclusive off-market listings.'}
             </p>
 
             {subscribed ? (
-              <div className="p-4 bg-[#7A2234]/20 border border-[#7A2234]/40 rounded-xl text-xs text-white flex items-center space-x-2">
-                <CheckCircle2 className="w-4 h-4 text-[#7A2234] shrink-0" />
+              <div className="p-4 bg-[#748C8C]/20 border border-[#748C8C]/40 rounded-xl text-xs text-white flex items-center space-x-2">
+                <CheckCircle2 className="w-4 h-4 text-[#748C8C] shrink-0" />
                 <span>{language === 'fr' ? 'Merci ! Vous êtes désormais inscrit à notre Journal.' : 'Thank you! You are now subscribed.'}</span>
               </div>
             ) : (
@@ -100,11 +111,11 @@ export default function Footer({ onOpenCallback, onOpenCookieSettings }: FooterP
                     placeholder={language === 'fr' ? 'votre.email@exemple.fr' : 'your.email@example.com'}
                     value={newsletterEmail}
                     onChange={(e) => setNewsletterEmail(e.target.value)}
-                    className="flex-1 bg-white/10 border border-white/20 px-4 py-3 rounded-xl text-xs text-white placeholder-white/40 focus:outline-none focus:border-[#7A2234]"
+                    className="flex-1 bg-white/10 border border-white/20 px-4 py-3 rounded-xl text-xs text-white placeholder-white/40 focus:outline-none focus:border-[#748C8C]"
                   />
                   <button
                     type="submit"
-                    className="bg-[#7A2234] hover:bg-[#5C1D27] text-white px-5 py-3 rounded-xl text-xs font-semibold transition-all flex items-center space-x-1 whitespace-nowrap shrink-0"
+                    className="bg-brand-gradient hover:bg-brand-gradient-hover text-white px-5 py-3 rounded-xl text-xs font-semibold transition-all flex items-center space-x-1 whitespace-nowrap shrink-0 shadow-brand"
                   >
                     <span>{language === 'fr' ? 'S\'abonner' : 'Subscribe'}</span>
                     <Send className="w-3.5 h-3.5" />
@@ -236,26 +247,40 @@ export default function Footer({ onOpenCallback, onOpenCookieSettings }: FooterP
           </div>
 
           {/* Col 5: Contact & Adresse */}
+          {/* Col 5: Contact & Adresse */}
           <div className="col-span-2 md:col-span-4 lg:col-span-1 space-y-4">
             <h3 className="font-semibold text-white uppercase tracking-wider text-[11px]">
-              {language === 'fr' ? 'Agence Bordeaux' : 'Bordeaux Office'}
+              {language === 'fr' ? 'Agence & Contacts' : 'Bordeaux Office & Contacts'}
             </h3>
-            <div className="space-y-3 text-[#9E9285] text-xs">
+            <div className="space-y-3 text-[#A2B2B2] text-xs">
               <div className="flex items-start space-x-2">
-                <MapPin className="w-4 h-4 text-[#7A2234] shrink-0 mt-0.5" />
+                <MapPin className="w-4 h-4 text-[#748C8C] shrink-0 mt-0.5" />
                 <span>38 Cours Portal, 33000 Bordeaux (Chartrons)</span>
               </div>
-              <div className="flex items-center space-x-2">
-                <Phone className="w-4 h-4 text-[#7A2234] shrink-0" />
-                <span>05 56 00 12 34</span>
+              <div className="space-y-1 pt-1 border-t border-white/5">
+                <a href="tel:+33695577033" className="flex items-center space-x-2 hover:text-white transition-colors">
+                  <Phone className="w-3.5 h-3.5 text-[#748C8C] shrink-0" />
+                  <span>Paul : +33 6 95 57 70 33</span>
+                </a>
+                <a href="tel:+33781968395" className="flex items-center space-x-2 hover:text-white transition-colors">
+                  <Phone className="w-3.5 h-3.5 text-[#748C8C] shrink-0" />
+                  <span>Edgar : +33 7 81 96 83 95</span>
+                </a>
               </div>
-              <div className="flex items-center space-x-2">
-                <Mail className="w-4 h-4 text-[#7A2234] shrink-0" />
-                <span>contact@maison-meridia.fr</span>
+              <div className="pt-1">
+                <a href="mailto:Goizetgestion@gmail.com" className="flex items-center space-x-2 hover:text-white transition-colors">
+                  <Mail className="w-4 h-4 text-[#748C8C] shrink-0" />
+                  <span className="truncate">Goizetgestion@gmail.com</span>
+                </a>
               </div>
-              <div className="pt-2 border-t border-white/5 flex items-center space-x-2 text-[10px] text-white/50">
-                <ShieldCheck className="w-3.5 h-3.5 text-[#7A2234]" />
-                <span>CPI 3301 2026 000 012 — CCI Bordeaux</span>
+              <div className="pt-2 border-t border-white/5 space-y-1 text-[10px] text-white/50">
+                <div className="flex items-center space-x-1.5">
+                  <ShieldCheck className="w-3.5 h-3.5 text-[#748C8C] shrink-0" />
+                  <span>CPI33012025000000128 (CCI Bordeaux)</span>
+                </div>
+                <div className="pl-5">
+                  <span>SIRET 944 393 487 00011</span>
+                </div>
               </div>
             </div>
           </div>
@@ -263,11 +288,11 @@ export default function Footer({ onOpenCallback, onOpenCookieSettings }: FooterP
         </div>
 
         {/* Bottom Legal, Copyright & Developer Credit Bar */}
-        <div className="pt-4 flex flex-col md:flex-row items-center justify-between text-[11px] text-[#9E9285] space-y-4 md:space-y-0">
+        <div className="pt-4 flex flex-col md:flex-row items-center justify-between text-[11px] text-[#A2B2B2] space-y-4 md:space-y-0">
           
           <div className="flex flex-col sm:flex-row sm:items-center space-y-1 sm:space-y-0 sm:space-x-4">
             <span>
-              © {new Date().getFullYear()} MAISON MÉRIDIA SARL. {language === 'fr' ? 'Tous droits réservés.' : 'All rights reserved.'}
+              © {new Date().getFullYear()} GOIZET GESTION. {language === 'fr' ? 'Tous droits réservés.' : 'All rights reserved.'}
             </span>
             <span className="hidden sm:inline text-white/20">•</span>
             <span>
@@ -276,7 +301,7 @@ export default function Footer({ onOpenCallback, onOpenCookieSettings }: FooterP
                 href="https://euroitechnology.com"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="font-semibold text-white hover:text-[#7A2234] transition-colors underline underline-offset-2"
+                className="font-semibold text-white hover:text-[#748C8C] transition-colors underline underline-offset-2"
               >
                 EURO IT
               </a>
@@ -297,7 +322,7 @@ export default function Footer({ onOpenCallback, onOpenCookieSettings }: FooterP
               onClick={onOpenCookieSettings}
               className="hover:text-white transition-colors inline-flex items-center space-x-1"
             >
-              <Cookie className="w-3 h-3 text-[#7A2234]" />
+              <Cookie className="w-3 h-3 text-[#748C8C]" />
               <span>{language === 'fr' ? 'Gérer les cookies' : 'Manage Cookies'}</span>
             </button>
           </div>

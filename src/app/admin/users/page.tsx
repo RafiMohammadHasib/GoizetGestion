@@ -54,7 +54,7 @@ export default function AdminUsersPage() {
       {/* Header */}
       <div className="flex items-center justify-between pb-4 border-b border-[#171717]/10">
         <div>
-          <span className="text-[10px] font-bold uppercase tracking-widest text-[#7A2234]">
+          <span className="text-[10px] font-bold uppercase tracking-widest text-[#748C8C]">
             RBAC ACCESS CONTROL
           </span>
           <h1 className="font-serif-display text-3xl font-semibold text-[#171717]">
@@ -73,7 +73,7 @@ export default function AdminUsersPage() {
           {users.map((u) => (
             <div key={u.id} className="p-4 flex items-center justify-between">
               <div className="flex items-center space-x-3">
-                <div className="w-10 h-10 rounded-full bg-[#7A2234]/10 text-[#7A2234] font-bold flex items-center justify-center">
+                <div className="w-10 h-10 rounded-full bg-[#748C8C]/10 text-[#748C8C] font-bold flex items-center justify-center">
                   {u.name.substring(0, 2).toUpperCase()}
                 </div>
                 <div>
@@ -83,7 +83,7 @@ export default function AdminUsersPage() {
               </div>
 
               <div className="flex items-center space-x-4">
-                <span className="font-bold text-[10px] uppercase text-[#7A2234] bg-[#7A2234]/10 px-2.5 py-1 rounded-full">
+                <span className="font-bold text-[10px] uppercase text-[#748C8C] bg-[#748C8C]/10 px-2.5 py-1 rounded-full">
                   {u.role}
                 </span>
                 <span className="text-[11px] text-emerald-600 font-semibold">Active</span>
@@ -111,7 +111,7 @@ export default function AdminUsersPage() {
           <input
             type="email"
             required
-            placeholder="email@maison-meridia.fr"
+            placeholder="email@goizet-gestion.fr"
             value={newEmail}
             onChange={(e) => setNewEmail(e.target.value)}
             className="sm:col-span-5 px-3.5 py-2.5 bg-[#F7F7F5] border border-[#171717]/15 rounded-xl font-medium"
@@ -130,7 +130,7 @@ export default function AdminUsersPage() {
           <div className="sm:col-span-12 flex justify-end">
             <button
               type="submit"
-              className="bg-[#7A2234] hover:bg-[#5C1D27] text-white px-6 py-2.5 rounded-xl font-semibold transition-colors shadow whitespace-nowrap"
+              className="bg-brand-gradient hover:bg-brand-gradient-hover text-white px-6 py-2.5 rounded-xl font-semibold transition-colors shadow-brand whitespace-nowrap"
             >
               Invite User
             </button>

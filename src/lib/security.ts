@@ -1,6 +1,6 @@
 /**
  * Security & Input Sanitization Utility Module
- * MAISON MÉRIDIA — Enterprise Security Protection
+ * GOIZET GESTION — Enterprise Security Protection
  */
 
 /**

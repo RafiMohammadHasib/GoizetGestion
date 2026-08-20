@@ -22,7 +22,7 @@ export default function GestionLocativePage() {
 
       {/* Editorial Header */}
       <div className="max-w-4xl space-y-6">
-        <span className="text-xs font-semibold uppercase tracking-widest text-[#7A2234]">
+        <span className="text-xs font-semibold uppercase tracking-widest text-[#748C8C]">
           {language === 'fr' ? 'MANDAT DE GESTION LOCATIVE SUR-MESURE' : 'BOUTIQUE PROPERTY MANAGEMENT AGREEMENT'}
         </span>
         <h1 className="font-serif-display text-4xl sm:text-7xl font-light text-[#171512] leading-[1.08]">
@@ -38,7 +38,7 @@ export default function GestionLocativePage() {
       {/* Interactive ROI & Fee Calculator */}
       <div className="bg-[#171512] text-white rounded-3xl p-8 sm:p-12 shadow-2xl border border-white/10 grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
         <div className="lg:col-span-6 space-y-6">
-          <div className="inline-flex items-center space-x-2 text-xs font-semibold uppercase tracking-widest text-[#7A2234]">
+          <div className="inline-flex items-center space-x-2 text-xs font-semibold uppercase tracking-widest text-[#748C8C]">
             <Calculator className="w-4 h-4" />
             <span>{language === 'fr' ? 'CALCULATEUR DE REVENUS NETS' : 'NET INCOME CALCULATOR'}</span>
           </div>
@@ -65,7 +65,7 @@ export default function GestionLocativePage() {
               step="50"
               value={rentAmount}
               onChange={(e) => setRentAmount(parseInt(e.target.value, 10))}
-              className="w-full accent-[#7A2234] cursor-pointer h-2 bg-white/20 rounded-lg"
+              className="w-full accent-[#748C8C] cursor-pointer h-2 bg-white/20 rounded-lg"
             />
             <div className="flex justify-between text-[10px] text-[#9E9285]">
               <span>500 €</span>
@@ -96,7 +96,7 @@ export default function GestionLocativePage() {
 
           <Link
             href="/estimation"
-            className="w-full bg-[#7A2234] hover:bg-[#5C1D27] text-white py-4 rounded-xl font-semibold text-xs transition-all shadow-xl flex items-center justify-center space-x-2 whitespace-nowrap"
+            className="w-full bg-brand-gradient hover:bg-brand-gradient-hover text-white py-4 rounded-xl font-semibold text-xs transition-all shadow-brand flex items-center justify-center space-x-2 whitespace-nowrap"
           >
             <span>{language === 'fr' ? 'Confier mon bien en gestion' : 'Start Management Agreement'}</span>
             <ArrowUpRight className="w-4 h-4" />

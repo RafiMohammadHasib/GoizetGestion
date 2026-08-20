@@ -21,7 +21,7 @@ export default function Breadcrumbs({ items }: BreadcrumbsProps) {
     <nav aria-label="Fil d'Ariane" className="flex items-center space-x-2 text-xs text-[#6F6255]">
       <Link
         href="/"
-        className="flex items-center space-x-1 hover:text-[#7A2234] transition-colors"
+        className="flex items-center space-x-1 hover:text-[#748C8C] transition-colors"
       >
         <Home className="w-3.5 h-3.5" />
         <span>{language === 'fr' ? 'Accueil' : 'Home'}</span>
@@ -39,7 +39,7 @@ export default function Breadcrumbs({ items }: BreadcrumbsProps) {
             ) : (
               <Link
                 href={item.href}
-                className="hover:text-[#7A2234] transition-colors truncate max-w-[180px]"
+                className="hover:text-[#748C8C] transition-colors truncate max-w-[180px]"
               >
                 {item.label}
               </Link>

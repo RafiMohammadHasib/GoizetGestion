@@ -84,8 +84,8 @@ export default function ContactPage() {
 
       {/* Header Banner */}
       <div className="space-y-4 max-w-3xl">
-        <span className="text-xs font-semibold uppercase tracking-widest text-[#7A2234]">
-          {language === 'fr' ? 'MAISON MÉRIDIA BORDEAUX' : 'BOUTIQUE AGENCY BORDEAUX'}
+        <span className="text-xs font-semibold uppercase tracking-widest text-[#748C8C]">
+          {language === 'fr' ? 'GOIZET GESTION BORDEAUX' : 'BOUTIQUE AGENCY BORDEAUX'}
         </span>
         <h1 className="font-serif-display text-4xl sm:text-6xl font-light text-[#171512] leading-tight">
           {language === 'fr' ? 'Discutons de votre projet immobilier.' : 'Let us discuss your real estate plans.'}
@@ -100,10 +100,10 @@ export default function ContactPage() {
       <div className="grid grid-cols-1 lg:grid-cols-12 gap-12">
         
         {/* Left Info & Agency Address */}
-        <div className="lg:col-span-5 space-y-8">
+        <div className="lg:col-span-5 space-y-6">
           <div className="bg-[#171512] text-white p-8 rounded-3xl space-y-6 shadow-2xl border border-white/10">
-            <span className="text-[10px] font-bold uppercase tracking-widest text-[#7A2234]">
-              {language === 'fr' ? 'SIÈGE BORDEAUX' : 'BORDEAUX HEADQUARTERS'}
+            <span className="text-[10px] font-bold uppercase tracking-widest text-[#748C8C]">
+              {language === 'fr' ? 'SIÈGE BORDEAUX & CONTACTS' : 'BORDEAUX HEADQUARTERS & CONTACTS'}
             </span>
             <h2 className="font-serif-display text-3xl font-light">
               38 Cours Portal, 33000 Bordeaux
@@ -112,37 +112,76 @@ export default function ContactPage() {
               {language === 'fr' ? 'Au cœur du quartier historique des Chartrons.' : 'Located in the historic Chartrons district.'}
             </p>
 
-            <div className="space-y-4 text-xs pt-4 border-t border-white/10">
-              <div className="flex items-center space-x-3">
-                <Phone className="w-4 h-4 text-[#7A2234]" />
-                <span>05 56 00 12 34</span>
+            {/* Direct Executive Contacts */}
+            <div className="space-y-4 pt-4 border-t border-white/10 text-xs">
+              
+              {/* Paul Goizet */}
+              <div className="bg-white/5 p-4 rounded-2xl border border-white/10 space-y-2">
+                <div className="flex items-center justify-between">
+                  <span className="font-serif-display text-base font-semibold text-white">Paul Goizet</span>
+                  <span className="text-[10px] font-bold uppercase tracking-wider text-[#748C8C] bg-[#748C8C]/15 px-2.5 py-0.5 rounded-full">
+                    {language === 'fr' ? 'Associé Fondateur' : 'Founding Partner'}
+                  </span>
+                </div>
+                <div className="space-y-1.5 text-white/80">
+                  <a href="tel:+33695577033" className="flex items-center space-x-2.5 hover:text-[#748C8C] transition-colors">
+                    <Phone className="w-3.5 h-3.5 text-[#748C8C]" />
+                    <span className="font-medium">+33 6 95 57 70 33</span>
+                  </a>
+                  <a href="mailto:Goizetgestion@gmail.com" className="flex items-center space-x-2.5 hover:text-[#748C8C] transition-colors">
+                    <Mail className="w-3.5 h-3.5 text-[#748C8C]" />
+                    <span>Goizetgestion@gmail.com</span>
+                  </a>
+                </div>
               </div>
-              <div className="flex items-center space-x-3">
-                <Mail className="w-4 h-4 text-[#7A2234]" />
-                <span>contact@maison-meridia.fr</span>
+
+              {/* Edgar Goizet */}
+              <div className="bg-white/5 p-4 rounded-2xl border border-white/10 space-y-2">
+                <div className="flex items-center justify-between">
+                  <span className="font-serif-display text-base font-semibold text-white">Edgar Goizet</span>
+                  <span className="text-[10px] font-bold uppercase tracking-wider text-[#748C8C] bg-[#748C8C]/15 px-2.5 py-0.5 rounded-full">
+                    {language === 'fr' ? 'Associé Fondateur' : 'Founding Partner'}
+                  </span>
+                </div>
+                <div className="space-y-1.5 text-white/80">
+                  <a href="tel:+33781968395" className="flex items-center space-x-2.5 hover:text-[#748C8C] transition-colors">
+                    <Phone className="w-3.5 h-3.5 text-[#748C8C]" />
+                    <span className="font-medium">+33 7 81 96 83 95</span>
+                  </a>
+                  <a href="mailto:Goizetgestion@gmail.com" className="flex items-center space-x-2.5 hover:text-[#748C8C] transition-colors">
+                    <Mail className="w-3.5 h-3.5 text-[#748C8C]" />
+                    <span>Goizetgestion@gmail.com</span>
+                  </a>
+                </div>
               </div>
-              <div className="flex items-center space-x-3">
-                <Clock className="w-4 h-4 text-[#7A2234]" />
-                <span>{language === 'fr' ? 'Lundi — Vendredi : 9h00 - 19h00' : 'Mon — Fri: 9:00 AM - 7:00 PM'}</span>
+
+              <div className="flex items-center space-x-3 pt-2 text-[#9E9285]">
+                <Clock className="w-4 h-4 text-[#748C8C] shrink-0" />
+                <span>{language === 'fr' ? 'Lundi — Vendredi : 9h00 - 19h00 (Sur rendez-vous)' : 'Mon — Fri: 9:00 AM - 7:00 PM (By appointment)'}</span>
               </div>
             </div>
           </div>
 
-          <div className="bg-white p-6 rounded-2xl border border-[#171512]/10 space-y-3">
+          <div className="bg-white p-6 rounded-3xl border border-[#171512]/10 space-y-3 shadow-sm">
             <div className="flex items-center space-x-2 text-xs font-semibold text-[#171512]">
-              <ShieldCheck className="w-4 h-4 text-[#7A2234]" />
-              <span>{language === 'fr' ? 'Carte Professionnelle CPI & Protection RGPD' : 'Licensed Real Estate Broker & Data Privacy'}</span>
+              <ShieldCheck className="w-4 h-4 text-[#748C8C]" />
+              <span>{language === 'fr' ? 'Habilitations & Enregistrement Légal' : 'Official Certifications & Legal Registration'}</span>
             </div>
-            <p className="text-xs text-[#6F6255]">
-              CPI 3301 2026 000 012 — Traitement de données 100% sécurisé et chiffré.
-            </p>
+            <div className="space-y-1.5 text-xs text-[#6F6255] border-t border-[#171512]/10 pt-3">
+              <p>
+                <strong>SIRET :</strong> 944 393 487 00011 (RCS Bordeaux)
+              </p>
+              <p>
+                <strong>{language === 'fr' ? 'Carte Professionnelle :' : 'Professional License:'}</strong> N° CPI33012025000000128 (Transactions & Gestion immobilière — CCI Bordeaux)
+              </p>
+            </div>
           </div>
         </div>
 
         {/* Right Contact Form with Secure API Submission */}
         <div className="lg:col-span-7 bg-white rounded-3xl p-8 sm:p-10 border border-[#171512]/10 shadow-2xl space-y-6">
           <div className="space-y-1">
-            <span className="text-[10px] font-bold uppercase tracking-wider text-[#7A2234]">
+            <span className="text-[10px] font-bold uppercase tracking-wider text-[#748C8C]">
               {language === 'fr' ? 'FORMULAIRE DE CONTACT SÉCURISÉ' : 'SECURE CONTACT FORM'}
             </span>
             <h2 className="font-serif-display text-2xl font-medium text-[#171512]">
@@ -158,15 +197,15 @@ export default function ContactPage() {
           )}
 
           {submitted ? (
-            <div className="p-8 bg-[#FAF9F6] rounded-2xl text-center space-y-3 border border-[#7A2234]/20">
-              <CheckCircle2 className="w-12 h-12 text-[#7A2234] mx-auto" />
+            <div className="p-8 bg-[#FAF9F6] rounded-2xl text-center space-y-3 border border-[#748C8C]/20">
+              <CheckCircle2 className="w-12 h-12 text-[#748C8C] mx-auto" />
               <h3 className="font-serif-display text-2xl font-medium text-[#171512]">
                 {language === 'fr' ? 'Message transmis avec succès' : 'Message Sent Successfully'}
               </h3>
               <p className="text-xs text-[#6F6255]">
                 {language === 'fr'
-                  ? 'Merci pour votre message. Un conseiller Maison Méridia étudie votre demande et vous rappelle dans un délai de 2 heures.'
-                  : 'Thank you for reaching out. A Maison Méridia advisor will review your message and reach out within 2 hours.'}
+                  ? 'Merci pour votre message. Un conseiller Goizet Gestion étudie votre demande et vous rappelle dans un délai de 2 heures.'
+                  : 'Thank you for reaching out. A Goizet Gestion advisor will review your message and reach out within 2 hours.'}
               </p>
             </div>
           ) : (
@@ -182,7 +221,7 @@ export default function ContactPage() {
                     placeholder="Sophie Martin"
                     value={formData.fullName}
                     onChange={(e) => setFormData({ ...formData, fullName: e.target.value })}
-                    className="w-full px-4 py-3 bg-[#FAF9F6] border border-[#171512]/15 rounded-xl font-medium focus:outline-none focus:border-[#7A2234] focus:ring-1 focus:ring-[#7A2234] transition-all"
+                    className="w-full px-4 py-3 bg-[#FAF9F6] border border-[#171512]/15 rounded-xl font-medium focus:outline-none focus:border-[#748C8C] focus:ring-1 focus:ring-[#748C8C] transition-all"
                   />
                 </div>
                 <div>
@@ -195,7 +234,7 @@ export default function ContactPage() {
                     placeholder="06 12 34 56 78"
                     value={formData.phone}
                     onChange={(e) => setFormData({ ...formData, phone: e.target.value })}
-                    className="w-full px-4 py-3 bg-[#FAF9F6] border border-[#171512]/15 rounded-xl font-medium focus:outline-none focus:border-[#7A2234] focus:ring-1 focus:ring-[#7A2234] transition-all"
+                    className="w-full px-4 py-3 bg-[#FAF9F6] border border-[#171512]/15 rounded-xl font-medium focus:outline-none focus:border-[#748C8C] focus:ring-1 focus:ring-[#748C8C] transition-all"
                   />
                 </div>
               </div>
@@ -210,7 +249,7 @@ export default function ContactPage() {
                   placeholder="sophie.martin@exemple.fr"
                   value={formData.email}
                   onChange={(e) => setFormData({ ...formData, email: e.target.value })}
-                  className="w-full px-4 py-3 bg-[#FAF9F6] border border-[#171512]/15 rounded-xl font-medium focus:outline-none focus:border-[#7A2234] focus:ring-1 focus:ring-[#7A2234] transition-all"
+                  className="w-full px-4 py-3 bg-[#FAF9F6] border border-[#171512]/15 rounded-xl font-medium focus:outline-none focus:border-[#748C8C] focus:ring-1 focus:ring-[#748C8C] transition-all"
                 />
               </div>
 
@@ -221,7 +260,7 @@ export default function ContactPage() {
                 <select
                   value={formData.subject}
                   onChange={(e) => setFormData({ ...formData, subject: e.target.value })}
-                  className="w-full px-4 py-3 bg-[#FAF9F6] border border-[#171512]/15 rounded-xl font-medium focus:outline-none focus:border-[#7A2234] focus:ring-1 focus:ring-[#7A2234] transition-all"
+                  className="w-full px-4 py-3 bg-[#FAF9F6] border border-[#171512]/15 rounded-xl font-medium focus:outline-none focus:border-[#748C8C] focus:ring-1 focus:ring-[#748C8C] transition-all"
                 >
                   <option value="Confier mon bien en gestion locative">{language === 'fr' ? 'Confier mon bien en gestion locative' : 'Property Management Agreement'}</option>
                   <option value="Demande d'estimation immobilière">{language === 'fr' ? 'Demande d\'estimation immobilière' : 'Property Valuation Request'}</option>
@@ -241,14 +280,14 @@ export default function ContactPage() {
                   placeholder={language === 'fr' ? 'Bonjour, je possède un appartement T3 aux Chartrons et je souhaite...' : 'Hello, I own a property in Bordeaux...'}
                   value={formData.message}
                   onChange={(e) => setFormData({ ...formData, message: e.target.value })}
-                  className="w-full px-4 py-3 bg-[#FAF9F6] border border-[#171512]/15 rounded-xl font-medium focus:outline-none focus:border-[#7A2234] focus:ring-1 focus:ring-[#7A2234] transition-all"
+                  className="w-full px-4 py-3 bg-[#FAF9F6] border border-[#171512]/15 rounded-xl font-medium focus:outline-none focus:border-[#748C8C] focus:ring-1 focus:ring-[#748C8C] transition-all"
                 />
               </div>
 
               <button
                 type="submit"
                 disabled={loading}
-                className="w-full bg-[#7A2234] hover:bg-[#5C1D27] text-white py-4 rounded-xl font-semibold text-xs transition-all shadow-xl flex items-center justify-center space-x-2 whitespace-nowrap disabled:opacity-50"
+                className="w-full bg-brand-gradient hover:bg-brand-gradient-hover text-white py-4 rounded-xl font-semibold text-xs transition-all shadow-brand flex items-center justify-center space-x-2 whitespace-nowrap disabled:opacity-50"
               >
                 <Send className="w-4 h-4" />
                 <span>{loading ? (language === 'fr' ? 'Traitement sécurisé...' : 'Processing...') : (language === 'fr' ? 'Transmettre mon message' : 'Send Message')}</span>

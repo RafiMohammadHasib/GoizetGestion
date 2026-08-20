@@ -57,7 +57,7 @@ export default function PropertyDetailPage() {
   if (pageLoading) {
     return (
       <div className="pt-40 pb-20 text-center space-y-4">
-        <Loader2 className="w-8 h-8 text-[#7A2234] mx-auto animate-spin" />
+        <Loader2 className="w-8 h-8 text-[#748C8C] mx-auto animate-spin" />
         <p className="text-xs text-[#6F6255]">
           {language === 'fr' ? 'Chargement du bien…' : 'Loading property…'}
         </p>
@@ -76,7 +76,7 @@ export default function PropertyDetailPage() {
             ? 'La propriété demandée n\'existe pas ou n\'est plus disponible.'
             : 'The requested property does not exist or is no longer available.'}
         </p>
-        <Link href="/biens" className="inline-block bg-[#7A2234] text-white px-6 py-2.5 rounded-full text-xs font-semibold">
+        <Link href="/biens" className="inline-block bg-brand-gradient text-white px-6 py-2.5 rounded-full text-xs font-semibold shadow-brand">
           {language === 'fr' ? 'Retour au catalogue' : 'Back to the catalog'}
         </Link>
       </div>
@@ -126,9 +126,9 @@ export default function PropertyDetailPage() {
               {property.transactionType === 'louer' ? (language === 'fr' ? 'À Louer' : 'For Rent') : (language === 'fr' ? 'À Vendre' : 'For Sale')}
             </span>
             {property.isExclusive && (
-              <span className="bg-[#7A2234] text-white text-[10px] font-bold uppercase tracking-wider px-3 py-1 rounded-full flex items-center space-x-1 whitespace-nowrap">
+              <span className="bg-brand-gradient text-white text-[10px] font-bold uppercase tracking-wider px-3 py-1 rounded-full flex items-center space-x-1 whitespace-nowrap shadow-brand">
                 <Sparkles className="w-3 h-3" />
-                <span>{language === 'fr' ? 'Exclusivité Maison Méridia' : 'Exclusive Listing'}</span>
+                <span>{language === 'fr' ? 'Exclusivité Goizet Gestion' : 'Exclusive Listing'}</span>
               </span>
             )}
             <span className="bg-white border border-[#171512]/10 text-[#171512] text-[10px] font-bold px-3 py-1 rounded-full whitespace-nowrap">
@@ -141,7 +141,7 @@ export default function PropertyDetailPage() {
           </h1>
 
           <div className="flex items-center space-x-2 text-xs text-[#6F6255]">
-            <MapPin className="w-4 h-4 text-[#7A2234]" />
+            <MapPin className="w-4 h-4 text-[#748C8C]" />
             <span>{property.address}</span>
           </div>
         </div>
@@ -180,7 +180,7 @@ export default function PropertyDetailPage() {
                 key={idx}
                 onClick={() => setActiveImage(idx)}
                 className={`relative w-28 h-20 rounded-xl overflow-hidden shrink-0 border-2 transition-all ${
-                  activeImage === idx ? 'border-[#7A2234] scale-95' : 'border-transparent opacity-70 hover:opacity-100'
+                  activeImage === idx ? 'border-[#748C8C] scale-95' : 'border-transparent opacity-70 hover:opacity-100'
                 }`}
               >
                 <img src={img} alt="" className="w-full h-full object-cover" />
@@ -198,22 +198,22 @@ export default function PropertyDetailPage() {
           
           <div className="grid grid-cols-2 sm:grid-cols-4 gap-4 bg-white p-6 rounded-2xl border border-[#171512]/10 shadow-sm text-center">
             <div className="space-y-1">
-              <Maximize2 className="w-5 h-5 text-[#7A2234] mx-auto" />
-              <span className="text-[10px] uppercase text-[#6F6255] block">Surface</span>
+              <Maximize2 className="w-5 h-5 text-[#748C8C] mx-auto" />
+              <span className="text-[10px] uppercase text-[#6F6255] block">{language === 'fr' ? 'Surface' : 'Living Area'}</span>
               <span className="font-semibold text-sm text-[#171512]">{property.surface} m²</span>
             </div>
             <div className="space-y-1">
-              <Bed className="w-5 h-5 text-[#7A2234] mx-auto" />
-              <span className="text-[10px] uppercase text-[#6F6255] block">Chambres</span>
+              <Bed className="w-5 h-5 text-[#748C8C] mx-auto" />
+              <span className="text-[10px] uppercase text-[#6F6255] block">{language === 'fr' ? 'Chambres' : 'Bedrooms'}</span>
               <span className="font-semibold text-sm text-[#171512]">{property.bedrooms}</span>
             </div>
             <div className="space-y-1">
-              <Bath className="w-5 h-5 text-[#7A2234] mx-auto" />
-              <span className="text-[10px] uppercase text-[#6F6255] block">Pièces</span>
+              <Bath className="w-5 h-5 text-[#748C8C] mx-auto" />
+              <span className="text-[10px] uppercase text-[#6F6255] block">{language === 'fr' ? 'Pièces' : 'Rooms'}</span>
               <span className="font-semibold text-sm text-[#171512]">{property.rooms}</span>
             </div>
             <div className="space-y-1">
-              <Calendar className="w-5 h-5 text-[#7A2234] mx-auto" />
+              <Calendar className="w-5 h-5 text-[#748C8C] mx-auto" />
               <span className="text-[10px] uppercase text-[#6F6255] block">Ref</span>
               <span className="font-semibold text-sm text-[#171512] font-mono">{property.reference}</span>
             </div>
@@ -224,7 +224,7 @@ export default function PropertyDetailPage() {
               {language === 'fr' ? 'Description du bien' : 'Property Overview'}
             </h2>
             <p className="text-sm text-[#6F6255] leading-relaxed font-light whitespace-pre-line">
-              {property.description}
+              {(language === 'en' && property.descriptionEn) ? property.descriptionEn : property.description}
             </p>
           </div>
 
@@ -235,7 +235,7 @@ export default function PropertyDetailPage() {
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
               {property.features?.map((feat: string) => (
                 <div key={feat} className="flex items-center space-x-2.5 bg-white p-3.5 rounded-xl border border-[#171512]/5 text-xs text-[#171512]">
-                  <Check className="w-4 h-4 text-[#7A2234] shrink-0" />
+                  <Check className="w-4 h-4 text-[#748C8C] shrink-0" />
                   <span>{feat}</span>
                 </div>
               ))}
@@ -248,7 +248,7 @@ export default function PropertyDetailPage() {
         <div className="lg:col-span-4 space-y-6">
           <div className="bg-white rounded-2xl p-6 sm:p-8 border border-[#171512]/10 shadow-xl space-y-6 sticky top-32">
             <div>
-              <span className="text-[10px] font-bold uppercase tracking-widest text-[#7A2234] block mb-1">
+              <span className="text-[10px] font-bold uppercase tracking-widest text-[#748C8C] block mb-1">
                 {language === 'fr' ? 'DEMANDE DE VISITE CRM' : 'BOOK A VIEWING'}
               </span>
               <h3 className="font-serif-display text-2xl font-medium text-[#171512]">
@@ -257,26 +257,36 @@ export default function PropertyDetailPage() {
             </div>
 
             {isBooked ? (
-              <div className="p-6 bg-[#FAF9F6] rounded-xl text-center space-y-2 border border-[#7A2234]/20">
-                <ShieldCheck className="w-10 h-10 text-[#7A2234] mx-auto" />
-                <h4 className="font-serif-display text-lg font-semibold text-[#171512]">Demande transmise au CRM</h4>
-                <p className="text-xs text-[#6F6255]">Un conseiller vous recontactera rapidement.</p>
+              <div className="p-6 bg-[#FAF9F6] rounded-xl text-center space-y-2 border border-[#748C8C]/20">
+                <ShieldCheck className="w-10 h-10 text-[#748C8C] mx-auto" />
+                <h4 className="font-serif-display text-lg font-semibold text-[#171512]">
+                  {language === 'fr' ? 'Demande transmise au CRM' : 'Viewing Request Confirmed'}
+                </h4>
+                <p className="text-xs text-[#6F6255]">
+                  {language === 'fr'
+                    ? 'Un conseiller vous recontactera rapidement.'
+                    : 'A dedicated advisor will contact you shortly to confirm the viewing.'}
+                </p>
               </div>
             ) : (
               <form onSubmit={handleInquiry} className="space-y-4 text-xs">
                 <div>
-                  <label className="block font-semibold uppercase tracking-wider text-[#171512] mb-1">Nom complet *</label>
+                  <label className="block font-semibold uppercase tracking-wider text-[#171512] mb-1">
+                    {language === 'fr' ? 'Nom complet *' : 'Full Name *'}
+                  </label>
                   <input
                     type="text"
                     required
                     value={name}
                     onChange={(e) => setName(e.target.value)}
-                    placeholder="Sarah Martin"
+                    placeholder={language === 'fr' ? 'Sarah Martin' : 'Sarah Martin'}
                     className="w-full px-3.5 py-3 bg-[#FAF9F6] border border-[#171512]/15 rounded-xl font-medium"
                   />
                 </div>
                 <div>
-                  <label className="block font-semibold uppercase tracking-wider text-[#171512] mb-1">Email *</label>
+                  <label className="block font-semibold uppercase tracking-wider text-[#171512] mb-1">
+                    {language === 'fr' ? 'Email *' : 'Email *'}
+                  </label>
                   <input
                     type="email"
                     required
@@ -287,7 +297,9 @@ export default function PropertyDetailPage() {
                   />
                 </div>
                 <div>
-                  <label className="block font-semibold uppercase tracking-wider text-[#171512] mb-1">Téléphone *</label>
+                  <label className="block font-semibold uppercase tracking-wider text-[#171512] mb-1">
+                    {language === 'fr' ? 'Téléphone *' : 'Phone *'}
+                  </label>
                   <input
                     type="tel"
                     required
@@ -298,22 +310,24 @@ export default function PropertyDetailPage() {
                   />
                 </div>
                 <div>
-                  <label className="block font-semibold uppercase tracking-wider text-[#171512] mb-1">Message</label>
+                  <label className="block font-semibold uppercase tracking-wider text-[#171512] mb-1">
+                    {language === 'fr' ? 'Message' : 'Message'}
+                  </label>
                   <textarea
                     rows={3}
                     value={message}
                     onChange={(e) => setMessage(e.target.value)}
-                    placeholder="Disponibilités souhaitées..."
+                    placeholder={language === 'fr' ? 'Disponibilités souhaitées...' : 'Preferred viewing schedule...'}
                     className="w-full px-3.5 py-3 bg-[#FAF9F6] border border-[#171512]/15 rounded-xl font-medium"
                   />
                 </div>
                 <button
                   type="submit"
                   disabled={loading}
-                  className="w-full bg-[#7A2234] hover:bg-[#5C1D27] text-white py-3.5 rounded-xl font-semibold text-xs shadow-md flex items-center justify-center space-x-2 whitespace-nowrap"
+                  className="w-full bg-brand-gradient hover:bg-brand-gradient-hover text-white py-3.5 rounded-xl font-semibold text-xs shadow-brand flex items-center justify-center space-x-2 whitespace-nowrap"
                 >
                   <Send className="w-4 h-4" />
-                  <span>{loading ? 'Transmet au CRM...' : 'Envoyer ma demande'}</span>
+                  <span>{loading ? (language === 'fr' ? 'Transmet au CRM...' : 'Submitting...') : (language === 'fr' ? 'Envoyer ma demande' : 'Submit Viewing Request')}</span>
                 </button>
               </form>
             )}

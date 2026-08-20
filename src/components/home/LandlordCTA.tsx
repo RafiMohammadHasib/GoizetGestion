@@ -31,7 +31,7 @@ export default function LandlordCTA() {
           transition={{ duration: 0.8 }}
           className="lg:col-span-7 space-y-6"
         >
-          <div className="inline-flex items-center space-x-2 text-xs font-semibold uppercase tracking-widest text-[#7A2234] bg-[#7A2234]/15 px-3.5 py-1 rounded-full border border-[#7A2234]/30 whitespace-nowrap">
+          <div className="inline-flex items-center space-x-2 text-xs font-semibold uppercase tracking-widest text-[#748C8C] bg-[#748C8C]/15 px-3.5 py-1 rounded-full border border-[#748C8C]/30 whitespace-nowrap">
             <Sparkles className="w-3.5 h-3.5" />
             <span>{t('ownerBadge')}</span>
           </div>
@@ -83,7 +83,7 @@ export default function LandlordCTA() {
           <div className="space-y-3">
             <Link
               href="/estimation"
-              className="w-full bg-[#7A2234] hover:bg-[#5C1D27] text-white py-4 px-6 rounded-xl font-semibold text-xs transition-all duration-300 shadow-xl flex items-center justify-center space-x-2 whitespace-nowrap"
+              className="w-full bg-brand-gradient hover:bg-brand-gradient-hover text-white py-4 px-6 rounded-xl font-semibold text-xs transition-all duration-300 shadow-brand flex items-center justify-center space-x-2 whitespace-nowrap"
             >
               <Calculator className="w-4 h-4" />
               <span>{language === 'fr' ? 'Lancer l\'estimation en ligne (2 min)' : 'Start Online Valuation (2 min)'}</span>

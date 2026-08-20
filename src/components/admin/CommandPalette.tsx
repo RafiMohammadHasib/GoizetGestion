@@ -95,7 +95,7 @@ export default function CommandPalette({ isOpen, onClose }: CommandPaletteProps)
                     className="flex items-center justify-between p-3 rounded-xl hover:bg-[#F7F7F5] cursor-pointer transition-colors"
                   >
                     <div className="flex items-center space-x-3">
-                      <div className="w-7 h-7 rounded-lg bg-[#7A2234]/10 text-[#7A2234] flex items-center justify-center">
+                      <div className="w-7 h-7 rounded-lg bg-[#748C8C]/10 text-[#748C8C] flex items-center justify-center">
                         <Icon className="w-4 h-4" />
                       </div>
                       <span className="font-semibold text-[#171717]">{item.label}</span>
@@ -115,7 +115,7 @@ export default function CommandPalette({ isOpen, onClose }: CommandPaletteProps)
 
           <div className="pt-2 border-t border-[#171717]/10 flex items-center justify-between text-[11px] text-[#6B6B6B] px-2">
             <span>ProTip: Press <kbd className="bg-[#F7F7F5] px-1.5 py-0.5 rounded border font-mono">⌘K</kbd> anywhere</span>
-            <span>MAISON MÉRIDIA SaaS OS</span>
+            <span>GOIZET GESTION SaaS OS</span>
           </div>
 
         </motion.div>

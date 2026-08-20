@@ -44,51 +44,57 @@ export default function Header({ onOpenCallback }: HeaderProps) {
   return (
     <>
       <header
-        className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ${
+        className={`fixed left-0 right-0 z-50 transition-all duration-500 ease-out ${
           isScrolled
-            ? 'py-3 bg-[#FAF9F6]/90 backdrop-blur-lg border-b border-[#171512]/10 shadow-sm'
-            : 'py-6 bg-gradient-to-b from-[#171512]/60 via-[#171512]/30 to-transparent text-white'
+            ? 'top-2 sm:top-4 px-3 sm:px-6 lg:px-8'
+            : 'top-0 px-4 sm:px-6 lg:px-8 bg-gradient-to-b from-[#171512]/80 via-[#171512]/40 to-transparent text-white'
         }`}
       >
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div
+          className={`max-w-7xl mx-auto transition-all duration-500 ease-out ${
+            isScrolled
+              ? 'bg-white/90 backdrop-blur-2xl border border-white/80 rounded-2xl sm:rounded-full shadow-[0_10px_35px_rgba(23,21,18,0.08)] py-2.5 sm:py-3 px-4 sm:px-6 lg:px-8'
+              : 'py-6 sm:py-8'
+          }`}
+        >
           <div className="flex items-center justify-between gap-4">
             
-            {/* Brand Logo - Acts as Home Link */}
-            <Link href="/" className="group flex items-baseline space-x-2 shrink-0">
-              <span className={`font-serif-display text-2xl sm:text-3xl font-medium tracking-tight whitespace-nowrap transition-colors ${
-                isScrolled ? 'text-[#171512]' : 'text-white'
-              }`}>
-                MAISON MÉRIDIA
-              </span>
-              <span className={`text-[10px] tracking-widest uppercase font-semibold whitespace-nowrap transition-colors ${
-                isScrolled ? 'text-[#7A2234]' : 'text-white/80'
-              }`}>
-                {t('badgeBordeaux')}
-              </span>
+            {/* Brand Logo - Prominent & Crisp */}
+            <Link href="/" className="group flex items-center space-x-3 shrink-0 py-1">
+              <div className="relative flex items-center transition-transform duration-300 group-hover:scale-105">
+                {/* eslint-disable-next-line @next/next/no-img-element */}
+                <img
+                  src={isScrolled ? "/logo-teal.png" : "/logo-cream.png"}
+                  alt="GOIZET GESTION"
+                  className={`w-auto object-contain transition-all duration-500 ${
+                    isScrolled ? 'h-8 sm:h-9' : 'h-10 sm:h-12'
+                  }`}
+                />
+              </div>
             </Link>
 
-            {/* Desktop Navigation Links (No 'Home' button) */}
-            <nav className="hidden lg:flex items-center space-x-3 xl:space-x-6 shrink-0">
+            {/* Desktop Navigation Links */}
+            <nav className="hidden lg:flex items-center space-x-4 xl:space-x-7 shrink-0">
               {navItems.map((item) => {
                 const isActive = pathname === item.href || (item.href !== '/' && pathname.startsWith(item.href));
                 return (
                   <Link
                     key={item.label}
                     href={item.href}
-                    className={`text-xs xl:text-sm font-medium transition-all duration-200 relative py-1 whitespace-nowrap shrink-0 ${
+                    className={`text-xs xl:text-sm font-medium tracking-wide transition-all duration-200 relative py-1.5 whitespace-nowrap shrink-0 ${
                       isScrolled
                         ? isActive
-                          ? 'text-[#7A2234] font-semibold'
-                          : 'text-[#171512]/80 hover:text-[#7A2234]'
+                          ? 'text-[#748C8C] font-semibold'
+                          : 'text-[#171512]/85 hover:text-[#748C8C]'
                         : isActive
                           ? 'text-white font-semibold'
-                          : 'text-white/80 hover:text-white'
+                          : 'text-white/85 hover:text-white'
                     }`}
                   >
                     {item.label}
                     {isActive && (
-                      <span className={`absolute bottom-0 left-0 right-0 h-[2px] rounded-full ${
-                        isScrolled ? 'bg-[#7A2234]' : 'bg-white'
+                      <span className={`absolute bottom-0 left-0 right-0 h-[2px] rounded-full transition-all duration-300 ${
+                        isScrolled ? 'bg-[#748C8C]' : 'bg-white'
                       }`} />
                     )}
                   </Link>
@@ -97,17 +103,17 @@ export default function Header({ onOpenCallback }: HeaderProps) {
             </nav>
 
             {/* Desktop Controls */}
-            <div className="hidden lg:flex items-center space-x-2 xl:space-x-3 shrink-0 ml-auto xl:ml-0">
+            <div className="hidden lg:flex items-center space-x-2.5 xl:space-x-3.5 shrink-0 ml-auto xl:ml-0">
               
               {/* Native Language Switcher Button (FR | EN) */}
-              <div className={`flex items-center space-x-1 p-1 rounded-full border text-[11px] font-semibold shrink-0 ${
-                isScrolled ? 'border-[#171512]/15 bg-white/50 text-[#171512]' : 'border-white/20 bg-white/10 text-white'
+              <div className={`flex items-center space-x-1 p-1 rounded-full border text-[11px] font-semibold shrink-0 transition-all ${
+                isScrolled ? 'border-[#171512]/15 bg-[#FAF9F6] text-[#171512]' : 'border-white/20 bg-white/10 text-white'
               }`}>
                 <button
                   onClick={() => setLanguage('fr')}
-                  className={`px-2 py-0.5 rounded-full transition-all whitespace-nowrap ${
+                  className={`px-2.5 py-0.5 rounded-full transition-all whitespace-nowrap ${
                     language === 'fr'
-                      ? 'bg-[#7A2234] text-white shadow-xs'
+                      ? 'bg-brand-gradient text-white shadow-xs'
                       : 'hover:opacity-100 opacity-70'
                   }`}
                 >
@@ -115,9 +121,9 @@ export default function Header({ onOpenCallback }: HeaderProps) {
                 </button>
                 <button
                   onClick={() => setLanguage('en')}
-                  className={`px-2 py-0.5 rounded-full transition-all whitespace-nowrap ${
+                  className={`px-2.5 py-0.5 rounded-full transition-all whitespace-nowrap ${
                     language === 'en'
-                      ? 'bg-[#7A2234] text-white shadow-xs'
+                      ? 'bg-brand-gradient text-white shadow-xs'
                       : 'hover:opacity-100 opacity-70'
                   }`}
                 >
@@ -128,9 +134,9 @@ export default function Header({ onOpenCallback }: HeaderProps) {
               {/* Callback Button */}
               <button
                 onClick={onOpenCallback}
-                className={`inline-flex items-center space-x-1.5 text-xs font-semibold px-3.5 py-2.5 rounded-full transition-all duration-300 whitespace-nowrap shrink-0 ${
+                className={`inline-flex items-center space-x-2 text-xs font-semibold px-4 py-2.5 rounded-full transition-all duration-300 whitespace-nowrap shrink-0 ${
                   isScrolled
-                    ? 'border border-[#171512]/20 text-[#171512] hover:bg-[#171512] hover:text-white'
+                    ? 'border border-[#171512]/20 text-[#171512] hover:bg-[#748C8C] hover:border-[#748C8C] hover:text-white'
                     : 'border border-white/30 text-white hover:bg-white hover:text-[#171512]'
                 }`}
               >
@@ -141,9 +147,9 @@ export default function Header({ onOpenCallback }: HeaderProps) {
               {/* Primary Estimation CTA */}
               <Link
                 href="/estimation"
-                className={`inline-flex items-center space-x-1.5 text-xs font-semibold px-4.5 py-2.5 rounded-full transition-all duration-300 shadow-sm whitespace-nowrap shrink-0 ${
+                className={`inline-flex items-center space-x-2 text-xs font-semibold px-5 py-2.5 rounded-full transition-all duration-300 shadow-sm whitespace-nowrap shrink-0 ${
                   isScrolled
-                    ? 'bg-[#7A2234] text-white hover:bg-[#5C1D27] hover:shadow'
+                    ? 'bg-brand-gradient text-white hover:bg-brand-gradient-hover shadow-brand'
                     : 'bg-white text-[#171512] hover:bg-[#F7F5F0]'
                 }`}
               >
@@ -156,8 +162,8 @@ export default function Header({ onOpenCallback }: HeaderProps) {
             <div className="flex items-center space-x-2.5 lg:hidden shrink-0">
               <button
                 onClick={() => setLanguage(language === 'fr' ? 'en' : 'fr')}
-                className={`text-[10px] font-bold uppercase px-2 py-1 rounded-full border ${
-                  isScrolled ? 'border-[#171512]/20 text-[#171512]' : 'border-white/30 text-white'
+                className={`text-[10px] font-bold uppercase px-2.5 py-1 rounded-full border transition-all ${
+                  isScrolled ? 'border-[#171512]/20 bg-white/70 text-[#171512]' : 'border-white/30 bg-white/10 text-white'
                 }`}
               >
                 {language === 'fr' ? 'EN' : 'FR'}
@@ -165,8 +171,8 @@ export default function Header({ onOpenCallback }: HeaderProps) {
 
               <Link
                 href="/estimation"
-                className={`text-[11px] font-semibold px-3 py-1.5 rounded-full whitespace-nowrap transition-colors ${
-                  isScrolled ? 'bg-[#7A2234] text-white' : 'bg-white text-[#171512]'
+                className={`text-[11px] font-semibold px-3.5 py-1.5 rounded-full whitespace-nowrap transition-all shadow-xs ${
+                  isScrolled ? 'bg-brand-gradient text-white shadow-brand' : 'bg-white text-[#171512]'
                 }`}
               >
                 {language === 'fr' ? 'Estimer' : 'Valuate'}

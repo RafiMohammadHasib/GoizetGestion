@@ -133,7 +133,7 @@ export function generateSeedData() {
       enquiriesCount: 5 + (i * 2),
       ownerId: `own_${(i % 15) + 1}`,
       ownerName: `Propriétaire ${n.name}`,
-      seoTitle: `${title} | Maison Méridia`,
+      seoTitle: `${title} | Goizet Gestion`,
       seoDescription: `Location et vente d'exception à ${n.name} Bordeaux.`,
       updatedAt: new Date(Date.now() - i * 3600000).toISOString()
     });
@@ -146,7 +146,7 @@ export function generateSeedData() {
     email: `proprietaire${idx + 1}@exemple.fr`,
     phone: `06 ${10 + idx} ${20 + idx} ${30 + idx} ${40 + idx}`,
     address: `${15 + idx} Cours Portal, 33000 Bordeaux`,
-    notes: `Propriétaire bailleur sous gestion locative exclusive Maison Méridia.`,
+    notes: `Propriétaire bailleur sous gestion locative exclusive Goizet Gestion.`,
     status: (['Managed', 'Qualified', 'New', 'Contacted'][idx % 4]) as any,
     propertiesCount: (idx % 3) + 1,
     createdAt: '2026-01-20T10:00:00Z'

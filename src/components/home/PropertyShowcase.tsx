@@ -44,7 +44,7 @@ export default function PropertyShowcase() {
         {/* Header & Filter Pills */}
         <div className="flex flex-col md:flex-row md:items-end justify-between gap-6">
           <div className="space-y-3">
-            <span className="text-xs font-semibold uppercase tracking-widest text-[#7A2234]">
+            <span className="text-xs font-semibold uppercase tracking-widest text-[#748C8C]">
               {language === 'fr' ? 'NOS BIENS EN GESTION & À LA VENTE' : 'FEATURED PROPERTIES & LISTINGS'}
             </span>
             <h2 className="font-serif-display text-4xl sm:text-6xl font-light text-[#171512] leading-tight">
@@ -58,7 +58,7 @@ export default function PropertyShowcase() {
               onClick={() => setFilterType('tout')}
               className={`px-4 py-2 rounded-full text-xs font-semibold transition-all whitespace-nowrap ${
                 filterType === 'tout'
-                  ? 'bg-[#171512] text-white shadow-sm'
+                  ? 'bg-brand-gradient text-white shadow-sm'
                   : 'text-[#6F6255] hover:text-[#171512]'
               }`}
             >
@@ -68,7 +68,7 @@ export default function PropertyShowcase() {
               onClick={() => setFilterType('louer')}
               className={`px-4 py-2 rounded-full text-xs font-semibold transition-all whitespace-nowrap ${
                 filterType === 'louer'
-                  ? 'bg-[#7A2234] text-white shadow-sm'
+                  ? 'bg-brand-gradient text-white shadow-sm'
                   : 'text-[#6F6255] hover:text-[#171512]'
               }`}
             >
@@ -78,7 +78,7 @@ export default function PropertyShowcase() {
               onClick={() => setFilterType('acheter')}
               className={`px-4 py-2 rounded-full text-xs font-semibold transition-all whitespace-nowrap ${
                 filterType === 'acheter'
-                  ? 'bg-[#171512] text-white shadow-sm'
+                  ? 'bg-brand-gradient text-white shadow-sm'
                   : 'text-[#6F6255] hover:text-[#171512]'
               }`}
             >
@@ -90,15 +90,15 @@ export default function PropertyShowcase() {
         {/* Property Grid */}
         {loading ? (
           <div className="py-16 text-center">
-            <Loader2 className="w-8 h-8 text-[#7A2234] mx-auto animate-spin" />
+            <Loader2 className="w-8 h-8 text-[#748C8C] mx-auto animate-spin" />
           </div>
         ) : (
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-            {filteredProperties.slice(0, 6).map((property, idx) => (
+            {filteredProperties.slice(0, 6).map((property) => (
               <PropertyCard
                 key={property.id}
                 property={property}
-                aspectRatio={idx === 0 ? 'portrait' : 'video'}
+                aspectRatio="video"
               />
             ))}
           </div>
@@ -111,7 +111,7 @@ export default function PropertyShowcase() {
             className="inline-flex items-center space-x-2 bg-[#171512] hover:bg-[#2C2723] text-white px-8 py-4 rounded-full text-xs font-semibold transition-all duration-300 shadow-lg whitespace-nowrap"
           >
             <span>{language === 'fr' ? 'Explorer l\'ensemble du catalogue de biens' : 'Explore Entire Property Catalog'}</span>
-            <ArrowUpRight className="w-4 h-4 text-[#7A2234]" />
+            <ArrowUpRight className="w-4 h-4 text-[#748C8C]" />
           </Link>
         </div>
 
