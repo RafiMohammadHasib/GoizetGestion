@@ -3,36 +3,257 @@
 import React, { useState } from 'react';
 import Link from 'next/link';
 import Breadcrumbs from '@/components/ui/Breadcrumbs';
-import { ArrowUpRight, ShieldCheck, CheckCircle2, Calculator, Lock, FileCheck2 } from 'lucide-react';
+import { 
+  ArrowUpRight, ShieldCheck, CheckCircle2, Calculator, Lock, FileCheck2, 
+  Key, Tag, PhoneCall, Sparkles, Clock, Check, X as XIcon, HelpCircle, Phone, Mail
+} from 'lucide-react';
 import { motion } from 'framer-motion';
 import { useLanguage } from '@/context/LanguageContext';
+import EntrustPropertyModal from '@/components/layout/EntrustPropertyModal';
 
 export default function GestionLocativePage() {
   const { language, t } = useLanguage();
-  const [rentAmount, setRentAmount] = useState(1200);
+  const [rentAmount, setRentAmount] = useState(1350);
+  const [isEntrustModalOpen, setIsEntrustModalOpen] = useState(false);
+  const [selectedService, setSelectedService] = useState<'Rental management' | 'Property letting' | 'Rental valuation' | 'Property sales'>('Rental management');
+
   const feePercentage = 6.8;
   const managementFee = Math.round((rentAmount * feePercentage) / 100);
   const netIncome = rentAmount - managementFee;
 
+  const openEntrust = (service: 'Rental management' | 'Property letting' | 'Rental valuation' | 'Property sales') => {
+    setSelectedService(service);
+    setIsEntrustModalOpen(true);
+  };
+
   return (
-    <div className="pt-32 pb-24 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto space-y-16">
+    <div className="pt-32 pb-24 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto space-y-20">
       
       {/* Breadcrumbs */}
-      <Breadcrumbs items={[{ label: language === 'fr' ? 'Gestion Locative' : 'Property Management' }]} />
+      <Breadcrumbs items={[{ label: language === 'fr' ? 'Gestion Locative & Solutions Bailleurs' : 'Property Management & Owner Solutions' }]} />
 
       {/* Editorial Header */}
       <div className="max-w-4xl space-y-6">
-        <span className="text-xs font-semibold uppercase tracking-widest text-[#748C8C]">
-          {language === 'fr' ? 'MANDAT DE GESTION LOCATIVE SUR-MESURE' : 'BOUTIQUE PROPERTY MANAGEMENT AGREEMENT'}
-        </span>
+        <div className="inline-flex items-center space-x-2 text-xs font-semibold uppercase tracking-widest text-[#748C8C] bg-[#748C8C]/15 px-3.5 py-1 rounded-full border border-[#748C8C]/30">
+          <Sparkles className="w-3.5 h-3.5" />
+          <span>{language === 'fr' ? 'SOLUTIONS PROPRIÉTAIRES & BAILLEURS BORDEAUX' : 'BORDEAUX OWNER & LANDLORD SOLUTIONS'}</span>
+        </div>
+
         <h1 className="font-serif-display text-4xl sm:text-7xl font-light text-[#171512] leading-[1.08]">
-          {language === 'fr' ? 'Une gestion locative pensée pour vous simplifier la vie.' : 'Property management designed for peace of mind.'}
+          {language === 'fr' ? 'Une gestion locative haut de gamme, sans contraintes.' : 'Luxury property management designed for peace of mind.'}
         </h1>
+
         <p className="text-base sm:text-xl text-[#6F6255] font-light leading-relaxed">
           {language === 'fr'
-            ? 'Libérez-vous des contraintes administratives, juridiques et techniques. Nous garantissons la valorisation de votre patrimoine bordelais et le versement ponctuel de vos loyers.'
-            : 'Free yourself from administrative, legal, and maintenance burdens. We optimize your Bordeaux portfolio yield and guarantee punctual rent disbursements.'}
+            ? 'Libérez-vous de l\'intégralité des contraintes administratives, techniques et juridiques. Nous garantissons la valorisation de votre patrimoine bordelais et le versement ponctuel de vos loyers chaque 1er du mois.'
+            : 'Free yourself completely from administrative, legal, and maintenance burdens. We optimize your Bordeaux portfolio yield and guarantee punctual rent disbursements on the 1st of every month.'}
         </p>
+
+        {/* Top Direct Action Bar */}
+        <div className="flex flex-wrap items-center gap-3 pt-2">
+          <button
+            onClick={() => openEntrust('Rental management')}
+            className="bg-brand-gradient hover:bg-brand-gradient-hover text-white py-3.5 px-6 rounded-full font-semibold text-xs transition-all shadow-brand flex items-center space-x-2"
+          >
+            <span>{t('btnEntrust')}</span>
+            <ArrowUpRight className="w-4 h-4" />
+          </button>
+
+          <Link
+            href="/estimation"
+            className="bg-white hover:bg-[#FAF9F6] text-[#171512] border border-[#171512]/20 py-3.5 px-6 rounded-full font-semibold text-xs transition-all shadow-2xs flex items-center space-x-2"
+          >
+            <Calculator className="w-4 h-4 text-[#748C8C]" />
+            <span>{t('btnRentalValuation')}</span>
+          </Link>
+
+          <Link
+            href="/contact"
+            className="text-xs font-semibold text-[#6F6255] hover:text-[#171512] px-4 py-3.5 transition-colors"
+          >
+            {t('btnContactUs')} →
+          </Link>
+        </div>
+      </div>
+
+      {/* 4 Core Pillars for Property Owners */}
+      <div className="space-y-8">
+        <div className="space-y-2">
+          <span className="text-xs font-bold uppercase tracking-widest text-[#748C8C]">
+            {language === 'fr' ? 'NOTRE ACCOMPAGNEMENT 360°' : 'OUR 360° OWNER SUITE'}
+          </span>
+          <h2 className="font-serif-display text-3xl sm:text-5xl font-light text-[#171512]">
+            {language === 'fr' ? '4 services clés pensés pour les propriétaires' : '4 Core Services Built for Property Owners'}
+          </h2>
+        </div>
+
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+          
+          {/* 1. Rental Management */}
+          <div className="bg-white p-8 rounded-3xl border border-[#171512]/10 shadow-sm space-y-6 flex flex-col justify-between hover:shadow-lg transition-all">
+            <div className="space-y-4">
+              <div className="flex items-center justify-between">
+                <div className="w-12 h-12 rounded-2xl bg-[#748C8C]/10 text-[#748C8C] flex items-center justify-center">
+                  <ShieldCheck className="w-6 h-6" />
+                </div>
+                <span className="text-[10px] font-bold uppercase tracking-wider bg-emerald-50 text-emerald-800 border border-emerald-200 px-3 py-1 rounded-full">
+                  {language === 'fr' ? 'Gestion Complète' : 'Full Management'}
+                </span>
+              </div>
+              <h3 className="font-serif-display text-2xl sm:text-3xl font-medium text-[#171512]">
+                {t('serviceRentalManagementTitle')}
+              </h3>
+              <p className="text-xs text-[#6F6255] leading-relaxed">
+                {t('serviceRentalManagementDesc')}
+              </p>
+              <ul className="space-y-2 text-xs text-[#171512] pt-2">
+                <li className="flex items-center space-x-2">
+                  <CheckCircle2 className="w-4 h-4 text-[#748C8C] shrink-0" />
+                  <span>{language === 'fr' ? 'Encaissement des loyers & virement le 1er du mois' : 'Automated rent collection & disbursement on the 1st'}</span>
+                </li>
+                <li className="flex items-center space-x-2">
+                  <CheckCircle2 className="w-4 h-4 text-[#748C8C] shrink-0" />
+                  <span>{language === 'fr' ? 'Garantie Loyers Impayés (GLI) 100% prise en charge sans délai' : 'Zero-delay rent default insurance protection'}</span>
+                </li>
+                <li className="flex items-center space-x-2">
+                  <CheckCircle2 className="w-4 h-4 text-[#748C8C] shrink-0" />
+                  <span>{language === 'fr' ? 'Gestion des travaux et sinistres par artisans certifiés' : 'Maintenance & repairs by certified vetted artisans'}</span>
+                </li>
+              </ul>
+            </div>
+            <button
+              onClick={() => openEntrust('Rental management')}
+              className="w-full bg-brand-gradient hover:bg-brand-gradient-hover text-white py-3.5 rounded-xl font-semibold text-xs transition-all shadow-brand flex items-center justify-center space-x-2"
+            >
+              <span>{language === 'fr' ? 'Confier mon bien en gestion' : 'Start Rental Management'}</span>
+              <ArrowUpRight className="w-4 h-4" />
+            </button>
+          </div>
+
+          {/* 2. Property Letting */}
+          <div className="bg-white p-8 rounded-3xl border border-[#171512]/10 shadow-sm space-y-6 flex flex-col justify-between hover:shadow-lg transition-all">
+            <div className="space-y-4">
+              <div className="flex items-center justify-between">
+                <div className="w-12 h-12 rounded-2xl bg-[#748C8C]/10 text-[#748C8C] flex items-center justify-center">
+                  <Key className="w-6 h-6" />
+                </div>
+                <span className="text-[10px] font-bold uppercase tracking-wider bg-sky-50 text-sky-800 border border-sky-200 px-3 py-1 rounded-full">
+                  {language === 'fr' ? 'Mise en Location' : 'Letting'}
+                </span>
+              </div>
+              <h3 className="font-serif-display text-2xl sm:text-3xl font-medium text-[#171512]">
+                {t('servicePropertyLettingTitle')}
+              </h3>
+              <p className="text-xs text-[#6F6255] leading-relaxed">
+                {t('servicePropertyLettingDesc')}
+              </p>
+              <ul className="space-y-2 text-xs text-[#171512] pt-2">
+                <li className="flex items-center space-x-2">
+                  <CheckCircle2 className="w-4 h-4 text-[#748C8C] shrink-0" />
+                  <span>{language === 'fr' ? 'Reportage photo immobilier professionnel HD & visite virtuelle' : 'Professional HD photography & virtual tour'}</span>
+                </li>
+                <li className="flex items-center space-x-2">
+                  <CheckCircle2 className="w-4 h-4 text-[#748C8C] shrink-0" />
+                  <span>{language === 'fr' ? 'Audit et contrôle de solvabilité strict (revenus > 3x loyer)' : 'Strict solvability screening (net income > 3x rent)'}</span>
+                </li>
+                <li className="flex items-center space-x-2">
+                  <CheckCircle2 className="w-4 h-4 text-[#748C8C] shrink-0" />
+                  <span>{language === 'fr' ? 'Rédaction de baux certifiés & état des lieux numérique' : 'Certified lease agreement & digital tablet inventory'}</span>
+                </li>
+              </ul>
+            </div>
+            <button
+              onClick={() => openEntrust('Property letting')}
+              className="w-full bg-[#171512] hover:bg-[#2A2622] text-white py-3.5 rounded-xl font-semibold text-xs transition-all flex items-center justify-center space-x-2"
+            >
+              <span>{language === 'fr' ? 'Rechercher un locataire' : 'Find Qualified Tenants'}</span>
+              <ArrowUpRight className="w-4 h-4" />
+            </button>
+          </div>
+
+          {/* 3. Rental Valuation */}
+          <div className="bg-white p-8 rounded-3xl border border-[#171512]/10 shadow-sm space-y-6 flex flex-col justify-between hover:shadow-lg transition-all">
+            <div className="space-y-4">
+              <div className="flex items-center justify-between">
+                <div className="w-12 h-12 rounded-2xl bg-[#748C8C]/10 text-[#748C8C] flex items-center justify-center">
+                  <Calculator className="w-6 h-6" />
+                </div>
+                <span className="text-[10px] font-bold uppercase tracking-wider bg-purple-50 text-purple-800 border border-purple-200 px-3 py-1 rounded-full">
+                  {language === 'fr' ? 'Estimation Gratuite' : 'Free Valuation'}
+                </span>
+              </div>
+              <h3 className="font-serif-display text-2xl sm:text-3xl font-medium text-[#171512]">
+                {t('serviceRentalValuationTitle')}
+              </h3>
+              <p className="text-xs text-[#6F6255] leading-relaxed">
+                {t('serviceRentalValuationDesc')}
+              </p>
+              <ul className="space-y-2 text-xs text-[#171512] pt-2">
+                <li className="flex items-center space-x-2">
+                  <CheckCircle2 className="w-4 h-4 text-[#748C8C] shrink-0" />
+                  <span>{language === 'fr' ? 'Conformité avec les plafonds d\'encadrement des loyers de Bordeaux' : 'Compliance with Bordeaux official rent control limits'}</span>
+                </li>
+                <li className="flex items-center space-x-2">
+                  <CheckCircle2 className="w-4 h-4 text-[#748C8C] shrink-0" />
+                  <span>{language === 'fr' ? 'Analyse comparative des loyers récents dans votre rue/secteur' : 'Comparative audit based on recent local lease contracts'}</span>
+                </li>
+                <li className="flex items-center space-x-2">
+                  <CheckCircle2 className="w-4 h-4 text-[#748C8C] shrink-0" />
+                  <span>{language === 'fr' ? 'Rapport détaillé remis sous 48 heures sans engagement' : 'Comprehensive written valuation report delivered in 48h'}</span>
+                </li>
+              </ul>
+            </div>
+            <Link
+              href="/estimation"
+              className="w-full bg-[#171512] hover:bg-[#2A2622] text-white py-3.5 rounded-xl font-semibold text-xs transition-all flex items-center justify-center space-x-2"
+            >
+              <span>{language === 'fr' ? 'Calculer mon loyer en ligne (2 min)' : 'Get Instant Rental Valuation'}</span>
+              <ArrowUpRight className="w-4 h-4" />
+            </Link>
+          </div>
+
+          {/* 4. Property Sales */}
+          <div className="bg-white p-8 rounded-3xl border border-[#171512]/10 shadow-sm space-y-6 flex flex-col justify-between hover:shadow-lg transition-all">
+            <div className="space-y-4">
+              <div className="flex items-center justify-between">
+                <div className="w-12 h-12 rounded-2xl bg-[#748C8C]/10 text-[#748C8C] flex items-center justify-center">
+                  <Tag className="w-6 h-6" />
+                </div>
+                <span className="text-[10px] font-bold uppercase tracking-wider bg-amber-50 text-amber-800 border border-amber-200 px-3 py-1 rounded-full">
+                  {language === 'fr' ? 'Transaction & Vente' : 'Sales'}
+                </span>
+              </div>
+              <h3 className="font-serif-display text-2xl sm:text-3xl font-medium text-[#171512]">
+                {t('servicePropertySalesTitle')}
+              </h3>
+              <p className="text-xs text-[#6F6255] leading-relaxed">
+                {t('servicePropertySalesDesc')}
+              </p>
+              <ul className="space-y-2 text-xs text-[#171512] pt-2">
+                <li className="flex items-center space-x-2">
+                  <CheckCircle2 className="w-4 h-4 text-[#748C8C] shrink-0" />
+                  <span>{language === 'fr' ? 'Accès direct à notre fichier d\'acquéreurs premium solvables' : 'Direct access to qualified high-net-worth buyers'}</span>
+                </li>
+                <li className="flex items-center space-x-2">
+                  <CheckCircle2 className="w-4 h-4 text-[#748C8C] shrink-0" />
+                  <span>{language === 'fr' ? 'Commercialisation confidentielle ou multi-portails de prestige' : 'Confidential off-market or prime luxury syndication'}</span>
+                </li>
+                <li className="flex items-center space-x-2">
+                  <CheckCircle2 className="w-4 h-4 text-[#748C8C] shrink-0" />
+                  <span>{language === 'fr' ? 'Négociation experte pour maximiser le prix net vendeur' : 'Expert negotiation to secure maximum vendor net price'}</span>
+                </li>
+              </ul>
+            </div>
+            <Link
+              href="/contact?subject=vente"
+              className="w-full bg-[#171512] hover:bg-[#2A2622] text-white py-3.5 rounded-xl font-semibold text-xs transition-all flex items-center justify-center space-x-2"
+            >
+              <span>{language === 'fr' ? 'Vendre un bien avec l\'agence' : 'Sell Property with Us'}</span>
+              <ArrowUpRight className="w-4 h-4" />
+            </Link>
+          </div>
+
+        </div>
       </div>
 
       {/* Interactive ROI & Fee Calculator */}
@@ -40,28 +261,28 @@ export default function GestionLocativePage() {
         <div className="lg:col-span-6 space-y-6">
           <div className="inline-flex items-center space-x-2 text-xs font-semibold uppercase tracking-widest text-[#748C8C]">
             <Calculator className="w-4 h-4" />
-            <span>{language === 'fr' ? 'CALCULATEUR DE REVENUS NETS' : 'NET INCOME CALCULATOR'}</span>
+            <span>{language === 'fr' ? 'SIMULATEUR DE REVENUS NETS BAILLEUR' : 'NET OWNER REVENUE SIMULATOR'}</span>
           </div>
 
           <h2 className="font-serif-display text-3xl sm:text-4xl font-light">
-            {language === 'fr' ? 'Transparence totale sur nos honoraires de gestion.' : 'Complete fee transparency.'}
+            {language === 'fr' ? 'Transparence totale sur nos honoraires.' : 'Complete fee transparency.'}
           </h2>
 
           <p className="text-xs text-[#9E9285] leading-relaxed">
             {language === 'fr'
-              ? 'Ajustez votre loyer mensuel estimé pour simuler la rémunération nette versée sur votre compte bancaire chaque 1er du mois.'
-              : 'Adjust your estimated monthly rent to simulate net income disbursed to your bank account on the 1st of every month.'}
+              ? 'Ajustez votre loyer mensuel estimé pour simuler la rémunération nette versée sur votre compte bancaire chaque 1er du mois. 100% de nos honoraires sont déductibles de vos revenus fonciers.'
+              : 'Adjust your estimated monthly rent to simulate net income disbursed to your bank account on the 1st of every month. 100% of our fees are tax deductible.'}
           </p>
 
           <div className="space-y-4 pt-2">
             <div className="flex justify-between items-center text-sm font-semibold">
-              <span>{language === 'fr' ? 'Loyer mensuel estimé :' : 'Estimated monthly rent:'}</span>
+              <span>{language === 'fr' ? 'Loyer mensuel charges comprises :' : 'Estimated monthly rent:'}</span>
               <span className="font-serif-display text-2xl text-[#EAE6DF]">{rentAmount.toLocaleString('fr-FR')} € / {language === 'fr' ? 'mois' : 'mo'}</span>
             </div>
             <input
               type="range"
               min="500"
-              max="4000"
+              max="4500"
               step="50"
               value={rentAmount}
               onChange={(e) => setRentAmount(parseInt(e.target.value, 10))}
@@ -69,7 +290,7 @@ export default function GestionLocativePage() {
             />
             <div className="flex justify-between text-[10px] text-[#9E9285]">
               <span>500 €</span>
-              <span>4 000 €</span>
+              <span>4 500 €</span>
             </div>
           </div>
         </div>
@@ -77,7 +298,7 @@ export default function GestionLocativePage() {
         {/* Calculated Output Box */}
         <div className="lg:col-span-6 bg-white/10 backdrop-blur-2xl rounded-2xl p-8 border border-white/20 space-y-6 text-center">
           <span className="text-[10px] font-bold uppercase tracking-wider text-[#9E9285]">
-            {language === 'fr' ? 'REVENU NET PROPRIÉTAIRE ESTIMÉ' : 'ESTIMATED NET OWNER INCOME'}
+            {language === 'fr' ? 'REVENU NET MENSUEL ESTIMÉ PROPRIÉTAIRE' : 'ESTIMATED NET MONTHLY OWNER INCOME'}
           </span>
           <div className="font-serif-display text-5xl font-bold text-[#EAE6DF]">
             {netIncome.toLocaleString('fr-FR')} € <span className="text-sm font-light text-white/70">/ {language === 'fr' ? 'mois' : 'mo'}</span>
@@ -85,24 +306,128 @@ export default function GestionLocativePage() {
 
           <div className="pt-4 border-t border-white/10 grid grid-cols-2 gap-4 text-xs text-[#9E9285]">
             <div>
-              <span className="block text-[10px] uppercase text-white/50">{language === 'fr' ? `Honoraires de Gestion (${feePercentage}%)` : `Management Fees (${feePercentage}%)`}</span>
+              <span className="block text-[10px] uppercase text-white/50">{language === 'fr' ? `Honoraires (${feePercentage}%)` : `Management (${feePercentage}%)`}</span>
               <span className="font-semibold text-white">{managementFee} € / {language === 'fr' ? 'mois' : 'mo'}</span>
             </div>
             <div>
               <span className="block text-[10px] uppercase text-white/50">{language === 'fr' ? 'Garantie Loyers Impayés (GLI)' : 'Rent Default Insurance'}</span>
-              <span className="font-semibold text-white">{language === 'fr' ? 'Inclus sans carence' : 'Included zero delay'}</span>
+              <span className="font-semibold text-emerald-400">{language === 'fr' ? 'Inclus sans carence' : 'Included zero delay'}</span>
             </div>
           </div>
 
-          <Link
-            href="/estimation"
-            className="w-full bg-brand-gradient hover:bg-brand-gradient-hover text-white py-4 rounded-xl font-semibold text-xs transition-all shadow-brand flex items-center justify-center space-x-2 whitespace-nowrap"
-          >
-            <span>{language === 'fr' ? 'Confier mon bien en gestion' : 'Start Management Agreement'}</span>
-            <ArrowUpRight className="w-4 h-4" />
-          </Link>
+          <div className="space-y-2">
+            <button
+              onClick={() => openEntrust('Rental management')}
+              className="w-full bg-brand-gradient hover:bg-brand-gradient-hover text-white py-4 rounded-xl font-semibold text-xs transition-all shadow-brand flex items-center justify-center space-x-2"
+            >
+              <span>{language === 'fr' ? 'Confier mon bien avec cette estimation' : 'Entrust My Property With This Estimate'}</span>
+              <ArrowUpRight className="w-4 h-4" />
+            </button>
+            <p className="text-[10px] text-white/50">
+              {language === 'fr' ? 'Sans engagement • Réponse sous 2h ouvrées' : 'No obligation • Callback within 2 hours'}
+            </p>
+          </div>
         </div>
       </div>
+
+      {/* Comparison Table */}
+      <div className="space-y-6 pt-6">
+        <div className="max-w-2xl space-y-2">
+          <span className="text-xs font-bold uppercase tracking-widest text-[#748C8C]">
+            {language === 'fr' ? 'POURQUOI CHOISIR GOIZET GESTION' : 'WHY CHOOSE GOIZET GESTION'}
+          </span>
+          <h2 className="font-serif-display text-3xl font-light text-[#171512]">
+            {language === 'fr' ? 'Une différence concrète au quotidien' : 'A Measurable Daily Advantage'}
+          </h2>
+        </div>
+
+        <div className="bg-white rounded-3xl border border-[#171512]/10 overflow-hidden shadow-sm">
+          <div className="overflow-x-auto">
+            <table className="w-full text-left text-xs border-collapse">
+              <thead>
+                <tr className="border-b border-[#171512]/10 bg-[#FAF9F6]">
+                  <th className="p-4 font-semibold text-[#171512]">{language === 'fr' ? 'Prestations & Garanties' : 'Services & Guarantees'}</th>
+                  <th className="p-4 font-bold text-[#748C8C] bg-[#748C8C]/10 border-x border-[#748C8C]/20">GOIZET GESTION</th>
+                  <th className="p-4 font-semibold text-[#6F6255]">{language === 'fr' ? 'Gestion Personnelle' : 'Self-Management'}</th>
+                  <th className="p-4 font-semibold text-[#6F6255]">{language === 'fr' ? 'Agence Traditionnelle' : 'Traditional Agency'}</th>
+                </tr>
+              </thead>
+              <tbody className="divide-y divide-[#171512]/5 text-[#6F6255]">
+                {[
+                  { label: language === 'fr' ? 'Interlocuteur unique (Fondateurs)' : 'Dedicated partner (Founders)', us: true, self: true, trad: false },
+                  { label: language === 'fr' ? 'Garantie loyers impayés sans carence' : 'Zero-delay rent default insurance', us: true, self: false, trad: true },
+                  { label: language === 'fr' ? 'Photos professionnelles HD & Visite 3D' : 'HD photography & 3D virtual tours', us: true, self: false, trad: false },
+                  { label: language === 'fr' ? 'Vérification solvabilité IA & humaine' : 'Rigorous solvability screening', us: true, self: false, trad: false },
+                  { label: language === 'fr' ? 'Espace bailleur connecté 24/7' : '24/7 digital landlord portal', us: true, self: false, trad: false },
+                  { label: language === 'fr' ? 'Honoraires 100% déductibles fiscalement' : '100% tax deductible fees', us: true, self: false, trad: true },
+                ].map((row, i) => (
+                  <tr key={i} className="hover:bg-[#FAF9F6]/50 transition-colors">
+                    <td className="p-4 font-medium text-[#171512]">{row.label}</td>
+                    <td className="p-4 bg-[#748C8C]/5 border-x border-[#748C8C]/20 text-[#748C8C] font-semibold">
+                      <CheckCircle2 className="w-4 h-4" />
+                    </td>
+                    <td className="p-4">
+                      {row.self ? <Check className="w-4 h-4 text-stone-600" /> : <XIcon className="w-4 h-4 text-stone-300" />}
+                    </td>
+                    <td className="p-4">
+                      {row.trad ? <Check className="w-4 h-4 text-stone-600" /> : <XIcon className="w-4 h-4 text-stone-300" />}
+                    </td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+
+      {/* Direct Advisor Contacts Box */}
+      <div className="bg-[#FAF9F6] rounded-3xl p-8 sm:p-12 border border-[#171512]/10 space-y-6">
+        <div className="max-w-2xl space-y-2">
+          <span className="text-xs font-bold uppercase tracking-widest text-[#748C8C]">
+            {language === 'fr' ? 'RENCONTREZ L\'ÉQUIPE' : 'MEET THE TEAM'}
+          </span>
+          <h2 className="font-serif-display text-3xl font-light text-[#171512]">
+            {language === 'fr' ? 'Un projet à Bordeaux ? Échangeons dès aujourd\'hui.' : 'Have a property in Bordeaux? Speak with us today.'}
+          </h2>
+        </div>
+
+        <div className="grid grid-cols-1 sm:grid-cols-2 gap-6 text-xs">
+          <div className="bg-white p-6 rounded-2xl border border-[#171512]/10 space-y-3">
+            <div className="flex justify-between items-center">
+              <span className="font-serif-display text-xl font-medium text-[#171512]">Paul Goizet</span>
+              <span className="text-[10px] font-bold text-[#748C8C] bg-[#748C8C]/10 px-2.5 py-0.5 rounded-full">Associé</span>
+            </div>
+            <p className="text-[#6F6255]">Spécialiste de la gestion locative, de la valorisation des rendements et du cadre juridique bordelais.</p>
+            <div className="pt-2 border-t border-[#171512]/5 flex items-center justify-between">
+              <a href="tel:+33695577033" className="font-semibold text-[#171512] hover:text-[#748C8C] flex items-center space-x-1.5">
+                <Phone className="w-3.5 h-3.5 text-[#748C8C]" />
+                <span>+33 6 95 57 70 33</span>
+              </a>
+            </div>
+          </div>
+
+          <div className="bg-white p-6 rounded-2xl border border-[#171512]/10 space-y-3">
+            <div className="flex justify-between items-center">
+              <span className="font-serif-display text-xl font-medium text-[#171512]">Edgar Goizet</span>
+              <span className="text-[10px] font-bold text-[#748C8C] bg-[#748C8C]/10 px-2.5 py-0.5 rounded-full">Associé</span>
+            </div>
+            <p className="text-[#6F6255]">Spécialiste de la commercialisation, des transactions de prestige et de l'acquisition patrimoniale.</p>
+            <div className="pt-2 border-t border-[#171512]/5 flex items-center justify-between">
+              <a href="tel:+33781968395" className="font-semibold text-[#171512] hover:text-[#748C8C] flex items-center space-x-1.5">
+                <Phone className="w-3.5 h-3.5 text-[#748C8C]" />
+                <span>+33 7 81 96 83 95</span>
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      {/* Modal */}
+      <EntrustPropertyModal
+        isOpen={isEntrustModalOpen}
+        onClose={() => setIsEntrustModalOpen(false)}
+        initialService={selectedService}
+      />
 
     </div>
   );

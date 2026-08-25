@@ -10,9 +10,10 @@ import { useLanguage } from '@/context/LanguageContext';
 
 interface HeaderProps {
   onOpenCallback?: () => void;
+  onOpenEntrust?: () => void;
 }
 
-export default function Header({ onOpenCallback }: HeaderProps) {
+export default function Header({ onOpenCallback, onOpenEntrust }: HeaderProps) {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const pathname = usePathname();
@@ -35,6 +36,7 @@ export default function Header({ onOpenCallback }: HeaderProps) {
     { label: t('navRent'), href: '/biens?type=louer' },
     { label: t('navBuy'), href: '/biens?type=acheter' },
     { label: t('navManagement'), href: '/gestion-locative' },
+    { label: language === 'fr' ? 'Confier un bien' : 'Entrust Property', href: '/confier-un-bien' },
     { label: t('navDistricts'), href: '/quartiers' },
     { label: t('navAbout'), href: '/a-propos' },
     { label: t('navJournal'), href: '/journal' },
@@ -74,14 +76,14 @@ export default function Header({ onOpenCallback }: HeaderProps) {
             </Link>
 
             {/* Desktop Navigation Links */}
-            <nav className="hidden lg:flex items-center space-x-4 xl:space-x-7 shrink-0">
+            <nav className="hidden lg:flex items-center space-x-3.5 xl:space-x-6 shrink-0">
               {navItems.map((item) => {
                 const isActive = pathname === item.href || (item.href !== '/' && pathname.startsWith(item.href));
                 return (
                   <Link
                     key={item.label}
                     href={item.href}
-                    className={`text-xs xl:text-sm font-medium tracking-wide transition-all duration-200 relative py-1.5 whitespace-nowrap shrink-0 ${
+                    className={`text-xs xl:text-[13px] font-medium tracking-wide transition-all duration-200 relative py-1.5 whitespace-nowrap shrink-0 ${
                       isScrolled
                         ? isActive
                           ? 'text-[#748C8C] font-semibold'
@@ -103,7 +105,7 @@ export default function Header({ onOpenCallback }: HeaderProps) {
             </nav>
 
             {/* Desktop Controls */}
-            <div className="hidden lg:flex items-center space-x-2.5 xl:space-x-3.5 shrink-0 ml-auto xl:ml-0">
+            <div className="hidden lg:flex items-center space-x-2 xl:space-x-3 shrink-0 ml-auto xl:ml-0">
               
               {/* Native Language Switcher Button (FR | EN) */}
               <div className={`flex items-center space-x-1 p-1 rounded-full border text-[11px] font-semibold shrink-0 transition-all ${
@@ -131,23 +133,22 @@ export default function Header({ onOpenCallback }: HeaderProps) {
                 </button>
               </div>
 
-              {/* Callback Button */}
+              {/* Confier mon bien Action */}
               <button
-                onClick={onOpenCallback}
-                className={`inline-flex items-center space-x-2 text-xs font-semibold px-4 py-2.5 rounded-full transition-all duration-300 whitespace-nowrap shrink-0 ${
+                onClick={onOpenEntrust}
+                className={`inline-flex items-center space-x-1.5 text-xs font-semibold px-4 py-2.5 rounded-full transition-all duration-300 whitespace-nowrap shrink-0 ${
                   isScrolled
-                    ? 'border border-[#171512]/20 text-[#171512] hover:bg-[#748C8C] hover:border-[#748C8C] hover:text-white'
-                    : 'border border-white/30 text-white hover:bg-white hover:text-[#171512]'
+                    ? 'border border-[#748C8C]/40 text-[#748C8C] hover:bg-[#748C8C] hover:text-white'
+                    : 'border border-white/30 text-white hover:bg-white/20'
                 }`}
               >
-                <PhoneCall className="w-3.5 h-3.5" />
-                <span className="whitespace-nowrap">{t('btnCallback')}</span>
+                <span>{t('btnEntrust')}</span>
               </button>
 
               {/* Primary Estimation CTA */}
               <Link
                 href="/estimation"
-                className={`inline-flex items-center space-x-2 text-xs font-semibold px-5 py-2.5 rounded-full transition-all duration-300 shadow-sm whitespace-nowrap shrink-0 ${
+                className={`inline-flex items-center space-x-2 text-xs font-semibold px-4.5 py-2.5 rounded-full transition-all duration-300 shadow-sm whitespace-nowrap shrink-0 ${
                   isScrolled
                     ? 'bg-brand-gradient text-white hover:bg-brand-gradient-hover shadow-brand'
                     : 'bg-white text-[#171512] hover:bg-[#F7F5F0]'
@@ -159,7 +160,7 @@ export default function Header({ onOpenCallback }: HeaderProps) {
             </div>
 
             {/* Mobile Hamburger Controls with Animated Icon */}
-            <div className="flex items-center space-x-2.5 lg:hidden shrink-0">
+            <div className="flex items-center space-x-2 lg:hidden shrink-0">
               <button
                 onClick={() => setLanguage(language === 'fr' ? 'en' : 'fr')}
                 className={`text-[10px] font-bold uppercase px-2.5 py-1 rounded-full border transition-all ${
@@ -169,14 +170,14 @@ export default function Header({ onOpenCallback }: HeaderProps) {
                 {language === 'fr' ? 'EN' : 'FR'}
               </button>
 
-              <Link
-                href="/estimation"
-                className={`text-[11px] font-semibold px-3.5 py-1.5 rounded-full whitespace-nowrap transition-all shadow-xs ${
+              <button
+                onClick={onOpenEntrust}
+                className={`text-[11px] font-semibold px-3 py-1.5 rounded-full whitespace-nowrap transition-all shadow-xs ${
                   isScrolled ? 'bg-brand-gradient text-white shadow-brand' : 'bg-white text-[#171512]'
                 }`}
               >
-                {language === 'fr' ? 'Estimer' : 'Valuate'}
-              </Link>
+                {language === 'fr' ? 'Confier' : 'Entrust'}
+              </button>
               
               <button
                 onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
@@ -202,6 +203,7 @@ export default function Header({ onOpenCallback }: HeaderProps) {
         onClose={() => setIsMobileMenuOpen(false)}
         navItems={navItems}
         onOpenCallback={onOpenCallback}
+        onOpenEntrust={onOpenEntrust}
       />
     </>
   );

@@ -16,12 +16,15 @@ export interface CRMLead {
   email: string;
   phone: string;
   leadType: 'Owner Enquiry' | 'Tenant Request' | 'Buyer Request' | 'Seller Request' | 'Valuation Request' | 'Callback Request' | 'Contact Message';
+  serviceType?: 'Rental management' | 'Property letting' | 'Rental valuation' | 'Property sales' | string;
   status: 'NEW' | 'CONTACTED' | 'QUALIFIED' | 'APPOINTMENT' | 'IN_PROGRESS' | 'CONVERTED' | 'LOST';
   subject?: string;
   message?: string;
   propertyAddress?: string;
+  propertyType?: string;
   budget?: string;
   surface?: string;
+  preferredTimeSlot?: string;
   assignedTo?: string;
   source: string;
   createdAt: string;

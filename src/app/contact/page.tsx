@@ -262,10 +262,11 @@ export default function ContactPage() {
                   onChange={(e) => setFormData({ ...formData, subject: e.target.value })}
                   className="w-full px-4 py-3 bg-[#FAF9F6] border border-[#171512]/15 rounded-xl font-medium focus:outline-none focus:border-[#748C8C] focus:ring-1 focus:ring-[#748C8C] transition-all"
                 >
-                  <option value="Confier mon bien en gestion locative">{language === 'fr' ? 'Confier mon bien en gestion locative' : 'Property Management Agreement'}</option>
-                  <option value="Demande d'estimation immobilière">{language === 'fr' ? 'Demande d\'estimation immobilière' : 'Property Valuation Request'}</option>
-                  <option value="Vendre un bien à Bordeaux">{language === 'fr' ? 'Vendre un bien à Bordeaux' : 'Selling Property in Bordeaux'}</option>
-                  <option value="Visiter un appartement / Recherche">{language === 'fr' ? 'Visiter un appartement / Recherche' : 'Property Search & Viewings'}</option>
+                  <option value="Confier mon bien en gestion locative">{language === 'fr' ? 'Confier mon bien en gestion locative (Gestion 360°)' : 'Complete Property Management'}</option>
+                  <option value="Mise en location & Recherche de locataires">{language === 'fr' ? 'Mise en location & Recherche de locataires' : 'Property Letting & Tenant Placement'}</option>
+                  <option value="Demande d'estimation immobilière">{language === 'fr' ? 'Demande d\'estimation locative ou vente' : 'Rental / Sales Valuation Request'}</option>
+                  <option value="Vendre un bien à Bordeaux">{language === 'fr' ? 'Vendre un bien à Bordeaux (Transaction)' : 'Selling Property in Bordeaux'}</option>
+                  <option value="Visiter un appartement / Recherche">{language === 'fr' ? 'Visiter un appartement / Recherche locataire' : 'Property Search & Viewings'}</option>
                   <option value="Autre demande">{language === 'fr' ? 'Autre demande' : 'Other Inquiry'}</option>
                 </select>
               </div>

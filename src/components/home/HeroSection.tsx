@@ -184,13 +184,15 @@ export default function HeroSection() {
               </button>
             </div>
 
-            <Link
-              href="/estimation"
-              className="hidden sm:inline-flex items-center space-x-1 text-xs font-semibold text-[#748C8C] hover:underline whitespace-nowrap"
-            >
-              <span>{t('linkOwnerHero')}</span>
-              <ArrowUpRight className="w-3.5 h-3.5" />
-            </Link>
+            <div className="flex items-center space-x-2">
+              <Link
+                href="/confier-un-bien"
+                className="hidden sm:inline-flex items-center space-x-1 text-xs font-semibold text-[#748C8C] hover:text-[#4F6565] bg-[#748C8C]/10 px-3 py-1 rounded-full border border-[#748C8C]/20 transition-colors whitespace-nowrap"
+              >
+                <span>{language === 'fr' ? 'Propriétaire ? Confier mon bien' : 'Property Owner? Entrust Property'}</span>
+                <ArrowUpRight className="w-3.5 h-3.5" />
+              </Link>
+            </div>
           </div>
 
           {/* Search Inputs Form */}
@@ -256,13 +258,21 @@ export default function HeroSection() {
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ duration: 0.8, delay: 0.5 }}
-          className="flex flex-wrap items-center gap-4 text-xs font-semibold"
+          className="flex flex-wrap items-center gap-3 text-xs font-semibold"
         >
+          <Link
+            href="/confier-un-bien"
+            className="bg-brand-gradient hover:bg-brand-gradient-hover text-white px-6 py-3.5 rounded-full transition-all duration-300 shadow-brand flex items-center space-x-2 whitespace-nowrap shrink-0"
+          >
+            <span>{t('btnEntrust')}</span>
+            <ArrowUpRight className="w-4 h-4" />
+          </Link>
+
           <Link
             href="/estimation"
             className="bg-white text-[#171512] hover:bg-[#FAF9F6] px-6 py-3.5 rounded-full transition-all duration-300 shadow-lg flex items-center space-x-2 whitespace-nowrap shrink-0"
           >
-            <span>{t('btnEstimate')}</span>
+            <span>{t('btnRentalValuation')}</span>
             <ArrowUpRight className="w-4 h-4 text-[#748C8C]" />
           </Link>
 

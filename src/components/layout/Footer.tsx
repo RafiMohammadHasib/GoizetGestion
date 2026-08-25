@@ -8,10 +8,11 @@ import { isValidEmail } from '@/lib/security';
 
 interface FooterProps {
   onOpenCallback?: () => void;
+  onOpenEntrust?: () => void;
   onOpenCookieSettings?: () => void;
 }
 
-export default function Footer({ onOpenCallback, onOpenCookieSettings }: FooterProps) {
+export default function Footer({ onOpenCallback, onOpenEntrust, onOpenCookieSettings }: FooterProps) {
   const { language, t } = useLanguage();
   const [newsletterEmail, setNewsletterEmail] = useState('');
   const [subscribed, setSubscribed] = useState(false);
@@ -66,10 +67,18 @@ export default function Footer({ onOpenCallback, onOpenCookieSettings }: FooterP
 
             <div className="flex flex-wrap gap-3 pt-2">
               <Link
-                href="/estimation"
+                href="/confier-un-bien"
                 className="bg-brand-gradient hover:bg-brand-gradient-hover text-white py-3.5 px-6 rounded-full font-semibold text-xs transition-all duration-300 shadow-brand flex items-center space-x-2 whitespace-nowrap"
               >
-                <span>{t('btnEstimate')}</span>
+                <span>{t('btnEntrust')}</span>
+                <ArrowUpRight className="w-4 h-4" />
+              </Link>
+
+              <Link
+                href="/estimation"
+                className="border border-white/20 hover:bg-white hover:text-[#171512] text-white py-3.5 px-6 rounded-full font-semibold text-xs transition-all duration-300 whitespace-nowrap flex items-center space-x-2"
+              >
+                <span>{t('btnRentalValuation')}</span>
                 <ArrowUpRight className="w-4 h-4" />
               </Link>
 
@@ -138,27 +147,33 @@ export default function Footer({ onOpenCallback, onOpenCookieSettings }: FooterP
           {/* Col 1: Propriétaires */}
           <div className="space-y-4">
             <h3 className="font-semibold text-white uppercase tracking-wider text-[11px]">
-              {language === 'fr' ? 'Propriétaires' : 'Property Owners'}
+              {language === 'fr' ? 'Propriétaires & Bailleurs' : 'Property Owners & Landlords'}
             </h3>
             <ul className="space-y-2.5 text-[#9E9285]">
               <li>
-                <Link href="/estimation" className="hover:text-white transition-colors">
-                  {language === 'fr' ? 'Estimation en ligne' : 'Online Property Valuation'}
+                <Link href="/confier-un-bien" className="text-[#748C8C] hover:text-white font-semibold transition-colors flex items-center space-x-1">
+                  <span>{language === 'fr' ? 'Confier mon bien' : 'Entrust your property'}</span>
+                  <ArrowUpRight className="w-3 h-3" />
                 </Link>
               </li>
               <li>
                 <Link href="/gestion-locative" className="hover:text-white transition-colors">
-                  {language === 'fr' ? 'Mandat de Gestion Locative' : 'Property Management Agreement'}
+                  {language === 'fr' ? 'Gestion Locative 360°' : 'Rental Management'}
                 </Link>
               </li>
               <li>
-                <Link href="/gestion-locative#garanties" className="hover:text-white transition-colors">
-                  {language === 'fr' ? 'Garantie Loyers Impayés (GLI)' : 'Rent Default Insurance'}
+                <Link href="/confier-un-bien" className="hover:text-white transition-colors">
+                  {language === 'fr' ? 'Mise en Location' : 'Property Letting'}
+                </Link>
+              </li>
+              <li>
+                <Link href="/estimation" className="hover:text-white transition-colors">
+                  {language === 'fr' ? 'Estimation Locative & Vente' : 'Rental Valuation'}
                 </Link>
               </li>
               <li>
                 <Link href="/contact?subject=vente" className="hover:text-white transition-colors">
-                  {language === 'fr' ? 'Vendre un bien à Bordeaux' : 'Sell Property in Bordeaux'}
+                  {language === 'fr' ? 'Vente Immobilière de Prestige' : 'Property Sales'}
                 </Link>
               </li>
             </ul>

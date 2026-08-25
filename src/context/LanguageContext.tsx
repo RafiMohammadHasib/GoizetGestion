@@ -136,6 +136,53 @@ export const dictionary: Dictionary = {
     en: 'A modern vision for property management & luxury real estate in Bordeaux.'
   },
 
+  // Owner Demand #1 Pillar Services & Strong CTAs
+  btnEntrust: { fr: 'Confier mon bien', en: 'Entrust us with your property' },
+  btnRentalValuation: { fr: 'Obtenir une estimation locative', en: 'Get a rental valuation' },
+  btnContactUs: { fr: 'Nous contacter', en: 'Contact us' },
+  btnSpeakWithAdvisor: { fr: 'Échanger avec un conseiller', en: 'Speak with an advisor' },
+  btnStartManagement: { fr: 'Démarrer ma gestion', en: 'Start Management Agreement' },
+  
+  // 4 Core Owner Services
+  serviceRentalManagementTitle: { fr: 'Gestion Locative 360°', en: 'Rental Management' },
+  serviceRentalManagementSubtitle: { fr: 'Sérénité absolue & Loyers 100% garantis', en: 'Zero hassle & 100% guaranteed rent disbursements' },
+  serviceRentalManagementDesc: {
+    fr: 'Encaissement des loyers, gestion comptable, juridique et technique, garantie loyers impayés (GLI) intégrée sans carence.',
+    en: 'Full rent collection, legal, technical, and accounting management with zero-delay rent default insurance (GLI).'
+  },
+
+  servicePropertyLettingTitle: { fr: 'Mise en Location', en: 'Property Letting' },
+  servicePropertyLettingSubtitle: { fr: 'Attirer et sélectionner les meilleurs locataires', en: 'Attracting and vetting top-tier tenants' },
+  servicePropertyLettingDesc: {
+    fr: 'Reportage photo HD professionnel, diffusion multi-canaux premium, sélection rigoureuse des dossiers et état des lieux certifié.',
+    en: 'HD architectural photography, multi-channel exposure, rigorous solvability vetting, and certified digital inventory.'
+  },
+
+  serviceRentalValuationTitle: { fr: 'Estimation Locative & Vente', en: 'Rental Valuation' },
+  serviceRentalValuationSubtitle: { fr: 'Étude comparative de marché sous 48h', en: 'Data-driven Bordeaux yield appraisal in 48h' },
+  serviceRentalValuationDesc: {
+    fr: 'Audit précis du loyer conforme à l\'encadrement des loyers bordelais et valorisation patrimoniale actualisée.',
+    en: 'Accurate rent analysis compliant with Bordeaux rent control regulations and updated sales market appraisal.'
+  },
+
+  servicePropertySalesTitle: { fr: 'Vente Immobilière de Prestige', en: 'Property Sales' },
+  servicePropertySalesSubtitle: { fr: 'Valorisation & Transaction sur-mesure', en: 'Luxury valuation & bespoke transaction' },
+  servicePropertySalesDesc: {
+    fr: 'Stratégie de commercialisation ciblée, réseau d\'acquéreurs qualifiés et accompagnement notarié jusqu\'à l\'acte authentique.',
+    en: 'Targeted marketing, pre-qualified buyer network, and comprehensive legal support through final notarized closing.'
+  },
+
+  // Owner Form & Modal labels
+  modalEntrustTitle: { fr: 'Confier votre bien à Bordeaux', en: 'Entrust us with your Bordeaux property' },
+  modalEntrustSubtitle: { fr: 'Gestion locative, mise en location, estimation ou vente : nos associés vous accompagnent sous 2h.', en: 'Rental management, letting, valuation or sales: our partners respond within 2h.' },
+  stepServiceSelect: { fr: 'Votre projet', en: 'Your Objective' },
+  stepPropertyInfo: { fr: 'Votre bien', en: 'Property Details' },
+  stepContactInfo: { fr: 'Vos coordonnées', en: 'Contact Information' },
+  optRentalManagement: { fr: 'Gestion Locative Complète', en: 'Complete Rental Management' },
+  optPropertyLetting: { fr: 'Mise en Location Seule', en: 'Tenant Placement Only' },
+  optRentalValuation: { fr: 'Estimation de Loyer / Vente', en: 'Rental / Sales Valuation' },
+  optPropertySales: { fr: 'Vendre mon bien', en: 'Property Sales' },
+
   // Common UI
   resetFilters: { fr: 'Réinitialiser', en: 'Reset Filters' },
   loading: { fr: 'Chargement en cours…', en: 'Loading…' },

@@ -146,9 +146,27 @@ export default function AdminCRMPage() {
   };
 
   const filteredLeads = leads.filter(l => {
-    if (filterType !== 'ALL' && !(l.leadType || '').toUpperCase().includes(filterType)) {
-      return false;
+    if (filterType !== 'ALL') {
+      const typeStr = (l.leadType || '').toUpperCase();
+      const srvStr = (l.serviceType || '').toUpperCase();
+      const subjStr = (l.subject || '').toUpperCase();
+
+      if (filterType === 'OWNER') {
+        const isOwner = typeStr.includes('OWNER') || typeStr.includes('VALUATION') || typeStr.includes('SELLER') ||
+                        srvStr.includes('MANAGEMENT') || srvStr.includes('LETTING') || srvStr.includes('VALUATION') || srvStr.includes('SALES') ||
+                        subjStr.includes('GESTION') || subjStr.includes('CONFIER') || subjStr.includes('PROPRIÉTAIRE');
+        if (!isOwner) return false;
+      } else if (filterType === 'VALUATION') {
+        if (!typeStr.includes('VALUATION') && !srvStr.includes('VALUATION') && !subjStr.includes('ESTIMATION')) return false;
+      } else if (filterType === 'TENANT') {
+        if (!typeStr.includes('TENANT') && !subjStr.includes('VISITE')) return false;
+      } else if (filterType === 'CALLBACK') {
+        if (!typeStr.includes('CALLBACK') && !subjStr.includes('RAPPEL')) return false;
+      } else if (!typeStr.includes(filterType) && !srvStr.includes(filterType)) {
+        return false;
+      }
     }
+
     if (searchQuery) {
       const q = searchQuery.toLowerCase();
       return (
@@ -157,28 +175,41 @@ export default function AdminCRMPage() {
         (l.propertyAddress || '').toLowerCase().includes(q) ||
         (l.surface || '').toLowerCase().includes(q) ||
         (l.subject || '').toLowerCase().includes(q) ||
+        (l.serviceType || '').toLowerCase().includes(q) ||
         (l.phone || '').toLowerCase().includes(q)
       );
     }
     return true;
   });
 
-  const getBadgeStyle = (type: string) => {
+  const getBadgeStyle = (type: string, service?: string) => {
     const t = (type || '').toLowerCase();
-    if (t.includes('valuation') || t.includes('estimation')) return 'bg-purple-50 text-purple-800 border-purple-200/80';
-    if (t.includes('owner') || t.includes('propriétaire')) return 'bg-emerald-50 text-emerald-800 border-emerald-200/80';
+    const s = (service || '').toLowerCase();
+
+    if (t.includes('valuation') || s.includes('valuation') || s.includes('estimation')) return 'bg-purple-50 text-purple-800 border-purple-200/80';
+    if (s.includes('letting') || s.includes('location')) return 'bg-teal-50 text-teal-800 border-teal-200/80';
+    if (t.includes('owner') || s.includes('management') || s.includes('gestion')) return 'bg-emerald-50 text-emerald-800 border-emerald-200/80';
+    if (t.includes('seller') || s.includes('sales') || s.includes('vente')) return 'bg-amber-50 text-amber-800 border-amber-200/80';
+    if (t.includes('callback') || s.includes('rappel')) return 'bg-rose-50 text-rose-800 border-rose-200/80';
     if (t.includes('tenant') || t.includes('locataire')) return 'bg-sky-50 text-sky-800 border-sky-200/80';
-    if (t.includes('seller') || t.includes('buyer')) return 'bg-amber-50 text-amber-800 border-amber-200/80';
     return 'bg-stone-100 text-stone-700 border-stone-200';
   };
 
-  const getLeadTypeLabel = (type: string) => {
+  const getLeadTypeLabel = (type: string, service?: string) => {
+    if (service) {
+      if (service === 'Rental management') return 'Gestion Locative 360°';
+      if (service === 'Property letting') return 'Mise en Location';
+      if (service === 'Rental valuation') return 'Estimation Locative';
+      if (service === 'Property sales') return 'Vente Immobilière';
+      return service;
+    }
     const t = (type || '').toLowerCase();
     if (t.includes('valuation')) return 'Estimation Propriétaire';
     if (t.includes('owner')) return 'Dossier Propriétaire';
     if (t.includes('tenant')) return 'Demande Visite Locataire';
     if (t.includes('seller')) return 'Mandat Vente';
     if (t.includes('buyer')) return 'Recherche Acquéreur';
+    if (t.includes('callback')) return 'Demande de Rappel';
     return type || 'Demande Contact';
   };
 
@@ -201,7 +232,7 @@ export default function AdminCRMPage() {
             Opportunity Pipeline
           </h1>
           <p className="text-xs text-[#6B6B6B] mt-0.5">
-            Tenant visit inquiries & owner property valuation submissions with drag & drop conversion
+            Owner lead generation (Management, Letting, Valuation, Sales) & tenant viewings with drag & drop conversion
           </p>
         </div>
 
@@ -212,7 +243,7 @@ export default function AdminCRMPage() {
             <Search className="w-3.5 h-3.5 absolute left-3 top-1/2 -translate-y-1/2 text-[#6B6B6B]" />
             <input
               type="text"
-              placeholder="Search leads, address, surface..."
+              placeholder="Search leads, address, service..."
               value={searchQuery}
               onChange={(e) => setSearchQuery(e.target.value)}
               className="pl-8 pr-3 py-1.5 bg-white border border-[#171717]/10 rounded-xl text-xs focus:outline-none focus:border-[#748C8C] w-40 sm:w-56 shadow-2xs"
@@ -230,9 +261,10 @@ export default function AdminCRMPage() {
           <div className="flex space-x-1 bg-white p-1 rounded-xl border border-[#171717]/10 text-xs font-semibold shadow-2xs">
             {[
               { id: 'ALL', label: 'All Leads' },
+              { id: 'OWNER', label: 'Owners / Bailleurs' },
               { id: 'VALUATION', label: 'Valuations' },
               { id: 'TENANT', label: 'Tenants' },
-              { id: 'OWNER', label: 'Owners' }
+              { id: 'CALLBACK', label: 'Callbacks' }
             ].map(f => (
               <button
                 key={f.id}
@@ -304,8 +336,8 @@ export default function AdminCRMPage() {
                       >
                         {/* Card Header: Type Badge & Grip */}
                         <div className="flex items-center justify-between gap-1">
-                          <span className={`text-[9px] font-bold uppercase tracking-wider px-2 py-0.5 rounded-md border ${getBadgeStyle(lead.leadType)} truncate max-w-[140px]`}>
-                            {getLeadTypeLabel(lead.leadType)}
+                          <span className={`text-[9px] font-bold uppercase tracking-wider px-2 py-0.5 rounded-md border ${getBadgeStyle(lead.leadType, lead.serviceType)} truncate max-w-[140px]`}>
+                            {getLeadTypeLabel(lead.leadType, lead.serviceType)}
                           </span>
                           <GripVertical className="w-3.5 h-3.5 text-stone-300 group-hover:text-stone-500 transition-colors shrink-0" />
                         </div>
@@ -335,6 +367,14 @@ export default function AdminCRMPage() {
                           <div className="flex items-center space-x-1 text-[10px] text-[#6B6B6B] truncate">
                             <MapPin className="w-3 h-3 text-[#748C8C] shrink-0" />
                             <span className="truncate">{lead.propertyAddress}</span>
+                          </div>
+                        )}
+
+                        {/* Preferred Time Slot */}
+                        {lead.preferredTimeSlot && (
+                          <div className="flex items-center space-x-1 text-[9px] text-[#748C8C] font-semibold bg-[#748C8C]/10 px-2 py-0.5 rounded-md">
+                            <Clock className="w-2.5 h-2.5 shrink-0" />
+                            <span className="truncate">{lead.preferredTimeSlot}</span>
                           </div>
                         )}
 
@@ -397,8 +437,8 @@ export default function AdminCRMPage() {
               {/* Lead Top Header */}
               <div className="space-y-2">
                 <div className="flex flex-wrap items-center gap-2">
-                  <span className={`text-[10px] font-bold uppercase tracking-widest px-2.5 py-0.5 rounded-full border ${getBadgeStyle(selectedLead.leadType)}`}>
-                    {getLeadTypeLabel(selectedLead.leadType)}
+                  <span className={`text-[10px] font-bold uppercase tracking-widest px-2.5 py-0.5 rounded-full border ${getBadgeStyle(selectedLead.leadType, selectedLead.serviceType)}`}>
+                    {getLeadTypeLabel(selectedLead.leadType, selectedLead.serviceType)}
                   </span>
                   <span className="text-xs text-[#6B6B6B]">Source: {selectedLead.source}</span>
                   <span className="text-xs text-[#6B6B6B]">
@@ -442,6 +482,20 @@ export default function AdminCRMPage() {
                 </h4>
 
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 text-xs">
+                  {selectedLead.serviceType && (
+                    <div className="space-y-0.5">
+                      <span className="text-[10px] uppercase text-[#6B6B6B] block">Service Demandé</span>
+                      <span className="font-bold text-[#748C8C]">{getLeadTypeLabel(selectedLead.leadType, selectedLead.serviceType)}</span>
+                    </div>
+                  )}
+
+                  {selectedLead.preferredTimeSlot && (
+                    <div className="space-y-0.5">
+                      <span className="text-[10px] uppercase text-[#6B6B6B] block">Créneau de Rappel</span>
+                      <span className="font-semibold text-[#171717]">{selectedLead.preferredTimeSlot}</span>
+                    </div>
+                  )}
+
                   {selectedLead.propertyAddress && (
                     <div className="space-y-0.5">
                       <span className="text-[10px] uppercase text-[#6B6B6B] block">Bien / Quartier</span>

@@ -11,48 +11,48 @@ export default function ServicesGrid() {
 
   const services = [
     {
-      icon: Key,
-      title: language === 'fr' ? 'Mise en Location' : 'Tenant Placement',
-      subtitle: language === 'fr' ? 'Attirer les meilleurs locataires' : 'Attracting top-tier tenants',
-      description: language === 'fr'
-        ? 'Shooting photo professionnel HD, rédaction d\'annonces premium, diffusion multi-canaux et visites ciblées.'
-        : 'HD architectural photography, premium ad copywriting, multi-channel exposure, and vetted viewings.',
-      href: '/gestion-locative#location',
-      image: 'https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=800&q=80',
-      badge: language === 'fr' ? 'Bailleurs' : 'Landlords'
-    },
-    {
       icon: ShieldCheck,
-      title: language === 'fr' ? 'Gestion Locative 360°' : '360° Property Management',
+      title: language === 'fr' ? 'Gestion Locative 360°' : 'Rental Management',
       subtitle: language === 'fr' ? 'Sérénité absolue & Garantie impayés' : 'Complete peace of mind & default insurance',
       description: language === 'fr'
         ? 'Gestion comptable, technique et juridique complète. Garantie des Loyers Impayés (GLI) intégrée sans carence.'
         : 'Full accounting, maintenance, and legal management. Rent Default Insurance included with zero delay.',
       href: '/gestion-locative',
       image: 'https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?auto=format&fit=crop&w=800&q=80',
-      badge: language === 'fr' ? 'Populaire' : 'Popular'
+      badge: language === 'fr' ? 'Gestion' : 'Management'
     },
     {
-      icon: Tag,
-      title: language === 'fr' ? 'Vente Immobilier de Prestige' : 'Luxury Property Sales',
-      subtitle: language === 'fr' ? 'Valorisation & Transaction' : 'Valuation & Advisory',
+      icon: Key,
+      title: language === 'fr' ? 'Mise en Location' : 'Property Letting',
+      subtitle: language === 'fr' ? 'Attirer et filtrer les meilleurs locataires' : 'Attracting & vetting top-tier tenants',
       description: language === 'fr'
-        ? 'Accompagnement dédié pour la vente de votre appartement ou échoppe bordelaise au prix fort du marché.'
-        : 'Tailored advisory to market and sell your apartment or Bordeaux townhouse at premium market value.',
-      href: '/contact?subject=vente',
-      image: 'https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?auto=format&fit=crop&w=800&q=80',
-      badge: language === 'fr' ? 'Transaction' : 'Sales'
+        ? 'Shooting photo professionnel HD, rédaction d\'annonces premium, diffusion multi-canaux et visites ciblées.'
+        : 'HD architectural photography, premium ad copywriting, multi-channel exposure, and vetted viewings.',
+      href: '/confier-un-bien',
+      image: 'https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=800&q=80',
+      badge: language === 'fr' ? 'Bailleurs' : 'Landlords'
     },
     {
       icon: Calculator,
-      title: language === 'fr' ? 'Estimation Immobilière' : 'Property Valuation',
-      subtitle: language === 'fr' ? 'Évaluation en 48 heures' : '48-hour valuation report',
+      title: language === 'fr' ? 'Estimation Immobilière' : 'Rental Valuation',
+      subtitle: language === 'fr' ? 'Évaluation locative & vente en 48h' : '48-hour rental & sales valuation report',
       description: language === 'fr'
         ? 'Estimation précise de votre valeur locative ou de vente selon les dernières transactions de votre quartier.'
         : 'Accurate rental or sales estimation tailored to recent transactions in your specific neighborhood.',
       href: '/estimation',
       image: 'https://images.unsplash.com/photo-1600566753190-17f0baa2a6c3?auto=format&fit=crop&w=800&q=80',
       badge: language === 'fr' ? 'Offert' : 'Free'
+    },
+    {
+      icon: Tag,
+      title: language === 'fr' ? 'Vente Immobilier de Prestige' : 'Property Sales',
+      subtitle: language === 'fr' ? 'Valorisation & Transaction sur-mesure' : 'Bespoke Valuation & Advisory',
+      description: language === 'fr'
+        ? 'Accompagnement dédié pour la vente de votre appartement ou échoppe bordelaise au prix fort du marché.'
+        : 'Tailored advisory to market and sell your apartment or Bordeaux townhouse at premium market value.',
+      href: '/contact?subject=vente',
+      image: 'https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?auto=format&fit=crop&w=800&q=80',
+      badge: language === 'fr' ? 'Transaction' : 'Sales'
     },
     {
       icon: UserCheck,

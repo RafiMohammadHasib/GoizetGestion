@@ -20,17 +20,58 @@ export default function CallbackModal({ isOpen, onClose }: CallbackModalProps) {
     timeSlot: 'Matin (9h - 12h)'
   });
   const [isSubmitted, setIsSubmitted] = useState(false);
+  const [loading, setLoading] = useState(false);
+  const [errorMsg, setErrorMsg] = useState('');
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    setIsSubmitted(true);
-    setTimeout(() => {
-      // Auto close after 3s
+    setErrorMsg('');
+
+    if (!formData.name.trim() || formData.name.trim().length < 2) {
+      setErrorMsg(language === 'fr' ? 'Veuillez renseigner votre nom.' : 'Please enter your name.');
+      return;
+    }
+
+    if (!formData.phone.trim()) {
+      setErrorMsg(language === 'fr' ? 'Numéro de téléphone obligatoire.' : 'Phone number is required.');
+      return;
+    }
+
+    setLoading(true);
+
+    try {
+      const res = await fetch('/api/contact', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          name: formData.name,
+          phone: formData.phone,
+          leadType: 'Callback Request',
+          project: formData.project,
+          timeSlot: formData.timeSlot,
+          subject: `Demande de Rappel: ${formData.project} (${formData.timeSlot})`,
+          message: `Demande de rappel téléphonique. Projet: ${formData.project}. Créneau souhaité: ${formData.timeSlot}.`,
+          source: 'Modal Rappel Immédiat'
+        })
+      });
+
+      if (!res.ok) {
+        const data = await res.json();
+        throw new Error(data.error || 'Erreur lors de la transmission');
+      }
+
+      setIsSubmitted(true);
       setTimeout(() => {
-        setIsSubmitted(false);
-        onClose();
-      }, 3000);
-    }, 500);
+        setTimeout(() => {
+          setIsSubmitted(false);
+          onClose();
+        }, 3500);
+      }, 500);
+    } catch (err: any) {
+      setErrorMsg(err.message || (language === 'fr' ? 'Erreur lors de la demande de rappel.' : 'Callback request error.'));
+    } finally {
+      setLoading(false);
+    }
   };
 
   return (
@@ -94,6 +135,12 @@ export default function CallbackModal({ isOpen, onClose }: CallbackModalProps) {
                       : 'Provide your details and project outline. We will contact you within 2 hours.'}
                   </p>
                 </div>
+
+                {errorMsg && (
+                  <div className="p-3 bg-red-50 border border-red-200 rounded-xl text-xs text-red-700">
+                    {errorMsg}
+                  </div>
+                )}
 
                 <form onSubmit={handleSubmit} className="space-y-4">
                   <div>
@@ -161,10 +208,11 @@ export default function CallbackModal({ isOpen, onClose }: CallbackModalProps) {
                   <div className="pt-2">
                     <button
                       type="submit"
-                      className="w-full bg-brand-gradient hover:bg-brand-gradient-hover text-white py-3.5 rounded-xl font-semibold text-sm transition-all duration-300 shadow-brand flex items-center justify-center space-x-2"
+                      disabled={loading}
+                      className="w-full bg-brand-gradient hover:bg-brand-gradient-hover text-white py-3.5 rounded-xl font-semibold text-sm transition-all duration-300 shadow-brand flex items-center justify-center space-x-2 disabled:opacity-60"
                     >
                       <PhoneCall className="w-4 h-4" />
-                      <span>{language === 'fr' ? 'Confirmer ma demande de rappel' : 'Confirm Callback Request'}</span>
+                      <span>{loading ? (language === 'fr' ? 'Transmission sécurisée...' : 'Submitting...') : (language === 'fr' ? 'Confirmer ma demande de rappel' : 'Confirm Callback Request')}</span>
                     </button>
                   </div>
 

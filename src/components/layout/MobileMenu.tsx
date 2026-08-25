@@ -11,9 +11,10 @@ interface MobileMenuProps {
   onClose: () => void;
   navItems: { label: string; href: string }[];
   onOpenCallback?: () => void;
+  onOpenEntrust?: () => void;
 }
 
-export default function MobileMenu({ isOpen, onClose, navItems, onOpenCallback }: MobileMenuProps) {
+export default function MobileMenu({ isOpen, onClose, navItems, onOpenCallback, onOpenEntrust }: MobileMenuProps) {
   const { language, t } = useLanguage();
 
   return (
@@ -54,10 +55,21 @@ export default function MobileMenu({ isOpen, onClose, navItems, onOpenCallback }
 
             {/* Quick Actions */}
             <div className="space-y-3 pt-2">
+              <button
+                onClick={() => {
+                  onClose();
+                  if (onOpenEntrust) onOpenEntrust();
+                }}
+                className="w-full bg-brand-gradient text-white text-center py-3.5 rounded-full font-semibold text-sm flex items-center justify-center space-x-2 shadow-brand"
+              >
+                <span>{t('btnEntrust')}</span>
+                <ArrowUpRight className="w-4 h-4" />
+              </button>
+
               <Link
                 href="/estimation"
                 onClick={onClose}
-                className="w-full bg-brand-gradient text-white text-center py-3.5 rounded-full font-semibold text-sm flex items-center justify-center space-x-2 shadow-brand"
+                className="w-full bg-white text-[#171512] text-center py-3 rounded-full font-semibold text-sm flex items-center justify-center space-x-2 shadow-xs"
               >
                 <span>{t('btnEstimate')}</span>
                 <ArrowUpRight className="w-4 h-4" />

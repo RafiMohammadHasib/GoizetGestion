@@ -82,17 +82,26 @@ export default function LandlordCTA() {
 
           <div className="space-y-3">
             <Link
-              href="/estimation"
+              href="/confier-un-bien"
               className="w-full bg-brand-gradient hover:bg-brand-gradient-hover text-white py-4 px-6 rounded-xl font-semibold text-xs transition-all duration-300 shadow-brand flex items-center justify-center space-x-2 whitespace-nowrap"
             >
-              <Calculator className="w-4 h-4" />
-              <span>{language === 'fr' ? 'Lancer l\'estimation en ligne (2 min)' : 'Start Online Valuation (2 min)'}</span>
+              <Sparkles className="w-4 h-4" />
+              <span>{language === 'fr' ? 'Confier mon bien à l\'agence' : 'Entrust Us With Your Property'}</span>
+              <ArrowUpRight className="w-4 h-4 ml-auto" />
+            </Link>
+
+            <Link
+              href="/estimation"
+              className="w-full bg-white/10 hover:bg-white/20 text-white border border-white/20 py-3.5 px-6 rounded-xl font-semibold text-xs transition-all duration-300 flex items-center justify-center space-x-2 whitespace-nowrap"
+            >
+              <Calculator className="w-4 h-4 text-[#748C8C]" />
+              <span>{language === 'fr' ? 'Obtenir une estimation locative (2 min)' : 'Get a Rental Valuation (2 min)'}</span>
               <ArrowUpRight className="w-4 h-4 ml-auto" />
             </Link>
 
             <Link
               href="/gestion-locative"
-              className="w-full border border-white/20 hover:bg-white hover:text-[#171512] text-white py-3.5 px-6 rounded-xl font-semibold text-xs transition-all duration-300 flex items-center justify-center space-x-2 whitespace-nowrap"
+              className="w-full border border-white/15 hover:bg-white hover:text-[#171512] text-white py-3 px-6 rounded-xl font-semibold text-xs transition-all duration-300 flex items-center justify-center space-x-2 whitespace-nowrap"
             >
               <span>{language === 'fr' ? 'Découvrir nos offres de gestion locative' : 'Explore Management Plans'}</span>
             </Link>

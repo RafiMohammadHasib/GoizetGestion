@@ -15,11 +15,25 @@ export async function POST(req: NextRequest) {
     }
 
     const body = await req.json();
-    const { fullName, name, email, phone, subject, message, propertyId, propertySlug, propertyTitle } = body;
+    const { 
+      fullName, 
+      name, 
+      email, 
+      phone, 
+      subject, 
+      message, 
+      propertyId, 
+      propertySlug, 
+      propertyTitle,
+      leadType: customLeadType,
+      project,
+      timeSlot,
+      source: customSource
+    } = body;
 
     const sanitizedName = sanitizeInjection(fullName || name || '');
-    const sanitizedSubject = sanitizeInjection(subject || 'Demande de contact');
-    const sanitizedMessage = sanitizeInjection(message || '');
+    const sanitizedSubject = sanitizeInjection(subject || project ? `Demande de rappel: ${project}` : 'Demande de contact');
+    const sanitizedMessage = sanitizeInjection(message || (timeSlot ? `Créneau souhaité: ${timeSlot}. Projet: ${project || 'Conseil immobilier'}` : ''));
     const cleanEmail = (email || '').trim().toLowerCase();
     const cleanPhone = (phone || '').trim();
 
@@ -27,8 +41,20 @@ export async function POST(req: NextRequest) {
       return NextResponse.json({ error: 'Le nom complet est obligatoire.' }, { status: 400 });
     }
 
-    if (!isValidEmail(cleanEmail)) {
-      return NextResponse.json({ error: 'Adresse email invalide.' }, { status: 400 });
+    // Determine lead type accurately
+    let computedLeadType: CRMLead['leadType'] = 'Contact Message';
+    if (customLeadType) {
+      computedLeadType = customLeadType;
+    } else if (propertyId || propertySlug) {
+      computedLeadType = 'Tenant Request';
+    } else if (timeSlot) {
+      computedLeadType = 'Callback Request';
+    } else if (sanitizedSubject.toLowerCase().includes('gestion') || sanitizedSubject.toLowerCase().includes('confier')) {
+      computedLeadType = 'Owner Enquiry';
+    } else if (sanitizedSubject.toLowerCase().includes('estimation')) {
+      computedLeadType = 'Valuation Request';
+    } else if (sanitizedSubject.toLowerCase().includes('vente')) {
+      computedLeadType = 'Seller Request';
     }
 
     // Append lead to Central Database Store & Supabase
@@ -36,19 +62,21 @@ export async function POST(req: NextRequest) {
     const newLead: CRMLead = {
       id: `lead_${Date.now()}`,
       name: sanitizedName,
-      email: cleanEmail,
+      email: cleanEmail || 'contact@client.goizet',
       phone: cleanPhone || 'Non renseigné',
-      leadType: propertyId || propertySlug ? 'Tenant Request' : 'Contact Message',
+      leadType: computedLeadType,
+      serviceType: project || undefined,
+      preferredTimeSlot: timeSlot || undefined,
       status: 'NEW',
       subject: sanitizedSubject,
       message: sanitizedMessage,
       propertyAddress: propertyTitle || (propertySlug ? `Propriété: ${propertySlug}` : undefined),
-      source: propertySlug ? 'Page Détail Bien' : 'Formulaire de Contact Frontend',
+      source: customSource || (timeSlot ? 'Demande de Rappel Modal' : (propertySlug ? 'Page Détail Bien' : 'Formulaire de Contact Frontend')),
       assignedTo: 'Paul & Edgar Goizet',
       createdAt: new Date().toISOString(),
       notes: [],
       activities: [
-        { id: `act_${Date.now()}`, text: 'Formulaire soumis depuis le site public.', date: 'À l\'instant' }
+        { id: `act_${Date.now()}`, text: `Formulaire (${computedLeadType}) soumis depuis le site public.`, date: 'À l\'instant' }
       ]
     };
 

@@ -520,6 +520,21 @@ export default function EstimationPage() {
                     <>Thank you <strong>{formData.firstName} {formData.lastName}</strong>. Our Bordeaux district director will contact you at <strong>{formData.phone}</strong> within 24h. Strictly confidential and secure.</>
                   )}
                 </p>
+
+                <div className="pt-2 flex flex-col sm:flex-row gap-3">
+                  <Link
+                    href="/confier-un-bien"
+                    className="flex-1 bg-brand-gradient hover:bg-brand-gradient-hover text-white py-3 px-4 rounded-xl font-semibold text-xs transition-all shadow-brand text-center"
+                  >
+                    {language === 'fr' ? 'Confier mon bien en gestion' : 'Entrust us with your property'}
+                  </Link>
+                  <Link
+                    href="/contact"
+                    className="flex-1 bg-white/10 hover:bg-white/20 text-white border border-white/20 py-3 px-4 rounded-xl font-semibold text-xs transition-all text-center"
+                  >
+                    {language === 'fr' ? 'Échanger avec un conseiller' : 'Speak with an advisor'}
+                  </Link>
+                </div>
               </div>
 
             </motion.div>
