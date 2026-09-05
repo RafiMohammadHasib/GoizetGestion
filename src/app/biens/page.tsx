@@ -73,7 +73,7 @@ function PropertySearchContent() {
 
   const neighborhoodOptions = useMemo(() => [
     { value: '', label: language === 'fr' ? 'Tous les secteurs' : 'All Districts' },
-    { value: 'chartrons', label: 'Chartrons', sublabel: '33000' },
+    { value: 'chartrons', label: 'Chartrons', sublabel: '33300' },
     { value: 'cauderan', label: 'Caudéran', sublabel: '33200' },
     { value: 'triangle-dor', label: "Triangle d'Or", sublabel: '33000' },
     { value: 'bastide', label: 'Bastide', sublabel: '33100' },

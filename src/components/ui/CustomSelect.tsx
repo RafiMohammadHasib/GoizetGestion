@@ -74,7 +74,10 @@ export default function CustomSelect({
       }
     }
 
-    function handleReposition() {
+    function handleReposition(e: Event) {
+      if (e.target && (e.target as HTMLElement).closest?.('[data-lenis-prevent]')) {
+        return;
+      }
       if (isOpen) {
         calculateDirection();
       }
@@ -102,7 +105,11 @@ export default function CustomSelect({
   };
 
   return (
-    <div ref={containerRef} className={`relative w-full ${className}`}>
+    <div 
+      ref={containerRef} 
+      className={`relative w-full ${className}`}
+      style={{ zIndex: isOpen ? 9999 : 1 }}
+    >
       {/* Trigger Button */}
       <button
         type="button"
@@ -152,9 +159,13 @@ export default function CustomSelect({
               scale: 0.98,
             }}
             transition={{ duration: 0.18, ease: [0.16, 1, 0.3, 1] }}
-            className={`absolute z-[100] w-full min-w-[200px] max-h-72 overflow-y-auto rounded-2xl bg-white/95 backdrop-blur-xl border border-[#748C8C]/25 shadow-2xl p-1.5 space-y-0.5 custom-scrollbar ${
+            data-lenis-prevent="true"
+            onWheel={(e) => e.stopPropagation()}
+            onTouchMove={(e) => e.stopPropagation()}
+            className={`absolute z-[9999] w-full min-w-[220px] max-h-60 overflow-y-auto overscroll-contain rounded-2xl bg-white border border-[#171512]/15 shadow-2xl p-1.5 space-y-0.5 custom-scrollbar ${
               dropDirection === 'up' ? 'bottom-full mb-2' : 'top-full mt-2'
             } ${align === 'right' ? 'right-0' : 'left-0'}`}
+            style={{ backgroundColor: '#ffffff', opacity: 1 }}
             role="listbox"
           >
             {options.map((option) => {
@@ -168,7 +179,7 @@ export default function CustomSelect({
                   role="option"
                   aria-selected={isSelected}
                   onClick={() => handleSelect(option.value)}
-                  className={`w-full px-3 py-2.5 rounded-xl text-xs font-medium transition-all duration-150 flex items-center justify-between text-left group ${
+                  className={`w-full px-3 py-2.5 rounded-xl text-xs font-medium transition-all duration-150 flex items-center justify-between text-left group cursor-pointer ${
                     isSelected
                       ? 'bg-brand-gradient text-white font-semibold shadow-xs'
                       : 'text-[#2C2723] hover:bg-[#748C8C]/10 hover:text-[#4F6565]'

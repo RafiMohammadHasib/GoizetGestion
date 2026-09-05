@@ -7,7 +7,7 @@ import { motion } from 'framer-motion';
 
 export default function AdminLoginPage() {
   const router = useRouter();
-  const [email, setEmail] = useState('admin@maison-meridia.fr');
+  const [email, setEmail] = useState('goizetgestion@gmail.com');
   const [password, setPassword] = useState('Meridia2026!');
   const [showPassword, setShowPassword] = useState(false);
   const [rememberMe, setRememberMe] = useState(true);
@@ -134,7 +134,7 @@ export default function AdminLoginPage() {
                 <input
                   type="email"
                   required
-                  placeholder="admin@goizet-gestion.fr"
+                  placeholder="goizetgestion@gmail.com"
                   value={email}
                   onChange={(e) => setEmail(e.target.value)}
                   className="w-full pl-10 pr-4 py-3 bg-[#F7F7F5] border border-[#171717]/15 rounded-xl font-medium text-[#171717] focus:outline-none focus:border-[#748C8C] focus:ring-1 focus:ring-[#748C8C] transition-all"
@@ -194,7 +194,7 @@ export default function AdminLoginPage() {
           </form>
 
           <div className="pt-4 text-center text-[11px] text-[#6B6B6B] border-t border-[#171717]/5">
-            Default credentials: <code className="bg-[#F7F7F5] px-2 py-0.5 rounded font-mono text-[#171717]">admin@goizet-gestion.fr</code> / <code className="bg-[#F7F7F5] px-2 py-0.5 rounded font-mono text-[#171717]">Meridia2026!</code>
+            Default credentials: <code className="bg-[#F7F7F5] px-2 py-0.5 rounded font-mono text-[#171717]">goizetgestion@gmail.com</code> / <code className="bg-[#F7F7F5] px-2 py-0.5 rounded font-mono text-[#171717]">Meridia2026!</code>
           </div>
         </motion.div>
       </div>

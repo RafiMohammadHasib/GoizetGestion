@@ -63,7 +63,7 @@ export default function RootLayout({
     'description': 'Conseil immobilier et gestion locative d\'exception à Bordeaux',
     'address': {
       '@type': 'PostalAddress',
-      'streetAddress': '38 Cours Portal',
+      'streetAddress': '48 rue Calvé',
       'addressLocality': 'Bordeaux',
       'postalCode': '33000',
       'addressCountry': 'FR'

@@ -270,7 +270,7 @@ export default function Footer({ onOpenCallback, onOpenEntrust, onOpenCookieSett
             <div className="space-y-3 text-[#A2B2B2] text-xs">
               <div className="flex items-start space-x-2">
                 <MapPin className="w-4 h-4 text-[#748C8C] shrink-0 mt-0.5" />
-                <span>38 Cours Portal, 33000 Bordeaux (Chartrons)</span>
+                <span>48 rue Calvé, 33000 Bordeaux</span>
               </div>
               <div className="space-y-1 pt-1 border-t border-white/5">
                 <a href="tel:+33695577033" className="flex items-center space-x-2 hover:text-white transition-colors">
@@ -283,9 +283,9 @@ export default function Footer({ onOpenCallback, onOpenEntrust, onOpenCookieSett
                 </a>
               </div>
               <div className="pt-1">
-                <a href="mailto:Goizetgestion@gmail.com" className="flex items-center space-x-2 hover:text-white transition-colors">
+                <a href="mailto:goizetgestion@gmail.com" className="flex items-center space-x-2 hover:text-white transition-colors">
                   <Mail className="w-4 h-4 text-[#748C8C] shrink-0" />
-                  <span className="truncate">Goizetgestion@gmail.com</span>
+                  <span className="truncate">goizetgestion@gmail.com</span>
                 </a>
               </div>
               <div className="pt-2 border-t border-white/5 space-y-1 text-[10px] text-white/50">

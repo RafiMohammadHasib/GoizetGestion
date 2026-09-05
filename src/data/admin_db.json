@@ -2,8 +2,8 @@
   "users": [
     {
       "id": "usr_1",
-      "name": "Alexandre de Saint-Clair",
-      "email": "admin@maison-meridia.fr",
+      "name": "Paul Goizet",
+      "email": "goizetgestion@gmail.com",
       "role": "Super Admin",
       "avatar": "https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=400&q=80",
       "active": true,
@@ -11,8 +11,8 @@
     },
     {
       "id": "usr_2",
-      "name": "Sophie Martin",
-      "email": "s.martin@maison-meridia.fr",
+      "name": "Edgar Goizet",
+      "email": "goizetgestion@gmail.com",
       "role": "Administrator",
       "avatar": "https://images.unsplash.com/photo-1580489944761-15a19d654956?auto=format&fit=crop&w=400&q=80",
       "active": true,
@@ -21,7 +21,7 @@
     {
       "id": "usr_3",
       "name": "Thomas Bernard",
-      "email": "t.bernard@maison-meridia.fr",
+      "email": "goizetgestion@gmail.com",
       "role": "Property Manager",
       "avatar": "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&w=400&q=80",
       "active": true,
@@ -30,7 +30,7 @@
     {
       "id": "usr_4",
       "name": "Claire Dubois",
-      "email": "c.dubois@maison-meridia.fr",
+      "email": "goizetgestion@gmail.com",
       "role": "Content Manager",
       "avatar": "https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?auto=format&fit=crop&w=400&q=80",
       "active": true,
@@ -39,7 +39,7 @@
     {
       "id": "usr_5",
       "name": "Julien Moreau",
-      "email": "j.moreau@maison-meridia.fr",
+      "email": "goizetgestion@gmail.com",
       "role": "Sales Agent",
       "avatar": "https://images.unsplash.com/photo-1500648767791-00dcc994a43e?auto=format&fit=crop&w=400&q=80",
       "active": true,

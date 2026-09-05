@@ -106,10 +106,10 @@ export default function ContactPage() {
               {language === 'fr' ? 'SIÈGE BORDEAUX & CONTACTS' : 'BORDEAUX HEADQUARTERS & CONTACTS'}
             </span>
             <h2 className="font-serif-display text-3xl font-light">
-              38 Cours Portal, 33000 Bordeaux
+              48 rue Calvé, 33000 Bordeaux
             </h2>
             <p className="text-xs text-[#9E9285] leading-relaxed">
-              {language === 'fr' ? 'Au cœur du quartier historique des Chartrons.' : 'Located in the historic Chartrons district.'}
+              {language === 'fr' ? 'Au cœur de Bordeaux.' : 'Located in central Bordeaux.'}
             </p>
 
             {/* Direct Executive Contacts */}
@@ -128,9 +128,9 @@ export default function ContactPage() {
                     <Phone className="w-3.5 h-3.5 text-[#748C8C]" />
                     <span className="font-medium">+33 6 95 57 70 33</span>
                   </a>
-                  <a href="mailto:Goizetgestion@gmail.com" className="flex items-center space-x-2.5 hover:text-[#748C8C] transition-colors">
+                  <a href="mailto:goizetgestion@gmail.com" className="flex items-center space-x-2.5 hover:text-[#748C8C] transition-colors">
                     <Mail className="w-3.5 h-3.5 text-[#748C8C]" />
-                    <span>Goizetgestion@gmail.com</span>
+                    <span>goizetgestion@gmail.com</span>
                   </a>
                 </div>
               </div>
@@ -148,9 +148,9 @@ export default function ContactPage() {
                     <Phone className="w-3.5 h-3.5 text-[#748C8C]" />
                     <span className="font-medium">+33 7 81 96 83 95</span>
                   </a>
-                  <a href="mailto:Goizetgestion@gmail.com" className="flex items-center space-x-2.5 hover:text-[#748C8C] transition-colors">
+                  <a href="mailto:goizetgestion@gmail.com" className="flex items-center space-x-2.5 hover:text-[#748C8C] transition-colors">
                     <Mail className="w-3.5 h-3.5 text-[#748C8C]" />
-                    <span>Goizetgestion@gmail.com</span>
+                    <span>goizetgestion@gmail.com</span>
                   </a>
                 </div>
               </div>

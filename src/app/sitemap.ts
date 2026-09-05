@@ -4,7 +4,7 @@ import { NEIGHBORHOODS } from '@/data/neighborhoods';
 import { ARTICLES } from '@/data/articles';
 
 export default function sitemap(): MetadataRoute.Sitemap {
-  const baseUrl = 'https://maison-meridia.fr';
+  const baseUrl = 'https://goizet-gestion.fr';
 
   const staticPages = [
     '',

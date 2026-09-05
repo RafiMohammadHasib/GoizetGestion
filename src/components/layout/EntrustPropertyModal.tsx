@@ -355,12 +355,14 @@ export default function EntrustPropertyModal({ isOpen, onClose, initialService =
                             </label>
                             <CustomSelect
                               options={[
-                                { value: 'chartrons', label: 'Chartrons', sublabel: '33000' },
+                                { value: 'chartrons', label: 'Chartrons', sublabel: '33300' },
                                 { value: 'cauderan', label: 'Caudéran', sublabel: '33200' },
                                 { value: 'triangle-dor', label: "Triangle d'Or / Centre", sublabel: '33000' },
                                 { value: 'bastide', label: 'Bastide Rive Droite', sublabel: '33100' },
                                 { value: 'saint-michel', label: 'Saint-Michel & Capucins', sublabel: '33000' },
                                 { value: 'saint-augustin', label: 'Saint-Augustin', sublabel: '33000' },
+                                { value: 'merignac', label: 'Mérignac', sublabel: '33700' },
+                                { value: 'begles', label: 'Bègles', sublabel: '33130' },
                               ]}
                               value={formData.neighborhood}
                               onChange={(val) => setFormData({ ...formData, neighborhood: val })}
@@ -373,7 +375,7 @@ export default function EntrustPropertyModal({ isOpen, onClose, initialService =
                             </label>
                             <input
                               type="text"
-                              placeholder="Ex: 12 Cours Portal"
+                              placeholder="Ex: 48 Rue Calvé"
                               value={formData.address}
                               onChange={(e) => setFormData({ ...formData, address: e.target.value })}
                               className="w-full px-3.5 py-2.5 bg-white border border-[#171512]/15 rounded-xl font-medium focus:outline-none focus:border-[#748C8C]"

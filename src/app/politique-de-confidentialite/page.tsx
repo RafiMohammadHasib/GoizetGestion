@@ -76,7 +76,7 @@ export default function PrivacyPolicyPage() {
             <li>D'un droit à la limitation du traitement et d'opposition au prospection commerciale.</li>
           </ul>
           <p className="pt-2">
-            Pour exercer l'un de ces droits, contactez notre Délégué à la Protection des Données (DPO) : <strong>dpo@goizet-gestion.fr</strong> ou par courrier postal au 38 Cours Portal, 33000 Bordeaux.
+            Pour exercer l'un de ces droits, contactez notre Délégué à la Protection des Données (DPO) : <strong>goizetgestion@gmail.com</strong> ou par courrier postal au 48 rue Calvé, 33000 Bordeaux.
           </p>
         </section>
 

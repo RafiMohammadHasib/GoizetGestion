@@ -7,6 +7,6 @@ export default function robots(): MetadataRoute.Robots {
       allow: '/',
       disallow: ['/api/'],
     },
-    sitemap: 'https://maison-meridia.fr/sitemap.xml',
+    sitemap: 'https://goizet-gestion.fr/sitemap.xml',
   };
 }

@@ -92,7 +92,7 @@ export default function MobileMenu({ isOpen, onClose, navItems, onOpenCallback, 
           <div className="border-t border-white/10 pt-6 mt-8 space-y-2 text-xs text-[#9E9285]">
             <div className="flex items-center space-x-2">
               <MapPin className="w-3.5 h-3.5 text-[#748C8C] shrink-0" />
-              <span>38 Cours Portal, 33000 Bordeaux</span>
+              <span>48 rue Calvé, 33000 Bordeaux</span>
             </div>
             <div className="space-y-1 pt-1">
               <a href="tel:+33695577033" className="flex items-center space-x-2 hover:text-white transition-colors">
@@ -105,9 +105,9 @@ export default function MobileMenu({ isOpen, onClose, navItems, onOpenCallback, 
               </a>
             </div>
             <div className="pt-1">
-              <a href="mailto:Goizetgestion@gmail.com" className="flex items-center space-x-2 hover:text-white transition-colors">
+              <a href="mailto:goizetgestion@gmail.com" className="flex items-center space-x-2 hover:text-white transition-colors">
                 <Mail className="w-3.5 h-3.5 text-[#748C8C] shrink-0" />
-                <span>Goizetgestion@gmail.com</span>
+                <span>goizetgestion@gmail.com</span>
               </a>
             </div>
           </div>

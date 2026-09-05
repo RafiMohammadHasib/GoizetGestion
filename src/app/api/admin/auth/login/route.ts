@@ -27,7 +27,7 @@ export async function POST(req: NextRequest) {
     const db = getDb();
     const user = db.users.find((u: AdminUser) => u.email.toLowerCase() === cleanEmail && u.active);
 
-    // Default admin demo credentials check: admin@maison-meridia.fr / Meridia2026!
+    // Default admin credentials check: goizetgestion@gmail.com / Meridia2026!
     if (!user || (cleanPassword !== 'Meridia2026!' && cleanPassword !== 'admin123')) {
       return NextResponse.json({ error: 'Identifiants invalides.' }, { status: 401 });
     }

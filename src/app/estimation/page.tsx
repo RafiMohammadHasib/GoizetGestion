@@ -1,6 +1,7 @@
 'use client';
 
 import React, { useState } from 'react';
+import Link from 'next/link';
 import confetti from 'canvas-confetti';
 import Breadcrumbs from '@/components/ui/Breadcrumbs';
 import { Calculator, ArrowRight, CheckCircle2, Building, Home, MapPin, Sparkles, Phone, Mail, User, ShieldCheck, AlertCircle } from 'lucide-react';
@@ -209,12 +210,14 @@ export default function EstimationPage() {
                   </label>
                   <CustomSelect
                     options={[
-                      { value: 'chartrons', label: 'Chartrons', sublabel: '33000' },
+                      { value: 'chartrons', label: 'Chartrons', sublabel: '33300' },
                       { value: 'cauderan', label: 'Caudéran', sublabel: '33200' },
                       { value: 'triangle-dor', label: "Triangle d'Or / Centre", sublabel: '33000' },
                       { value: 'bastide', label: 'Bastide Rive Droite', sublabel: '33100' },
                       { value: 'saint-michel', label: 'Saint-Michel & Capucins', sublabel: '33000' },
                       { value: 'saint-augustin', label: 'Saint-Augustin', sublabel: '33000' },
+                      { value: 'merignac', label: 'Mérignac', sublabel: '33700' },
+                      { value: 'begles', label: 'Bègles', sublabel: '33130' },
                     ]}
                     value={formData.neighborhood}
                     onChange={(val) => setFormData({ ...formData, neighborhood: val })}
@@ -227,7 +230,7 @@ export default function EstimationPage() {
                   </label>
                   <input
                     type="text"
-                    placeholder="Ex: Cours Portal, Rue Notre-Dame..."
+                    placeholder="Ex: Rue Calvé, Rue Notre-Dame..."
                     value={formData.address}
                     onChange={(e) => setFormData({ ...formData, address: e.target.value })}
                     className="w-full px-4 py-3 bg-[#FAF9F6] border border-[#171512]/15 rounded-xl font-medium focus:outline-none focus:border-[#748C8C] focus:ring-1 focus:ring-[#748C8C] transition-all"

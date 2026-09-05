@@ -37,12 +37,14 @@ export default function HeroSection() {
 
   const neighborhoodOptions = useMemo(() => [
     { value: '', label: language === 'fr' ? 'Tous secteurs de Bordeaux' : 'All Bordeaux Areas' },
-    { value: 'chartrons', label: 'Chartrons', sublabel: '33000' },
+    { value: 'chartrons', label: 'Chartrons', sublabel: '33300' },
     { value: 'cauderan', label: 'Caudéran', sublabel: '33200' },
     { value: 'triangle-dor', label: "Triangle d'Or / Centre", sublabel: '33000' },
     { value: 'bastide', label: 'Bastide Rive Droite', sublabel: '33100' },
     { value: 'saint-michel', label: 'Saint-Michel & Capucins', sublabel: '33000' },
     { value: 'saint-augustin', label: 'Saint-Augustin & CHU', sublabel: '33000' },
+    { value: 'merignac', label: 'Mérignac', sublabel: '33700' },
+    { value: 'begles', label: 'Bègles', sublabel: '33130' },
   ], [language]);
 
   const priceOptions = useMemo(() => {
@@ -98,7 +100,7 @@ export default function HeroSection() {
   };
 
   return (
-    <section ref={heroSectionRef} className="relative min-h-screen flex items-center justify-center pt-28 pb-20 px-4 sm:px-6 lg:px-8 overflow-hidden bg-[#171512]">
+    <section ref={heroSectionRef} className="relative z-20 min-h-screen flex items-center justify-center pt-28 pb-20 px-4 sm:px-6 lg:px-8 bg-[#171512]">
       {/* Background High-End Architectural Image with GSAP Scroll Zoom */}
       <div className="absolute inset-0 z-0 overflow-hidden">
         <img
@@ -110,7 +112,7 @@ export default function HeroSection() {
         <div className="absolute inset-0 bg-gradient-to-t from-[#171512] via-[#171512]/45 to-[#171512]/75" />
       </div>
 
-      <div className="relative z-10 max-w-7xl w-full mx-auto space-y-12">
+      <div className="relative z-20 max-w-7xl w-full mx-auto space-y-12">
         
         {/* Main Editorial Typography */}
         <div className="max-w-4xl space-y-6">
@@ -149,7 +151,7 @@ export default function HeroSection() {
           initial={{ opacity: 0, y: 30 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.9, delay: 0.35, ease: [0.16, 1, 0.3, 1] }}
-          className="max-w-5xl bg-[#FAF9F6]/95 backdrop-blur-2xl rounded-2xl p-4 sm:p-6 shadow-2xl border border-white/40 text-[#171512]"
+          className="relative z-40 max-w-5xl bg-[#FAF9F6] rounded-2xl p-4 sm:p-6 shadow-2xl border border-white/40 text-[#171512]"
         >
           {/* Transaction Type Tabs */}
           <div className="flex flex-wrap items-center justify-between gap-3 border-b border-[#171512]/10 pb-4 mb-4">
@@ -196,7 +198,7 @@ export default function HeroSection() {
           </div>
 
           {/* Search Inputs Form */}
-          <form onSubmit={handleSearchSubmit} className="grid grid-cols-1 md:grid-cols-4 gap-3">
+          <form onSubmit={handleSearchSubmit} className="grid grid-cols-1 md:grid-cols-4 gap-3 relative z-20">
             
             {/* Field 1: Property Type */}
             <div className="space-y-1">
@@ -258,7 +260,7 @@ export default function HeroSection() {
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ duration: 0.8, delay: 0.5 }}
-          className="flex flex-wrap items-center gap-3 text-xs font-semibold"
+          className="relative z-0 flex flex-wrap items-center gap-3 text-xs font-semibold"
         >
           <Link
             href="/confier-un-bien"

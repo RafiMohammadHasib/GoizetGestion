@@ -29,11 +29,11 @@ export default function MentionsLegalesPage() {
           <p>
             Le présent site web, accessible à l'adresse <strong>www.goizet-gestion.fr</strong>, est édité par la société <strong>GOIZET GESTION</strong>, immatriculée au Registre du Commerce et des Sociétés (RCS) de Bordeaux sous le numéro <strong>SIRET 94439348700011</strong> (RCS 944 393 487).
           </p>
-          <ul className="list-disc pl-4 space-y-1.5">
-            <li><strong>Siège social :</strong> 38 Cours Portal, 33000 Bordeaux, France</li>
+            <ul className="list-disc pl-4 space-y-1.5">
+            <li><strong>Siège social :</strong> 48 rue Calvé, 33000 Bordeaux, France</li>
             <li><strong>Fondateurs & Directeurs de la publication :</strong> Paul Goizet & Edgar Goizet</li>
             <li><strong>Contacts téléphoniques :</strong> Paul Goizet (+33 6 95 57 70 33) & Edgar Goizet (+33 7 81 96 83 95)</li>
-            <li><strong>Courriel officiel :</strong> Goizetgestion@gmail.com</li>
+            <li><strong>Courriel officiel :</strong> goizetgestion@gmail.com</li>
             <li><strong>Numéro SIRET :</strong> 944 393 487 00011</li>
           </ul>
         </section>
@@ -54,7 +54,7 @@ export default function MentionsLegalesPage() {
             Conformément au Règlement Général sur la Protection des Données (RGPD) et à la loi Informatique et Libertés du 6 janvier 1978 modifiée, les informations recueillies dans les formulaires d'estimation et de contact font l'objet d'un traitement informatique destiné exclusivement à GOIZET GESTION.
           </p>
           <p>
-            Vous disposez d'un droit d'accès, de rectification, de suppression et d'opposition aux données vous concernant. Vous pouvez exercer ce droit en nous écrivant directement à : <strong>Goizetgestion@gmail.com</strong>.
+            Vous disposez d'un droit d'accès, de rectification, de suppression et d'opposition aux données vous concernant. Vous pouvez exercer ce droit en nous écrivant directement à : <strong>goizetgestion@gmail.com</strong>.
           </p>
         </section>
 

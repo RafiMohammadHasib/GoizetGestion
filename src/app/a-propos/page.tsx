@@ -18,7 +18,7 @@ export default function AboutPage() {
       role: language === 'fr' ? 'Fondateur & Directeur Associé' : 'Founder & Managing Partner',
       image: '/paul-goizet.jpg',
       phone: '+33 6 95 57 70 33',
-      email: 'paul@goizet-gestion.fr',
+      email: 'goizetgestion@gmail.com',
       bio: language === 'fr' 
         ? 'Expert en stratégie patrimoniale et gestion locative à Bordeaux. Passionné par l\'architecture bordelaise et l\'optimisation de rendement pour les propriétaires exigeants.'
         : 'Expert in real estate portfolio strategy and property management across Bordeaux. Dedicated to optimizing yields and offering bespoke advisory for property owners.',
@@ -31,7 +31,7 @@ export default function AboutPage() {
       role: language === 'fr' ? 'Co-Fondateur & Directeur du Développement' : 'Co-Founder & Head of Growth',
       image: '/edgar-g.jpg',
       phone: '+33 7 81 96 83 95',
-      email: 'edgar@goizet-gestion.fr',
+      email: 'goizetgestion@gmail.com',
       bio: language === 'fr'
         ? 'Spécialiste de la valorisation d\'actifs et des relations investisseurs. Il orchestre la sélection rigoureuse des locataires et la commercialisation des biens d\'exception.'
         : 'Specialist in asset enhancement and investor relations. Orchestrating rigorous tenant selection, high-exposure marketing, and client relationships.',
@@ -69,7 +69,7 @@ export default function AboutPage() {
     { value: '100%', label: language === 'fr' ? 'Transparence de gestion' : 'Management Transparency' },
     { value: '< 24h', label: language === 'fr' ? 'Délai moyen de réponse' : 'Average Response Time' },
     { value: '0 %', label: language === 'fr' ? 'Taux de loyers impayés' : 'Rent Default Rate' },
-    { value: '38', label: language === 'fr' ? 'Cours Portal, Chartrons' : 'Cours Portal, Chartrons' }
+    { value: '48', label: language === 'fr' ? 'Rue Calvé, Bordeaux' : 'Rue Calvé, Bordeaux' }
   ];
 
   return (
@@ -268,8 +268,8 @@ export default function AboutPage() {
 
             <p className="text-xs sm:text-sm text-[#A2B2B2] font-light leading-relaxed">
               {language === 'fr'
-                ? 'Nous vous accueillons au 38 Cours Portal à Bordeaux pour une estimation personnalisée ou une étude complète de mise en gestion.'
-                : 'Visit us at 38 Cours Portal in Bordeaux Chartrons for a private valuation consultation or comprehensive management review.'}
+                ? 'Nous vous accueillons au 48 rue Calvé à Bordeaux pour une estimation personnalisée ou une étude complète de mise en gestion.'
+                : 'Visit us at 48 rue Calvé in Bordeaux for a private valuation consultation or comprehensive management review.'}
             </p>
           </div>
 

@@ -8,8 +8,8 @@ export default function AdminUsersPage() {
   const [users, setUsers] = useState<AdminUser[]>([
     {
       id: 'usr_1',
-      name: 'Alexandre de Saint-Clair',
-      email: 'admin@maison-meridia.fr',
+      name: 'Paul Goizet',
+      email: 'goizetgestion@gmail.com',
       role: 'Super Admin',
       avatar: 'https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=400&q=80',
       active: true,
@@ -17,8 +17,8 @@ export default function AdminUsersPage() {
     },
     {
       id: 'usr_2',
-      name: 'Valérie Morel',
-      email: 'v.morel@maison-meridia.fr',
+      name: 'Edgar Goizet',
+      email: 'goizetgestion@gmail.com',
       role: 'Property Manager',
       avatar: 'https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?auto=format&fit=crop&w=400&q=80',
       active: true,
@@ -111,7 +111,7 @@ export default function AdminUsersPage() {
           <input
             type="email"
             required
-            placeholder="email@goizet-gestion.fr"
+            placeholder="goizetgestion@gmail.com"
             value={newEmail}
             onChange={(e) => setNewEmail(e.target.value)}
             className="sm:col-span-5 px-3.5 py-2.5 bg-[#F7F7F5] border border-[#171717]/15 rounded-xl font-medium"

@@ -24,7 +24,7 @@ export default function ApproachSection() {
           >
             <div className="relative rounded-2xl overflow-hidden shadow-2xl aspect-[4/3] border border-[#171512]/10" data-cursor="BORDEAUX">
               <img
-                src="/images/team.jpg"
+                src="/Home-Section-1A.png"
                 alt="Équipe d'experts Goizet Gestion à Bordeaux"
                 className="w-full h-full object-cover"
               />

@@ -5,7 +5,7 @@ export const NEIGHBORHOODS: Neighborhood[] = [
     id: 'chartrons',
     name: 'Chartrons',
     slug: 'chartrons',
-    postalCode: '33000',
+    postalCode: '33300',
     tagline: 'L\'esprit village, brocanteurs et quais de la Garonne',
     taglineEn: 'Boutique village vibe, antique merchants, and Garonne riverfronts',
     description: 'Ancien quartier des négociants en vin, les Chartrons incarnent aujourd\'hui l\'élégance bohème chic de Bordeaux. Entre boutiques d\'antiquités de la rue Notre-Dame, terrasses de la Halle des Chartrons et balades sur les quais, c\'est le secteur numéro 1 recherché par les jeunes cadres et investisseurs.',

@@ -44,7 +44,7 @@ export default function NewPropertyPage() {
     yearBuilt: 1900,
     energyRating: 'C',
     gesRating: 'C',
-    address: '38 Cours Portal',
+    address: '48 rue Calvé',
     postalCode: '33000',
     city: 'Bordeaux',
     neighborhoodSlug: 'chartrons',
@@ -509,7 +509,7 @@ export default function NewPropertyPage() {
                 type="text"
                 value={formData.address}
                 onChange={(e) => setFormData({ ...formData, address: e.target.value })}
-                placeholder="38 Cours Portal, 33000 Bordeaux"
+                placeholder="48 rue Calvé, 33000 Bordeaux"
                 className="w-full px-4 py-3 bg-[#FAF9F6] border border-[#171717]/15 rounded-xl font-medium focus:outline-none focus:border-[#748C8C]"
               />
             </div>
@@ -529,6 +529,8 @@ export default function NewPropertyPage() {
                 <option value="bastide">Bastide</option>
                 <option value="saint-michel">Saint-Michel</option>
                 <option value="saint-augustin">Saint-Augustin</option>
+                <option value="merignac">Mérignac</option>
+                <option value="begles">Bègles</option>
               </select>
             </div>
           </div>
