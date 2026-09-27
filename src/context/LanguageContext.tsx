@@ -16,13 +16,14 @@ export const dictionary: Dictionary = {
   navHome: { fr: 'Accueil', en: 'Home' },
   navRent: { fr: 'Louer', en: 'Rent' },
   navBuy: { fr: 'Acheter', en: 'Buy' },
+  navProperties: { fr: 'Nos Biens', en: 'Properties' },
   navManagement: { fr: 'Gestion locative', en: 'Management' },
   navDistricts: { fr: 'Quartiers', en: 'Districts' },
   navAbout: { fr: 'La Maison', en: 'About Us' },
   navJournal: { fr: 'Journal', en: 'Journal' },
   navContact: { fr: 'Contact', en: 'Contact' },
   btnCallback: { fr: 'Être rappelé', en: 'Request Callback' },
-  btnEstimate: { fr: 'Estimer mon bien', en: 'Valuate Property' },
+  btnEstimate: { fr: 'Estimer mon bien', en: 'Estimate Property' },
   badgeBordeaux: { fr: 'BORDEAUX', en: 'BORDEAUX' },
 
   // Hero Section
@@ -36,6 +37,34 @@ export const dictionary: Dictionary = {
     fr: 'Location, gestion locative optimisée et accompagnement immobilier d\'exception au cœur de Bordeaux. Transparence totale et visibilité maximale.',
     en: 'Rental, optimized property management, and boutique real estate services in Bordeaux. Total transparency and maximum exposure.'
   },
+  tabOwner: { fr: 'Propriétaire', en: 'Property Owner' },
+  tabOwnerSub: { fr: 'Louer ou vendre mon bien', en: 'Rent out or sell my property' },
+  tabTenantBuyer: { fr: 'Locataire / Acheteur', en: 'Tenant / Buyer' },
+  tabTenantBuyerSub: { fr: 'Louer ou acheter un bien', en: 'Rent or buy a property' },
+  optRentOutProperty: { fr: 'Louer mon bien', en: 'Rent out my property' },
+  optSellProperty: { fr: 'Vendre mon bien', en: 'Sell my property' },
+  optRentProperty: { fr: 'Louer un bien', en: 'Rent a property' },
+  optBuyProperty: { fr: 'Acheter un bien', en: 'Buy a property' },
+  fieldFullName: { fr: 'Nom et prénom', en: 'Full Name' },
+  fieldPhone: { fr: 'Numéro de téléphone', en: 'Phone Number' },
+  fieldPropTypeSelect: { fr: 'Type de bien', en: 'Property Type' },
+  propApartment: { fr: 'Appartement', en: 'Apartment' },
+  propHouse: { fr: 'Maison', en: 'House' },
+  propBuilding: { fr: 'Immeuble', en: 'Building' },
+  fieldAdditionalInfo: { fr: 'Informations complémentaires', en: 'Additional Information' },
+  fieldAdditionalInfoPlaceholder: {
+    fr: 'Bonjour, j\'ai un appartement de 70 m² que je souhaite louer sous deux semaines. J\'attends votre appel.',
+    en: 'Hello, I have a 70 m² apartment that I would like to rent out within the next two weeks. I\'m waiting for your call.'
+  },
+  fieldMaxBudget: { fr: 'Budget maximum (€)', en: 'Maximum Budget (€)' },
+  fieldBedrooms: { fr: 'Nombre de chambres', en: 'Number of Bedrooms' },
+  bedrooms1: { fr: '1 chambre', en: '1 bedroom' },
+  bedrooms2: { fr: '2 chambres', en: '2 bedrooms' },
+  bedrooms3: { fr: '3 chambres', en: '3 bedrooms' },
+  bedrooms4Plus: { fr: '4 chambres ou plus', en: '4 or more bedrooms' },
+  btnSubmitLeadOwner: { fr: 'Demander à être contacté', en: 'Request Contact' },
+  btnSubmitLeadTenant: { fr: 'Lancer ma recherche', en: 'Search Properties' },
+  leadSuccessMsg: { fr: 'Demande bien reçue ! Nos conseillers vous recontactent sous 2h.', en: 'Request received! Our team will reach out within 2 hours.' },
   tabRent: { fr: 'Louer un bien', en: 'Rent a Property' },
   tabBuy: { fr: 'Acheter un bien', en: 'Buy a Property' },
   fieldPropType: { fr: 'Type de bien', en: 'Property Type' },
@@ -47,6 +76,60 @@ export const dictionary: Dictionary = {
   allPropertyTypes: { fr: 'Tous types de biens', en: 'All Property Types' },
   allDistricts: { fr: 'Tous secteurs de Bordeaux', en: 'All Bordeaux Districts' },
   anyBudget: { fr: 'Indifférent', en: 'Any Budget' },
+
+  // Approach Section Updates
+  approachParagraph: {
+    fr: 'Chez Goizet Gestion nous mettons la priorité absolue sur l’efficacité et la disponibilité pour chacun de nos clients.',
+    en: 'At Goizet Gestion, we place absolute priority on efficiency and availability for each of our clients.'
+  },
+  approachQuote: {
+    fr: '“Nous offrons une expérience client personnalisée et adaptée pour chacun”',
+    en: '“We offer a personalized and tailored client experience for everyone”'
+  },
+  approachPoint2Title: {
+    fr: 'Mise en location et gestion',
+    en: 'Letting & Management'
+  },
+  approachPoint2Desc: {
+    fr: 'Nous nous occupons de tout de A à Z avec des processus simples et efficaces',
+    en: 'We take care of everything from A to Z with simple and effective processes'
+  },
+
+  // 3 Streamlined Services
+  serviceRentalDescShort: {
+    fr: 'Notre service de mise en location est simple : nous nous occupons de tout pour vous.',
+    en: 'Our rental service is simple: we take care of everything for you.'
+  },
+  serviceManagementDescShort: {
+    fr: 'Nous offrons une gestion locative efficace et personnalisée pour vos biens en location.',
+    en: 'We offer efficient and personalized property management for your rental properties.'
+  },
+  serviceSalesDescShort: {
+    fr: 'Travaillons ensemble pour vendre votre bien au meilleur prix possible.',
+    en: 'Let’s work together to sell your property at the best possible price.'
+  },
+
+  // About Section Updates
+  aboutHeadlineNew: {
+    fr: 'Nos chiffres traduisent l’investissement pour nos clients.',
+    en: 'Our numbers reflect our dedication to our clients.'
+  },
+  aboutDistrictNew: {
+    fr: 'Fondée à Bordeaux au cœur du quartier Fondaudège, nous reconstruisons la relation entre propriétaires et locataires avec une réactivité irréprochable.',
+    en: 'Founded in Bordeaux in the heart of the Fondaudège district, we rebuild the relationship between owners and tenants with flawless responsiveness.'
+  },
+  statSatisfaction: {
+    fr: 'Taux de satisfaction client',
+    en: 'Client satisfaction rate'
+  },
+  statUnpaidRent: {
+    fr: 'Taux de loyers impayés',
+    en: 'Unpaid rent rate'
+  },
+  statResponseTime: {
+    fr: 'Délai moyen de réponse',
+    en: 'Average response time'
+  },
 
   // Value Strip
   trust1Title: { fr: 'Orienté Résultats', en: 'Results Driven' },
@@ -137,7 +220,7 @@ export const dictionary: Dictionary = {
   },
 
   // Owner Demand #1 Pillar Services & Strong CTAs
-  btnEntrust: { fr: 'Confier mon bien', en: 'Entrust us with your property' },
+  btnEntrust: { fr: 'Confier mon bien', en: 'Entrust Property' },
   btnRentalValuation: { fr: 'Obtenir une estimation locative', en: 'Get a rental valuation' },
   btnContactUs: { fr: 'Nous contacter', en: 'Contact us' },
   btnSpeakWithAdvisor: { fr: 'Échanger avec un conseiller', en: 'Speak with an advisor' },

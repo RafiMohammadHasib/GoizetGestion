@@ -59,35 +59,22 @@ export default function Footer({ onOpenCallback, onOpenEntrust, onOpenCookieSett
               {t('footerTagline')}
             </h2>
 
-            <p className="text-sm text-[#A2B2B2] max-w-xl font-light leading-relaxed">
-              {language === 'fr'
-                ? 'Nous allions la réactivité d\'une plateforme technologique moderne à l\'exigence d\'une maison de conseil immobilier sur-mesure. Transparence, valorisation et rendement optimisé.'
-                : 'We combine the speed of a modern technology platform with the standards of a boutique real estate advisory. Transparency, asset valuation, and optimized returns.'}
-            </p>
-
-            <div className="flex flex-wrap gap-3 pt-2">
+            <div className="flex flex-wrap gap-3 pt-4">
               <Link
-                href="/confier-un-bien"
-                className="bg-brand-gradient hover:bg-brand-gradient-hover text-white py-3.5 px-6 rounded-full font-semibold text-xs transition-all duration-300 shadow-brand flex items-center space-x-2 whitespace-nowrap"
+                href="/#lead-section"
+                className="bg-brand-gradient hover:bg-brand-gradient-hover text-white py-3.5 px-7 rounded-full font-semibold text-xs transition-all duration-300 shadow-brand flex items-center space-x-2 whitespace-nowrap"
               >
-                <span>{t('btnEntrust')}</span>
+                <span>{language === 'fr' ? 'Confier mon bien' : 'Entrust Property'}</span>
                 <ArrowUpRight className="w-4 h-4" />
               </Link>
 
               <Link
-                href="/estimation"
-                className="border border-white/20 hover:bg-white hover:text-[#171512] text-white py-3.5 px-6 rounded-full font-semibold text-xs transition-all duration-300 whitespace-nowrap flex items-center space-x-2"
+                href="/contact"
+                className="border border-white/20 hover:bg-white hover:text-[#171512] text-white py-3.5 px-7 rounded-full font-semibold text-xs transition-all duration-300 whitespace-nowrap flex items-center space-x-2"
               >
-                <span>{t('btnRentalValuation')}</span>
+                <span>{language === 'fr' ? 'Nous contacter' : 'Contact us'}</span>
                 <ArrowUpRight className="w-4 h-4" />
               </Link>
-
-              <button
-                onClick={onOpenCallback}
-                className="border border-white/20 hover:bg-white hover:text-[#171512] text-white py-3.5 px-6 rounded-full font-semibold text-xs transition-all duration-300 whitespace-nowrap"
-              >
-                {t('btnCallback')}
-              </button>
             </div>
           </div>
 
@@ -142,16 +129,16 @@ export default function Footer({ onOpenCallback, onOpenEntrust, onOpenCookieSett
         </div>
 
         {/* Navigation Grid */}
-        <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-5 gap-8 pb-16 border-b border-white/10 text-xs">
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-8 pb-16 border-b border-white/10 text-xs">
           
-          {/* Col 1: Propriétaires */}
+          {/* Col 1: Propriétaires & Bailleurs */}
           <div className="space-y-4">
             <h3 className="font-semibold text-white uppercase tracking-wider text-[11px]">
               {language === 'fr' ? 'Propriétaires & Bailleurs' : 'Property Owners & Landlords'}
             </h3>
             <ul className="space-y-2.5 text-[#9E9285]">
               <li>
-                <Link href="/confier-un-bien" className="text-[#748C8C] hover:text-white font-semibold transition-colors flex items-center space-x-1">
+                <Link href="/#lead-section" className="text-[#748C8C] hover:text-white font-semibold transition-colors flex items-center space-x-1">
                   <span>{language === 'fr' ? 'Confier mon bien' : 'Entrust your property'}</span>
                   <ArrowUpRight className="w-3 h-3" />
                 </Link>
@@ -162,108 +149,49 @@ export default function Footer({ onOpenCallback, onOpenEntrust, onOpenCookieSett
                 </Link>
               </li>
               <li>
-                <Link href="/confier-un-bien" className="hover:text-white transition-colors">
-                  {language === 'fr' ? 'Mise en Location' : 'Property Letting'}
-                </Link>
-              </li>
-              <li>
                 <Link href="/estimation" className="hover:text-white transition-colors">
                   {language === 'fr' ? 'Estimation Locative & Vente' : 'Rental Valuation'}
                 </Link>
               </li>
               <li>
                 <Link href="/contact?subject=vente" className="hover:text-white transition-colors">
-                  {language === 'fr' ? 'Vente Immobilière de Prestige' : 'Property Sales'}
+                  {language === 'fr' ? 'Vente Immobilière' : 'Property Sales'}
                 </Link>
               </li>
             </ul>
           </div>
 
-          {/* Col 2: Recherche / Locataires */}
+          {/* Col 2: La Maison & Méthode */}
           <div className="space-y-4">
             <h3 className="font-semibold text-white uppercase tracking-wider text-[11px]">
-              {language === 'fr' ? 'Immobilier & Recherche' : 'Real Estate Search'}
+              {language === 'fr' ? 'La Maison Goizet' : 'About Goizet'}
             </h3>
             <ul className="space-y-2.5 text-[#9E9285]">
               <li>
-                <Link href="/biens?type=louer" className="hover:text-white transition-colors">
-                  {language === 'fr' ? 'Appartements à louer' : 'Apartments for Rent'}
+                <Link href="/a-propos" className="hover:text-white transition-colors">
+                  {language === 'fr' ? 'Les Fondateurs' : 'Meet the Founders'}
                 </Link>
               </li>
               <li>
-                <Link href="/biens?type=louer&propertyType=echoppe" className="hover:text-white transition-colors">
-                  {language === 'fr' ? 'Échoppes & Maisons' : 'Townhouses & Villas'}
+                <Link href="/gestion-locative" className="hover:text-white transition-colors">
+                  {language === 'fr' ? 'Notre Méthode de Gestion' : 'Management Method'}
                 </Link>
               </li>
               <li>
-                <Link href="/biens?type=acheter" className="hover:text-white transition-colors">
-                  {language === 'fr' ? 'Ventes & Biens d\'exception' : 'Properties for Sale'}
+                <Link href="/a-propos" className="hover:text-white transition-colors">
+                  {language === 'fr' ? 'Nos Valeurs & Chiffres' : 'Our Values & Numbers'}
                 </Link>
               </li>
               <li>
-                <Link href="/biens?exclusive=true" className="hover:text-white transition-colors">
-                  {language === 'fr' ? 'Projets Exclusifs' : 'Exclusive Listings'}
+                <Link href="/contact" className="hover:text-white transition-colors">
+                  {language === 'fr' ? 'Nous Contacter' : 'Contact Us'}
                 </Link>
               </li>
             </ul>
           </div>
 
-          {/* Col 3: Quartiers */}
+          {/* Col 3: Contact & Adresse */}
           <div className="space-y-4">
-            <h3 className="font-semibold text-white uppercase tracking-wider text-[11px]">
-              {language === 'fr' ? 'Secteurs Bordeaux' : 'Bordeaux Districts'}
-            </h3>
-            <ul className="space-y-2.5 text-[#9E9285]">
-              <li>
-                <Link href="/quartiers/chartrons" className="hover:text-white transition-colors">
-                  Chartrons
-                </Link>
-              </li>
-              <li>
-                <Link href="/quartiers/cauderan" className="hover:text-white transition-colors">
-                  Caudéran
-                </Link>
-              </li>
-              <li>
-                <Link href="/quartiers/triangle-dor" className="hover:text-white transition-colors">
-                  Triangle d'Or
-                </Link>
-              </li>
-              <li>
-                <Link href="/quartiers/bastide" className="hover:text-white transition-colors">
-                  Bastide Rive Droite
-                </Link>
-              </li>
-            </ul>
-          </div>
-
-          {/* Col 4: Le Journal */}
-          <div className="space-y-4">
-            <h3 className="font-semibold text-white uppercase tracking-wider text-[11px]">
-              {language === 'fr' ? 'Le Journal' : 'The Journal'}
-            </h3>
-            <ul className="space-y-2.5 text-[#9E9285]">
-              <li>
-                <Link href="/journal" className="hover:text-white transition-colors">
-                  {language === 'fr' ? 'Analyses du Marché' : 'Market Insights'}
-                </Link>
-              </li>
-              <li>
-                <Link href="/journal/quel-quartier-choisir-pour-louer-appartement-bordeaux" className="hover:text-white transition-colors">
-                  {language === 'fr' ? 'Guide d\'Investissement' : 'Investment Guide'}
-                </Link>
-              </li>
-              <li>
-                <Link href="/journal/gestion-locative-bordeaux-seul-ou-agence" className="hover:text-white transition-colors">
-                  {language === 'fr' ? 'Encadrement des Loyers' : 'Rent Control Rules'}
-                </Link>
-              </li>
-            </ul>
-          </div>
-
-          {/* Col 5: Contact & Adresse */}
-          {/* Col 5: Contact & Adresse */}
-          <div className="col-span-2 md:col-span-4 lg:col-span-1 space-y-4">
             <h3 className="font-semibold text-white uppercase tracking-wider text-[11px]">
               {language === 'fr' ? 'Agence & Contacts' : 'Bordeaux Office & Contacts'}
             </h3>

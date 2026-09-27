@@ -33,7 +33,6 @@
   }
 
   html {
-    scroll-behavior: smooth;
     background-color: var(--color-ivory);
     color: var(--color-obsidian);
     font-family: var(--font-sans);
@@ -41,6 +40,10 @@
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
     text-rendering: optimizeLegibility;
+  }
+
+  html[data-scroll-behavior="smooth"] {
+    scroll-behavior: smooth;
   }
 
   ::selection {
@@ -129,6 +132,7 @@
 .text-brand-gradient {
   background: linear-gradient(135deg, #8EA6A6 0%, #597373 100%);
   -webkit-background-clip: text;
+  background-clip: text;
   -webkit-text-fill-color: transparent;
 }
 
@@ -158,5 +162,35 @@
 .custom-scrollbar {
   scrollbar-width: thin;
   scrollbar-color: #748C8C rgba(23, 21, 18, 0.04);
+}
+
+/* Leaflet custom styling & tile display fixes */
+.custom-leaflet-div-icon {
+  background: transparent !important;
+  border: none !important;
+}
+
+.leaflet-container {
+  width: 100% !important;
+  height: 100% !important;
+  font-family: inherit !important;
+  background-color: #EAE6DF !important;
+  z-index: 1;
+}
+
+.leaflet-container img {
+  max-width: none !important;
+  max-height: none !important;
+}
+
+.leaflet-tile {
+  max-width: none !important;
+  max-height: none !important;
+  mix-blend-mode: normal !important;
+}
+
+.leaflet-tile-loaded {
+  opacity: 1 !important;
+  visibility: visible !important;
 }
 

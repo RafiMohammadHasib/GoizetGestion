@@ -82,7 +82,7 @@ export default function LandlordCTA() {
 
           <div className="space-y-3">
             <Link
-              href="/confier-un-bien"
+              href="/#lead-section"
               className="w-full bg-brand-gradient hover:bg-brand-gradient-hover text-white py-4 px-6 rounded-xl font-semibold text-xs transition-all duration-300 shadow-brand flex items-center justify-center space-x-2 whitespace-nowrap"
             >
               <Sparkles className="w-4 h-4" />

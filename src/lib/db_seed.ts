@@ -89,6 +89,21 @@ export function generateSeedData() {
     'Appartement Bourgeois avec Hauteur sous Plafond'
   ];
 
+  const propertyTitlesEn = [
+    'Haussmannian Apartment with Moldings & Balcony',
+    'Renovated Bordeaux Townhouse with Garden & Pool',
+    'Penthouse with Open Views of the Garonne',
+    "Contemporary Architect-Designed Loft with Glass Roof",
+    '18th-Century Private Mansion with Paved Courtyard',
+    'Modern 1-Bedroom with Secure Parking & Balcony',
+    'Double Character Townhouse with Patio',
+    'Prestige Duplex with Panoramic Terrace',
+    'High-End Furnished Designer Studio',
+    'Family Villa with Landscaped Grounds & Pool',
+    'Bright 2-Bedroom with Hardwood Floors & Fireplace',
+    'Bourgeois Apartment with High Ceilings'
+  ];
+
   for (let i = 1; i <= 36; i++) {
     const n = neighborhoods[(i - 1) % neighborhoods.length];
     const isRental = i % 2 !== 0;
@@ -96,20 +111,26 @@ export function generateSeedData() {
     const price = isRental ? 750 + (i * 70) : 220000 + (i * 35000);
     const surface = 35 + (i * 4);
     const title = `${propertyTitles[(i - 1) % propertyTitles.length]} - ${n.name}`;
+    const titleEn = `${propertyTitlesEn[(i - 1) % propertyTitlesEn.length]} - ${n.name}`;
     const slug = `${title.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/(^-|-$)/g, '')}-${i}`;
 
     properties.push({
       id: `prop_${i}`,
       reference: `BDX-2026-${100 + i}`,
       title,
+      titleEn,
       slug,
       description: `Exceptionnel bien immobilier situé au cœur du quartier ${n.name} à Bordeaux. Finitions raffinées, prestations haut de gamme et luminosité optimale.`,
+      descriptionEn: `Exceptional property situated in the heart of the ${n.name} district in Bordeaux. Refined finishes, premium amenities, and optimal natural light.`,
       shortDescription: `Superbe propriété de ${surface} m² à ${n.name} disponible immédiatement.`,
+      shortDescriptionEn: `Superb ${surface} m² property in ${n.name} available immediately.`,
       transactionType: isRental ? 'louer' : 'acheter',
       propertyType: pType as any,
       price,
       charges: isRental ? 80 + (i * 5) : undefined,
       deposit: isRental ? price : undefined,
+      priceSuffix: isRental ? '/ mois CC' : undefined,
+      priceSuffixEn: isRental ? '/ mo inc. charges' : undefined,
       surface,
       rooms: Math.max(1, Math.floor(surface / 25)),
       bedrooms: Math.max(1, Math.floor(surface / 35)),
@@ -127,6 +148,7 @@ export function generateSeedData() {
       isExclusive: i % 3 === 0,
       status: i > 30 ? 'Draft' : i % 5 === 0 ? 'Reserved' : i % 8 === 0 ? 'Rented' : 'Published',
       features: ['Parquet massif', 'Balcon filant', 'Climatisation', 'Cave privative', 'Ascenseur'],
+      featuresEn: ['Hardwood floors', 'Continuous balcony', 'Air conditioning', 'Private cellar', 'Elevator'],
       images: [sampleImages[(i - 1) % sampleImages.length], sampleImages[i % sampleImages.length]],
       coverImage: sampleImages[(i - 1) % sampleImages.length],
       views: 120 + (i * 15),

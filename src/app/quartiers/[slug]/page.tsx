@@ -37,16 +37,18 @@ export default function SingleNeighborhoodPage() {
   if (!hood) {
     return (
       <div className="pt-40 text-center space-y-4">
-        <h1 className="font-serif-display text-4xl">Secteur non trouvé</h1>
+        <h1 className="font-serif-display text-4xl">
+          {language === 'fr' ? 'Secteur non trouvé' : 'District Not Found'}
+        </h1>
         <Link href="/quartiers" className="text-[#748C8C] underline font-semibold">
-          Voir tous nos secteurs
+          {language === 'fr' ? 'Voir tous nos secteurs' : 'View all districts'}
         </Link>
       </div>
     );
   }
 
   return (
-    <div className="pt-28 pb-24 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto space-y-10">
+    <div className="pt-36 sm:pt-40 pb-24 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto space-y-7 sm:space-y-8">
       
       {/* Breadcrumbs Nav */}
       <Breadcrumbs

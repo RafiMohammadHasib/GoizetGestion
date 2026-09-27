@@ -25,6 +25,8 @@ export async function POST(req: NextRequest) {
       propertyId, 
       propertySlug, 
       propertyTitle,
+      budget,
+      surface,
       leadType: customLeadType,
       project,
       timeSlot,
@@ -32,7 +34,9 @@ export async function POST(req: NextRequest) {
     } = body;
 
     const sanitizedName = sanitizeInjection(fullName || name || '');
-    const sanitizedSubject = sanitizeInjection(subject || project ? `Demande de rappel: ${project}` : 'Demande de contact');
+    const sanitizedSubject = sanitizeInjection(
+      subject || (project ? `Demande de rappel: ${project}` : 'Demande de contact')
+    );
     const sanitizedMessage = sanitizeInjection(message || (timeSlot ? `Créneau souhaité: ${timeSlot}. Projet: ${project || 'Conseil immobilier'}` : ''));
     const cleanEmail = (email || '').trim().toLowerCase();
     const cleanPhone = (phone || '').trim();
@@ -59,6 +63,26 @@ export async function POST(req: NextRequest) {
 
     // Append lead to Central Database Store & Supabase
     const db = getDb();
+
+    let resolvedBudget = budget ? sanitizeInjection(budget) : undefined;
+    let resolvedSurface = surface ? sanitizeInjection(surface) : undefined;
+    let resolvedAddress = propertyTitle || (propertySlug ? `Propriété: ${propertySlug}` : undefined);
+
+    // If linked to a property, increment enquiries_count and enrich lead
+    if (propertyId || propertySlug) {
+      const prop = db.properties.find((p: any) => p.id === propertyId || p.slug === propertySlug);
+      if (prop) {
+        prop.enquiriesCount = (Number(prop.enquiriesCount) || 0) + 1;
+        resolvedAddress = `${prop.title} (${prop.reference || prop.id})`;
+        if (!resolvedBudget) {
+          resolvedBudget = `${prop.price?.toLocaleString('fr-FR')} €/mois`;
+        }
+        if (!resolvedSurface) {
+          resolvedSurface = `${prop.surface} m² • ${prop.rooms || 1} pièces`;
+        }
+      }
+    }
+
     const newLead: CRMLead = {
       id: `lead_${Date.now()}`,
       name: sanitizedName,
@@ -70,24 +94,17 @@ export async function POST(req: NextRequest) {
       status: 'NEW',
       subject: sanitizedSubject,
       message: sanitizedMessage,
-      propertyAddress: propertyTitle || (propertySlug ? `Propriété: ${propertySlug}` : undefined),
+      propertyAddress: resolvedAddress,
+      budget: resolvedBudget,
+      surface: resolvedSurface,
       source: customSource || (timeSlot ? 'Demande de Rappel Modal' : (propertySlug ? 'Page Détail Bien' : 'Formulaire de Contact Frontend')),
       assignedTo: 'Paul & Edgar Goizet',
       createdAt: new Date().toISOString(),
       notes: [],
       activities: [
-        { id: `act_${Date.now()}`, text: `Formulaire (${computedLeadType}) soumis depuis le site public.`, date: 'À l\'instant' }
+        { id: `act_${Date.now()}`, text: `Demande (${computedLeadType}) soumise depuis le site public.`, date: 'À l\'instant' }
       ]
     };
-
-    // If linked to a property, increment enquiries_count
-    if (propertyId || propertySlug) {
-      const prop = db.properties.find((p: any) => p.id === propertyId || p.slug === propertySlug);
-      if (prop) {
-        prop.enquiriesCount = (Number(prop.enquiriesCount) || 0) + 1;
-        newLead.propertyAddress = `${prop.title} (${prop.reference})`;
-      }
-    }
 
     db.leads.unshift(newLead);
     saveDb(db);
@@ -101,10 +118,14 @@ export async function POST(req: NextRequest) {
         email: newLead.email,
         phone: newLead.phone,
         lead_type: newLead.leadType,
+        service_type: newLead.serviceType,
         status: newLead.status,
         subject: newLead.subject,
         message: newLead.message,
         property_address: newLead.propertyAddress,
+        budget: newLead.budget,
+        surface: newLead.surface,
+        preferred_time_slot: newLead.preferredTimeSlot,
         source: newLead.source,
         assigned_to: newLead.assignedTo,
         created_at: newLead.createdAt,

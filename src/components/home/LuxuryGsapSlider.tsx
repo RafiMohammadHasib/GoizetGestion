@@ -5,6 +5,7 @@ import Link from 'next/link';
 import { ArrowLeft, ArrowRight, ArrowUpRight, MapPin, Maximize2, Bed, Sparkles, Loader2 } from 'lucide-react';
 import { gsap } from 'gsap';
 import { useLanguage } from '@/context/LanguageContext';
+import { getLocalizedTitle, getLocalizedDescription } from '@/lib/propertyLocalization';
 
 export default function LuxuryGsapSlider() {
   const { language } = useLanguage();
@@ -167,11 +168,11 @@ export default function LuxuryGsapSlider() {
               </div>
 
               <h3 className="font-serif-display text-3xl sm:text-4xl font-light text-white leading-snug">
-                {currentProperty.title}
+                {getLocalizedTitle(currentProperty, language)}
               </h3>
 
               <p className="text-xs text-[#9E9285] leading-relaxed line-clamp-3 font-light">
-                {currentProperty.description}
+                {getLocalizedDescription(currentProperty, language)}
               </p>
             </div>
 

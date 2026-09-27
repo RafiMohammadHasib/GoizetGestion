@@ -93,7 +93,18 @@
       "ownerName": "Propriétaire Chartrons",
       "seoTitle": "Appartement Haussmannien avec Moulures & Balcon - Chartrons | Goizet Gestion",
       "seoDescription": "Location et vente d'exception à Chartrons Bordeaux.",
-      "updatedAt": "2026-08-20T06:40:22.863Z"
+      "updatedAt": "2026-08-20T06:40:22.863Z",
+      "titleEn": "Haussmannian Apartment with Moldings & Balcony - Chartrons",
+      "descriptionEn": "Exceptional property situated in the heart of the Chartrons district in Bordeaux. Refined finishes, premium amenities, and optimal natural light.",
+      "shortDescriptionEn": "Superb 39 m² property in Chartrons available immediately.",
+      "featuresEn": [
+        "Hardwood floors",
+        "Continuous balcony",
+        "Air conditioning",
+        "Private cellar",
+        "Elevator"
+      ],
+      "priceSuffixEn": "/ mo inc. charges"
     },
     {
       "id": "prop_2",
@@ -133,13 +144,23 @@
         "https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?auto=format&fit=crop&w=1600&q=80"
       ],
       "coverImage": "https://images.unsplash.com/photo-1600566753190-17f0baa2a6c3?auto=format&fit=crop&w=1600&q=80",
-      "views": 151,
+      "views": 152,
       "enquiriesCount": 10,
       "ownerId": "own_3",
       "ownerName": "Propriétaire Caudéran",
       "seoTitle": "Échoppe Bordelaise Rénovée avec Jardin & Piscine - Caudéran | Goizet Gestion",
       "seoDescription": "Location et vente d'exception à Caudéran Bordeaux.",
-      "updatedAt": "2026-08-20T05:40:22.864Z"
+      "updatedAt": "2026-08-20T05:40:22.864Z",
+      "titleEn": "Renovated Bordeaux Townhouse with Garden & Pool - Caudéran",
+      "descriptionEn": "Exceptional property situated in the heart of the Caudéran district in Bordeaux. Refined finishes, premium amenities, and optimal natural light.",
+      "shortDescriptionEn": "Superb 43 m² property in Caudéran available immediately.",
+      "featuresEn": [
+        "Hardwood floors",
+        "Continuous balcony",
+        "Air conditioning",
+        "Private cellar",
+        "Elevator"
+      ]
     },
     {
       "id": "prop_3",
@@ -181,13 +202,24 @@
         "https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?auto=format&fit=crop&w=1600&q=80"
       ],
       "coverImage": "https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?auto=format&fit=crop&w=1600&q=80",
-      "views": 165,
+      "views": 167,
       "enquiriesCount": 11,
       "ownerId": "own_4",
       "ownerName": "Propriétaire Triangle d'Or / Centre",
       "seoTitle": "Penthouse Vue Dégagée sur la Garonne - Triangle d'Or / Centre | Goizet Gestion",
       "seoDescription": "Location et vente d'exception à Triangle d'Or / Centre Bordeaux.",
-      "updatedAt": "2026-08-20T04:40:22.864Z"
+      "updatedAt": "2026-08-20T04:40:22.864Z",
+      "titleEn": "Penthouse with Open Views of the Garonne - Triangle d'Or / Centre",
+      "descriptionEn": "Exceptional property situated in the heart of the Triangle d'Or / Centre district in Bordeaux. Refined finishes, premium amenities, and optimal natural light.",
+      "shortDescriptionEn": "Superb 47 m² property in Triangle d'Or / Centre available immediately.",
+      "featuresEn": [
+        "Hardwood floors",
+        "Continuous balcony",
+        "Air conditioning",
+        "Private cellar",
+        "Elevator"
+      ],
+      "priceSuffixEn": "/ mo inc. charges"
     },
     {
       "id": "prop_4",
@@ -233,7 +265,17 @@
       "ownerName": "Propriétaire Bastide Rive Droite",
       "seoTitle": "Loft Contemporain sous Verrière d'Architecte - Bastide Rive Droite | Goizet Gestion",
       "seoDescription": "Location et vente d'exception à Bastide Rive Droite Bordeaux.",
-      "updatedAt": "2026-08-20T03:40:22.864Z"
+      "updatedAt": "2026-08-20T03:40:22.864Z",
+      "titleEn": "Contemporary Architect-Designed Loft with Glass Roof - Bastide Rive Droite",
+      "descriptionEn": "Exceptional property situated in the heart of the Bastide Rive Droite district in Bordeaux. Refined finishes, premium amenities, and optimal natural light.",
+      "shortDescriptionEn": "Superb 51 m² property in Bastide Rive Droite available immediately.",
+      "featuresEn": [
+        "Hardwood floors",
+        "Continuous balcony",
+        "Air conditioning",
+        "Private cellar",
+        "Elevator"
+      ]
     },
     {
       "id": "prop_5",
@@ -281,7 +323,18 @@
       "ownerName": "Propriétaire Saint-Michel",
       "seoTitle": "Hôtel Particulier du XVIIIe siècle avec Cour Pavée - Saint-Michel | Goizet Gestion",
       "seoDescription": "Location et vente d'exception à Saint-Michel Bordeaux.",
-      "updatedAt": "2026-08-20T02:40:22.864Z"
+      "updatedAt": "2026-08-20T02:40:22.864Z",
+      "titleEn": "18th-Century Private Mansion with Cobbled Courtyard - Saint-Michel",
+      "descriptionEn": "Exceptional property situated in the heart of the Saint-Michel district in Bordeaux. Refined finishes, premium amenities, and optimal natural light.",
+      "shortDescriptionEn": "Superb 55 m² property in Saint-Michel available immediately.",
+      "featuresEn": [
+        "Hardwood floors",
+        "Continuous balcony",
+        "Air conditioning",
+        "Private cellar",
+        "Elevator"
+      ],
+      "priceSuffixEn": "/ mo inc. charges"
     },
     {
       "id": "prop_6",
@@ -321,13 +374,23 @@
         "https://images.unsplash.com/photo-1600566753190-17f0baa2a6c3?auto=format&fit=crop&w=1600&q=80"
       ],
       "coverImage": "https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=1600&q=80",
-      "views": 210,
+      "views": 211,
       "enquiriesCount": 17,
       "ownerId": "own_7",
       "ownerName": "Propriétaire Saint-Augustin",
       "seoTitle": "T2 Moderne avec Parking Sécurisé & Balcon - Saint-Augustin | Goizet Gestion",
       "seoDescription": "Location et vente d'exception à Saint-Augustin Bordeaux.",
-      "updatedAt": "2026-08-20T01:40:22.864Z"
+      "updatedAt": "2026-08-20T01:40:22.864Z",
+      "titleEn": "Modern 1-Bedroom with Secure Parking & Balcony - Saint-Augustin",
+      "descriptionEn": "Exceptional property situated in the heart of the Saint-Augustin district in Bordeaux. Refined finishes, premium amenities, and optimal natural light.",
+      "shortDescriptionEn": "Superb 59 m² property in Saint-Augustin available immediately.",
+      "featuresEn": [
+        "Hardwood floors",
+        "Continuous balcony",
+        "Air conditioning",
+        "Private cellar",
+        "Elevator"
+      ]
     },
     {
       "id": "prop_7",
@@ -375,7 +438,18 @@
       "ownerName": "Propriétaire Nansouty",
       "seoTitle": "Échoppe Double de Caractère avec Patio - Nansouty | Goizet Gestion",
       "seoDescription": "Location et vente d'exception à Nansouty Bordeaux.",
-      "updatedAt": "2026-08-20T00:40:22.864Z"
+      "updatedAt": "2026-08-20T00:40:22.864Z",
+      "titleEn": "Character Double Townhouse with Patio - Nansouty",
+      "descriptionEn": "Exceptional property situated in the heart of the Nansouty district in Bordeaux. Refined finishes, premium amenities, and optimal natural light.",
+      "shortDescriptionEn": "Superb 63 m² property in Nansouty available immediately.",
+      "featuresEn": [
+        "Hardwood floors",
+        "Continuous balcony",
+        "Air conditioning",
+        "Private cellar",
+        "Elevator"
+      ],
+      "priceSuffixEn": "/ mo inc. charges"
     },
     {
       "id": "prop_8",
@@ -421,7 +495,17 @@
       "ownerName": "Propriétaire Bacalan",
       "seoTitle": "Duplex de Prestige avec Terrasse Panoramique - Bacalan | Goizet Gestion",
       "seoDescription": "Location et vente d'exception à Bacalan Bordeaux.",
-      "updatedAt": "2026-08-19T23:40:22.864Z"
+      "updatedAt": "2026-08-19T23:40:22.864Z",
+      "titleEn": "Prestige Duplex with Panoramic Terrace - Bacalan",
+      "descriptionEn": "Exceptional property situated in the heart of the Bacalan district in Bordeaux. Refined finishes, premium amenities, and optimal natural light.",
+      "shortDescriptionEn": "Superb 67 m² property in Bacalan available immediately.",
+      "featuresEn": [
+        "Hardwood floors",
+        "Continuous balcony",
+        "Air conditioning",
+        "Private cellar",
+        "Elevator"
+      ]
     },
     {
       "id": "prop_9",
@@ -469,7 +553,18 @@
       "ownerName": "Propriétaire Talence",
       "seoTitle": "Studio Meublé Design Haut de Gamme - Talence | Goizet Gestion",
       "seoDescription": "Location et vente d'exception à Talence Bordeaux.",
-      "updatedAt": "2026-08-19T22:40:22.864Z"
+      "updatedAt": "2026-08-19T22:40:22.864Z",
+      "titleEn": "High-End Furnished Designer Studio - Talence",
+      "descriptionEn": "Exceptional property situated in the heart of the Talence district in Bordeaux. Refined finishes, premium amenities, and optimal natural light.",
+      "shortDescriptionEn": "Superb 71 m² property in Talence available immediately.",
+      "featuresEn": [
+        "Hardwood floors",
+        "Continuous balcony",
+        "Air conditioning",
+        "Private cellar",
+        "Elevator"
+      ],
+      "priceSuffixEn": "/ mo inc. charges"
     },
     {
       "id": "prop_10",
@@ -515,7 +610,17 @@
       "ownerName": "Propriétaire Mérignac",
       "seoTitle": "Villa Familiale avec Parc Paysagé & Piscine - Mérignac | Goizet Gestion",
       "seoDescription": "Location et vente d'exception à Mérignac Bordeaux.",
-      "updatedAt": "2026-08-19T21:40:22.864Z"
+      "updatedAt": "2026-08-19T21:40:22.864Z",
+      "titleEn": "Family Villa with Landscaped Grounds & Pool - Mérignac",
+      "descriptionEn": "Exceptional property situated in the heart of the Mérignac district in Bordeaux. Refined finishes, premium amenities, and optimal natural light.",
+      "shortDescriptionEn": "Superb 75 m² property in Mérignac available immediately.",
+      "featuresEn": [
+        "Hardwood floors",
+        "Continuous balcony",
+        "Air conditioning",
+        "Private cellar",
+        "Elevator"
+      ]
     },
     {
       "id": "prop_11",
@@ -563,7 +668,18 @@
       "ownerName": "Propriétaire Pessac",
       "seoTitle": "T3 Lumineux avec Parquet Massif & Cheminée - Pessac | Goizet Gestion",
       "seoDescription": "Location et vente d'exception à Pessac Bordeaux.",
-      "updatedAt": "2026-08-19T20:40:22.864Z"
+      "updatedAt": "2026-08-19T20:40:22.864Z",
+      "titleEn": "Bright 2-Bedroom with Hardwood Floors & Fireplace - Pessac",
+      "descriptionEn": "Exceptional property situated in the heart of the Pessac district in Bordeaux. Refined finishes, premium amenities, and optimal natural light.",
+      "shortDescriptionEn": "Superb 79 m² property in Pessac available immediately.",
+      "featuresEn": [
+        "Hardwood floors",
+        "Continuous balcony",
+        "Air conditioning",
+        "Private cellar",
+        "Elevator"
+      ],
+      "priceSuffixEn": "/ mo inc. charges"
     },
     {
       "id": "prop_12",
@@ -609,7 +725,17 @@
       "ownerName": "Propriétaire Bègles",
       "seoTitle": "Appartement Bourgeois avec Hauteur sous Plafond - Bègles | Goizet Gestion",
       "seoDescription": "Location et vente d'exception à Bègles Bordeaux.",
-      "updatedAt": "2026-08-19T19:40:22.864Z"
+      "updatedAt": "2026-08-19T19:40:22.864Z",
+      "titleEn": "Bourgeois Apartment with High Ceilings - Bègles",
+      "descriptionEn": "Exceptional property situated in the heart of the Bègles district in Bordeaux. Refined finishes, premium amenities, and optimal natural light.",
+      "shortDescriptionEn": "Superb 83 m² property in Bègles available immediately.",
+      "featuresEn": [
+        "Hardwood floors",
+        "Continuous balcony",
+        "Air conditioning",
+        "Private cellar",
+        "Elevator"
+      ]
     },
     {
       "id": "prop_13",
@@ -657,7 +783,18 @@
       "ownerName": "Propriétaire Chartrons",
       "seoTitle": "Appartement Haussmannien avec Moulures & Balcon - Chartrons | Goizet Gestion",
       "seoDescription": "Location et vente d'exception à Chartrons Bordeaux.",
-      "updatedAt": "2026-08-19T18:40:22.864Z"
+      "updatedAt": "2026-08-19T18:40:22.864Z",
+      "titleEn": "Haussmannian Apartment with Moldings & Balcony - Chartrons",
+      "descriptionEn": "Exceptional property situated in the heart of the Chartrons district in Bordeaux. Refined finishes, premium amenities, and optimal natural light.",
+      "shortDescriptionEn": "Superb 87 m² property in Chartrons available immediately.",
+      "featuresEn": [
+        "Hardwood floors",
+        "Continuous balcony",
+        "Air conditioning",
+        "Private cellar",
+        "Elevator"
+      ],
+      "priceSuffixEn": "/ mo inc. charges"
     },
     {
       "id": "prop_14",
@@ -703,7 +840,17 @@
       "ownerName": "Propriétaire Caudéran",
       "seoTitle": "Échoppe Bordelaise Rénovée avec Jardin & Piscine - Caudéran | Goizet Gestion",
       "seoDescription": "Location et vente d'exception à Caudéran Bordeaux.",
-      "updatedAt": "2026-08-19T17:40:22.864Z"
+      "updatedAt": "2026-08-19T17:40:22.864Z",
+      "titleEn": "Renovated Bordeaux Townhouse with Garden & Pool - Caudéran",
+      "descriptionEn": "Exceptional property situated in the heart of the Caudéran district in Bordeaux. Refined finishes, premium amenities, and optimal natural light.",
+      "shortDescriptionEn": "Superb 91 m² property in Caudéran available immediately.",
+      "featuresEn": [
+        "Hardwood floors",
+        "Continuous balcony",
+        "Air conditioning",
+        "Private cellar",
+        "Elevator"
+      ]
     },
     {
       "id": "prop_15",
@@ -751,7 +898,18 @@
       "ownerName": "Propriétaire Triangle d'Or / Centre",
       "seoTitle": "Penthouse Vue Dégagée sur la Garonne - Triangle d'Or / Centre | Goizet Gestion",
       "seoDescription": "Location et vente d'exception à Triangle d'Or / Centre Bordeaux.",
-      "updatedAt": "2026-08-19T16:40:22.864Z"
+      "updatedAt": "2026-08-19T16:40:22.864Z",
+      "titleEn": "Penthouse with Open Views of the Garonne - Triangle d'Or / Centre",
+      "descriptionEn": "Exceptional property situated in the heart of the Triangle d'Or / Centre district in Bordeaux. Refined finishes, premium amenities, and optimal natural light.",
+      "shortDescriptionEn": "Superb 95 m² property in Triangle d'Or / Centre available immediately.",
+      "featuresEn": [
+        "Hardwood floors",
+        "Continuous balcony",
+        "Air conditioning",
+        "Private cellar",
+        "Elevator"
+      ],
+      "priceSuffixEn": "/ mo inc. charges"
     },
     {
       "id": "prop_16",
@@ -797,7 +955,17 @@
       "ownerName": "Propriétaire Bastide Rive Droite",
       "seoTitle": "Loft Contemporain sous Verrière d'Architecte - Bastide Rive Droite | Goizet Gestion",
       "seoDescription": "Location et vente d'exception à Bastide Rive Droite Bordeaux.",
-      "updatedAt": "2026-08-19T15:40:22.864Z"
+      "updatedAt": "2026-08-19T15:40:22.864Z",
+      "titleEn": "Contemporary Architect-Designed Loft with Glass Roof - Bastide Rive Droite",
+      "descriptionEn": "Exceptional property situated in the heart of the Bastide Rive Droite district in Bordeaux. Refined finishes, premium amenities, and optimal natural light.",
+      "shortDescriptionEn": "Superb 99 m² property in Bastide Rive Droite available immediately.",
+      "featuresEn": [
+        "Hardwood floors",
+        "Continuous balcony",
+        "Air conditioning",
+        "Private cellar",
+        "Elevator"
+      ]
     },
     {
       "id": "prop_17",
@@ -839,13 +1007,24 @@
         "https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?auto=format&fit=crop&w=1600&q=80"
       ],
       "coverImage": "https://images.unsplash.com/photo-1600566753190-17f0baa2a6c3?auto=format&fit=crop&w=1600&q=80",
-      "views": 375,
+      "views": 376,
       "enquiriesCount": 39,
       "ownerId": "own_3",
       "ownerName": "Propriétaire Saint-Michel",
       "seoTitle": "Hôtel Particulier du XVIIIe siècle avec Cour Pavée - Saint-Michel | Goizet Gestion",
       "seoDescription": "Location et vente d'exception à Saint-Michel Bordeaux.",
-      "updatedAt": "2026-08-19T14:40:22.864Z"
+      "updatedAt": "2026-08-19T14:40:22.864Z",
+      "titleEn": "18th-Century Private Mansion with Cobbled Courtyard - Saint-Michel",
+      "descriptionEn": "Exceptional property situated in the heart of the Saint-Michel district in Bordeaux. Refined finishes, premium amenities, and optimal natural light.",
+      "shortDescriptionEn": "Superb 103 m² property in Saint-Michel available immediately.",
+      "featuresEn": [
+        "Hardwood floors",
+        "Continuous balcony",
+        "Air conditioning",
+        "Private cellar",
+        "Elevator"
+      ],
+      "priceSuffixEn": "/ mo inc. charges"
     },
     {
       "id": "prop_18",
@@ -891,7 +1070,17 @@
       "ownerName": "Propriétaire Saint-Augustin",
       "seoTitle": "T2 Moderne avec Parking Sécurisé & Balcon - Saint-Augustin | Goizet Gestion",
       "seoDescription": "Location et vente d'exception à Saint-Augustin Bordeaux.",
-      "updatedAt": "2026-08-19T13:40:22.864Z"
+      "updatedAt": "2026-08-19T13:40:22.864Z",
+      "titleEn": "Modern 1-Bedroom with Secure Parking & Balcony - Saint-Augustin",
+      "descriptionEn": "Exceptional property situated in the heart of the Saint-Augustin district in Bordeaux. Refined finishes, premium amenities, and optimal natural light.",
+      "shortDescriptionEn": "Superb 107 m² property in Saint-Augustin available immediately.",
+      "featuresEn": [
+        "Hardwood floors",
+        "Continuous balcony",
+        "Air conditioning",
+        "Private cellar",
+        "Elevator"
+      ]
     },
     {
       "id": "prop_19",
@@ -939,7 +1128,18 @@
       "ownerName": "Propriétaire Nansouty",
       "seoTitle": "Échoppe Double de Caractère avec Patio - Nansouty | Goizet Gestion",
       "seoDescription": "Location et vente d'exception à Nansouty Bordeaux.",
-      "updatedAt": "2026-08-19T12:40:22.864Z"
+      "updatedAt": "2026-08-19T12:40:22.864Z",
+      "titleEn": "Character Double Townhouse with Patio - Nansouty",
+      "descriptionEn": "Exceptional property situated in the heart of the Nansouty district in Bordeaux. Refined finishes, premium amenities, and optimal natural light.",
+      "shortDescriptionEn": "Superb 111 m² property in Nansouty available immediately.",
+      "featuresEn": [
+        "Hardwood floors",
+        "Continuous balcony",
+        "Air conditioning",
+        "Private cellar",
+        "Elevator"
+      ],
+      "priceSuffixEn": "/ mo inc. charges"
     },
     {
       "id": "prop_20",
@@ -985,7 +1185,17 @@
       "ownerName": "Propriétaire Bacalan",
       "seoTitle": "Duplex de Prestige avec Terrasse Panoramique - Bacalan | Goizet Gestion",
       "seoDescription": "Location et vente d'exception à Bacalan Bordeaux.",
-      "updatedAt": "2026-08-19T11:40:22.865Z"
+      "updatedAt": "2026-08-19T11:40:22.865Z",
+      "titleEn": "Prestige Duplex with Panoramic Terrace - Bacalan",
+      "descriptionEn": "Exceptional property situated in the heart of the Bacalan district in Bordeaux. Refined finishes, premium amenities, and optimal natural light.",
+      "shortDescriptionEn": "Superb 115 m² property in Bacalan available immediately.",
+      "featuresEn": [
+        "Hardwood floors",
+        "Continuous balcony",
+        "Air conditioning",
+        "Private cellar",
+        "Elevator"
+      ]
     },
     {
       "id": "prop_21",
@@ -1033,7 +1243,18 @@
       "ownerName": "Propriétaire Talence",
       "seoTitle": "Studio Meublé Design Haut de Gamme - Talence | Goizet Gestion",
       "seoDescription": "Location et vente d'exception à Talence Bordeaux.",
-      "updatedAt": "2026-08-19T10:40:22.865Z"
+      "updatedAt": "2026-08-19T10:40:22.865Z",
+      "titleEn": "High-End Furnished Designer Studio - Talence",
+      "descriptionEn": "Exceptional property situated in the heart of the Talence district in Bordeaux. Refined finishes, premium amenities, and optimal natural light.",
+      "shortDescriptionEn": "Superb 119 m² property in Talence available immediately.",
+      "featuresEn": [
+        "Hardwood floors",
+        "Continuous balcony",
+        "Air conditioning",
+        "Private cellar",
+        "Elevator"
+      ],
+      "priceSuffixEn": "/ mo inc. charges"
     },
     {
       "id": "prop_22",
@@ -1079,7 +1300,17 @@
       "ownerName": "Propriétaire Mérignac",
       "seoTitle": "Villa Familiale avec Parc Paysagé & Piscine - Mérignac | Goizet Gestion",
       "seoDescription": "Location et vente d'exception à Mérignac Bordeaux.",
-      "updatedAt": "2026-08-19T09:40:22.865Z"
+      "updatedAt": "2026-08-19T09:40:22.865Z",
+      "titleEn": "Family Villa with Landscaped Grounds & Pool - Mérignac",
+      "descriptionEn": "Exceptional property situated in the heart of the Mérignac district in Bordeaux. Refined finishes, premium amenities, and optimal natural light.",
+      "shortDescriptionEn": "Superb 123 m² property in Mérignac available immediately.",
+      "featuresEn": [
+        "Hardwood floors",
+        "Continuous balcony",
+        "Air conditioning",
+        "Private cellar",
+        "Elevator"
+      ]
     },
     {
       "id": "prop_23",
@@ -1121,13 +1352,24 @@
         "https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?auto=format&fit=crop&w=1600&q=80"
       ],
       "coverImage": "https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?auto=format&fit=crop&w=1600&q=80",
-      "views": 465,
+      "views": 466,
       "enquiriesCount": 51,
       "ownerId": "own_9",
       "ownerName": "Propriétaire Pessac",
       "seoTitle": "T3 Lumineux avec Parquet Massif & Cheminée - Pessac | Goizet Gestion",
       "seoDescription": "Location et vente d'exception à Pessac Bordeaux.",
-      "updatedAt": "2026-08-19T08:40:22.865Z"
+      "updatedAt": "2026-08-19T08:40:22.865Z",
+      "titleEn": "Bright 2-Bedroom with Hardwood Floors & Fireplace - Pessac",
+      "descriptionEn": "Exceptional property situated in the heart of the Pessac district in Bordeaux. Refined finishes, premium amenities, and optimal natural light.",
+      "shortDescriptionEn": "Superb 127 m² property in Pessac available immediately.",
+      "featuresEn": [
+        "Hardwood floors",
+        "Continuous balcony",
+        "Air conditioning",
+        "Private cellar",
+        "Elevator"
+      ],
+      "priceSuffixEn": "/ mo inc. charges"
     },
     {
       "id": "prop_24",
@@ -1173,7 +1415,17 @@
       "ownerName": "Propriétaire Bègles",
       "seoTitle": "Appartement Bourgeois avec Hauteur sous Plafond - Bègles | Goizet Gestion",
       "seoDescription": "Location et vente d'exception à Bègles Bordeaux.",
-      "updatedAt": "2026-08-19T07:40:22.865Z"
+      "updatedAt": "2026-08-19T07:40:22.865Z",
+      "titleEn": "Bourgeois Apartment with High Ceilings - Bègles",
+      "descriptionEn": "Exceptional property situated in the heart of the Bègles district in Bordeaux. Refined finishes, premium amenities, and optimal natural light.",
+      "shortDescriptionEn": "Superb 131 m² property in Bègles available immediately.",
+      "featuresEn": [
+        "Hardwood floors",
+        "Continuous balcony",
+        "Air conditioning",
+        "Private cellar",
+        "Elevator"
+      ]
     },
     {
       "id": "prop_25",
@@ -1221,7 +1473,18 @@
       "ownerName": "Propriétaire Chartrons",
       "seoTitle": "Appartement Haussmannien avec Moulures & Balcon - Chartrons | Goizet Gestion",
       "seoDescription": "Location et vente d'exception à Chartrons Bordeaux.",
-      "updatedAt": "2026-08-19T06:40:22.865Z"
+      "updatedAt": "2026-08-19T06:40:22.865Z",
+      "titleEn": "Haussmannian Apartment with Moldings & Balcony - Chartrons",
+      "descriptionEn": "Exceptional property situated in the heart of the Chartrons district in Bordeaux. Refined finishes, premium amenities, and optimal natural light.",
+      "shortDescriptionEn": "Superb 135 m² property in Chartrons available immediately.",
+      "featuresEn": [
+        "Hardwood floors",
+        "Continuous balcony",
+        "Air conditioning",
+        "Private cellar",
+        "Elevator"
+      ],
+      "priceSuffixEn": "/ mo inc. charges"
     },
     {
       "id": "prop_26",
@@ -1267,7 +1530,17 @@
       "ownerName": "Propriétaire Caudéran",
       "seoTitle": "Échoppe Bordelaise Rénovée avec Jardin & Piscine - Caudéran | Goizet Gestion",
       "seoDescription": "Location et vente d'exception à Caudéran Bordeaux.",
-      "updatedAt": "2026-08-19T05:40:22.865Z"
+      "updatedAt": "2026-08-19T05:40:22.865Z",
+      "titleEn": "Renovated Bordeaux Townhouse with Garden & Pool - Caudéran",
+      "descriptionEn": "Exceptional property situated in the heart of the Caudéran district in Bordeaux. Refined finishes, premium amenities, and optimal natural light.",
+      "shortDescriptionEn": "Superb 139 m² property in Caudéran available immediately.",
+      "featuresEn": [
+        "Hardwood floors",
+        "Continuous balcony",
+        "Air conditioning",
+        "Private cellar",
+        "Elevator"
+      ]
     },
     {
       "id": "prop_27",
@@ -1315,7 +1588,18 @@
       "ownerName": "Propriétaire Triangle d'Or / Centre",
       "seoTitle": "Penthouse Vue Dégagée sur la Garonne - Triangle d'Or / Centre | Goizet Gestion",
       "seoDescription": "Location et vente d'exception à Triangle d'Or / Centre Bordeaux.",
-      "updatedAt": "2026-08-19T04:40:22.865Z"
+      "updatedAt": "2026-08-19T04:40:22.865Z",
+      "titleEn": "Penthouse with Open Views of the Garonne - Triangle d'Or / Centre",
+      "descriptionEn": "Exceptional property situated in the heart of the Triangle d'Or / Centre district in Bordeaux. Refined finishes, premium amenities, and optimal natural light.",
+      "shortDescriptionEn": "Superb 143 m² property in Triangle d'Or / Centre available immediately.",
+      "featuresEn": [
+        "Hardwood floors",
+        "Continuous balcony",
+        "Air conditioning",
+        "Private cellar",
+        "Elevator"
+      ],
+      "priceSuffixEn": "/ mo inc. charges"
     },
     {
       "id": "prop_28",
@@ -1361,7 +1645,17 @@
       "ownerName": "Propriétaire Bastide Rive Droite",
       "seoTitle": "Loft Contemporain sous Verrière d'Architecte - Bastide Rive Droite | Goizet Gestion",
       "seoDescription": "Location et vente d'exception à Bastide Rive Droite Bordeaux.",
-      "updatedAt": "2026-08-19T03:40:22.865Z"
+      "updatedAt": "2026-08-19T03:40:22.865Z",
+      "titleEn": "Contemporary Architect-Designed Loft with Glass Roof - Bastide Rive Droite",
+      "descriptionEn": "Exceptional property situated in the heart of the Bastide Rive Droite district in Bordeaux. Refined finishes, premium amenities, and optimal natural light.",
+      "shortDescriptionEn": "Superb 147 m² property in Bastide Rive Droite available immediately.",
+      "featuresEn": [
+        "Hardwood floors",
+        "Continuous balcony",
+        "Air conditioning",
+        "Private cellar",
+        "Elevator"
+      ]
     },
     {
       "id": "prop_29",
@@ -1409,7 +1703,18 @@
       "ownerName": "Propriétaire Saint-Michel",
       "seoTitle": "Hôtel Particulier du XVIIIe siècle avec Cour Pavée - Saint-Michel | Goizet Gestion",
       "seoDescription": "Location et vente d'exception à Saint-Michel Bordeaux.",
-      "updatedAt": "2026-08-19T02:40:22.865Z"
+      "updatedAt": "2026-08-19T02:40:22.865Z",
+      "titleEn": "18th-Century Private Mansion with Cobbled Courtyard - Saint-Michel",
+      "descriptionEn": "Exceptional property situated in the heart of the Saint-Michel district in Bordeaux. Refined finishes, premium amenities, and optimal natural light.",
+      "shortDescriptionEn": "Superb 151 m² property in Saint-Michel available immediately.",
+      "featuresEn": [
+        "Hardwood floors",
+        "Continuous balcony",
+        "Air conditioning",
+        "Private cellar",
+        "Elevator"
+      ],
+      "priceSuffixEn": "/ mo inc. charges"
     },
     {
       "id": "prop_30",
@@ -1455,7 +1760,17 @@
       "ownerName": "Propriétaire Saint-Augustin",
       "seoTitle": "T2 Moderne avec Parking Sécurisé & Balcon - Saint-Augustin | Goizet Gestion",
       "seoDescription": "Location et vente d'exception à Saint-Augustin Bordeaux.",
-      "updatedAt": "2026-08-19T01:40:22.865Z"
+      "updatedAt": "2026-08-19T01:40:22.865Z",
+      "titleEn": "Modern 1-Bedroom with Secure Parking & Balcony - Saint-Augustin",
+      "descriptionEn": "Exceptional property situated in the heart of the Saint-Augustin district in Bordeaux. Refined finishes, premium amenities, and optimal natural light.",
+      "shortDescriptionEn": "Superb 155 m² property in Saint-Augustin available immediately.",
+      "featuresEn": [
+        "Hardwood floors",
+        "Continuous balcony",
+        "Air conditioning",
+        "Private cellar",
+        "Elevator"
+      ]
     },
     {
       "id": "prop_31",
@@ -1503,7 +1818,18 @@
       "ownerName": "Propriétaire Nansouty",
       "seoTitle": "Échoppe Double de Caractère avec Patio - Nansouty | Goizet Gestion",
       "seoDescription": "Location et vente d'exception à Nansouty Bordeaux.",
-      "updatedAt": "2026-08-19T00:40:22.865Z"
+      "updatedAt": "2026-08-19T00:40:22.865Z",
+      "titleEn": "Character Double Townhouse with Patio - Nansouty",
+      "descriptionEn": "Exceptional property situated in the heart of the Nansouty district in Bordeaux. Refined finishes, premium amenities, and optimal natural light.",
+      "shortDescriptionEn": "Superb 159 m² property in Nansouty available immediately.",
+      "featuresEn": [
+        "Hardwood floors",
+        "Continuous balcony",
+        "Air conditioning",
+        "Private cellar",
+        "Elevator"
+      ],
+      "priceSuffixEn": "/ mo inc. charges"
     },
     {
       "id": "prop_32",
@@ -1549,7 +1875,17 @@
       "ownerName": "Propriétaire Bacalan",
       "seoTitle": "Duplex de Prestige avec Terrasse Panoramique - Bacalan | Goizet Gestion",
       "seoDescription": "Location et vente d'exception à Bacalan Bordeaux.",
-      "updatedAt": "2026-08-18T23:40:22.865Z"
+      "updatedAt": "2026-08-18T23:40:22.865Z",
+      "titleEn": "Prestige Duplex with Panoramic Terrace - Bacalan",
+      "descriptionEn": "Exceptional property situated in the heart of the Bacalan district in Bordeaux. Refined finishes, premium amenities, and optimal natural light.",
+      "shortDescriptionEn": "Superb 163 m² property in Bacalan available immediately.",
+      "featuresEn": [
+        "Hardwood floors",
+        "Continuous balcony",
+        "Air conditioning",
+        "Private cellar",
+        "Elevator"
+      ]
     },
     {
       "id": "prop_33",
@@ -1597,7 +1933,18 @@
       "ownerName": "Propriétaire Talence",
       "seoTitle": "Studio Meublé Design Haut de Gamme - Talence | Goizet Gestion",
       "seoDescription": "Location et vente d'exception à Talence Bordeaux.",
-      "updatedAt": "2026-08-18T22:40:22.865Z"
+      "updatedAt": "2026-08-18T22:40:22.865Z",
+      "titleEn": "High-End Furnished Designer Studio - Talence",
+      "descriptionEn": "Exceptional property situated in the heart of the Talence district in Bordeaux. Refined finishes, premium amenities, and optimal natural light.",
+      "shortDescriptionEn": "Superb 167 m² property in Talence available immediately.",
+      "featuresEn": [
+        "Hardwood floors",
+        "Continuous balcony",
+        "Air conditioning",
+        "Private cellar",
+        "Elevator"
+      ],
+      "priceSuffixEn": "/ mo inc. charges"
     },
     {
       "id": "prop_34",
@@ -1643,7 +1990,17 @@
       "ownerName": "Propriétaire Mérignac",
       "seoTitle": "Villa Familiale avec Parc Paysagé & Piscine - Mérignac | Goizet Gestion",
       "seoDescription": "Location et vente d'exception à Mérignac Bordeaux.",
-      "updatedAt": "2026-08-18T21:40:22.865Z"
+      "updatedAt": "2026-08-18T21:40:22.865Z",
+      "titleEn": "Family Villa with Landscaped Grounds & Pool - Mérignac",
+      "descriptionEn": "Exceptional property situated in the heart of the Mérignac district in Bordeaux. Refined finishes, premium amenities, and optimal natural light.",
+      "shortDescriptionEn": "Superb 171 m² property in Mérignac available immediately.",
+      "featuresEn": [
+        "Hardwood floors",
+        "Continuous balcony",
+        "Air conditioning",
+        "Private cellar",
+        "Elevator"
+      ]
     },
     {
       "id": "prop_35",
@@ -1691,7 +2048,18 @@
       "ownerName": "Propriétaire Pessac",
       "seoTitle": "T3 Lumineux avec Parquet Massif & Cheminée - Pessac | Goizet Gestion",
       "seoDescription": "Location et vente d'exception à Pessac Bordeaux.",
-      "updatedAt": "2026-08-18T20:40:22.865Z"
+      "updatedAt": "2026-08-18T20:40:22.865Z",
+      "titleEn": "Bright 2-Bedroom with Hardwood Floors & Fireplace - Pessac",
+      "descriptionEn": "Exceptional property situated in the heart of the Pessac district in Bordeaux. Refined finishes, premium amenities, and optimal natural light.",
+      "shortDescriptionEn": "Superb 175 m² property in Pessac available immediately.",
+      "featuresEn": [
+        "Hardwood floors",
+        "Continuous balcony",
+        "Air conditioning",
+        "Private cellar",
+        "Elevator"
+      ],
+      "priceSuffixEn": "/ mo inc. charges"
     },
     {
       "id": "prop_36",
@@ -1737,10 +2105,279 @@
       "ownerName": "Propriétaire Bègles",
       "seoTitle": "Appartement Bourgeois avec Hauteur sous Plafond - Bègles | Goizet Gestion",
       "seoDescription": "Location et vente d'exception à Bègles Bordeaux.",
-      "updatedAt": "2026-08-18T19:40:22.865Z"
+      "updatedAt": "2026-08-18T19:40:22.865Z",
+      "titleEn": "Bourgeois Apartment with High Ceilings - Bègles",
+      "descriptionEn": "Exceptional property situated in the heart of the Bègles district in Bordeaux. Refined finishes, premium amenities, and optimal natural light.",
+      "shortDescriptionEn": "Superb 179 m² property in Bègles available immediately.",
+      "featuresEn": [
+        "Hardwood floors",
+        "Continuous balcony",
+        "Air conditioning",
+        "Private cellar",
+        "Elevator"
+      ]
     }
   ],
   "leads": [
+    {
+      "id": "lead_1789558065673",
+      "name": "Sarah Martin",
+      "email": "sarah@exemple.fr",
+      "phone": "06 12 34 56 78",
+      "leadType": "Tenant Request",
+      "status": "NEW",
+      "subject": "Demande d&#x27information (Dossier complet du bien) : Penthouse with Open Views of the Garonne - Chartrons",
+      "message": "Objet de la demande: Dossier complet du bien\n\nAsk your question...\n\nPropriété ciblée: Penthouse with Open Views of the Garonne - Chartrons - Ref BDX-2026-103",
+      "propertyAddress": "Penthouse with Open Views of the Garonne - Chartrons",
+      "budget": "960 € &#x2Fmois",
+      "surface": "47 m² • 1 pièces",
+      "source": "Page Détail Bien",
+      "assignedTo": "Paul & Edgar Goizet",
+      "createdAt": "2026-09-16T11:27:45.673Z",
+      "notes": [],
+      "activities": [
+        {
+          "id": "act_1789558065673",
+          "text": "Demande (Tenant Request) soumise depuis le site public.",
+          "date": "À l'instant"
+        }
+      ]
+    },
+    {
+      "id": "lead_1789557969435",
+      "name": "Sarah Martin",
+      "email": "sarah@exemple.fr",
+      "phone": "06 12 34 56 78",
+      "leadType": "Tenant Request",
+      "status": "NEW",
+      "subject": "Demande d&#x27information (Dossier complet du bien) : Penthouse Chartrons",
+      "message": "Objet de la demande: Dossier complet du bien\n\nBonjour, je souhaite recevoir le dossier complet avec charges et règlement de copropriété.",
+      "propertyAddress": "Penthouse with Open Views of the Garonne - Chartrons",
+      "budget": "960 € &#x2Fmois",
+      "surface": "47 m² • 1 pièces",
+      "source": "Page Détail Bien",
+      "assignedTo": "Paul & Edgar Goizet",
+      "createdAt": "2026-09-16T11:26:09.435Z",
+      "notes": [],
+      "activities": [
+        {
+          "id": "act_1789557969435",
+          "text": "Demande (Tenant Request) soumise depuis le site public.",
+          "date": "À l'instant"
+        }
+      ]
+    },
+    {
+      "id": "lead_1789557795845",
+      "name": "Sarah Martin",
+      "email": "sarah@exemple.fr",
+      "phone": "06 12 34 56 78",
+      "leadType": "Contact Message",
+      "status": "NEW",
+      "subject": "Demande de rappel: undefined",
+      "message": "Test message",
+      "propertyAddress": "Appartement Chartrons",
+      "source": "Formulaire de Contact Frontend",
+      "assignedTo": "Paul & Edgar Goizet",
+      "createdAt": "2026-09-16T11:23:15.845Z",
+      "notes": [],
+      "activities": [
+        {
+          "id": "act_1789557795845",
+          "text": "Formulaire (Contact Message) soumis depuis le site public.",
+          "date": "À l'instant"
+        }
+      ]
+    },
+    {
+      "id": "lead_1789276150452",
+      "name": "dsfsdf",
+      "email": "33612345678@lead.goizet.fr",
+      "phone": "+33612345678",
+      "leadType": "Owner Enquiry",
+      "serviceType": "Rent out my property",
+      "status": "NEW",
+      "subject": "Dossier: Louer mon bien (Propriétaire) (appartement à Bordeaux)",
+      "message": "Propriétaire pour: Louer mon bien (Propriétaire). Bien: appartement.",
+      "propertyAddress": "appartement • Bordeaux",
+      "propertyType": "appartement",
+      "source": "Hero Lead Form - Espace Propriétaire",
+      "assignedTo": "Paul & Edgar Goizet",
+      "createdAt": "2026-09-13T05:09:10.452Z",
+      "notes": [
+        {
+          "id": "note_1789276150452",
+          "author": "Portail Propriétaire Goizet",
+          "text": "Demande reçue pour Louer mon bien (Propriétaire). Rappel garanti au +33612345678.",
+          "date": "À l'instant"
+        }
+      ],
+      "activities": [
+        {
+          "id": "act_1789276150452",
+          "text": "Dossier (Louer mon bien (Propriétaire)) soumis depuis le site web.",
+          "date": "À l'instant"
+        }
+      ]
+    },
+    {
+      "id": "lead_1789275190935",
+      "name": "Rafi Md. Hasib",
+      "email": "33612345678@lead.goizet.fr",
+      "phone": "+33612345678",
+      "leadType": "Owner Enquiry",
+      "serviceType": "Rent out my property",
+      "status": "NEW",
+      "subject": "Dossier: Louer mon bien (Propriétaire) (appartement à Bordeaux)",
+      "message": "Propriétaire pour: Louer mon bien (Propriétaire). Bien: appartement.",
+      "propertyAddress": "appartement • Bordeaux",
+      "propertyType": "appartement",
+      "source": "Hero Lead Form - Espace Propriétaire",
+      "assignedTo": "Paul & Edgar Goizet",
+      "createdAt": "2026-09-13T04:53:10.935Z",
+      "notes": [
+        {
+          "id": "note_1789275190935",
+          "author": "Portail Propriétaire Goizet",
+          "text": "Demande reçue pour Louer mon bien (Propriétaire). Rappel garanti au +33612345678.",
+          "date": "À l'instant"
+        }
+      ],
+      "activities": [
+        {
+          "id": "act_1789275190935",
+          "text": "Dossier (Louer mon bien (Propriétaire)) soumis depuis le site web.",
+          "date": "À l'instant"
+        }
+      ]
+    },
+    {
+      "id": "lead_1789207043731",
+      "name": "Sophie Acheteuse",
+      "email": "0655667788@lead.goizet.fr",
+      "phone": "0655667788",
+      "leadType": "Buyer Request",
+      "serviceType": "Buy a property",
+      "status": "NEW",
+      "subject": "Recherche: Acheter un bien (Acheteur) (appartement • Budget: 600000 €)",
+      "message": "Recherche achat T3 Triangle d Or",
+      "propertyAddress": "appartement • Bordeaux",
+      "propertyType": "appartement",
+      "budget": "600000 €",
+      "surface": "3 ch.",
+      "source": "Formulaire Confier mon bien",
+      "assignedTo": "Paul & Edgar Goizet",
+      "createdAt": "2026-09-12T09:57:23.731Z",
+      "notes": [
+        {
+          "id": "note_1789207043731",
+          "author": "Portail Recherche Goizet",
+          "text": "Demande reçue pour Acheter un bien (Acheteur). Rappel garanti au 0655667788.",
+          "date": "À l'instant"
+        }
+      ],
+      "activities": [
+        {
+          "id": "act_1789207043731",
+          "text": "Dossier (Acheter un bien (Acheteur)) soumis depuis le site web.",
+          "date": "À l'instant"
+        }
+      ]
+    },
+    {
+      "id": "lead_1789207041341",
+      "name": "Thomas Vendeur",
+      "email": "0622334455@lead.goizet.fr",
+      "phone": "0622334455",
+      "leadType": "Seller Request",
+      "serviceType": "Sell my property",
+      "status": "NEW",
+      "subject": "Dossier: Vendre mon bien (Propriétaire) (maison à Bordeaux)",
+      "message": "Maison 140m2 Cauderan a vendre",
+      "propertyAddress": "maison • Bordeaux",
+      "propertyType": "maison",
+      "source": "Formulaire Confier mon bien",
+      "assignedTo": "Paul & Edgar Goizet",
+      "createdAt": "2026-09-12T09:57:21.341Z",
+      "notes": [
+        {
+          "id": "note_1789207041341",
+          "author": "Portail Propriétaire Goizet",
+          "text": "Demande reçue pour Vendre mon bien (Propriétaire). Rappel garanti au 0622334455.",
+          "date": "À l'instant"
+        }
+      ],
+      "activities": [
+        {
+          "id": "act_1789207041341",
+          "text": "Dossier (Vendre mon bien (Propriétaire)) soumis depuis le site web.",
+          "date": "À l'instant"
+        }
+      ]
+    },
+    {
+      "id": "lead_1789206590933",
+      "name": "Marie Test",
+      "email": "0698765432@lead.goizet.fr",
+      "phone": "0698765432",
+      "leadType": "Tenant Request",
+      "serviceType": "Rent a property",
+      "status": "NEW",
+      "subject": "Dossier Propriétaire: Louer un bien (Locataire) (appartement à Bordeaux)",
+      "message": "Recherche location appartement 2 ch",
+      "propertyAddress": "appartement • Bordeaux",
+      "propertyType": "appartement",
+      "budget": "1500",
+      "source": "Formulaire Confier mon bien",
+      "assignedTo": "Paul & Edgar Goizet",
+      "createdAt": "2026-09-12T09:49:50.933Z",
+      "notes": [
+        {
+          "id": "note_1789206590933",
+          "author": "Portail Propriétaire Goizet",
+          "text": "Dossier propriétaire reçu pour Louer un bien (Locataire). Contact sous 2h garanti au 0698765432.",
+          "date": "À l'instant"
+        }
+      ],
+      "activities": [
+        {
+          "id": "act_1789206590933",
+          "text": "Dossier propriétaire (Louer un bien (Locataire)) soumis depuis le site web.",
+          "date": "À l'instant"
+        }
+      ]
+    },
+    {
+      "id": "lead_1789206583991",
+      "name": "Test Proprietaire",
+      "email": "0612345678@lead.goizet.fr",
+      "phone": "0612345678",
+      "leadType": "Owner Enquiry",
+      "serviceType": "Rent out my property",
+      "status": "NEW",
+      "subject": "Dossier Propriétaire: Louer mon bien (Propriétaire) (Appartement à Bordeaux)",
+      "message": "Test message for verification",
+      "propertyAddress": "Appartement • Bordeaux",
+      "propertyType": "Appartement",
+      "source": "Formulaire Confier mon bien",
+      "assignedTo": "Paul & Edgar Goizet",
+      "createdAt": "2026-09-12T09:49:43.991Z",
+      "notes": [
+        {
+          "id": "note_1789206583991",
+          "author": "Portail Propriétaire Goizet",
+          "text": "Dossier propriétaire reçu pour Louer mon bien (Propriétaire). Contact sous 2h garanti au 0612345678.",
+          "date": "À l'instant"
+        }
+      ],
+      "activities": [
+        {
+          "id": "act_1789206583991",
+          "text": "Dossier propriétaire (Louer mon bien (Propriétaire)) soumis depuis le site web.",
+          "date": "À l'instant"
+        }
+      ]
+    },
     {
       "id": "lead_1787217740904",
       "name": "Shourav",

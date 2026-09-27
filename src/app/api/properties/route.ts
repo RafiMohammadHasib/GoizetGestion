@@ -1,46 +1,73 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { supabase } from '@/lib/supabase';
 import { getDb, saveDb } from '@/lib/db';
+import {
+  getLocalizedTitle,
+  getLocalizedDescription,
+  getLocalizedFeatures
+} from '@/lib/propertyLocalization';
 
 function mapPropertyFromDb(row: any) {
+  const transactionType = row.transaction_type || row.transactionType || 'louer';
+  const rawTitle = row.title || '';
+  const rawDesc = row.description || '';
+  const rawShortDesc = row.short_description || row.shortDescription || '';
+  const rawFeatures = Array.isArray(row.features) ? row.features : [];
+
+  const titleEn = row.title_en || row.titleEn || getLocalizedTitle({ title: rawTitle }, 'en');
+  const descriptionEn = row.description_en || row.descriptionEn || getLocalizedDescription({ description: rawDesc }, 'en');
+  const shortDescriptionEn = row.short_description_en || row.shortDescriptionEn || (rawShortDesc ? getLocalizedDescription({ description: rawShortDesc }, 'en') : undefined);
+  const featuresEn = (Array.isArray(row.features_en || row.featuresEn) && (row.features_en || row.featuresEn).length > 0)
+    ? (row.features_en || row.featuresEn)
+    : getLocalizedFeatures({ features: rawFeatures }, 'en');
+  const priceSuffix = row.price_suffix || row.priceSuffix || (transactionType === 'louer' ? '/ mois CC' : undefined);
+  const priceSuffixEn = row.price_suffix_en || row.priceSuffixEn || (transactionType === 'louer' ? '/ mo inc. charges' : undefined);
+
   return {
     id: row.id,
     reference: row.reference,
-    title: row.title,
+    title: rawTitle,
+    titleEn,
     slug: row.slug,
-    description: row.description,
-    shortDescription: row.short_description,
-    transactionType: row.transaction_type,
-    propertyType: row.property_type,
+    description: rawDesc,
+    descriptionEn,
+    shortDescription: rawShortDesc,
+    shortDescriptionEn,
+    transactionType,
+    propertyType: row.property_type || row.propertyType,
     price: Number(row.price),
     charges: row.charges ? Number(row.charges) : undefined,
     deposit: row.deposit ? Number(row.deposit) : undefined,
+    priceSuffix,
+    priceSuffixEn,
     surface: Number(row.surface),
     rooms: Number(row.rooms),
     bedrooms: Number(row.bedrooms),
     bathrooms: Number(row.bathrooms),
-    floor: row.floor !== null ? Number(row.floor) : undefined,
-    totalFloors: row.total_floors !== null ? Number(row.total_floors) : undefined,
-    yearBuilt: row.year_built !== null ? Number(row.year_built) : undefined,
-    energyRating: row.energy_rating,
-    gesRating: row.ges_rating,
+    floor: row.floor !== null && row.floor !== undefined ? Number(row.floor) : undefined,
+    totalFloors: row.total_floors !== null && row.total_floors !== undefined ? Number(row.total_floors) : undefined,
+    yearBuilt: row.year_built !== null && row.year_built !== undefined ? Number(row.year_built) : undefined,
+    energyRating: row.energy_rating || row.energyRating,
+    gesRating: row.ges_rating || row.gesRating,
     address: row.address,
-    postalCode: row.postal_code,
+    postalCode: row.postal_code || row.postalCode,
     city: row.city,
-    neighborhoodSlug: row.neighborhood_slug,
-    neighborhoodName: row.neighborhood_name,
-    isExclusive: Boolean(row.is_exclusive),
+    neighborhoodSlug: row.neighborhood_slug || row.neighborhoodSlug,
+    neighborhoodName: row.neighborhood_name || row.neighborhoodName,
+    location: row.location || `${row.city || 'Bordeaux'} — ${row.neighborhood_name || row.neighborhoodName || 'Centre'}`,
+    isExclusive: Boolean(row.is_exclusive ?? row.isExclusive),
     status: row.status,
-    features: Array.isArray(row.features) ? row.features : [],
+    features: rawFeatures,
+    featuresEn,
     images: Array.isArray(row.images) ? row.images : [],
-    coverImage: row.cover_image,
+    coverImage: row.cover_image || row.coverImage,
     views: Number(row.views || 0),
-    enquiriesCount: Number(row.enquiries_count || 0),
-    ownerId: row.owner_id,
-    ownerName: row.owner_name,
-    seoTitle: row.seo_title,
-    seoDescription: row.seo_description,
-    updatedAt: row.updated_at
+    enquiriesCount: Number(row.enquiries_count || row.enquiriesCount || 0),
+    ownerId: row.owner_id || row.ownerId,
+    ownerName: row.owner_name || row.ownerName,
+    seoTitle: row.seo_title || row.seoTitle,
+    seoDescription: row.seo_description || row.seoDescription,
+    updatedAt: row.updated_at || row.updatedAt
   };
 }
 
@@ -113,7 +140,7 @@ export async function GET(req: NextRequest) {
 
     // Fallback to local DB store
     const db = getDb();
-    let properties = db.properties;
+    let properties = (db.properties || []).map(mapPropertyFromDb);
 
     if (slug) {
       const property = properties.find((p: any) => p.slug === slug || p.id === slug);

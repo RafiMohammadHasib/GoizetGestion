@@ -34,7 +34,7 @@ export default function JournalIndexPage() {
   const featuredRole = (language === 'en' && featured?.author?.roleEn) ? featured.author.roleEn : featured?.author?.role;
 
   return (
-    <div className="pt-32 pb-24 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto space-y-10">
+    <div className="pt-36 sm:pt-40 pb-24 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto space-y-7 sm:space-y-8">
       
       {/* Breadcrumbs */}
       <Breadcrumbs items={[{ label: language === 'fr' ? 'Le Journal Immobilier' : 'Real Estate Journal' }]} />
@@ -56,7 +56,7 @@ export default function JournalIndexPage() {
 
       {/* Featured Headline Hero Article */}
       {featured && (
-        <Link href={`/journal/${featured.slug}`} className="group block">
+        <Link href={`/journal/${featured.slug}`} className="group block pt-2">
           <div className="bg-white rounded-3xl overflow-hidden border border-[#171512]/10 shadow-xl grid grid-cols-1 lg:grid-cols-12">
             <div className="lg:col-span-7 relative h-72 lg:h-auto overflow-hidden">
               <img

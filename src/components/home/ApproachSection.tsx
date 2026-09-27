@@ -10,7 +10,7 @@ export default function ApproachSection() {
   const { language } = useLanguage();
 
   return (
-    <section className="py-24 px-4 sm:px-6 lg:px-8 bg-[#F7F5F0]">
+    <section className="pt-6 sm:pt-8 pb-20 sm:pb-24 px-4 sm:px-6 lg:px-8 bg-[#F7F5F0]">
       <div className="max-w-7xl mx-auto">
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-16 items-center">
           
@@ -22,22 +22,22 @@ export default function ApproachSection() {
             transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
             className="lg:col-span-6 relative"
           >
-            <div className="relative rounded-2xl overflow-hidden shadow-2xl aspect-[4/3] border border-[#171512]/10" data-cursor="BORDEAUX">
+            <div className="relative rounded-3xl overflow-hidden shadow-2xl aspect-[4/5] border border-[#171512]/10" data-cursor="BORDEAUX">
               <img
-                src="/Home-Section-1A.png"
-                alt="Équipe d'experts Goizet Gestion à Bordeaux"
-                className="w-full h-full object-cover"
+                src="/images/office-HD.png"
+                alt="Bureau Goizet Gestion à Bordeaux"
+                className="w-full h-full object-cover object-center"
               />
-              <div className="absolute inset-0 bg-gradient-to-t from-[#171512]/70 via-transparent to-transparent" />
+              <div className="absolute inset-0 bg-gradient-to-t from-[#171512]/70 via-[#171512]/10 to-transparent" />
               
-              <div className="absolute bottom-6 left-6 right-6 p-6 bg-white/95 backdrop-blur-md rounded-xl border border-white/40 text-[#171512]">
+              <div className="absolute bottom-6 left-6 right-6 p-6 bg-white/95 backdrop-blur-md rounded-2xl border border-white/40 text-[#171512] shadow-lg">
                 <span className="text-[10px] font-bold uppercase tracking-widest text-[#748C8C]">
                   {language === 'fr' ? "L'EXIGENCE DU SUR-MESURE" : 'BOUTIQUE ADVISORY EXCELLENCE'}
                 </span>
                 <p className="font-serif-display text-lg font-medium mt-1">
                   {language === 'fr'
-                    ? '« Nous redéfinissons les standards de la gestion locative pour offrir sérénité aux propriétaires et confort aux locataires. »'
-                    : '“We redefine property management standards to offer absolute peace of mind to owners and premium comfort to tenants.”'}
+                    ? '“Nous offrons une expérience client personnalisée et adaptée pour chacun”'
+                    : '“We offer a personalized and tailored client experience for everyone”'}
                 </p>
               </div>
             </div>
@@ -60,8 +60,8 @@ export default function ApproachSection() {
               </h2>
               <p className="text-base text-[#6F6255] font-light leading-relaxed">
                 {language === 'fr'
-                  ? 'Les agences traditionnelles s\'appuient sur des processus désuets et opaques. Chez Goizet Gestion, nous combinons l\'expertise fine du marché bordelais à la puissance d\'outils digitaux modernes.'
-                  : 'Traditional agencies rely on outdated and opaque processes. At Goizet Gestion, we combine deep Bordeaux market expertise with state-of-the-art digital tools.'}
+                  ? 'Chez Goizet Gestion nous mettons la priorité absolue sur l’efficacité et la disponibilité pour chacun de nos clients.'
+                  : 'At Goizet Gestion, we place absolute priority on efficiency and availability for each of our clients.'}
               </p>
             </div>
 
@@ -72,8 +72,8 @@ export default function ApproachSection() {
                   desc: language === 'fr' ? 'Commercialisation ultra-ciblée, sélection rigoureuse et vacance locative minimale.' : 'Targeted marketing, thorough tenant vetting, and minimized void periods.'
                 },
                 {
-                  title: language === 'fr' ? 'Gestion simplifiée & transparente' : 'Streamlined & transparent management',
-                  desc: language === 'fr' ? 'Accès 24/7 à vos documents juridiques, états des lieux HD et quittances dématérialisées.' : '24/7 access to your legal documents, HD inspection records, and digital receipts.'
+                  title: language === 'fr' ? 'Mise en location et gestion' : 'Letting & management',
+                  desc: language === 'fr' ? 'Nous nous occupons de tout de A à Z avec des processus simples et efficaces' : 'We take care of everything from A to Z with simple and effective processes'
                 },
                 {
                   title: language === 'fr' ? 'Ancrage local à Bordeaux' : 'Deep local Bordeaux footprint',

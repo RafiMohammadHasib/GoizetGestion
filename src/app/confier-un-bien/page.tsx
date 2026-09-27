@@ -12,6 +12,7 @@ import { motion, AnimatePresence } from 'framer-motion';
 import { useLanguage } from '@/context/LanguageContext';
 import CustomSelect from '@/components/ui/CustomSelect';
 import { sanitizeInjection, isValidEmail, isValidPhone } from '@/lib/security';
+import { CORE_SERVICES } from '@/data/services';
 
 export default function ConfierUnBienPage() {
   const { language, t } = useLanguage();
@@ -35,48 +36,14 @@ export default function ConfierUnBienPage() {
     message: ''
   });
 
-  const services = [
-    {
-      id: 'Rental management',
-      title: language === 'fr' ? 'Gestion Locative 360°' : 'Rental Management',
-      desc: language === 'fr' ? 'Gestion intégrale, encaissement, GLI garantie loyers impayés sans carence' : 'End-to-end management, rent collection & rent default insurance',
-      icon: ShieldCheck,
-      badge: language === 'fr' ? 'Recommandé' : 'Popular',
-      details: language === 'fr' 
-        ? ['Honoraires déductibles à 100% des revenus fonciers', 'Garantie Loyers Impayés sans franchise', 'Espace propriétaire en ligne temps réel']
-        : ['100% tax deductible management fees', 'Zero deductible rent default guarantee', 'Real-time online owner dashboard']
-    },
-    {
-      id: 'Property letting',
-      title: language === 'fr' ? 'Mise en Location' : 'Property Letting',
-      desc: language === 'fr' ? 'Shooting photo HD, multi-diffusion, vérification solvabilité et baux certifiés' : 'HD photo shoot, portal syndication, solvency check & compliant leases',
-      icon: Key,
-      badge: language === 'fr' ? 'Bailleurs' : 'Landlords',
-      details: language === 'fr'
-        ? ['Candidats rigoureusement qualifiés (3x le loyer)', 'Visites ciblées et baux bilingues', 'État des lieux numérique sur tablette']
-        : ['Strict candidate qualification (3x rent income)', 'Vetted viewings & digital leases', 'Certified tablet inventory report']
-    },
-    {
-      id: 'Rental valuation',
-      title: language === 'fr' ? 'Estimation Locative' : 'Rental Valuation',
-      desc: language === 'fr' ? 'Étude de marché comparative sous 48h conforme encadrement des loyers' : 'Comparative market study within 48h compliant with rent cap',
-      icon: Calculator,
-      badge: language === 'fr' ? 'Offert' : 'Free',
-      details: language === 'fr'
-        ? ['Analyse micro-quartier bordelais', 'Conformité stricte encadrement des loyers', 'Simulation de rentabilité nette']
-        : ['Micro-neighborhood Bordeaux audit', 'Strict rent control adherence', 'Net yield optimization analysis']
-    },
-    {
-      id: 'Property sales',
-      title: language === 'fr' ? 'Vente Immobilière' : 'Property Sales',
-      desc: language === 'fr' ? 'Commercialisation de prestige, réseau d\'acquéreurs et suivi notarial' : 'Boutique marketing, vetted buyer portfolio and complete notary support',
-      icon: Tag,
-      badge: language === 'fr' ? 'Prestige' : 'Sales',
-      details: language === 'fr'
-        ? ['Stratégie marketing personnalisée', 'Fichier d\'acquéreurs financés', 'Accompagnement jusqu\'à la signature de l\'acte']
-        : ['Tailored marketing strategy', 'Pre-qualified cash/funded buyers', 'Complete notary closing guidance']
-    }
-  ];
+  const services = CORE_SERVICES.map(s => ({
+    id: s.serviceKey,
+    title: s.title[language],
+    desc: s.shortDescription[language],
+    icon: s.icon,
+    badge: s.badge[language],
+    details: s.deliverables[language]
+  }));
 
   const handleFormSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -147,13 +114,15 @@ export default function ConfierUnBienPage() {
   };
 
   return (
-    <div className="pt-32 pb-24 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto space-y-16">
+    <div className="pt-36 sm:pt-40 pb-24 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto space-y-16 sm:space-y-20">
       
-      {/* Breadcrumbs */}
-      <Breadcrumbs items={[{ label: language === 'fr' ? 'Confier mon bien' : 'Entrust your property' }]} />
+      {/* Header & Breadcrumbs Group */}
+      <div className="space-y-7 sm:space-y-8">
+        {/* Breadcrumbs */}
+        <Breadcrumbs items={[{ label: language === 'fr' ? 'Confier mon bien' : 'Entrust your property' }]} />
 
-      {/* Hero Banner Header */}
-      <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
+        {/* Hero Banner Header */}
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
         <div className="lg:col-span-7 space-y-6">
           <div className="inline-flex items-center space-x-2 text-xs font-semibold uppercase tracking-widest text-[#748C8C] bg-[#748C8C]/15 px-4 py-1.5 rounded-full border border-[#748C8C]/30">
             <Sparkles className="w-3.5 h-3.5" />
@@ -227,6 +196,7 @@ export default function ConfierUnBienPage() {
             </div>
           </div>
         </div>
+      </div>
       </div>
 
       {/* Main Interactive Lead Form Container */}

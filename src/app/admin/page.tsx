@@ -42,14 +42,22 @@ export default function AdminDashboardPage() {
       const rentals = propList.filter(p => p.transaction_type === 'louer').length;
       const sales = propList.filter(p => p.transaction_type === 'acheter').length;
 
-      // 2. Fetch CRM leads
-      const { data: leads } = await supabase.from('crm_leads').select('id, lead_type, status, name, created_at');
-      const leadList = leads || [];
+      // 2. Fetch unified CRM leads
+      let leadList: any[] = [];
+      try {
+        const crmRes = await fetch('/api/admin/crm');
+        const crmData = await crmRes.json();
+        if (crmData.leads) leadList = crmData.leads;
+      } catch {
+        const { data: leads } = await supabase.from('crm_leads').select('id, lead_type, status, name, created_at');
+        leadList = leads || [];
+      }
+
       const totalLeads = leadList.length;
-      const owners = leadList.filter(l => (l.lead_type || '').toLowerCase().includes('owner')).length;
-      const tenants = leadList.filter(l => (l.lead_type || '').toLowerCase().includes('tenant')).length;
-      const valuations = leadList.filter(l => (l.lead_type || '').toLowerCase().includes('valuation')).length;
-      const callbacks = leadList.filter(l => (l.lead_type || '').toLowerCase().includes('callback') || (l.lead_type || '').toLowerCase().includes('contact')).length;
+      const owners = leadList.filter(l => (l.leadType || l.lead_type || '').toLowerCase().includes('owner')).length;
+      const tenants = leadList.filter(l => (l.leadType || l.lead_type || '').toLowerCase().includes('tenant')).length;
+      const valuations = leadList.filter(l => (l.leadType || l.lead_type || '').toLowerCase().includes('valuation')).length;
+      const callbacks = leadList.filter(l => (l.leadType || l.lead_type || '').toLowerCase().includes('callback') || (l.leadType || l.lead_type || '').toLowerCase().includes('contact')).length;
 
       setStats({
         totalProperties: totalProps || 36,

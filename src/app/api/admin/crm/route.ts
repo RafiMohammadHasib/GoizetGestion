@@ -19,39 +19,166 @@ export async function GET(req: NextRequest) {
 
     const { data, error } = await query;
 
-    if (!error && data && data.length > 0) {
-      const leads = data.map((l: any) => ({
+    // Load local DB leads
+    const db = getDb();
+    const localLeads = db.leads || [];
+
+    // Unified deduplicated map of leads (id -> lead)
+    const leadsMap = new Map<string, any>();
+
+    // 1. Add local leads
+    localLeads.forEach((l: any) => {
+      leadsMap.set(l.id, {
         id: l.id,
         name: l.name,
         email: l.email,
         phone: l.phone,
-        leadType: l.lead_type,
-        status: l.status,
+        leadType: l.leadType,
+        serviceType: l.serviceType,
+        preferredTimeSlot: l.preferredTimeSlot,
+        status: l.status || 'NEW',
         subject: l.subject,
         message: l.message,
-        propertyAddress: l.property_address,
+        propertyAddress: l.propertyAddress,
         budget: l.budget,
         surface: l.surface,
-        assignedTo: l.assigned_to,
+        assignedTo: l.assignedTo,
         source: l.source,
         notes: Array.isArray(l.notes) ? l.notes : [],
         activities: Array.isArray(l.activities) ? l.activities : [],
-        createdAt: l.created_at
-      }));
-      return NextResponse.json({ leads, total: leads.length });
+        createdAt: l.createdAt
+      });
+    });
+
+    // 2. Overlay / Merge with Supabase data
+    if (!error && data && data.length > 0) {
+      data.forEach((l: any) => {
+        leadsMap.set(l.id, {
+          id: l.id,
+          name: l.name,
+          email: l.email,
+          phone: l.phone,
+          leadType: l.lead_type || l.leadType,
+          serviceType: l.service_type || l.serviceType,
+          preferredTimeSlot: l.preferred_time_slot || l.preferredTimeSlot,
+          status: l.status,
+          subject: l.subject,
+          message: l.message,
+          propertyAddress: l.property_address || l.propertyAddress,
+          budget: l.budget,
+          surface: l.surface,
+          assignedTo: l.assigned_to || l.assignedTo,
+          source: l.source,
+          notes: Array.isArray(l.notes) ? l.notes : [],
+          activities: Array.isArray(l.activities) ? l.activities : [],
+          createdAt: l.created_at || l.createdAt
+        });
+      });
     }
 
-    // Fallback to local DB
-    const db = getDb();
-    let leads = db.leads;
-    if (status && status !== 'ALL') leads = leads.filter((l: any) => l.status === status);
-    if (type && type !== 'ALL') leads = leads.filter((l: any) => l.leadType.toUpperCase().includes(type.toUpperCase()));
+    let allLeads = Array.from(leadsMap.values());
+    allLeads.sort((a, b) => new Date(b.createdAt).getTime() - new Date(a.createdAt).getTime());
 
-    return NextResponse.json({ leads, total: leads.length });
+    if (status && status !== 'ALL') {
+      allLeads = allLeads.filter((l: any) => l.status === status);
+    }
+    if (type && type !== 'ALL') {
+      allLeads = allLeads.filter((l: any) => 
+        (l.leadType || '').toUpperCase().includes(type.toUpperCase()) ||
+        (l.serviceType || '').toUpperCase().includes(type.toUpperCase())
+      );
+    }
+
+    return NextResponse.json({ leads: allLeads, total: allLeads.length });
   } catch (error) {
     return NextResponse.json({ error: 'Failed to fetch leads' }, { status: 500 });
   }
 }
+
+export async function POST(req: NextRequest) {
+  try {
+    const body = await req.json();
+    const {
+      name,
+      fullName,
+      email,
+      phone,
+      leadType = 'Contact Message',
+      serviceType,
+      status = 'NEW',
+      subject,
+      message,
+      propertyAddress,
+      budget,
+      surface,
+      preferredTimeSlot,
+      source = 'CRM Saisie Directe'
+    } = body;
+
+    const leadName = (fullName || name || '').trim();
+    if (!leadName) {
+      return NextResponse.json({ error: 'Le nom complet est obligatoire' }, { status: 400 });
+    }
+
+    const newLead: any = {
+      id: `lead_${Date.now()}`,
+      name: leadName,
+      email: (email || '').trim().toLowerCase() || 'contact@client.goizet',
+      phone: (phone || '').trim() || 'Non renseigné',
+      leadType,
+      serviceType,
+      status,
+      subject: subject || `Demande ${leadType}`,
+      message: message || '',
+      propertyAddress,
+      budget,
+      surface,
+      preferredTimeSlot,
+      source,
+      assignedTo: 'Paul & Edgar Goizet',
+      createdAt: new Date().toISOString(),
+      notes: [],
+      activities: [
+        { id: `act_${Date.now()}`, text: 'Lead créé dans le CRM Goizet Gestion.', date: 'À l\'instant' }
+      ]
+    };
+
+    const db = getDb();
+    if (!db.leads) db.leads = [];
+    db.leads.unshift(newLead);
+    saveDb(db);
+
+    try {
+      await supabase.from('crm_leads').insert({
+        id: newLead.id,
+        name: newLead.name,
+        email: newLead.email,
+        phone: newLead.phone,
+        lead_type: newLead.leadType,
+        service_type: newLead.serviceType,
+        status: newLead.status,
+        subject: newLead.subject,
+        message: newLead.message,
+        property_address: newLead.propertyAddress,
+        budget: newLead.budget,
+        surface: newLead.surface,
+        preferred_time_slot: newLead.preferredTimeSlot,
+        source: newLead.source,
+        assigned_to: newLead.assignedTo,
+        created_at: newLead.createdAt,
+        notes: newLead.notes,
+        activities: newLead.activities
+      });
+    } catch (sbErr) {
+      console.warn('Supabase sync warning in CRM POST:', sbErr);
+    }
+
+    return NextResponse.json({ success: true, lead: newLead }, { status: 201 });
+  } catch (error) {
+    return NextResponse.json({ error: 'Failed to create lead' }, { status: 500 });
+  }
+}
+
 
 export async function PATCH(req: NextRequest) {
   try {

@@ -28,7 +28,7 @@ export default function SingleArticlePage() {
   const related = ARTICLES.filter((a) => a.id !== article.id).slice(0, 2);
 
   return (
-    <article className="pt-28 pb-24 px-4 sm:px-6 lg:px-8 max-w-4xl mx-auto space-y-10">
+    <article className="pt-36 sm:pt-40 pb-24 px-4 sm:px-6 lg:px-8 max-w-4xl mx-auto space-y-7 sm:space-y-8">
       
       {/* Breadcrumbs Nav */}
       <Breadcrumbs

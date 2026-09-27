@@ -2,12 +2,23 @@
 
 import React, { useState, useMemo, useEffect, Suspense } from 'react';
 import { useSearchParams } from 'next/navigation';
+import dynamic from 'next/dynamic';
 import PropertyCard from '@/components/properties/PropertyCard';
 import Breadcrumbs from '@/components/ui/Breadcrumbs';
-import { Search, SlidersHorizontal, Grid, List, RotateCcw, Home, Loader2 } from 'lucide-react';
+import { Search, SlidersHorizontal, Grid, List, Map, MapPin, RotateCcw, Home, Loader2, PhoneCall, Sparkles, Send, CheckCircle2, ShieldCheck } from 'lucide-react';
 import { PropertyType, TransactionType } from '@/types';
 import { useLanguage } from '@/context/LanguageContext';
 import CustomSelect from '@/components/ui/CustomSelect';
+
+const PropertyMap = dynamic(() => import('@/components/properties/PropertyMap'), {
+  ssr: false,
+  loading: () => (
+    <div className="w-full h-[620px] lg:h-[720px] rounded-3xl bg-[#F7F5F0] border border-[#171512]/10 flex flex-col items-center justify-center space-y-3 text-center p-6 animate-pulse">
+      <Loader2 className="w-8 h-8 text-[#748C8C] animate-spin" />
+      <span className="text-xs text-[#6F6255] font-medium">Chargement de la carte interactive…</span>
+    </div>
+  )
+});
 
 function PropertySearchContent() {
   const searchParams = useSearchParams();
@@ -20,10 +31,46 @@ function PropertySearchContent() {
   const [neighborhood, setNeighborhood] = useState<string>(searchParams.get('neighborhood') || '');
   const [maxPrice, setMaxPrice] = useState<string>(searchParams.get('maxPrice') || '');
   const [minSurface, setMinSurface] = useState<string>('');
-  const [viewMode, setViewMode] = useState<'grid' | 'list'>('grid');
+  const [viewMode, setViewMode] = useState<'grid' | 'list' | 'map'>('grid');
+  const [selectedPropertyId, setSelectedPropertyId] = useState<string | null>(null);
 
   const [allDbProperties, setAllDbProperties] = useState<any[]>([]);
   const [pageLoading, setPageLoading] = useState(true);
+
+  // Custom Search & Off-Market Alert State
+  const [alertName, setAlertName] = useState('');
+  const [alertEmail, setAlertEmail] = useState('');
+  const [alertPhone, setAlertPhone] = useState('');
+  const [alertNotes, setAlertNotes] = useState('');
+  const [alertLoading, setAlertLoading] = useState(false);
+  const [alertSuccess, setAlertSuccess] = useState(false);
+
+  const handleAlertSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
+    if (!alertName.trim()) return;
+    setAlertLoading(true);
+    try {
+      await fetch('/api/contact', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          fullName: alertName,
+          name: alertName,
+          email: alertEmail,
+          phone: alertPhone,
+          leadType: transactionType === 'acheter' ? 'Buyer Request' : 'Tenant Request',
+          subject: 'Recherche sur-mesure & Off-market',
+          message: `Recherche personnalisée soumise depuis le catalogue de biens:\nQuartier souhaité: ${neighborhood || 'Tous les secteurs'}\nType de bien: ${propertyType || 'Indifférent'}\nBudget max: ${maxPrice || 'Non précisé'}\nSurface min: ${minSurface || 'Non précisée'} m²\n\nPrécisions: ${alertNotes}`,
+          source: 'Catalogue Biens Off-Market Form'
+        })
+      });
+      setAlertSuccess(true);
+    } catch (e) {
+      setAlertSuccess(true);
+    } finally {
+      setAlertLoading(false);
+    }
+  };
 
   // Fetch from server API — reads the persisted JSON DB on the server side
   useEffect(() => {
@@ -114,7 +161,7 @@ function PropertySearchContent() {
   ], [language]);
 
   return (
-    <div suppressHydrationWarning className="pt-32 pb-24 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto space-y-10">
+    <div suppressHydrationWarning className="pt-36 sm:pt-40 pb-24 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto space-y-7 sm:space-y-8">
       
       {/* Breadcrumbs */}
       <Breadcrumbs items={[{ label: language === 'fr' ? 'Nos Biens' : 'Properties' }]} />
@@ -178,20 +225,30 @@ function PropertySearchContent() {
             </button>
 
             {/* View Mode Toggle */}
-            <div className="hidden sm:flex items-center space-x-1 bg-[#FAF9F6] p-1 rounded-lg border border-[#171512]/10">
+            <div className="flex items-center space-x-1 bg-[#FAF9F6] p-1 rounded-lg border border-[#171512]/10">
               <button
                 onClick={() => setViewMode('grid')}
-                className={`p-1.5 rounded ${viewMode === 'grid' ? 'bg-white shadow text-[#748C8C]' : 'text-[#6F6255]'}`}
-                aria-label="Vue grille"
+                className={`p-1.5 rounded transition-all ${viewMode === 'grid' ? 'bg-white shadow text-[#748C8C]' : 'text-[#6F6255] hover:text-[#171512]'}`}
+                aria-label={language === 'fr' ? 'Vue grille' : 'Grid view'}
+                title={language === 'fr' ? 'Vue grille' : 'Grid view'}
               >
                 <Grid className="w-4 h-4" />
               </button>
               <button
                 onClick={() => setViewMode('list')}
-                className={`p-1.5 rounded ${viewMode === 'list' ? 'bg-white shadow text-[#748C8C]' : 'text-[#6F6255]'}`}
-                aria-label="Vue liste"
+                className={`p-1.5 rounded transition-all ${viewMode === 'list' ? 'bg-white shadow text-[#748C8C]' : 'text-[#6F6255] hover:text-[#171512]'}`}
+                aria-label={language === 'fr' ? 'Vue liste' : 'List view'}
+                title={language === 'fr' ? 'Vue liste' : 'List view'}
               >
                 <List className="w-4 h-4" />
+              </button>
+              <button
+                onClick={() => setViewMode('map')}
+                className={`p-1.5 rounded transition-all ${viewMode === 'map' ? 'bg-white shadow text-[#748C8C]' : 'text-[#6F6255] hover:text-[#171512]'}`}
+                aria-label={language === 'fr' ? 'Vue carte' : 'Map view'}
+                title={language === 'fr' ? 'Vue carte' : 'Map view'}
+              >
+                <Map className="w-4 h-4" />
               </button>
             </div>
           </div>
@@ -264,19 +321,29 @@ function PropertySearchContent() {
           <p className="text-xs text-[#6F6255]">{language === 'fr' ? 'Chargement du catalogue…' : 'Loading catalog…'}</p>
         </div>
       ) : filteredProperties.length > 0 ? (
-        <div className={`grid ${
-          viewMode === 'grid'
-            ? 'grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8'
-            : 'grid-cols-1 gap-6'
-        }`}>
-          {filteredProperties.map((property: any) => (
-            <PropertyCard
-              key={property.id}
-              property={property}
-              aspectRatio={viewMode === 'list' ? 'video' : 'square'}
+        viewMode === 'map' ? (
+          <div className="w-full">
+            <PropertyMap
+              properties={filteredProperties}
+              selectedPropertyId={selectedPropertyId}
+              onSelectProperty={(prop) => setSelectedPropertyId(prop?.id || null)}
             />
-          ))}
-        </div>
+          </div>
+        ) : (
+          <div className={`grid ${
+            viewMode === 'grid'
+              ? 'grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8'
+              : 'grid-cols-1 gap-6'
+          }`}>
+            {filteredProperties.map((property: any) => (
+              <PropertyCard
+                key={property.id}
+                property={property}
+                aspectRatio={viewMode === 'list' ? 'video' : 'square'}
+              />
+            ))}
+          </div>
+        )
       ) : (
         <div className="bg-white rounded-2xl p-12 text-center border border-[#171512]/10 space-y-4">
           <Home className="w-12 h-12 text-[#748C8C]/40 mx-auto" />
@@ -291,6 +358,130 @@ function PropertySearchContent() {
           </button>
         </div>
       )}
+
+      {/* Off-Market & Custom Search Lead Generation Card */}
+      <div className="bg-gradient-to-br from-[#171512] to-[#2C2723] text-white rounded-3xl p-8 sm:p-12 shadow-2xl relative overflow-hidden">
+        <div className="absolute -right-16 -bottom-16 w-80 h-80 rounded-full bg-[#748C8C]/15 blur-3xl pointer-events-none" />
+        
+        <div className="relative z-10 grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
+          <div className="lg:col-span-6 space-y-4">
+            <span className="text-xs font-semibold uppercase tracking-widest text-[#748C8C] flex items-center space-x-1.5">
+              <Sparkles className="w-4 h-4" />
+              <span>{language === 'fr' ? 'RECHERCHE SUR-MESURE & OFF-MARKET' : 'CUSTOM SEARCH & OFF-MARKET'}</span>
+            </span>
+            <h3 className="font-serif-display text-3xl sm:text-4xl font-light leading-tight">
+              {language === 'fr' 
+                ? 'Vous cherchez un bien spécifique à Bordeaux ?' 
+                : 'Looking for a specific property in Bordeaux?'}
+            </h3>
+            <p className="text-xs sm:text-sm text-white/70 font-light leading-relaxed">
+              {language === 'fr'
+                ? 'Une partie de nos mandats de location et vente sont confidentiels ou loués avant parution publique. Confiez-nous vos critères pour être contacté en priorité dès la rentrée d\'un bien correspondant.'
+                : 'Many of our listings are confidential or rented before public launch. Share your criteria to receive priority notifications as soon as a matching property becomes available.'}
+            </p>
+            <div className="flex flex-wrap items-center gap-4 pt-2 text-xs text-white/80">
+              <span className="flex items-center space-x-1.5">
+                <ShieldCheck className="w-4 h-4 text-[#748C8C]" />
+                <span>{language === 'fr' ? '100% Gratuit & sans engagement' : '100% Free & no commitment'}</span>
+              </span>
+              <span>·</span>
+              <a href="tel:+33556000000" className="hover:text-white underline flex items-center space-x-1">
+                <PhoneCall className="w-3.5 h-3.5 text-[#748C8C]" />
+                <span>05 56 00 00 00</span>
+              </a>
+            </div>
+          </div>
+
+          <div className="lg:col-span-6 bg-white/5 backdrop-blur-xl border border-white/10 rounded-2xl p-6 sm:p-7">
+            {alertSuccess ? (
+              <div className="text-center py-6 space-y-3">
+                <CheckCircle2 className="w-10 h-10 text-[#748C8C] mx-auto" />
+                <h4 className="font-serif-display text-xl font-medium text-white">
+                  {language === 'fr' ? 'Vos critères ont bien été enregistrés' : 'Your criteria have been registered'}
+                </h4>
+                <p className="text-xs text-white/70">
+                  {language === 'fr'
+                    ? 'Un conseiller de la Maison Goizet Gestion vous contactera sous 24h avec nos opportunités ciblées.'
+                    : 'A dedicated advisor will contact you within 24h with targeted opportunities.'}
+                </p>
+              </div>
+            ) : (
+              <form onSubmit={handleAlertSubmit} className="space-y-3.5 text-xs">
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
+                  <div>
+                    <label className="block text-[10px] font-bold uppercase tracking-wider text-white/80 mb-1">
+                      {language === 'fr' ? 'Nom et prénom *' : 'Full Name *'}
+                    </label>
+                    <input
+                      type="text"
+                      required
+                      value={alertName}
+                      onChange={(e) => setAlertName(e.target.value)}
+                      placeholder="Camille Dubois"
+                      className="w-full px-3.5 py-2.5 bg-white/10 border border-white/15 rounded-xl text-white placeholder-white/40 focus:outline-none focus:border-[#748C8C]"
+                    />
+                  </div>
+                  <div>
+                    <label className="block text-[10px] font-bold uppercase tracking-wider text-white/80 mb-1">
+                      {language === 'fr' ? 'Téléphone *' : 'Phone *'}
+                    </label>
+                    <input
+                      type="tel"
+                      required
+                      value={alertPhone}
+                      onChange={(e) => setAlertPhone(e.target.value)}
+                      placeholder="06 12 34 56 78"
+                      className="w-full px-3.5 py-2.5 bg-white/10 border border-white/15 rounded-xl text-white placeholder-white/40 focus:outline-none focus:border-[#748C8C]"
+                    />
+                  </div>
+                </div>
+
+                <div>
+                  <label className="block text-[10px] font-bold uppercase tracking-wider text-white/80 mb-1">
+                    {language === 'fr' ? 'Email *' : 'Email *'}
+                  </label>
+                  <input
+                    type="email"
+                    required
+                    value={alertEmail}
+                    onChange={(e) => setAlertEmail(e.target.value)}
+                    placeholder="camille@exemple.fr"
+                    className="w-full px-3.5 py-2.5 bg-white/10 border border-white/15 rounded-xl text-white placeholder-white/40 focus:outline-none focus:border-[#748C8C]"
+                  />
+                </div>
+
+                <div>
+                  <label className="block text-[10px] font-bold uppercase tracking-wider text-white/80 mb-1">
+                    {language === 'fr' ? 'Quartiers & critères précis' : 'Target districts & specifics'}
+                  </label>
+                  <input
+                    type="text"
+                    value={alertNotes}
+                    onChange={(e) => setAlertNotes(e.target.value)}
+                    placeholder={language === 'fr' ? 'Ex: Chartrons ou Triangle d\'Or, 2 chambres, balcon...' : 'E.g. Chartrons, 2 bedrooms, balcony...'}
+                    className="w-full px-3.5 py-2.5 bg-white/10 border border-white/15 rounded-xl text-white placeholder-white/40 focus:outline-none focus:border-[#748C8C]"
+                  />
+                </div>
+
+                <button
+                  type="submit"
+                  disabled={alertLoading}
+                  className="w-full bg-brand-gradient hover:bg-brand-gradient-hover text-white py-3 rounded-xl font-semibold text-xs shadow-brand flex items-center justify-center space-x-2 transition-all cursor-pointer"
+                >
+                  {alertLoading ? (
+                    <span>{language === 'fr' ? 'Enregistrement…' : 'Saving…'}</span>
+                  ) : (
+                    <>
+                      <Send className="w-3.5 h-3.5" />
+                      <span>{language === 'fr' ? 'Être alerté des biens off-market' : 'Receive off-market alerts'}</span>
+                    </>
+                  )}
+                </button>
+              </form>
+            )}
+          </div>
+        </div>
+      </div>
 
     </div>
   );

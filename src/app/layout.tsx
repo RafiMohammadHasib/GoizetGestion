@@ -1,8 +1,10 @@
 import type { Metadata } from 'next';
 import './globals.css';
+import 'leaflet/dist/leaflet.css';
 import ClientLayoutWrapper from '@/components/layout/ClientLayoutWrapper';
 
 export const metadata: Metadata = {
+  metadataBase: new URL(process.env.NEXT_PUBLIC_SITE_URL || 'https://goizet-gestion.fr'),
   title: 'GOIZET GESTION | Immobilier & Gestion Locative à Bordeaux',
   description: 'Goizet Gestion — Maison de conseil immobilier et gestion locative d\'exception à Bordeaux. Location d\'appartements aux Chartrons, Caudéran, Triangle d\'Or. Estimation gratuite, rentabilité optimisée et sérénité garantie.',
   keywords: [
@@ -18,15 +20,16 @@ export const metadata: Metadata = {
   authors: [{ name: 'Goizet Gestion Bordeaux' }],
   icons: {
     icon: [
-      { url: '/favicon.ico?v=5', sizes: 'any' },
-      { url: '/LOGOMARK_3@2x.png', sizes: 'any', type: 'image/png' },
-      { url: '/LOGOMARK_3@2x.png', sizes: '32x32', type: 'image/png' },
-      { url: '/LOGOMARK_3@2x.png', sizes: '192x192', type: 'image/png' },
+      { url: '/favicon.ico?v=6', sizes: 'any' },
+      { url: '/favicon-32.png?v=6', sizes: '32x32', type: 'image/png' },
+      { url: '/favicon-16.png?v=6', sizes: '16x16', type: 'image/png' },
+      { url: '/favicon.png?v=6', sizes: '512x512', type: 'image/png' },
+      { url: '/favicon-192.png?v=6', sizes: '192x192', type: 'image/png' },
     ],
     apple: [
-      { url: '/LOGOMARK_3@2x.png', sizes: '180x180', type: 'image/png' },
+      { url: '/apple-touch-icon.png?v=6', sizes: '180x180', type: 'image/png' },
     ],
-    shortcut: '/favicon.ico?v=5',
+    shortcut: '/favicon.ico?v=6',
   },
   openGraph: {
     title: 'GOIZET GESTION | Immobilier & Gestion Locative à Bordeaux',
@@ -79,7 +82,7 @@ export default function RootLayout({
   };
 
   return (
-    <html lang="fr" suppressHydrationWarning>
+    <html lang="fr" data-scroll-behavior="smooth" suppressHydrationWarning>
       <body
         className="bg-[#F7F5F0] text-[#171512] font-sans-ui selection:bg-[#748C8C]/25 selection:text-[#171512] antialiased"
         suppressHydrationWarning

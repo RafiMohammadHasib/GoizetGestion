@@ -11,10 +11,12 @@ import { useLanguage } from '@/context/LanguageContext';
 import CustomSelect from '@/components/ui/CustomSelect';
 import { sanitizeInjection, isValidEmail, isValidPhone } from '@/lib/security';
 
+import { CORE_SERVICES } from '@/data/services';
+
 interface EntrustPropertyModalProps {
   isOpen: boolean;
   onClose: () => void;
-  initialService?: 'Rental management' | 'Property letting' | 'Rental valuation' | 'Property sales';
+  initialService?: 'Rental management' | 'Property letting' | 'Rental valuation' | 'Property sales' | string;
 }
 
 export default function EntrustPropertyModal({ isOpen, onClose, initialService = 'Rental management' }: EntrustPropertyModalProps) {
@@ -39,36 +41,13 @@ export default function EntrustPropertyModal({ isOpen, onClose, initialService =
     message: ''
   });
 
-  const services = [
-    {
-      id: 'Rental management',
-      title: language === 'fr' ? 'Gestion Locative 360°' : 'Rental Management',
-      desc: language === 'fr' ? 'Gestion totale, encaissement, GLI garantie impayés sans carence' : 'Full-service management & zero-delay rent default insurance',
-      icon: ShieldCheck,
-      badge: language === 'fr' ? 'Recommandé' : 'Recommended'
-    },
-    {
-      id: 'Property letting',
-      title: language === 'fr' ? 'Mise en Location' : 'Property Letting',
-      desc: language === 'fr' ? 'Photos HD, diffusion ciblée, filtrage dossiers & état des lieux' : 'HD photos, multi-channel ads, candidate vetting & inventory',
-      icon: Key,
-      badge: language === 'fr' ? 'Bailleurs' : 'Landlords'
-    },
-    {
-      id: 'Rental valuation',
-      title: language === 'fr' ? 'Estimation Locative & Vente' : 'Rental Valuation',
-      desc: language === 'fr' ? 'Analyse encadrement des loyers et audit patrimonial sous 48h' : 'Rent cap analysis & data-backed yield appraisal in 48h',
-      icon: Calculator,
-      badge: language === 'fr' ? 'Offert' : 'Free'
-    },
-    {
-      id: 'Property sales',
-      title: language === 'fr' ? 'Vente Immobilière' : 'Property Sales',
-      desc: language === 'fr' ? 'Estimation précise, acquéreurs qualifiés & closing notarié' : 'Market valuation, qualified buyer network & notary closing',
-      icon: Tag,
-      badge: language === 'fr' ? 'Prestige' : 'Sales'
-    }
-  ];
+  const services = CORE_SERVICES.map(s => ({
+    id: s.serviceKey,
+    title: s.title[language],
+    desc: s.shortDescription[language],
+    icon: s.icon,
+    badge: s.badge[language]
+  }));
 
   const handleNext = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -171,7 +150,7 @@ export default function EntrustPropertyModal({ isOpen, onClose, initialService =
             <button
               onClick={handleResetAndClose}
               className="absolute top-5 right-5 text-[#171512]/50 hover:text-[#171512] transition-colors p-2 rounded-full hover:bg-[#171512]/5 z-20"
-              aria-label="Fermer"
+              aria-label={language === 'fr' ? 'Fermer' : 'Close'}
             >
               <X className="w-5 h-5" />
             </button>
@@ -357,8 +336,8 @@ export default function EntrustPropertyModal({ isOpen, onClose, initialService =
                               options={[
                                 { value: 'chartrons', label: 'Chartrons', sublabel: '33300' },
                                 { value: 'cauderan', label: 'Caudéran', sublabel: '33200' },
-                                { value: 'triangle-dor', label: "Triangle d'Or / Centre", sublabel: '33000' },
-                                { value: 'bastide', label: 'Bastide Rive Droite', sublabel: '33100' },
+                                { value: 'triangle-dor', label: language === 'fr' ? "Triangle d'Or / Centre" : "Golden Triangle / City Centre", sublabel: '33000' },
+                                { value: 'bastide', label: language === 'fr' ? 'Bastide Rive Droite' : 'Bastide Right Bank', sublabel: '33100' },
                                 { value: 'saint-michel', label: 'Saint-Michel & Capucins', sublabel: '33000' },
                                 { value: 'saint-augustin', label: 'Saint-Augustin', sublabel: '33000' },
                                 { value: 'merignac', label: 'Mérignac', sublabel: '33700' },
@@ -375,7 +354,7 @@ export default function EntrustPropertyModal({ isOpen, onClose, initialService =
                             </label>
                             <input
                               type="text"
-                              placeholder="Ex: 48 Rue Calvé"
+                              placeholder={language === 'fr' ? 'Ex: 48 Rue Calvé' : 'E.g. 48 Rue Calvé'}
                               value={formData.address}
                               onChange={(e) => setFormData({ ...formData, address: e.target.value })}
                               className="w-full px-3.5 py-2.5 bg-white border border-[#171512]/15 rounded-xl font-medium focus:outline-none focus:border-[#748C8C]"
@@ -408,11 +387,11 @@ export default function EntrustPropertyModal({ isOpen, onClose, initialService =
                             </label>
                             <CustomSelect
                               options={[
-                                { value: '1', label: '1 pièce (Studio/T1)' },
-                                { value: '2', label: '2 pièces (T2)' },
-                                { value: '3', label: '3 pièces (T3)' },
-                                { value: '4', label: '4 pièces (T4)' },
-                                { value: '5', label: '5 pièces et +' },
+                                { value: '1', label: language === 'fr' ? '1 pièce (Studio/T1)' : '1 room (Studio/1-bed)' },
+                                { value: '2', label: language === 'fr' ? '2 pièces (T2)' : '2 rooms (1-bedroom)' },
+                                { value: '3', label: language === 'fr' ? '3 pièces (T3)' : '3 rooms (2-bedroom)' },
+                                { value: '4', label: language === 'fr' ? '4 pièces (T4)' : '4 rooms (3-bedroom)' },
+                                { value: '5', label: language === 'fr' ? '5 pièces et +' : '5+ rooms' },
                               ]}
                               value={String(formData.rooms)}
                               onChange={(val) => setFormData({ ...formData, rooms: parseInt(val, 10) })}

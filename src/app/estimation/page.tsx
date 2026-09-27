@@ -112,7 +112,7 @@ export default function EstimationPage() {
   };
 
   return (
-    <div className="pt-32 pb-24 px-4 sm:px-6 lg:px-8 max-w-4xl mx-auto space-y-10">
+    <div className="pt-36 sm:pt-40 pb-24 px-4 sm:px-6 lg:px-8 max-w-4xl mx-auto space-y-7 sm:space-y-8">
       
       {/* Breadcrumbs */}
       <Breadcrumbs items={[{ label: language === 'fr' ? 'Estimation en Ligne' : 'Property Valuation' }]} />
@@ -134,7 +134,7 @@ export default function EstimationPage() {
       </div>
 
       {/* Multi-step Progress Indicator */}
-      <div className="flex items-center justify-between max-w-lg mx-auto relative px-4">
+      <div className="flex items-center justify-between max-w-lg mx-auto relative px-4 pt-3">
         <div className="absolute top-1/2 left-0 right-0 h-0.5 bg-[#171512]/10 -translate-y-1/2 z-0" />
         {[1, 2, 3, 4].map((num) => (
           <div

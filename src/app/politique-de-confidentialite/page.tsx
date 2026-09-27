@@ -9,7 +9,7 @@ export default function PrivacyPolicyPage() {
   const { language } = useLanguage();
 
   return (
-    <div className="pt-32 pb-24 px-4 sm:px-6 lg:px-8 max-w-4xl mx-auto space-y-10">
+    <div className="pt-36 sm:pt-40 pb-24 px-4 sm:px-6 lg:px-8 max-w-4xl mx-auto space-y-7 sm:space-y-8">
       
       {/* Breadcrumbs */}
       <Breadcrumbs items={[{ label: language === 'fr' ? 'Politique de Confidentialité' : 'Privacy Policy' }]} />

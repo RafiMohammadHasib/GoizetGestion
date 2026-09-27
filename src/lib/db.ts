@@ -36,9 +36,14 @@ export interface AdminProperty {
   id: string;
   reference: string;
   title: string;
+  titleEn?: string;
   slug: string;
   description: string;
+  descriptionEn?: string;
   shortDescription: string;
+  shortDescriptionEn?: string;
+  priceSuffix?: string;
+  priceSuffixEn?: string;
   transactionType: 'louer' | 'acheter';
   propertyType: 'appartement' | 'echoppe' | 'maison' | 'loft' | 'hotel-particulier';
   price: number;
@@ -61,6 +66,7 @@ export interface AdminProperty {
   isExclusive: boolean;
   status: 'Draft' | 'Published' | 'Available' | 'Reserved' | 'Rented' | 'Sold' | 'Archived';
   features: string[];
+  featuresEn?: string[];
   images: string[];
   coverImage: string;
   views: number;

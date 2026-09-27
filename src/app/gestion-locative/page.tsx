@@ -4,11 +4,11 @@ import React, { useState } from 'react';
 import Link from 'next/link';
 import Breadcrumbs from '@/components/ui/Breadcrumbs';
 import { 
-  ArrowUpRight, ShieldCheck, CheckCircle2, Calculator, Lock, FileCheck2, 
-  Key, Tag, PhoneCall, Sparkles, Clock, Check, X as XIcon, HelpCircle, Phone, Mail
+  ArrowUpRight, CheckCircle2, Calculator, Check, X as XIcon, Phone, Mail
 } from 'lucide-react';
 import { motion } from 'framer-motion';
 import { useLanguage } from '@/context/LanguageContext';
+import { CORE_SERVICES } from '@/data/services';
 import EntrustPropertyModal from '@/components/layout/EntrustPropertyModal';
 
 export default function GestionLocativePage() {
@@ -27,15 +27,17 @@ export default function GestionLocativePage() {
   };
 
   return (
-    <div className="pt-32 pb-24 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto space-y-20">
+    <div className="pt-36 sm:pt-40 pb-24 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto space-y-16 sm:space-y-20">
       
-      {/* Breadcrumbs */}
-      <Breadcrumbs items={[{ label: language === 'fr' ? 'Gestion Locative & Solutions Bailleurs' : 'Property Management & Owner Solutions' }]} />
+      {/* Header & Breadcrumbs Group */}
+      <div className="space-y-7 sm:space-y-8">
+        {/* Breadcrumbs */}
+        <Breadcrumbs items={[{ label: language === 'fr' ? 'Gestion Locative & Solutions Bailleurs' : 'Property Management & Owner Solutions' }]} />
 
-      {/* Editorial Header */}
-      <div className="max-w-4xl space-y-6">
+        {/* Editorial Header */}
+        <div className="max-w-4xl space-y-6">
         <div className="inline-flex items-center space-x-2 text-xs font-semibold uppercase tracking-widest text-[#748C8C] bg-[#748C8C]/15 px-3.5 py-1 rounded-full border border-[#748C8C]/30">
-          <Sparkles className="w-3.5 h-3.5" />
+          <span className="w-2 h-2 rounded-full bg-[#748C8C]" />
           <span>{language === 'fr' ? 'SOLUTIONS PROPRIÉTAIRES & BAILLEURS BORDEAUX' : 'BORDEAUX OWNER & LANDLORD SOLUTIONS'}</span>
         </div>
 
@@ -75,184 +77,116 @@ export default function GestionLocativePage() {
           </Link>
         </div>
       </div>
+      </div>
 
-      {/* 4 Core Pillars for Property Owners */}
+      {/* 3 Core Services for Property Owners - Dynamically Matched with Homepage */}
       <div className="space-y-8">
-        <div className="space-y-2">
+        <div className="space-y-3">
           <span className="text-xs font-bold uppercase tracking-widest text-[#748C8C]">
-            {language === 'fr' ? 'NOTRE ACCOMPAGNEMENT 360°' : 'OUR 360° OWNER SUITE'}
+            {t('servicesBadge')}
           </span>
           <h2 className="font-serif-display text-3xl sm:text-5xl font-light text-[#171512]">
-            {language === 'fr' ? '4 services clés pensés pour les propriétaires' : '4 Core Services Built for Property Owners'}
+            {t('servicesTitle')}
           </h2>
+          <p className="text-xs sm:text-sm text-[#6F6255] max-w-2xl font-light">
+            {language === 'fr'
+              ? 'Gestion locative, vente immobilière et mise en location : un accompagnement sur-mesure pour valoriser et sécuriser votre patrimoine bordelais.'
+              : 'Property management, real estate sales, and lettings: tailored advisory and execution to maximize and protect your Bordeaux real estate assets.'}
+          </p>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-          
-          {/* 1. Rental Management */}
-          <div className="bg-white p-8 rounded-3xl border border-[#171512]/10 shadow-sm space-y-6 flex flex-col justify-between hover:shadow-lg transition-all">
-            <div className="space-y-4">
-              <div className="flex items-center justify-between">
-                <div className="w-12 h-12 rounded-2xl bg-[#748C8C]/10 text-[#748C8C] flex items-center justify-center">
-                  <ShieldCheck className="w-6 h-6" />
-                </div>
-                <span className="text-[10px] font-bold uppercase tracking-wider bg-emerald-50 text-emerald-800 border border-emerald-200 px-3 py-1 rounded-full">
-                  {language === 'fr' ? 'Gestion Complète' : 'Full Management'}
-                </span>
-              </div>
-              <h3 className="font-serif-display text-2xl sm:text-3xl font-medium text-[#171512]">
-                {t('serviceRentalManagementTitle')}
-              </h3>
-              <p className="text-xs text-[#6F6255] leading-relaxed">
-                {t('serviceRentalManagementDesc')}
-              </p>
-              <ul className="space-y-2 text-xs text-[#171512] pt-2">
-                <li className="flex items-center space-x-2">
-                  <CheckCircle2 className="w-4 h-4 text-[#748C8C] shrink-0" />
-                  <span>{language === 'fr' ? 'Encaissement des loyers & virement le 1er du mois' : 'Automated rent collection & disbursement on the 1st'}</span>
-                </li>
-                <li className="flex items-center space-x-2">
-                  <CheckCircle2 className="w-4 h-4 text-[#748C8C] shrink-0" />
-                  <span>{language === 'fr' ? 'Garantie Loyers Impayés (GLI) 100% prise en charge sans délai' : 'Zero-delay rent default insurance protection'}</span>
-                </li>
-                <li className="flex items-center space-x-2">
-                  <CheckCircle2 className="w-4 h-4 text-[#748C8C] shrink-0" />
-                  <span>{language === 'fr' ? 'Gestion des travaux et sinistres par artisans certifiés' : 'Maintenance & repairs by certified vetted artisans'}</span>
-                </li>
-              </ul>
-            </div>
-            <button
-              onClick={() => openEntrust('Rental management')}
-              className="w-full bg-brand-gradient hover:bg-brand-gradient-hover text-white py-3.5 rounded-xl font-semibold text-xs transition-all shadow-brand flex items-center justify-center space-x-2"
-            >
-              <span>{language === 'fr' ? 'Confier mon bien en gestion' : 'Start Rental Management'}</span>
-              <ArrowUpRight className="w-4 h-4" />
-            </button>
-          </div>
+        {/* 3 Core Services Detailed Grid */}
+        <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
+          {CORE_SERVICES.map((service, index) => {
+            const Icon = service.icon;
+            const badgeColor = 
+              service.id === 'gestion-locative'
+                ? 'bg-emerald-50 text-emerald-800 border-emerald-200'
+                : service.id === 'vente-immobiliere'
+                  ? 'bg-amber-50 text-amber-800 border-amber-200'
+                  : 'bg-sky-50 text-sky-800 border-sky-200';
 
-          {/* 2. Property Letting */}
-          <div className="bg-white p-8 rounded-3xl border border-[#171512]/10 shadow-sm space-y-6 flex flex-col justify-between hover:shadow-lg transition-all">
-            <div className="space-y-4">
-              <div className="flex items-center justify-between">
-                <div className="w-12 h-12 rounded-2xl bg-[#748C8C]/10 text-[#748C8C] flex items-center justify-center">
-                  <Key className="w-6 h-6" />
-                </div>
-                <span className="text-[10px] font-bold uppercase tracking-wider bg-sky-50 text-sky-800 border border-sky-200 px-3 py-1 rounded-full">
-                  {language === 'fr' ? 'Mise en Location' : 'Letting'}
-                </span>
-              </div>
-              <h3 className="font-serif-display text-2xl sm:text-3xl font-medium text-[#171512]">
-                {t('servicePropertyLettingTitle')}
-              </h3>
-              <p className="text-xs text-[#6F6255] leading-relaxed">
-                {t('servicePropertyLettingDesc')}
-              </p>
-              <ul className="space-y-2 text-xs text-[#171512] pt-2">
-                <li className="flex items-center space-x-2">
-                  <CheckCircle2 className="w-4 h-4 text-[#748C8C] shrink-0" />
-                  <span>{language === 'fr' ? 'Reportage photo immobilier professionnel HD & visite virtuelle' : 'Professional HD photography & virtual tour'}</span>
-                </li>
-                <li className="flex items-center space-x-2">
-                  <CheckCircle2 className="w-4 h-4 text-[#748C8C] shrink-0" />
-                  <span>{language === 'fr' ? 'Audit et contrôle de solvabilité strict (revenus > 3x loyer)' : 'Strict solvability screening (net income > 3x rent)'}</span>
-                </li>
-                <li className="flex items-center space-x-2">
-                  <CheckCircle2 className="w-4 h-4 text-[#748C8C] shrink-0" />
-                  <span>{language === 'fr' ? 'Rédaction de baux certifiés & état des lieux numérique' : 'Certified lease agreement & digital tablet inventory'}</span>
-                </li>
-              </ul>
-            </div>
-            <button
-              onClick={() => openEntrust('Property letting')}
-              className="w-full bg-[#171512] hover:bg-[#2A2622] text-white py-3.5 rounded-xl font-semibold text-xs transition-all flex items-center justify-center space-x-2"
-            >
-              <span>{language === 'fr' ? 'Rechercher un locataire' : 'Find Qualified Tenants'}</span>
-              <ArrowUpRight className="w-4 h-4" />
-            </button>
-          </div>
+            return (
+              <motion.div
+                key={service.id}
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.5, delay: index * 0.1 }}
+                className="bg-white p-8 sm:p-9 rounded-3xl border border-[#171512]/10 shadow-sm space-y-6 flex flex-col justify-between hover:shadow-xl hover:border-[#748C8C]/40 transition-all duration-300"
+              >
+                <div className="space-y-5">
+                  <div className="flex items-center justify-between">
+                    <div className="w-12 h-12 rounded-2xl bg-[#748C8C]/10 text-[#748C8C] flex items-center justify-center">
+                      <Icon className="w-6 h-6" />
+                    </div>
+                    <span className={`text-[10px] font-bold uppercase tracking-wider border px-3 py-1 rounded-full ${badgeColor}`}>
+                      {service.badge[language]}
+                    </span>
+                  </div>
 
-          {/* 3. Rental Valuation */}
-          <div className="bg-white p-8 rounded-3xl border border-[#171512]/10 shadow-sm space-y-6 flex flex-col justify-between hover:shadow-lg transition-all">
-            <div className="space-y-4">
-              <div className="flex items-center justify-between">
-                <div className="w-12 h-12 rounded-2xl bg-[#748C8C]/10 text-[#748C8C] flex items-center justify-center">
-                  <Calculator className="w-6 h-6" />
-                </div>
-                <span className="text-[10px] font-bold uppercase tracking-wider bg-purple-50 text-purple-800 border border-purple-200 px-3 py-1 rounded-full">
-                  {language === 'fr' ? 'Estimation Gratuite' : 'Free Valuation'}
-                </span>
-              </div>
-              <h3 className="font-serif-display text-2xl sm:text-3xl font-medium text-[#171512]">
-                {t('serviceRentalValuationTitle')}
-              </h3>
-              <p className="text-xs text-[#6F6255] leading-relaxed">
-                {t('serviceRentalValuationDesc')}
-              </p>
-              <ul className="space-y-2 text-xs text-[#171512] pt-2">
-                <li className="flex items-center space-x-2">
-                  <CheckCircle2 className="w-4 h-4 text-[#748C8C] shrink-0" />
-                  <span>{language === 'fr' ? 'Conformité avec les plafonds d\'encadrement des loyers de Bordeaux' : 'Compliance with Bordeaux official rent control limits'}</span>
-                </li>
-                <li className="flex items-center space-x-2">
-                  <CheckCircle2 className="w-4 h-4 text-[#748C8C] shrink-0" />
-                  <span>{language === 'fr' ? 'Analyse comparative des loyers récents dans votre rue/secteur' : 'Comparative audit based on recent local lease contracts'}</span>
-                </li>
-                <li className="flex items-center space-x-2">
-                  <CheckCircle2 className="w-4 h-4 text-[#748C8C] shrink-0" />
-                  <span>{language === 'fr' ? 'Rapport détaillé remis sous 48 heures sans engagement' : 'Comprehensive written valuation report delivered in 48h'}</span>
-                </li>
-              </ul>
-            </div>
-            <Link
-              href="/estimation"
-              className="w-full bg-[#171512] hover:bg-[#2A2622] text-white py-3.5 rounded-xl font-semibold text-xs transition-all flex items-center justify-center space-x-2"
-            >
-              <span>{language === 'fr' ? 'Calculer mon loyer en ligne (2 min)' : 'Get Instant Rental Valuation'}</span>
-              <ArrowUpRight className="w-4 h-4" />
-            </Link>
-          </div>
+                  <div className="space-y-1">
+                    <span className="text-[11px] font-semibold text-[#748C8C] uppercase tracking-wider block">
+                      {service.subtitle[language]}
+                    </span>
+                    <h3 className="font-serif-display text-2xl sm:text-3xl font-medium text-[#171512]">
+                      {service.title[language]}
+                    </h3>
+                  </div>
 
-          {/* 4. Property Sales */}
-          <div className="bg-white p-8 rounded-3xl border border-[#171512]/10 shadow-sm space-y-6 flex flex-col justify-between hover:shadow-lg transition-all">
-            <div className="space-y-4">
-              <div className="flex items-center justify-between">
-                <div className="w-12 h-12 rounded-2xl bg-[#748C8C]/10 text-[#748C8C] flex items-center justify-center">
-                  <Tag className="w-6 h-6" />
-                </div>
-                <span className="text-[10px] font-bold uppercase tracking-wider bg-amber-50 text-amber-800 border border-amber-200 px-3 py-1 rounded-full">
-                  {language === 'fr' ? 'Transaction & Vente' : 'Sales'}
-                </span>
-              </div>
-              <h3 className="font-serif-display text-2xl sm:text-3xl font-medium text-[#171512]">
-                {t('servicePropertySalesTitle')}
-              </h3>
-              <p className="text-xs text-[#6F6255] leading-relaxed">
-                {t('servicePropertySalesDesc')}
-              </p>
-              <ul className="space-y-2 text-xs text-[#171512] pt-2">
-                <li className="flex items-center space-x-2">
-                  <CheckCircle2 className="w-4 h-4 text-[#748C8C] shrink-0" />
-                  <span>{language === 'fr' ? 'Accès direct à notre fichier d\'acquéreurs premium solvables' : 'Direct access to qualified high-net-worth buyers'}</span>
-                </li>
-                <li className="flex items-center space-x-2">
-                  <CheckCircle2 className="w-4 h-4 text-[#748C8C] shrink-0" />
-                  <span>{language === 'fr' ? 'Commercialisation confidentielle ou multi-portails de prestige' : 'Confidential off-market or prime luxury syndication'}</span>
-                </li>
-                <li className="flex items-center space-x-2">
-                  <CheckCircle2 className="w-4 h-4 text-[#748C8C] shrink-0" />
-                  <span>{language === 'fr' ? 'Négociation experte pour maximiser le prix net vendeur' : 'Expert negotiation to secure maximum vendor net price'}</span>
-                </li>
-              </ul>
-            </div>
-            <Link
-              href="/contact?subject=vente"
-              className="w-full bg-[#171512] hover:bg-[#2A2622] text-white py-3.5 rounded-xl font-semibold text-xs transition-all flex items-center justify-center space-x-2"
-            >
-              <span>{language === 'fr' ? 'Vendre un bien avec l\'agence' : 'Sell Property with Us'}</span>
-              <ArrowUpRight className="w-4 h-4" />
-            </Link>
-          </div>
+                  <p className="text-xs sm:text-sm font-medium text-[#171512]/85 leading-relaxed">
+                    {service.shortDescription[language]}
+                  </p>
 
+                  <p className="text-xs text-[#6F6255] leading-relaxed pt-1">
+                    {service.fullDescription[language]}
+                  </p>
+
+                  <div className="pt-4 border-t border-[#171512]/10 space-y-2.5">
+                    <span className="text-[10px] font-bold uppercase tracking-wider text-[#748C8C] block">
+                      {language === 'fr' ? 'Engagements & Prestations :' : 'Deliverables & Guarantees:'}
+                    </span>
+                    <ul className="space-y-2 text-xs text-[#171512]">
+                      {service.deliverables[language].map((point, idx) => (
+                        <li key={idx} className="flex items-start space-x-2">
+                          <CheckCircle2 className="w-4 h-4 text-[#748C8C] shrink-0 mt-0.5" />
+                          <span className="leading-snug text-[#2C2723]">{point}</span>
+                        </li>
+                      ))}
+                    </ul>
+                  </div>
+                </div>
+
+                <div className="pt-4">
+                  {service.id === 'gestion-locative' ? (
+                    <button
+                      onClick={() => openEntrust('Rental management')}
+                      className="w-full bg-brand-gradient hover:bg-brand-gradient-hover text-white py-3.5 rounded-xl font-semibold text-xs transition-all shadow-brand flex items-center justify-center space-x-2"
+                    >
+                      <span>{service.ctaButton[language]}</span>
+                      <ArrowUpRight className="w-4 h-4" />
+                    </button>
+                  ) : service.id === 'vente-immobiliere' ? (
+                    <Link
+                      href="/contact?subject=vente"
+                      className="w-full bg-[#171512] hover:bg-[#2A2622] text-white py-3.5 rounded-xl font-semibold text-xs transition-all flex items-center justify-center space-x-2"
+                    >
+                      <span>{service.ctaButton[language]}</span>
+                      <ArrowUpRight className="w-4 h-4" />
+                    </Link>
+                  ) : (
+                    <button
+                      onClick={() => openEntrust('Property letting')}
+                      className="w-full bg-[#171512] hover:bg-[#2A2622] text-white py-3.5 rounded-xl font-semibold text-xs transition-all flex items-center justify-center space-x-2"
+                    >
+                      <span>{service.ctaButton[language]}</span>
+                      <ArrowUpRight className="w-4 h-4" />
+                    </button>
+                  )}
+                </div>
+              </motion.div>
+            );
+          })}
         </div>
       </div>
 

@@ -1,5 +1,6 @@
 import HeroSection from '@/components/home/HeroSection';
 import ValueStrip from '@/components/home/ValueStrip';
+import PropertyShowcase from '@/components/home/PropertyShowcase';
 import ApproachSection from '@/components/home/ApproachSection';
 import ServicesGrid from '@/components/home/ServicesGrid';
 import InstagramFeed from '@/components/home/InstagramFeed';
@@ -16,23 +17,26 @@ export default function HomePage() {
       {/* 02: Value / Trust Strip */}
       <ValueStrip />
 
-      {/* 03: Approach Section */}
+      {/* 03: Property Showcase & Quick Lead Generation */}
+      <PropertyShowcase />
+
+      {/* 04: Approach Section */}
       <ApproachSection />
 
       {/* 04: Services Grid */}
       <ServicesGrid />
 
-      {/* 05: Official Instagram Feed @goizetgestion */}
-      <InstagramFeed />
-
-      {/* 06: Owner Lead Generation CTA */}
+      {/* 05: Owner Lead Generation CTA */}
       <LandlordCTA />
 
-      {/* 07: Rental Management Process Timeline */}
+      {/* 06: Rental Management Process Timeline */}
       <ProcessTimeline />
 
-      {/* 08: Verified Client Testimonials */}
+      {/* 07: Verified Client Testimonials */}
       <Testimonials />
+
+      {/* 08: Official Instagram Feed @goizetgestion (Gallery Right Before Footer) */}
+      <InstagramFeed />
     </>
   );
 }

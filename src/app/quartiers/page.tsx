@@ -12,7 +12,7 @@ export default function NeighborhoodsIndexPage() {
   const { language } = useLanguage();
 
   return (
-    <div className="pt-32 pb-24 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto space-y-10">
+    <div className="pt-36 sm:pt-40 pb-24 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto space-y-7 sm:space-y-8">
       
       {/* Breadcrumbs */}
       <Breadcrumbs items={[{ label: language === 'fr' ? 'Secteurs & Quartiers' : 'Bordeaux Districts' }]} />
@@ -33,7 +33,7 @@ export default function NeighborhoodsIndexPage() {
       </div>
 
       {/* Grid */}
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 pt-2">
         {NEIGHBORHOODS.map((hood) => (
           <motion.div
             key={hood.id}
@@ -59,23 +59,31 @@ export default function NeighborhoodsIndexPage() {
                 <h2 className="font-serif-display text-3xl font-medium tracking-tight">
                   {hood.name}
                 </h2>
-                <p className="text-xs text-white/80 font-light truncate">{hood.tagline}</p>
+                <p className="text-xs text-white/80 font-light truncate">
+                  {(language === 'en' && hood.taglineEn) ? hood.taglineEn : hood.tagline}
+                </p>
               </div>
             </div>
 
             <div className="p-6 space-y-4 flex-1 flex flex-col justify-between">
               <p className="text-xs text-[#6F6255] leading-relaxed line-clamp-3">
-                {hood.description}
+                {(language === 'en' && hood.descriptionEn) ? hood.descriptionEn : hood.description}
               </p>
 
               <div className="grid grid-cols-2 gap-2 text-xs bg-[#FAF9F6] p-3 rounded-xl border border-[#171512]/5">
                 <div>
-                  <span className="text-[10px] uppercase text-[#6F6255] block">Loyer Moyen</span>
+                  <span className="text-[10px] uppercase text-[#6F6255] block">
+                    {language === 'fr' ? 'Loyer Moyen' : 'Avg Rent'}
+                  </span>
                   <span className="font-semibold text-[#171512]">{hood.avgRentPerM2} € / m²</span>
                 </div>
                 <div>
-                  <span className="text-[10px] uppercase text-[#6F6255] block">Prix Vente M2</span>
-                  <span className="font-semibold text-[#171512]">{hood.avgSalePerM2.toLocaleString('fr-FR')} € / m²</span>
+                  <span className="text-[10px] uppercase text-[#6F6255] block">
+                    {language === 'fr' ? 'Prix Vente M2' : 'Avg Sale Price'}
+                  </span>
+                  <span className="font-semibold text-[#171512]">
+                    {hood.avgSalePerM2.toLocaleString(language === 'fr' ? 'fr-FR' : 'en-US')} € / m²
+                  </span>
                 </div>
               </div>
 

@@ -46,7 +46,7 @@ export async function POST(req: NextRequest) {
       return NextResponse.json({ error: 'Le nom complet est obligatoire.' }, { status: 400 });
     }
 
-    if (!isValidEmail(cleanEmail)) {
+    if (cleanEmail && !isValidEmail(cleanEmail)) {
       return NextResponse.json({ error: 'Adresse email invalide.' }, { status: 400 });
     }
 
@@ -58,6 +58,10 @@ export async function POST(req: NextRequest) {
     const serviceLabels: Record<string, string> = {
       'Rental management': 'Gestion Locative 360°',
       'Property letting': 'Mise en Location & Recherche Locataires',
+      'Rent out my property': 'Louer mon bien (Propriétaire)',
+      'Sell my property': 'Vendre mon bien (Propriétaire)',
+      'Rent a property': 'Louer un bien (Locataire)',
+      'Buy a property': 'Acheter un bien (Acheteur)',
       'Rental valuation': 'Estimation Locative & Rendement',
       'Property sales': 'Vente Immobilière de Prestige'
     };
@@ -69,20 +73,38 @@ export async function POST(req: NextRequest) {
 
     const surfaceDisplay = surface ? `${surface} m²${rooms ? ` • ${rooms} pièces` : ''}` : '';
 
+    let resolvedLeadType: CRMLead['leadType'] = 'Owner Enquiry';
+    if (sanitizedService === 'Sell my property' || sanitizedService === 'Property sales') {
+      resolvedLeadType = 'Seller Request';
+    } else if (sanitizedService === 'Buy a property') {
+      resolvedLeadType = 'Buyer Request';
+    } else if (sanitizedService === 'Rent a property') {
+      resolvedLeadType = 'Tenant Request';
+    } else if (sanitizedService === 'Rental valuation') {
+      resolvedLeadType = 'Valuation Request';
+    }
+
+    const isClientSearch = resolvedLeadType === 'Tenant Request' || resolvedLeadType === 'Buyer Request';
+    const leadSubject = isClientSearch 
+      ? `Recherche: ${displayService} (${sanitizedPropType}${budget ? ` • Budget: ${budget} €` : ''})`
+      : `Dossier: ${displayService} (${sanitizedPropType} à ${sanitizedNeighborhood})`;
+
+    const surfaceDisplayFinal = surfaceDisplay || (rooms ? `${rooms} ch.` : undefined);
+
     const newLead: CRMLead = {
       id: `lead_${Date.now()}`,
       name: sanitizedName,
-      email: cleanEmail,
+      email: cleanEmail || `${cleanPhone.replace(/\D/g, '')}@lead.goizet.fr`,
       phone: cleanPhone,
-      leadType: sanitizedService === 'Property sales' ? 'Seller Request' : (sanitizedService === 'Rental valuation' ? 'Valuation Request' : 'Owner Enquiry'),
+      leadType: resolvedLeadType,
       serviceType: sanitizedService,
       status: 'NEW',
-      subject: `Dossier Propriétaire: ${displayService} (${sanitizedPropType} à ${sanitizedNeighborhood})`,
-      message: sanitizedMessage || `Propriétaire souhaitant confier un bien pour: ${displayService}. Bien: ${sanitizedPropType}, Secteur: ${sanitizedNeighborhood}${surfaceDisplay ? `, Superficie: ${surfaceDisplay}` : ''}${timeSlot ? `, Créneau de rappel: ${timeSlot}` : ''}.`,
+      subject: leadSubject,
+      message: sanitizedMessage || `${isClientSearch ? 'Client en recherche' : 'Propriétaire'} pour: ${displayService}. Bien: ${sanitizedPropType}.${budget ? ` Budget: ${budget} €.` : ''}`,
       propertyAddress: `${sanitizedPropType} • ${formattedLocation}`,
       propertyType: sanitizedPropType,
-      budget: budget || undefined,
-      surface: surfaceDisplay || undefined,
+      budget: budget ? `${budget} €` : undefined,
+      surface: surfaceDisplayFinal,
       preferredTimeSlot: timeSlot || undefined,
       source: source,
       assignedTo: 'Paul & Edgar Goizet',
@@ -90,15 +112,15 @@ export async function POST(req: NextRequest) {
       notes: [
         {
           id: `note_${Date.now()}`,
-          author: 'Portail Propriétaire Goizet',
-          text: `Dossier propriétaire reçu pour ${displayService}. Contact sous 2h garanti au ${cleanPhone}.`,
+          author: isClientSearch ? 'Portail Recherche Goizet' : 'Portail Propriétaire Goizet',
+          text: `Demande reçue pour ${displayService}. Rappel garanti au ${cleanPhone}.`,
           date: 'À l\'instant'
         }
       ],
       activities: [
         {
           id: `act_${Date.now()}`,
-          text: `Dossier propriétaire (${displayService}) soumis depuis le site web.`,
+          text: `Dossier (${displayService}) soumis depuis le site web.`,
           date: 'À l\'instant'
         }
       ]

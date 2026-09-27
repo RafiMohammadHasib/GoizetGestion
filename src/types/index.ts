@@ -91,6 +91,12 @@ export interface Testimonial {
   propertyType: string;
   propertyTypeEn?: string;
   image?: string;
+  initials?: string;
+  bgColor?: string;
+  date?: string;
+  dateEn?: string;
+  source?: 'google' | 'direct';
+  googleReviewUrl?: string;
 }
 
 export interface EstimationFormData {

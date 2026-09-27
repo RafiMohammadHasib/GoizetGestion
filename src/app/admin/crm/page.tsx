@@ -9,8 +9,10 @@ import {
 } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { supabase } from '@/lib/supabase';
+import { useLanguage } from '@/context/LanguageContext';
 
 export default function AdminCRMPage() {
+  const { language } = useLanguage();
   const [filterType, setFilterType] = useState<string>('ALL');
   const [selectedLead, setSelectedLead] = useState<any>(null);
   const [newNote, setNewNote] = useState('');
@@ -22,12 +24,12 @@ export default function AdminCRMPage() {
   const [dragOverStage, setDragOverStage] = useState<string | null>(null);
 
   const stages = [
-    { id: 'NEW', title: 'New Leads', color: 'bg-[#748C8C]', badgeBg: 'bg-[#748C8C]/15 text-[#3D5252]' },
-    { id: 'CONTACTED', title: 'Contacted', color: 'bg-amber-500', badgeBg: 'bg-amber-50 text-amber-700' },
-    { id: 'QUALIFIED', title: 'Qualified', color: 'bg-blue-500', badgeBg: 'bg-blue-50 text-blue-700' },
-    { id: 'APPOINTMENT', title: 'Viewing / Meeting', color: 'bg-purple-500', badgeBg: 'bg-purple-50 text-purple-700' },
-    { id: 'CONVERTED', title: 'Won / Signed', color: 'bg-emerald-500', badgeBg: 'bg-emerald-50 text-emerald-700' },
-    { id: 'LOST', title: 'Closed', color: 'bg-gray-400', badgeBg: 'bg-gray-100 text-gray-600' }
+    { id: 'NEW', title: language === 'fr' ? 'Nouveaux prospects' : 'New Leads', color: 'bg-[#748C8C]', badgeBg: 'bg-[#748C8C]/15 text-[#3D5252]' },
+    { id: 'CONTACTED', title: language === 'fr' ? 'Contactés' : 'Contacted', color: 'bg-amber-500', badgeBg: 'bg-amber-50 text-amber-700' },
+    { id: 'QUALIFIED', title: language === 'fr' ? 'Qualifiés' : 'Qualified', color: 'bg-blue-500', badgeBg: 'bg-blue-50 text-blue-700' },
+    { id: 'APPOINTMENT', title: language === 'fr' ? 'Visite / RDV' : 'Viewing / Meeting', color: 'bg-purple-500', badgeBg: 'bg-purple-50 text-purple-700' },
+    { id: 'CONVERTED', title: language === 'fr' ? 'Gagné / Signé' : 'Won / Signed', color: 'bg-emerald-500', badgeBg: 'bg-emerald-50 text-emerald-700' },
+    { id: 'LOST', title: language === 'fr' ? 'Clôturé' : 'Closed', color: 'bg-gray-400', badgeBg: 'bg-gray-100 text-gray-600' }
   ];
 
   async function fetchLeads() {
@@ -152,14 +154,17 @@ export default function AdminCRMPage() {
       const subjStr = (l.subject || '').toUpperCase();
 
       if (filterType === 'OWNER') {
-        const isOwner = typeStr.includes('OWNER') || typeStr.includes('VALUATION') || typeStr.includes('SELLER') ||
-                        srvStr.includes('MANAGEMENT') || srvStr.includes('LETTING') || srvStr.includes('VALUATION') || srvStr.includes('SALES') ||
+        const isOwner = typeStr.includes('OWNER') || srvStr.includes('MANAGEMENT') || srvStr.includes('LETTING') || srvStr.includes('RENT OUT') ||
                         subjStr.includes('GESTION') || subjStr.includes('CONFIER') || subjStr.includes('PROPRIÉTAIRE');
         if (!isOwner) return false;
+      } else if (filterType === 'SELLER') {
+        if (!typeStr.includes('SELLER') && !srvStr.includes('SELL') && !srvStr.includes('SALES') && !subjStr.includes('VENTE')) return false;
+      } else if (filterType === 'TENANT') {
+        if (!typeStr.includes('TENANT') && !srvStr.includes('RENT A') && !subjStr.includes('VISITE') && !subjStr.includes('LOCATAIRE')) return false;
+      } else if (filterType === 'BUYER') {
+        if (!typeStr.includes('BUYER') && !srvStr.includes('BUY') && !subjStr.includes('ACHAT') && !subjStr.includes('ACQUÉREUR')) return false;
       } else if (filterType === 'VALUATION') {
         if (!typeStr.includes('VALUATION') && !srvStr.includes('VALUATION') && !subjStr.includes('ESTIMATION')) return false;
-      } else if (filterType === 'TENANT') {
-        if (!typeStr.includes('TENANT') && !subjStr.includes('VISITE')) return false;
       } else if (filterType === 'CALLBACK') {
         if (!typeStr.includes('CALLBACK') && !subjStr.includes('RAPPEL')) return false;
       } else if (!typeStr.includes(filterType) && !srvStr.includes(filterType)) {
@@ -196,21 +201,35 @@ export default function AdminCRMPage() {
   };
 
   const getLeadTypeLabel = (type: string, service?: string) => {
-    if (service) {
-      if (service === 'Rental management') return 'Gestion Locative 360°';
-      if (service === 'Property letting') return 'Mise en Location';
-      if (service === 'Rental valuation') return 'Estimation Locative';
-      if (service === 'Property sales') return 'Vente Immobilière';
-      return service;
+    const isFr = language === 'fr';
+    const text = (service || type || '').trim();
+    const low = text.toLowerCase();
+
+    if (low.includes('rental management') || low.includes('gestion')) {
+      return isFr ? 'Gestion Locative 360°' : '360° Rental Management';
     }
-    const t = (type || '').toLowerCase();
-    if (t.includes('valuation')) return 'Estimation Propriétaire';
-    if (t.includes('owner')) return 'Dossier Propriétaire';
-    if (t.includes('tenant')) return 'Demande Visite Locataire';
-    if (t.includes('seller')) return 'Mandat Vente';
-    if (t.includes('buyer')) return 'Recherche Acquéreur';
-    if (t.includes('callback')) return 'Demande de Rappel';
-    return type || 'Demande Contact';
+    if (low.includes('letting') || low.includes('location') || low.includes('locat') || low.includes('tenant') || low.includes('visite')) {
+      return isFr ? 'Demande Visite Locataire' : 'Tenant Request';
+    }
+    if (low.includes('valuation') || low.includes('estimat')) {
+      return isFr ? 'Estimation Propriétaire' : 'Owner Valuation';
+    }
+    if (low.includes('sales') || low.includes('vente') || low.includes('seller') || low.includes('mandat')) {
+      return isFr ? 'Mandat Vente' : 'Sales Mandate';
+    }
+    if (low.includes('buyer') || low.includes('achat') || low.includes('acquéreur') || low.includes('acquereur')) {
+      return isFr ? 'Recherche Acquéreur' : 'Buyer Request';
+    }
+    if (low.includes('callback') || low.includes('rappel')) {
+      return isFr ? 'Demande de Rappel' : 'Callback Request';
+    }
+    if (low.includes('owner') || low.includes('propriétaire') || low.includes('proprietaire') || low.includes('bailleur')) {
+      return isFr ? 'Dossier Propriétaire' : 'Owner Enquiry';
+    }
+    if (low.includes('contact') || low.includes('message')) {
+      return isFr ? 'Message de Contact' : 'Contact Message';
+    }
+    return isFr ? (type || 'Demande Contact') : (type || 'Contact Message');
   };
 
   return (
@@ -229,10 +248,12 @@ export default function AdminCRMPage() {
             </span>
           </div>
           <h1 className="font-serif-display text-2xl sm:text-3xl font-semibold text-[#171717] mt-0.5">
-            Opportunity Pipeline
+            {language === 'fr' ? 'Pipeline des Opportunités' : 'Opportunity Pipeline'}
           </h1>
           <p className="text-xs text-[#6B6B6B] mt-0.5">
-            Owner lead generation (Management, Letting, Valuation, Sales) & tenant viewings with drag & drop conversion
+            {language === 'fr'
+              ? 'Génération de prospects propriétaires (Gestion, Location, Estimation, Vente) & visites locataires avec conversion drag & drop'
+              : 'Owner lead generation (Management, Letting, Valuation, Sales) & tenant viewings with drag & drop conversion'}
           </p>
         </div>
 
@@ -243,7 +264,7 @@ export default function AdminCRMPage() {
             <Search className="w-3.5 h-3.5 absolute left-3 top-1/2 -translate-y-1/2 text-[#6B6B6B]" />
             <input
               type="text"
-              placeholder="Search leads, address, service..."
+              placeholder={language === 'fr' ? 'Rechercher prospects, adresse, service...' : 'Search leads, address, service...'}
               value={searchQuery}
               onChange={(e) => setSearchQuery(e.target.value)}
               className="pl-8 pr-3 py-1.5 bg-white border border-[#171717]/10 rounded-xl text-xs focus:outline-none focus:border-[#748C8C] w-40 sm:w-56 shadow-2xs"
@@ -253,18 +274,19 @@ export default function AdminCRMPage() {
           <button
             onClick={() => fetchLeads()}
             className="p-2 rounded-xl bg-white border border-[#171717]/10 hover:bg-[#F7F7F5] text-[#6B6B6B] hover:text-[#171717] transition-colors shadow-2xs"
-            title="Refresh Leads"
+            title={language === 'fr' ? 'Actualiser les prospects' : 'Refresh Leads'}
           >
             <RefreshCw className="w-3.5 h-3.5" />
           </button>
 
           <div className="flex space-x-1 bg-white p-1 rounded-xl border border-[#171717]/10 text-xs font-semibold shadow-2xs">
             {[
-              { id: 'ALL', label: 'All Leads' },
-              { id: 'OWNER', label: 'Owners / Bailleurs' },
-              { id: 'VALUATION', label: 'Valuations' },
-              { id: 'TENANT', label: 'Tenants' },
-              { id: 'CALLBACK', label: 'Callbacks' }
+              { id: 'ALL', label: language === 'fr' ? 'Tous les prospects' : 'All Leads' },
+              { id: 'OWNER', label: language === 'fr' ? 'Propriétaires' : 'Owners' },
+              { id: 'SELLER', label: language === 'fr' ? 'Vendeurs' : 'Sellers' },
+              { id: 'TENANT', label: language === 'fr' ? 'Locataires' : 'Tenants' },
+              { id: 'BUYER', label: language === 'fr' ? 'Acheteurs' : 'Buyers' },
+              { id: 'VALUATION', label: language === 'fr' ? 'Estimations' : 'Valuations' }
             ].map(f => (
               <button
                 key={f.id}
@@ -283,7 +305,9 @@ export default function AdminCRMPage() {
       {loading ? (
         <div className="py-24 flex flex-col items-center justify-center space-y-3">
           <Loader2 className="w-6 h-6 animate-spin text-[#748C8C]" />
-          <span className="text-xs text-[#6B6B6B]">Connecting to Supabase CRM...</span>
+          <span className="text-xs text-[#6B6B6B]">
+            {language === 'fr' ? 'Connexion au CRM Supabase...' : 'Connecting to Supabase CRM...'}
+          </span>
         </div>
       ) : (
         /* Zero Side-Scroll Modern 6-Column Responsive Grid */
@@ -349,7 +373,9 @@ export default function AdminCRMPage() {
                           </h4>
                           {lead.budget && (
                             <p className="text-[11px] font-bold text-[#171717]">
-                              {lead.budget}
+                              {language === 'en'
+                                ? lead.budget.replace(/\/ mois/g, '/ month')
+                                : lead.budget.replace(/\/ month/g, '/ mois')}
                             </p>
                           )}
                         </div>
@@ -382,7 +408,7 @@ export default function AdminCRMPage() {
                         <div className="flex items-center justify-between text-[10px] text-[#6B6B6B] pt-1.5 border-t border-[#171717]/5">
                           <span className="truncate text-[10px] font-mono text-stone-500">{lead.phone}</span>
                           <span className="shrink-0 font-mono text-[9px] text-stone-400">
-                            {new Date(lead.createdAt).toLocaleDateString('fr-FR', { day: '2-digit', month: '2-digit' })}
+                            {new Date(lead.createdAt).toLocaleDateString(language === 'fr' ? 'fr-FR' : 'en-US', { day: '2-digit', month: '2-digit' })}
                           </span>
                         </div>
                       </motion.div>
@@ -392,13 +418,13 @@ export default function AdminCRMPage() {
                   {/* Empty / Drag Over Drop Zone Target */}
                   {isOver && stageLeads.length === 0 && (
                     <div className="h-28 border-2 border-dashed border-[#748C8C] rounded-xl flex items-center justify-center text-center p-3 text-xs text-[#748C8C] font-semibold animate-pulse bg-white/50">
-                      Drop here to move
+                      {language === 'fr' ? 'Déposer ici pour déplacer' : 'Drop here to move'}
                     </div>
                   )}
 
                   {!isOver && stageLeads.length === 0 && (
                     <div className="h-24 border border-dashed border-[#171717]/10 rounded-xl flex items-center justify-center text-center p-3 text-[10px] text-stone-400 italic">
-                      No leads in stage
+                      {language === 'fr' ? 'Aucun prospect à cette étape' : 'No leads in stage'}
                     </div>
                   )}
                 </div>
@@ -442,7 +468,7 @@ export default function AdminCRMPage() {
                   </span>
                   <span className="text-xs text-[#6B6B6B]">Source: {selectedLead.source}</span>
                   <span className="text-xs text-[#6B6B6B]">
-                    • {new Date(selectedLead.createdAt).toLocaleDateString('fr-FR', { day: '2-digit', month: 'long', year: 'numeric' })}
+                    • {new Date(selectedLead.createdAt).toLocaleDateString(language === 'fr' ? 'fr-FR' : 'en-US', { day: '2-digit', month: 'long', year: 'numeric' })}
                   </span>
                 </div>
                 <h2 className="font-serif-display text-3xl font-medium">{selectedLead.name}</h2>
@@ -451,7 +477,9 @@ export default function AdminCRMPage() {
               {/* Stage Selector & Quick Conversion */}
               <div className="flex flex-wrap items-center justify-between gap-3 p-3.5 bg-[#F7F7F5] rounded-2xl border border-[#171717]/10">
                 <div className="flex items-center space-x-2">
-                  <span className="text-xs font-semibold text-[#171717]">Stage Status:</span>
+                  <span className="text-xs font-semibold text-[#171717]">
+                    {language === 'fr' ? 'Étape :' : 'Stage Status:'}
+                  </span>
                   <select
                     value={selectedLead.status}
                     onChange={(e) => handleStatusChange(selectedLead.id, e.target.value)}
@@ -466,10 +494,14 @@ export default function AdminCRMPage() {
                 {selectedLead.status !== 'CONVERTED' && (
                   <button
                     onClick={() => handleStatusChange(selectedLead.id, 'CONVERTED')}
-                    className="inline-flex items-center space-x-1.5 bg-emerald-600 hover:bg-emerald-700 text-white text-xs font-semibold px-3 py-1.5 rounded-xl shadow-xs transition-colors"
+                    className="inline-flex items-center space-x-1.5 bg-emerald-600 hover:bg-emerald-700 text-white text-xs font-semibold px-3 py-1.5 rounded-xl shadow-xs transition-colors cursor-pointer"
                   >
                     <CheckCircle2 className="w-3.5 h-3.5" />
-                    <span>Convert to {selectedLead.leadType?.toLowerCase().includes('tenant') ? 'Tenant' : 'Owner'}</span>
+                    <span>
+                      {language === 'fr'
+                        ? `Convertir en ${selectedLead.leadType?.toLowerCase().includes('tenant') ? 'Locataire' : 'Propriétaire'}`
+                        : `Convert to ${selectedLead.leadType?.toLowerCase().includes('tenant') ? 'Tenant' : 'Owner'}`}
+                    </span>
                   </button>
                 )}
               </div>
@@ -478,48 +510,64 @@ export default function AdminCRMPage() {
               <div className="p-4 bg-white rounded-2xl border border-[#171717]/10 shadow-2xs space-y-3">
                 <h4 className="text-xs font-bold uppercase tracking-wider text-[#748C8C] flex items-center space-x-1.5">
                   <Building className="w-3.5 h-3.5" />
-                  <span>Détails du bien & Demande</span>
+                  <span>{language === 'fr' ? 'Détails du bien & Demande' : 'Property & Inquiry Details'}</span>
                 </h4>
 
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 text-xs">
                   {selectedLead.serviceType && (
                     <div className="space-y-0.5">
-                      <span className="text-[10px] uppercase text-[#6B6B6B] block">Service Demandé</span>
+                      <span className="text-[10px] uppercase text-[#6B6B6B] block">
+                        {language === 'fr' ? 'Service Demandé' : 'Requested Service'}
+                      </span>
                       <span className="font-bold text-[#748C8C]">{getLeadTypeLabel(selectedLead.leadType, selectedLead.serviceType)}</span>
                     </div>
                   )}
 
                   {selectedLead.preferredTimeSlot && (
                     <div className="space-y-0.5">
-                      <span className="text-[10px] uppercase text-[#6B6B6B] block">Créneau de Rappel</span>
+                      <span className="text-[10px] uppercase text-[#6B6B6B] block">
+                        {language === 'fr' ? 'Créneau de Rappel' : 'Callback Time Slot'}
+                      </span>
                       <span className="font-semibold text-[#171717]">{selectedLead.preferredTimeSlot}</span>
                     </div>
                   )}
 
                   {selectedLead.propertyAddress && (
                     <div className="space-y-0.5">
-                      <span className="text-[10px] uppercase text-[#6B6B6B] block">Bien / Quartier</span>
+                      <span className="text-[10px] uppercase text-[#6B6B6B] block">
+                        {language === 'fr' ? 'Bien / Quartier' : 'Property / District'}
+                      </span>
                       <span className="font-semibold text-[#171717]">{selectedLead.propertyAddress}</span>
                     </div>
                   )}
 
                   {selectedLead.budget && (
                     <div className="space-y-0.5">
-                      <span className="text-[10px] uppercase text-[#6B6B6B] block">Loyer / Budget Estimé</span>
-                      <span className="font-bold text-[#171717]">{selectedLead.budget}</span>
+                      <span className="text-[10px] uppercase text-[#6B6B6B] block">
+                        {language === 'fr' ? 'Loyer / Budget Estimé' : 'Rent / Estimated Budget'}
+                      </span>
+                      <span className="font-bold text-[#171717]">
+                        {language === 'en'
+                          ? selectedLead.budget.replace(/\/ mois/g, '/ month')
+                          : selectedLead.budget.replace(/\/ month/g, '/ mois')}
+                      </span>
                     </div>
                   )}
 
                   {selectedLead.surface && (
                     <div className="space-y-0.5">
-                      <span className="text-[10px] uppercase text-[#6B6B6B] block">Surface & Pièces</span>
+                      <span className="text-[10px] uppercase text-[#6B6B6B] block">
+                        {language === 'fr' ? 'Surface & Pièces' : 'Surface & Rooms'}
+                      </span>
                       <span className="font-semibold text-[#171717]">{selectedLead.surface}</span>
                     </div>
                   )}
 
                   {selectedLead.subject && (
                     <div className="space-y-0.5">
-                      <span className="text-[10px] uppercase text-[#6B6B6B] block">Objet de la demande</span>
+                      <span className="text-[10px] uppercase text-[#6B6B6B] block">
+                        {language === 'fr' ? 'Objet de la demande' : 'Subject of Request'}
+                      </span>
                       <span className="font-semibold text-[#171717]">{selectedLead.subject}</span>
                     </div>
                   )}
@@ -535,13 +583,17 @@ export default function AdminCRMPage() {
                   </a>
                 </div>
                 <div>
-                  <span className="text-[10px] uppercase text-[#6B6B6B] block">Téléphone</span>
+                  <span className="text-[10px] uppercase text-[#6B6B6B] block">
+                    {language === 'fr' ? 'Téléphone' : 'Phone'}
+                  </span>
                   <a href={`tel:${selectedLead.phone}`} className="font-semibold text-[#171717] hover:underline block">
                     {selectedLead.phone}
                   </a>
                 </div>
                 <div>
-                  <span className="text-[10px] uppercase text-[#6B6B6B] block">Conseiller Assigné</span>
+                  <span className="text-[10px] uppercase text-[#6B6B6B] block">
+                    {language === 'fr' ? 'Conseiller Assigné' : 'Assigned Advisor'}
+                  </span>
                   <span className="font-semibold text-[#171717]">{selectedLead.assignedTo || 'Paul & Edgar Goizet'}</span>
                 </div>
               </div>
@@ -549,14 +601,18 @@ export default function AdminCRMPage() {
               {/* Full Submitted Message */}
               {selectedLead.message && (
                 <div className="p-4 bg-[#F7F7F5] rounded-2xl border border-[#171717]/10 space-y-1 text-xs">
-                  <span className="text-[10px] uppercase text-[#6B6B6B] font-semibold block">Message / Note du formulaire</span>
+                  <span className="text-[10px] uppercase text-[#6B6B6B] font-semibold block">
+                    {language === 'fr' ? 'Message / Note du formulaire' : 'Form Message / Submission Note'}
+                  </span>
                   <p className="text-[#171717] leading-relaxed whitespace-pre-wrap">{selectedLead.message}</p>
                 </div>
               )}
 
               {/* Internal Notes Section */}
               <div className="space-y-3">
-                <h3 className="font-serif-display text-lg font-medium">Notes d'équipe & Suivi</h3>
+                <h3 className="font-serif-display text-lg font-medium">
+                  {language === 'fr' ? "Notes d'équipe & Suivi" : 'Team Notes & Follow-up'}
+                </h3>
 
                 <div className="space-y-2 text-xs max-h-40 overflow-y-auto">
                   {selectedLead.notes && selectedLead.notes.length > 0 ? (
@@ -570,23 +626,25 @@ export default function AdminCRMPage() {
                       </div>
                     ))
                   ) : (
-                    <p className="text-xs text-[#6B6B6B] italic">Aucune note interne enregistrée.</p>
+                    <p className="text-xs text-[#6B6B6B] italic">
+                      {language === 'fr' ? 'Aucune note interne enregistrée.' : 'No internal notes recorded yet.'}
+                    </p>
                   )}
                 </div>
 
                 <form onSubmit={handleAddNote} className="flex gap-2">
                   <input
                     type="text"
-                    placeholder="Ajouter une note de suivi interne..."
+                    placeholder={language === 'fr' ? 'Ajouter une note de suivi interne...' : 'Add internal follow-up note...'}
                     value={newNote}
                     onChange={(e) => setNewNote(e.target.value)}
                     className="flex-1 px-3.5 py-2.5 bg-[#F7F7F5] border border-[#171717]/15 rounded-xl text-xs focus:outline-none focus:border-[#748C8C]"
                   />
                   <button
                     type="submit"
-                    className="bg-brand-gradient hover:bg-brand-gradient-hover text-white px-4 py-2.5 rounded-xl text-xs font-semibold shadow-brand transition-colors"
+                    className="bg-brand-gradient hover:bg-brand-gradient-hover text-white px-4 py-2.5 rounded-xl text-xs font-semibold shadow-brand transition-colors cursor-pointer"
                   >
-                    Ajouter
+                    {language === 'fr' ? 'Ajouter' : 'Add Note'}
                   </button>
                 </form>
               </div>

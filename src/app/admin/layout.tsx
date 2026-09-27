@@ -88,7 +88,7 @@ export default function AdminLayout({ children }: { children: React.ReactNode })
             <Link href="/admin" className={`flex items-center space-x-3 overflow-hidden ${
               isSidebarOpen ? 'w-full' : 'justify-center'
             }`}>
-              <div className="w-9 h-9 rounded-xl bg-white border border-[#171717]/10 flex items-center justify-center p-1.5 shrink-0 shadow-xs">
+              <div className="w-10 h-10 rounded-xl bg-white border border-[#171717]/10 flex items-center justify-center p-1 shrink-0 shadow-xs">
                 <img
                   src="/LOGOMARK_3@2x.png"
                   alt="Goizet Gestion"
@@ -230,23 +230,28 @@ export default function AdminLayout({ children }: { children: React.ReactNode })
           {/* Right Action Controls */}
           <div className="flex items-center space-x-3">
             
-            {/* Language Switcher Pill [FR | EN] */}
-            <div className="flex items-center bg-[#F7F7F5] p-1 rounded-xl border border-[#171717]/10 text-[11px] font-semibold">
+            {/* Language Switcher Pill [FR | EN] (Protected from Auto-Translation) */}
+            <div
+              translate="no"
+              className="notranslate flex items-center bg-[#F7F7F5] p-1 rounded-xl border border-[#171717]/10 text-[11px] font-semibold"
+            >
               <button
                 onClick={() => setLanguage('fr')}
-                className={`px-2 py-0.5 rounded-lg transition-all ${
+                translate="no"
+                className={`notranslate px-2 py-0.5 rounded-lg transition-all ${
                   language === 'fr' ? 'bg-white text-[#171717] shadow-2xs font-bold' : 'text-[#6B6B6B] hover:text-[#171717]'
                 }`}
               >
-                FR
+                <span translate="no" className="notranslate">FR</span>
               </button>
               <button
                 onClick={() => setLanguage('en')}
-                className={`px-2 py-0.5 rounded-lg transition-all ${
+                translate="no"
+                className={`notranslate px-2 py-0.5 rounded-lg transition-all ${
                   language === 'en' ? 'bg-white text-[#171717] shadow-2xs font-bold' : 'text-[#6B6B6B] hover:text-[#171717]'
                 }`}
               >
-                EN
+                <span translate="no" className="notranslate">EN</span>
               </button>
             </div>
 

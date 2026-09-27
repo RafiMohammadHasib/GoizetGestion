@@ -36,8 +36,9 @@ const securityHeaders = [
       script-src 'self' 'unsafe-inline' 'unsafe-eval';
       style-src 'self' 'unsafe-inline' https://fonts.googleapis.com;
       font-src 'self' https://fonts.gstatic.com data:;
-      img-src 'self' data: blob: https://images.unsplash.com;
-      connect-src 'self';
+      img-src 'self' data: blob: https://images.unsplash.com https://*.supabase.co https://*.tile.openstreetmap.org https://*.basemaps.cartocdn.com https://*.google.com https://*.googleapis.com https://*.gstatic.com https://mt0.google.com https://mt1.google.com https://mt2.google.com https://mt3.google.com https://server.arcgisonline.com;
+      connect-src 'self' https://*.supabase.co https://*.tile.openstreetmap.org https://*.basemaps.cartocdn.com https://*.cartocdn.com https://*.google.com;
+      frame-src 'self' https://www.google.com https://maps.google.com;
       object-src 'none';
       base-uri 'self';
       form-action 'self';
@@ -48,6 +49,22 @@ const securityHeaders = [
 ];
 
 const nextConfig: NextConfig = {
+  compress: true,
+  poweredByHeader: false,
+  reactStrictMode: true,
+  images: {
+    formats: ['image/avif', 'image/webp'],
+    remotePatterns: [
+      {
+        protocol: 'https',
+        hostname: 'images.unsplash.com',
+      },
+      {
+        protocol: 'https',
+        hostname: '**.supabase.co',
+      },
+    ],
+  },
   async headers() {
     return [
       {
@@ -55,9 +72,7 @@ const nextConfig: NextConfig = {
         headers: securityHeaders
       }
     ];
-  },
-  poweredByHeader: false, // Hide X-Powered-By: Next.js header to prevent server fingerprinting
-  reactStrictMode: true
+  }
 };
 
 export default nextConfig;

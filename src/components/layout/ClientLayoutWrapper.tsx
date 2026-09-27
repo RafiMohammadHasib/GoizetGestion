@@ -9,6 +9,7 @@ import CallbackModal from './CallbackModal';
 import EntrustPropertyModal from './EntrustPropertyModal';
 import CookieConsent from './CookieConsent';
 import SmoothScroll from './SmoothScroll';
+import PropertyInquiryModal, { PropertyInquiryData } from '@/components/properties/PropertyInquiryModal';
 import { LanguageProvider } from '@/context/LanguageContext';
 
 export default function ClientLayoutWrapper({ children }: { children: React.ReactNode }) {
@@ -18,18 +19,26 @@ export default function ClientLayoutWrapper({ children }: { children: React.Reac
   const [isCallbackOpen, setIsCallbackOpen] = useState(false);
   const [isEntrustOpen, setIsEntrustOpen] = useState(false);
   const [isCookieModalOpen, setIsCookieModalOpen] = useState(false);
+  const [inquiryProperty, setInquiryProperty] = useState<PropertyInquiryData | null>(null);
 
   // Listen for global custom events to open modals
   useEffect(() => {
     const handleOpenEntrust = () => setIsEntrustOpen(true);
     const handleOpenCallback = () => setIsCallbackOpen(true);
+    const handleOpenInquiry = (e: any) => {
+      if (e?.detail) {
+        setInquiryProperty(e.detail);
+      }
+    };
 
     window.addEventListener('open-entrust-modal', handleOpenEntrust);
     window.addEventListener('open-callback-modal', handleOpenCallback);
+    window.addEventListener('open-inquiry-modal', handleOpenInquiry);
 
     return () => {
       window.removeEventListener('open-entrust-modal', handleOpenEntrust);
       window.removeEventListener('open-callback-modal', handleOpenCallback);
+      window.removeEventListener('open-inquiry-modal', handleOpenInquiry);
     };
   }, []);
 
@@ -69,6 +78,11 @@ export default function ClientLayoutWrapper({ children }: { children: React.Reac
         <CookieConsent
           forceOpenModal={isCookieModalOpen}
           onCloseModal={() => setIsCookieModalOpen(false)}
+        />
+        <PropertyInquiryModal
+          isOpen={!!inquiryProperty}
+          onClose={() => setInquiryProperty(null)}
+          property={inquiryProperty}
         />
       </SmoothScroll>
     </LanguageProvider>

@@ -1,13 +1,53 @@
 'use client';
 
-import React from 'react';
+import React, { useRef, useEffect, useState } from 'react';
 import Link from 'next/link';
 import { 
   Building, Sparkles, ShieldCheck, HeartHandshake, Award, 
-  MapPin, Phone, Mail, ArrowUpRight, CheckCircle2, TrendingUp, Users
+  MapPin, Phone, Mail, ArrowUpRight, CheckCircle2, TrendingUp, Users,
+  Clock, Zap, Star
 } from 'lucide-react';
-import { motion } from 'framer-motion';
+import { motion, useInView, animate } from 'framer-motion';
 import { useLanguage } from '@/context/LanguageContext';
+import Breadcrumbs from '@/components/ui/Breadcrumbs';
+
+function AnimatedCounter({
+  from = 0,
+  to,
+  duration = 1.8,
+  prefix = '',
+  suffix = '',
+  decimals = 0
+}: {
+  from?: number;
+  to: number;
+  duration?: number;
+  prefix?: string;
+  suffix?: string;
+  decimals?: number;
+}) {
+  const ref = useRef<HTMLSpanElement>(null);
+  const inView = useInView(ref, { once: true, margin: '-40px' });
+  const [value, setValue] = useState(from);
+
+  useEffect(() => {
+    if (!inView) return;
+    const controls = animate(from, to, {
+      duration,
+      ease: [0.16, 1, 0.3, 1],
+      onUpdate: (latest) => {
+        setValue(decimals > 0 ? parseFloat(latest.toFixed(decimals)) : Math.round(latest));
+      }
+    });
+    return () => controls.stop();
+  }, [inView, from, to, duration, decimals]);
+
+  return (
+    <span ref={ref} className="tabular-nums font-serif-display font-medium text-4xl sm:text-5xl lg:text-6xl text-[#171512] tracking-tight">
+      {prefix}{value.toLocaleString('fr-FR')}{suffix}
+    </span>
+  );
+}
 
 export default function AboutPage() {
   const { language } = useLanguage();
@@ -65,54 +105,177 @@ export default function AboutPage() {
     }
   ];
 
-  const stats = [
-    { value: '100%', label: language === 'fr' ? 'Transparence de gestion' : 'Management Transparency' },
-    { value: '< 24h', label: language === 'fr' ? 'Délai moyen de réponse' : 'Average Response Time' },
-    { value: '0 %', label: language === 'fr' ? 'Taux de loyers impayés' : 'Rent Default Rate' },
-    { value: '48', label: language === 'fr' ? 'Rue Calvé, Bordeaux' : 'Rue Calvé, Bordeaux' }
-  ];
-
   return (
-    <div className="min-h-screen bg-[#FDFBF7] text-[#171512] pt-32 pb-24">
+    <div className="min-h-screen bg-[#FDFBF7] text-[#171512] pt-36 sm:pt-40 pb-24">
       
       {/* Editorial Header & Manifesto */}
-      <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-12">
+      <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-16">
         
-        <div className="max-w-3xl space-y-6">
-          <div className="inline-flex items-center space-x-2 text-[10px] font-bold uppercase tracking-widest text-[#748C8C] bg-[#748C8C]/10 px-3.5 py-1.5 rounded-full border border-[#748C8C]/25">
-            <Sparkles className="w-3.5 h-3.5" />
-            <span>{language === 'fr' ? 'LA MAISON GOIZET GESTION' : 'ABOUT GOIZET GESTION'}</span>
+        {/* Header & Breadcrumbs Group */}
+        <div className="space-y-7 sm:space-y-8">
+          <Breadcrumbs items={[{ label: language === 'fr' ? 'À Propos' : 'About Us' }]} />
+
+          {/* Top Manifesto Split */}
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 items-end">
+            <div className="lg:col-span-8 space-y-6">
+              <div className="inline-flex items-center space-x-2 text-[10px] font-bold uppercase tracking-widest text-[#748C8C] bg-[#748C8C]/10 px-3.5 py-1.5 rounded-full border border-[#748C8C]/25">
+                <Sparkles className="w-3.5 h-3.5" />
+                <span>{language === 'fr' ? 'LA MAISON GOIZET GESTION' : 'ABOUT GOIZET GESTION'}</span>
+              </div>
+
+              <h1 className="font-serif-display text-4xl sm:text-6xl lg:text-7xl font-light text-[#171512] leading-[1.08] tracking-tight">
+                {language === 'fr' ? (
+                  <>Nos chiffres traduisent l’investissement <span className="font-normal italic text-[#748C8C]">pour nos clients.</span></>
+                ) : (
+                  <>Our numbers reflect our dedication <span className="font-normal italic text-[#748C8C]">to our clients.</span></>
+                )}
+              </h1>
+
+              <p className="text-base sm:text-lg text-[#6F6255] font-light leading-relaxed max-w-2xl">
+                {language === 'fr' ? (
+                  <>Fondée à Bordeaux au cœur du quartier Fondaudège, nous reconstruisons la relation entre propriétaires et locataires avec une réactivité irréprochable.</>
+                ) : (
+                  <>Founded in Bordeaux in the heart of the Fondaudège district, we rebuild the relationship between owners and tenants with flawless responsiveness.</>
+                )}
+              </p>
+            </div>
+
+            {/* District Heritage Card */}
+            <div className="lg:col-span-4 bg-white/90 backdrop-blur-md p-6 sm:p-7 rounded-3xl border border-[#171512]/10 space-y-3 shadow-xs">
+              <div className="flex items-center space-x-2 text-xs font-semibold text-[#748C8C]">
+                <MapPin className="w-4 h-4" />
+                <span className="uppercase tracking-widest text-[10px] font-bold">Bordeaux • Fondaudège</span>
+              </div>
+              <p className="text-xs text-[#6F6255] leading-relaxed">
+                {language === 'fr'
+                  ? 'Une présence locale ancrée, au plus près des propriétaires et des locataires des plus beaux quartiers bordelais.'
+                  : 'Deep local roots across Bordeaux’s most prestigious historic districts.'}
+              </p>
+              <div className="pt-3 border-t border-[#171512]/5 flex items-center justify-between text-[11px] font-semibold text-[#171512]">
+                <span>48 rue Calvé, 33000 Bordeaux</span>
+                <span className="inline-flex items-center space-x-1 text-[#748C8C]">
+                  <span className="w-1.5 h-1.5 rounded-full bg-emerald-500 animate-pulse" />
+                  <span>{language === 'fr' ? 'Boutique ouverte' : 'Office open'}</span>
+                </span>
+              </div>
+            </div>
           </div>
-
-          <h1 className="font-serif-display text-4xl sm:text-6xl lg:text-7xl font-light text-[#171512] leading-[1.08] tracking-tight">
-            {language === 'fr' ? (
-              <>L'exigence d'une maison de conseil, la clarté d'une <span className="font-normal italic text-[#748C8C]">gestion moderne.</span></>
-            ) : (
-              <>Boutique advisory excellence, powered by <span className="font-normal italic text-[#748C8C]">modern clarity.</span></>
-            )}
-          </h1>
-
-          <p className="text-base sm:text-lg text-[#6F6255] font-light leading-relaxed max-w-2xl">
-            {language === 'fr' ? (
-              <>Fondée à Bordeaux au cœur du quartier historique des Chartrons, Goizet Gestion réinvente la relation entre propriétaires, locataires et patrimoine immobilier à travers une approche haut de gamme, humaine et résolument transparente.</>
-            ) : (
-              <>Headquartered in the historic Chartrons district of Bordeaux, Goizet Gestion redefines property management and real estate advisory through tailored excellence, human connection, and uncompromising transparency.</>
-            )}
-          </p>
         </div>
 
-        {/* Stats Strip */}
-        <div className="grid grid-cols-2 md:grid-cols-4 gap-4 sm:gap-6 py-8 border-y border-[#171512]/10">
-          {stats.map((stat, idx) => (
-            <div key={idx} className="space-y-1 text-center md:text-left">
-              <span className="font-serif-display text-3xl sm:text-4xl lg:text-5xl font-bold text-[#748C8C] block">
-                {stat.value}
-              </span>
-              <span className="text-xs sm:text-sm text-[#6F6255] font-medium block">
-                {stat.label}
-              </span>
+        {/* Modern 3-Card Animated Stats Grid */}
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-6 sm:gap-8">
+          
+          {/* Stat 1: 100% Satisfaction */}
+          <motion.div
+            initial={{ opacity: 0, y: 24 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.6, delay: 0.1 }}
+            className="group bg-white/95 backdrop-blur-md p-8 sm:p-9 rounded-3xl border border-[#171512]/10 hover:border-[#748C8C]/40 shadow-[0_8px_30px_rgba(23,21,18,0.04)] hover:shadow-xl transition-all duration-300 flex flex-col justify-between space-y-6"
+          >
+            <div className="space-y-4">
+              <div className="flex items-center justify-between">
+                <div className="w-12 h-12 rounded-2xl bg-[#748C8C]/10 text-[#748C8C] flex items-center justify-center group-hover:scale-105 transition-transform">
+                  <CheckCircle2 className="w-6 h-6" />
+                </div>
+                <span className="text-[10px] font-bold uppercase tracking-wider bg-emerald-50 text-emerald-800 border border-emerald-200 px-3 py-1 rounded-full">
+                  {language === 'fr' ? 'Excellence' : 'Top Tier'}
+                </span>
+              </div>
+
+              <div className="pt-2">
+                <AnimatedCounter from={0} to={100} suffix="%" duration={1.6} />
+                <h3 className="text-sm font-semibold text-[#171512] mt-2 block tracking-tight">
+                  {language === 'fr' ? 'Taux de satisfaction client' : 'Client satisfaction rate'}
+                </h3>
+                <p className="text-xs text-[#6F6255] leading-relaxed mt-1 font-light">
+                  {language === 'fr'
+                    ? '100% de nos propriétaires et locataires recommandent l’accompagnement de la maison.'
+                    : '100% of our clients recommend our bespoke management and advisory.'}
+                </p>
+              </div>
             </div>
-          ))}
+
+            <div className="pt-4 border-t border-[#171512]/5 flex items-center space-x-2 text-[11px] font-medium text-[#748C8C]">
+              <Sparkles className="w-3.5 h-3.5" />
+              <span>{language === 'fr' ? 'Indice de fidélité maximal' : 'Maximum retention rate'}</span>
+            </div>
+          </motion.div>
+
+          {/* Stat 2: 0% Impayés */}
+          <motion.div
+            initial={{ opacity: 0, y: 24 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.6, delay: 0.2 }}
+            className="group bg-white/95 backdrop-blur-md p-8 sm:p-9 rounded-3xl border border-[#171512]/10 hover:border-[#748C8C]/40 shadow-[0_8px_30px_rgba(23,21,18,0.04)] hover:shadow-xl transition-all duration-300 flex flex-col justify-between space-y-6"
+          >
+            <div className="space-y-4">
+              <div className="flex items-center justify-between">
+                <div className="w-12 h-12 rounded-2xl bg-[#748C8C]/10 text-[#748C8C] flex items-center justify-center group-hover:scale-105 transition-transform">
+                  <ShieldCheck className="w-6 h-6" />
+                </div>
+                <span className="text-[10px] font-bold uppercase tracking-wider bg-teal-50 text-[#3D5252] border border-[#748C8C]/30 px-3 py-1 rounded-full">
+                  {language === 'fr' ? 'Sécurité 100%' : '100% Secure'}
+                </span>
+              </div>
+
+              <div className="pt-2">
+                <AnimatedCounter from={6} to={0} suffix=" %" duration={1.5} />
+                <h3 className="text-sm font-semibold text-[#171512] mt-2 block tracking-tight">
+                  {language === 'fr' ? 'Taux de loyers impayés' : 'Unpaid rent rate'}
+                </h3>
+                <p className="text-xs text-[#6F6255] leading-relaxed mt-1 font-light">
+                  {language === 'fr'
+                    ? 'Sélection intransigeante des dossiers et assurance GLI intégrée sans délai ni carence.'
+                    : 'Uncompromising candidate vetting and zero-delay rent default guarantee.'}
+                </p>
+              </div>
+            </div>
+
+            <div className="pt-4 border-t border-[#171512]/5 flex items-center space-x-2 text-[11px] font-medium text-[#748C8C]">
+              <ShieldCheck className="w-3.5 h-3.5" />
+              <span>{language === 'fr' ? 'Loyers garantis dès le 1er du mois' : 'Disbursed on the 1st of every month'}</span>
+            </div>
+          </motion.div>
+
+          {/* Stat 3: < 1h Réactivité */}
+          <motion.div
+            initial={{ opacity: 0, y: 24 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.6, delay: 0.3 }}
+            className="group bg-white/95 backdrop-blur-md p-8 sm:p-9 rounded-3xl border border-[#171512]/10 hover:border-[#748C8C]/40 shadow-[0_8px_30px_rgba(23,21,18,0.04)] hover:shadow-xl transition-all duration-300 flex flex-col justify-between space-y-6"
+          >
+            <div className="space-y-4">
+              <div className="flex items-center justify-between">
+                <div className="w-12 h-12 rounded-2xl bg-[#748C8C]/10 text-[#748C8C] flex items-center justify-center group-hover:scale-105 transition-transform">
+                  <Clock className="w-6 h-6" />
+                </div>
+                <span className="text-[10px] font-bold uppercase tracking-wider bg-amber-50 text-amber-800 border border-amber-200 px-3 py-1 rounded-full">
+                  {language === 'fr' ? 'Réactivité Immédiate' : 'Immediate Response'}
+                </span>
+              </div>
+
+              <div className="pt-2">
+                <AnimatedCounter from={12} to={1} prefix="< " suffix="h" duration={1.8} />
+                <h3 className="text-sm font-semibold text-[#171512] mt-2 block tracking-tight">
+                  {language === 'fr' ? 'Délai moyen de réponse' : 'Average response time'}
+                </h3>
+                <p className="text-xs text-[#6F6255] leading-relaxed mt-1 font-light">
+                  {language === 'fr'
+                    ? 'Ligne directe avec les fondateurs Paul & Edgar, sans standard vocal ni attente.'
+                    : 'Direct WhatsApp and phone line with founders Paul & Edgar, with zero delay.'}
+                </p>
+              </div>
+            </div>
+
+            <div className="pt-4 border-t border-[#171512]/5 flex items-center space-x-2 text-[11px] font-medium text-[#748C8C]">
+              <Zap className="w-3.5 h-3.5" />
+              <span>{language === 'fr' ? 'Joignable 7 jours sur 7' : 'Available 7 days a week'}</span>
+            </div>
+          </motion.div>
+
         </div>
 
       </section>
