@@ -66,15 +66,15 @@ export const CORE_SERVICES: ServiceItem[] = [
     deliverables: {
       fr: [
         'Encaissement des loyers & virement automatique dès le 1er du mois',
-        'Garantie Loyers Impayés (GLI) 100% prise en charge sans franchise ni carence',
+        'Garantie de loyer impayé GarantMe à 2,9% d’un mois de loyer',
         'Gestion des interventions techniques et sinistres par artisans certifiés bordelais',
-        'Espace propriétaire en ligne sécurisé 24/7 avec bilans comptables & fiscaux'
+        'Une réactivité irréprochable pour une gestion fluide et transparente'
       ],
       en: [
-        'Automated rent collection & guaranteed disbursement on the 1st of every month',
-        'Zero-deductible, zero-delay rent default insurance (GLI) included',
-        'Maintenance, repair, and emergency handling by certified local artisans',
-        'Secure 24/7 digital landlord portal with complete accounting and tax summaries'
+        'Automated rent collection & automatic transfer from the 1st of the month',
+        'GarantMe unpaid rent guarantee at 2.9% of a month\'s rent',
+        'Management of technical maintenance and claims by certified local artisans',
+        'Flawless responsiveness for smooth and transparent property management'
       ]
     },
     href: '/gestion-locative',

@@ -230,8 +230,19 @@ export default function Footer({ onOpenCallback, onOpenEntrust, onOpenCookieSett
 
         </div>
 
+        {/* ========================================================== */}
+        {/* 🏛️ MODERN ARCHITECTURAL BRAND WATERMARK                   */}
+        {/* ========================================================== */}
+        <div className="w-full select-none pointer-events-none overflow-hidden pt-8 pb-2 border-t border-white/10 relative">
+          <div className="w-full flex items-center justify-center text-center">
+            <span className="font-serif-display font-light text-[11vw] sm:text-[12.5vw] lg:text-[13vw] leading-none tracking-tight uppercase whitespace-nowrap bg-gradient-to-b from-white/[0.09] via-white/[0.04] to-transparent bg-clip-text text-transparent">
+              GOIZET GESTION
+            </span>
+          </div>
+        </div>
+
         {/* Bottom Legal, Copyright & Developer Credit Bar */}
-        <div className="pt-4 flex flex-col md:flex-row items-center justify-between text-[11px] text-[#A2B2B2] space-y-4 md:space-y-0">
+        <div className="pt-2 flex flex-col md:flex-row items-center justify-between text-[11px] text-[#A2B2B2] space-y-4 md:space-y-0">
           
           <div className="flex flex-col sm:flex-row sm:items-center space-y-1 sm:space-y-0 sm:space-x-4">
             <span>

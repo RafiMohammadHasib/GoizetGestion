@@ -51,8 +51,8 @@ export default function TermsConditionsPage() {
             Toute prestation de gestion locative, de mise en location ou de transaction fait l'objet d'un mandat écrit préalable conforme à la loi Hoguet n° 70-9 du 2 janvier 1970 et au décret n° 72-678 du 20 juillet 1972.
           </p>
           <ul className="list-disc pl-4 space-y-1">
-            <li><strong>Honoraires de gestion :</strong> Taux fixe transparent de 6,8 % HT calculé sur les encaissements locatifs.</li>
-            <li><strong>Garantie Loyers Impayés (GLI) :</strong> Couverture intégrée sans franchise ni délai de carence selon les conditions du contrat d'assurance partenaire.</li>
+            <li><strong>Honoraires de gestion :</strong> Taux transparent de 6,5 % TTC calculé sur les encaissements locatifs.</li>
+            <li><strong>Garantie Loyers Impayés (GLI) :</strong> Garantie de loyer impayé GarantMe à 2,9 % d'un mois de loyer.</li>
           </ul>
         </section>
 

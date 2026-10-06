@@ -50,16 +50,16 @@ export async function getCurrentAdminSession(): Promise<AdminSession | null> {
 export const ROLE_PERMISSIONS: Record<string, string[]> = {
   'Super Admin': ['*'],
   'Administrator': [
-    'properties.*', 'leads.*', 'owners.*', 'tenants.*', 'blog.*', 'cms.*', 'media.*', 'seo.*', 'users.view'
+    'leads.*', 'owners.*', 'tenants.*', 'blog.*', 'cms.*', 'media.*', 'seo.*', 'users.view'
   ],
-  'Property Manager': [
-    'properties.*', 'owners.*', 'tenants.*', 'leads.view', 'leads.edit'
+  'Portfolio Manager': [
+    'owners.*', 'tenants.*', 'leads.view', 'leads.edit'
   ],
   'Content Manager': [
-    'blog.*', 'cms.*', 'media.*', 'seo.*', 'properties.view'
+    'blog.*', 'cms.*', 'media.*', 'seo.*'
   ],
   'Sales Agent': [
-    'leads.*', 'owners.view', 'tenants.view', 'properties.view'
+    'leads.*', 'owners.view', 'tenants.view'
   ],
   'Editor': [
     'blog.edit', 'cms.edit', 'media.upload'

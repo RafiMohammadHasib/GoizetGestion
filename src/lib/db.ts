@@ -4,7 +4,7 @@ export interface AdminUser {
   id: string;
   name: string;
   email: string;
-  role: 'Super Admin' | 'Administrator' | 'Property Manager' | 'Content Manager' | 'Sales Agent' | 'Editor';
+  role: 'Super Admin' | 'Administrator' | 'Portfolio Manager' | 'Content Manager' | 'Sales Agent' | 'Editor';
   avatar?: string;
   active: boolean;
   createdAt: string;

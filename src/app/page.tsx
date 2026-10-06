@@ -1,6 +1,5 @@
 import HeroSection from '@/components/home/HeroSection';
 import ValueStrip from '@/components/home/ValueStrip';
-import PropertyShowcase from '@/components/home/PropertyShowcase';
 import ApproachSection from '@/components/home/ApproachSection';
 import ServicesGrid from '@/components/home/ServicesGrid';
 import InstagramFeed from '@/components/home/InstagramFeed';
@@ -17,10 +16,7 @@ export default function HomePage() {
       {/* 02: Value / Trust Strip */}
       <ValueStrip />
 
-      {/* 03: Property Showcase & Quick Lead Generation */}
-      <PropertyShowcase />
-
-      {/* 04: Approach Section */}
+      {/* 03: Approach Section */}
       <ApproachSection />
 
       {/* 04: Services Grid */}

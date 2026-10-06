@@ -24,7 +24,7 @@ export function generateSeedData() {
       id: 'usr_3',
       name: 'Thomas Bernard',
       email: 'goizetgestion@gmail.com',
-      role: 'Property Manager',
+      role: 'Portfolio Manager',
       avatar: 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&w=400&q=80',
       active: true,
       createdAt: '2026-02-01T14:30:00Z'

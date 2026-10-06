@@ -36,7 +36,6 @@ export default function Header({ onOpenCallback, onOpenEntrust }: HeaderProps) {
   }, []);
 
   const navItems = [
-    { label: t('navProperties'), href: '/biens' },
     { label: t('navManagement'), href: '/gestion-locative' },
     { label: t('navAbout'), href: '/a-propos' },
     { label: t('navContact'), href: '/contact' },

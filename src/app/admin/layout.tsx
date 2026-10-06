@@ -42,17 +42,9 @@ export default function AdminLayout({ children }: { children: React.ReactNode })
       ]
     },
     {
-      group: language === 'fr' ? 'Patrimoine & Biens' : 'Real Estate',
-      items: [
-        { label: language === 'fr' ? 'Catalogue des Biens' : 'Properties', href: '/admin/properties', icon: Home },
-        { label: language === 'fr' ? 'Ajouter un Bien' : 'Add Property', href: '/admin/properties/new', icon: Plus }
-      ]
-    },
-    {
       group: language === 'fr' ? 'Contenu & Médias' : 'Content & CMS',
       items: [
         { label: language === 'fr' ? 'Éditeur Page d\'Accueil' : 'Homepage Editor', href: '/admin/cms/homepage', icon: Sparkles },
-        { label: language === 'fr' ? 'Articles & Journal' : 'Blog & Journal', href: '/admin/blog', icon: FileText },
         { label: language === 'fr' ? 'Médiathèque' : 'Media Library', href: '/admin/media', icon: ImageIcon }
       ]
     },
@@ -60,8 +52,7 @@ export default function AdminLayout({ children }: { children: React.ReactNode })
       group: language === 'fr' ? 'Système & Paramètres' : 'System & Settings',
       items: [
         { label: language === 'fr' ? 'SEO & Métadonnées' : 'SEO & Redirects', href: '/admin/seo', icon: Search },
-        { label: language === 'fr' ? 'Paramètres Globaux' : 'Global Settings', href: '/admin/settings', icon: Settings },
-        { label: language === 'fr' ? 'Utilisateurs & Rôles' : 'Users & Roles', href: '/admin/users', icon: Shield }
+        { label: language === 'fr' ? 'Paramètres Globaux' : 'Global Settings', href: '/admin/settings', icon: Settings }
       ]
     }
   ];
@@ -174,7 +165,6 @@ export default function AdminLayout({ children }: { children: React.ReactNode })
               {isSidebarOpen && (
                 <div className="truncate text-xs">
                   <span className="font-semibold block truncate text-[#171717]">Paul & Edgar Goizet</span>
-                  <span className="text-[10px] text-[#6B6B6B]">Super Admin</span>
                 </div>
               )}
             </div>
@@ -219,7 +209,7 @@ export default function AdminLayout({ children }: { children: React.ReactNode })
             >
               <Search className="w-4 h-4 text-[#6B6B6B] shrink-0" />
               <span className="truncate">
-                {language === 'fr' ? 'Rechercher biens, prospects, propriétaires...' : 'Search properties, leads, owners...'}
+                {language === 'fr' ? 'Rechercher prospects, propriétaires...' : 'Search leads, owners...'}
               </span>
               <kbd className="bg-white text-[10px] font-mono px-1.5 py-0.5 rounded border border-[#171717]/10 ml-auto hidden sm:inline">
                 ⌘K
@@ -269,14 +259,6 @@ export default function AdminLayout({ children }: { children: React.ReactNode })
               {isQuickCreateOpen && (
                 <div className="absolute right-0 mt-2 w-48 bg-white border border-[#171717]/10 rounded-xl shadow-xl p-1.5 text-xs font-semibold z-50 space-y-0.5">
                   <Link
-                    href="/admin/properties/new"
-                    onClick={() => setIsQuickCreateOpen(false)}
-                    className="flex items-center space-x-2 p-2 hover:bg-[#F7F7F5] rounded-lg text-[#171717]"
-                  >
-                    <Home className="w-3.5 h-3.5 text-[#748C8C]" />
-                    <span>{language === 'fr' ? 'Nouveau Bien' : 'New Property'}</span>
-                  </Link>
-                  <Link
                     href="/admin/crm"
                     onClick={() => setIsQuickCreateOpen(false)}
                     className="flex items-center space-x-2 p-2 hover:bg-[#F7F7F5] rounded-lg text-[#171717]"
@@ -285,12 +267,12 @@ export default function AdminLayout({ children }: { children: React.ReactNode })
                     <span>{language === 'fr' ? 'Nouveau Prospect' : 'New Lead'}</span>
                   </Link>
                   <Link
-                    href="/admin/blog/new"
+                    href="/admin/owners"
                     onClick={() => setIsQuickCreateOpen(false)}
                     className="flex items-center space-x-2 p-2 hover:bg-[#F7F7F5] rounded-lg text-[#171717]"
                   >
-                    <FileText className="w-3.5 h-3.5 text-[#748C8C]" />
-                    <span>{language === 'fr' ? 'Nouvel Article' : 'New Blog Post'}</span>
+                    <UserCheck className="w-3.5 h-3.5 text-[#748C8C]" />
+                    <span>{language === 'fr' ? 'Propriétaires' : 'Owners'}</span>
                   </Link>
                 </div>
               )}

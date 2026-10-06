@@ -35,10 +35,8 @@ export default function CommandPalette({ isOpen, onClose }: CommandPaletteProps)
   if (!isOpen) return null;
 
   const actions = [
-    { label: 'Add New Property', icon: Plus, href: '/admin/properties/new', category: 'Quick Create' },
-    { label: 'Add New Article', icon: Plus, href: '/admin/blog/new', category: 'Quick Create' },
     { label: 'View All CRM Leads', icon: Users, href: '/admin/crm', category: 'Navigation' },
-    { label: 'Property Manager', icon: Home, href: '/admin/properties', category: 'Navigation' },
+    { label: 'Owner CRM Directory', icon: Users, href: '/admin/owners', category: 'Navigation' },
     { label: 'Homepage CMS Editor', icon: Sparkles, href: '/admin/cms/homepage', category: 'Content' },
     { label: 'Global Website Settings', icon: Settings, href: '/admin/settings', category: 'System' }
   ];
