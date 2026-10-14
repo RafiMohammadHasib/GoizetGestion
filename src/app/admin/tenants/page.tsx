@@ -124,7 +124,9 @@ export default function AdminTenantsPage() {
               <div className="flex items-start justify-between">
                 <div>
                   <span className="text-[10px] font-bold uppercase text-sky-800 bg-sky-50 border border-sky-200 px-2.5 py-0.5 rounded-full">
-                    {t.status || (language === 'fr' ? 'Actif' : 'Active')}
+                    {language === 'fr'
+                      ? (t.status === 'Active' ? 'Actif' : t.status || 'Actif')
+                      : (t.status === 'Actif' ? 'Active' : t.status || 'Active')}
                   </span>
                   <h2 className="font-serif-display text-xl font-medium text-[#171717] mt-1.5">{t.name}</h2>
                 </div>
@@ -138,16 +140,35 @@ export default function AdminTenantsPage() {
               <div className="space-y-2 text-[#6B6B6B] pt-1">
                 <div className="flex items-center space-x-2">
                   <Mail className="w-3.5 h-3.5 text-[#748C8C] shrink-0" />
-                  <a href={`mailto:${t.email}`} className="hover:text-[#748C8C] truncate">{t.email}</a>
+                  {t.email && !t.email.includes('@lead.goizet.fr') && !t.email.includes('@client.goizet') ? (
+                    <a href={`mailto:${t.email}`} className="hover:text-[#748C8C] truncate">{t.email}</a>
+                  ) : (
+                    <span className="text-stone-400 italic text-[11px] truncate">
+                      {language === 'fr' ? 'Non renseigné' : 'Not provided'}
+                    </span>
+                  )}
                 </div>
                 <div className="flex items-center space-x-2">
                   <Phone className="w-3.5 h-3.5 text-[#748C8C] shrink-0" />
-                  <a href={`tel:${t.phone}`} className="hover:text-[#748C8C]">{t.phone}</a>
+                  {t.phone && t.phone !== 'Non renseigné' ? (
+                    <a href={`tel:${t.phone}`} className="hover:text-[#748C8C]">{t.phone}</a>
+                  ) : (
+                    <span className="text-stone-400 italic text-[11px] truncate">
+                      {language === 'fr' ? 'Non renseigné' : 'Not provided'}
+                    </span>
+                  )}
                 </div>
                 {t.propertyTitle && (
                   <div className="flex items-center space-x-2">
                     <Home className="w-3.5 h-3.5 text-[#748C8C] shrink-0" />
-                    <span className="truncate">{t.propertyTitle}</span>
+                    <span className="truncate">
+                      {language === 'en'
+                        ? t.propertyTitle
+                            .replace(/\bappartement\b/gi, 'Apartment')
+                            .replace(/\bmaison\b/gi, 'House')
+                            .replace(/\bimmeuble\b/gi, 'Building')
+                        : t.propertyTitle}
+                    </span>
                   </div>
                 )}
                 {t.leaseStart && (

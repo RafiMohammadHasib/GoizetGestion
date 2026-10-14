@@ -2,11 +2,12 @@
 
 import React, { useState, useEffect, useRef } from 'react';
 import Link from 'next/link';
-import { ArrowUpRight, Home, Building2, Phone, User, CheckCircle2, Loader2, Sparkles, Building, Euro, ShieldCheck } from 'lucide-react';
+import { ArrowUpRight, Home, Building2, Phone, User, CheckCircle2, Loader2, Sparkles, Building, Euro, ShieldCheck, Mail } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { gsap } from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import { useLanguage } from '@/context/LanguageContext';
+import { isValidPhone, isValidEmail, getLocalizedErrorMessage } from '@/lib/security';
 
 if (typeof window !== 'undefined') {
   gsap.registerPlugin(ScrollTrigger);
@@ -29,12 +30,14 @@ export default function HeroSection() {
 
   // Form State: Property Owner
   const [ownerFullName, setOwnerFullName] = useState('');
+  const [ownerEmail, setOwnerEmail] = useState('');
   const [ownerPhone, setOwnerPhone] = useState('');
   const [ownerPropertyType, setOwnerPropertyType] = useState('appartement');
   const [ownerMessage, setOwnerMessage] = useState('');
 
   // Form State: Tenant / Buyer
   const [tenantFullName, setTenantFullName] = useState('');
+  const [tenantEmail, setTenantEmail] = useState('');
   const [tenantPhone, setTenantPhone] = useState('');
   const [tenantPropertyType, setTenantPropertyType] = useState('appartement');
   const [tenantBudget, setTenantBudget] = useState('');
@@ -73,8 +76,16 @@ export default function HeroSection() {
       setErrorMessage(language === 'fr' ? 'Veuillez saisir votre nom et prénom.' : 'Please enter your full name.');
       return;
     }
+    if (ownerEmail.trim() && !isValidEmail(ownerEmail.trim())) {
+      setErrorMessage(language === 'fr' ? 'Adresse email invalide.' : 'Invalid email address.');
+      return;
+    }
     if (!ownerPhone.trim()) {
       setErrorMessage(language === 'fr' ? 'Veuillez saisir votre numéro de téléphone.' : 'Please enter your phone number.');
+      return;
+    }
+    if (!isValidPhone(ownerPhone.trim())) {
+      setErrorMessage(language === 'fr' ? 'Numéro de téléphone invalide.' : 'Invalid phone number.');
       return;
     }
 
@@ -84,24 +95,27 @@ export default function HeroSection() {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
-          fullName: ownerFullName,
-          phone: ownerPhone,
+          fullName: ownerFullName.trim(),
+          email: ownerEmail.trim(),
+          phone: ownerPhone.trim(),
           propertyType: ownerPropertyType,
           message: ownerMessage,
           serviceType: ownerOption === 'rent_out' ? 'Rent out my property' : 'Sell my property',
-          source: 'Hero Lead Form - Espace Propriétaire'
+          source: language === 'fr' ? 'Hero Lead Form - Espace Propriétaire' : 'Hero Lead Form - Owner Portal',
+          language
         })
       });
       const data = await res.json();
-      if (!res.ok) throw new Error(data.error || 'Erreur lors de la soumission');
+      if (!res.ok) throw new Error(data.error || (language === 'fr' ? 'Erreur lors de la soumission' : 'Submission error'));
 
       setSubmitted(true);
       setOwnerFullName('');
+      setOwnerEmail('');
       setOwnerPhone('');
       setOwnerMessage('');
     } catch (err: unknown) {
-      const message = err instanceof Error ? err.message : 'Une erreur est survenue';
-      setErrorMessage(message);
+      const rawMessage = err instanceof Error ? err.message : '';
+      setErrorMessage(getLocalizedErrorMessage(rawMessage, language));
     } finally {
       setLoading(false);
     }
@@ -114,40 +128,53 @@ export default function HeroSection() {
       setErrorMessage(language === 'fr' ? 'Veuillez saisir votre nom et prénom.' : 'Please enter your full name.');
       return;
     }
+    if (tenantEmail.trim() && !isValidEmail(tenantEmail.trim())) {
+      setErrorMessage(language === 'fr' ? 'Adresse email invalide.' : 'Invalid email address.');
+      return;
+    }
     if (!tenantPhone.trim()) {
       setErrorMessage(language === 'fr' ? 'Veuillez saisir votre numéro de téléphone.' : 'Please enter your phone number.');
+      return;
+    }
+    if (!isValidPhone(tenantPhone.trim())) {
+      setErrorMessage(language === 'fr' ? 'Numéro de téléphone invalide.' : 'Invalid phone number.');
       return;
     }
 
     setLoading(true);
     try {
       const serviceName = tenantOption === 'rent' ? 'Rent a property' : 'Buy a property';
-      const detailMessage = `Recherche: ${tenantOption === 'rent' ? 'Location' : 'Achat'} • Type: ${tenantPropertyType} • Budget max: ${tenantBudget || 'Non spécifié'} € • Nb chambres: ${tenantBedrooms}`;
+      const detailMessage = language === 'fr'
+        ? `Recherche: ${tenantOption === 'rent' ? 'Location' : 'Achat'} • Type: ${tenantPropertyType} • Budget max: ${tenantBudget || 'Non spécifié'} € • Nb chambres: ${tenantBedrooms}`
+        : `Search: ${tenantOption === 'rent' ? 'Rental' : 'Purchase'} • Type: ${tenantPropertyType} • Max budget: ${tenantBudget || 'Not specified'} € • Bedrooms: ${tenantBedrooms}`;
 
       const res = await fetch('/api/owner-enquiry', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
-          fullName: tenantFullName,
-          phone: tenantPhone,
+          fullName: tenantFullName.trim(),
+          email: tenantEmail.trim(),
+          phone: tenantPhone.trim(),
           propertyType: tenantPropertyType,
           budget: tenantBudget,
           rooms: tenantBedrooms,
           message: detailMessage,
           serviceType: serviceName,
-          source: 'Hero Lead Form - Espace Locataire/Acheteur'
+          source: language === 'fr' ? 'Hero Lead Form - Espace Locataire/Acheteur' : 'Hero Lead Form - Tenant/Buyer Portal',
+          language
         })
       });
       const data = await res.json();
-      if (!res.ok) throw new Error(data.error || 'Erreur lors de la soumission');
+      if (!res.ok) throw new Error(data.error || (language === 'fr' ? 'Erreur lors de la soumission' : 'Submission error'));
 
       setSubmitted(true);
       setTenantFullName('');
+      setTenantEmail('');
       setTenantPhone('');
       setTenantBudget('');
     } catch (err: unknown) {
-      const message = err instanceof Error ? err.message : 'Une erreur est survenue';
-      setErrorMessage(message);
+      const rawMessage = err instanceof Error ? err.message : '';
+      setErrorMessage(getLocalizedErrorMessage(rawMessage, language));
     } finally {
       setLoading(false);
     }
@@ -347,8 +374,8 @@ export default function HeroSection() {
               {mainSection === 'owner' && (
                 <form onSubmit={handleOwnerSubmit} className="space-y-3">
                   
-                  {/* Row 1: 3 Essential Inputs */}
-                  <div className="grid grid-cols-1 sm:grid-cols-3 gap-2.5">
+                  {/* Row 1: 4 Essential Inputs */}
+                  <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-2.5">
                     
                     {/* 1. Name */}
                     <div className="space-y-1">
@@ -366,21 +393,19 @@ export default function HeroSection() {
                       />
                     </div>
 
-                    {/* 2. Property Type */}
+                    {/* 2. Email */}
                     <div className="space-y-1">
                       <label className="text-[10px] font-bold uppercase tracking-wider text-[#6F6255] flex items-center space-x-1">
-                        <Building className="w-3 h-3 text-[#748C8C]" />
-                        <span>{language === 'fr' ? 'Type de bien' : 'Property Type'}</span>
+                        <Mail className="w-3 h-3 text-[#748C8C]" />
+                        <span>Email</span>
                       </label>
-                      <select
-                        value={ownerPropertyType}
-                        onChange={(e) => setOwnerPropertyType(e.target.value)}
-                        className="w-full h-10 bg-white/90 border border-[#171512]/15 focus:border-[#748C8C] focus:ring-1 focus:ring-[#748C8C] text-[#171512] text-xs rounded-xl px-3 transition-all outline-hidden cursor-pointer"
-                      >
-                        <option value="appartement">{language === 'fr' ? 'Appartement' : 'Apartment'}</option>
-                        <option value="maison">{language === 'fr' ? 'Maison / Villa' : 'House / Villa'}</option>
-                        <option value="immeuble">{language === 'fr' ? 'Immeuble' : 'Building'}</option>
-                      </select>
+                      <input
+                        type="email"
+                        value={ownerEmail}
+                        onChange={(e) => setOwnerEmail(e.target.value)}
+                        placeholder={language === 'fr' ? 'jean.dupont@email.com' : 'john.doe@email.com'}
+                        className="w-full h-10 bg-white/90 border border-[#171512]/15 focus:border-[#748C8C] focus:ring-1 focus:ring-[#748C8C] text-[#171512] text-xs rounded-xl px-3 transition-all outline-hidden"
+                      />
                     </div>
 
                     {/* 3. Phone */}
@@ -397,6 +422,23 @@ export default function HeroSection() {
                         placeholder={language === 'fr' ? '06 12 34 56 78' : '+33 6 12 34 56 78'}
                         className="w-full h-10 bg-white/90 border border-[#171512]/15 focus:border-[#748C8C] focus:ring-1 focus:ring-[#748C8C] text-[#171512] text-xs rounded-xl px-3 transition-all outline-hidden"
                       />
+                    </div>
+
+                    {/* 4. Property Type */}
+                    <div className="space-y-1">
+                      <label className="text-[10px] font-bold uppercase tracking-wider text-[#6F6255] flex items-center space-x-1">
+                        <Building className="w-3 h-3 text-[#748C8C]" />
+                        <span>{language === 'fr' ? 'Type de bien' : 'Property Type'}</span>
+                      </label>
+                      <select
+                        value={ownerPropertyType}
+                        onChange={(e) => setOwnerPropertyType(e.target.value)}
+                        className="w-full h-10 bg-white/90 border border-[#171512]/15 focus:border-[#748C8C] focus:ring-1 focus:ring-[#748C8C] text-[#171512] text-xs rounded-xl px-3 transition-all outline-hidden cursor-pointer"
+                      >
+                        <option value="appartement">{language === 'fr' ? 'Appartement' : 'Apartment'}</option>
+                        <option value="maison">{language === 'fr' ? 'Maison / Villa' : 'House / Villa'}</option>
+                        <option value="immeuble">{language === 'fr' ? 'Immeuble' : 'Building'}</option>
+                      </select>
                     </div>
 
                   </div>
@@ -472,10 +514,10 @@ export default function HeroSection() {
               {mainSection === 'tenant' && (
                 <form onSubmit={handleTenantSubmit} className="space-y-3">
                   
-                  {/* Row 1: 3 Inputs */}
-                  <div className="grid grid-cols-1 sm:grid-cols-3 gap-2.5">
+                  {/* Row 1: 4 Inputs */}
+                  <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-2.5">
                     
-                    {/* Name */}
+                    {/* 1. Name */}
                     <div className="space-y-1">
                       <label className="text-[10px] font-bold uppercase tracking-wider text-[#6F6255] flex items-center space-x-1">
                         <User className="w-3 h-3 text-[#748C8C]" />
@@ -491,7 +533,22 @@ export default function HeroSection() {
                       />
                     </div>
 
-                    {/* Phone */}
+                    {/* 2. Email */}
+                    <div className="space-y-1">
+                      <label className="text-[10px] font-bold uppercase tracking-wider text-[#6F6255] flex items-center space-x-1">
+                        <Mail className="w-3 h-3 text-[#748C8C]" />
+                        <span>Email</span>
+                      </label>
+                      <input
+                        type="email"
+                        value={tenantEmail}
+                        onChange={(e) => setTenantEmail(e.target.value)}
+                        placeholder={language === 'fr' ? 'marie.legrand@email.com' : 'marie.smith@email.com'}
+                        className="w-full h-10 bg-white/90 border border-[#171512]/15 focus:border-[#748C8C] focus:ring-1 focus:ring-[#748C8C] text-[#171512] text-xs rounded-xl px-3 transition-all outline-hidden"
+                      />
+                    </div>
+
+                    {/* 3. Phone */}
                     <div className="space-y-1">
                       <label className="text-[10px] font-bold uppercase tracking-wider text-[#6F6255] flex items-center space-x-1">
                         <Phone className="w-3 h-3 text-[#748C8C]" />
@@ -507,7 +564,7 @@ export default function HeroSection() {
                       />
                     </div>
 
-                    {/* Property Type */}
+                    {/* 4. Property Type */}
                     <div className="space-y-1">
                       <label className="text-[10px] font-bold uppercase tracking-wider text-[#6F6255] flex items-center space-x-1">
                         <Home className="w-3 h-3 text-[#748C8C]" />

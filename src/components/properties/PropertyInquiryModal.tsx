@@ -5,6 +5,7 @@ import { motion, AnimatePresence } from 'framer-motion';
 import { X, Calendar, MessageSquare, PhoneCall, ShieldCheck, Video, MapPin, Send, Loader2, CheckCircle2, Clock } from 'lucide-react';
 import { useLanguage } from '@/context/LanguageContext';
 import { getLocalizedTitle, getLocalizedPriceSuffix } from '@/lib/propertyLocalization';
+import { isValidEmail, isValidPhone, getLocalizedErrorMessage } from '@/lib/security';
 
 export interface PropertyInquiryData {
   id: string;
@@ -69,6 +70,14 @@ export default function PropertyInquiryModal({ isOpen, onClose, property }: Prop
       setErrorMsg(language === 'fr' ? 'Veuillez indiquer au moins un téléphone ou un email.' : 'Please provide at least a phone number or email.');
       return;
     }
+    if (phone.trim() && !isValidPhone(phone.trim())) {
+      setErrorMsg(language === 'fr' ? 'Numéro de téléphone invalide.' : 'Invalid phone number.');
+      return;
+    }
+    if (email.trim() && !isValidEmail(email.trim())) {
+      setErrorMsg(language === 'fr' ? 'Adresse email invalide.' : 'Invalid email address.');
+      return;
+    }
 
     setLoading(true);
 
@@ -92,10 +101,10 @@ export default function PropertyInquiryModal({ isOpen, onClose, property }: Prop
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
-          fullName: name,
-          name,
-          phone,
-          email,
+          fullName: name.trim(),
+          name: name.trim(),
+          phone: phone.trim(),
+          email: email.trim(),
           propertyId: property?.id,
           propertySlug: property?.slug,
           propertyTitle: property?.title,
@@ -105,13 +114,14 @@ export default function PropertyInquiryModal({ isOpen, onClose, property }: Prop
           subject,
           message: compiledMessage,
           timeSlot: preferredSlot,
-          source: 'Modal Visite Rapide'
+          source: 'Modal Visite Rapide',
+          language
         })
       });
 
+      const data = await res.json();
       if (!res.ok) {
-        const data = await res.json();
-        throw new Error(data.error || 'Erreur de transmission');
+        throw new Error(data.error || (language === 'fr' ? 'Erreur de transmission' : 'Submission error'));
       }
 
       setIsSuccess(true);
@@ -121,8 +131,9 @@ export default function PropertyInquiryModal({ isOpen, onClose, property }: Prop
           onClose();
         }, 3000);
       }, 500);
-    } catch (err: any) {
-      setErrorMsg(err.message || (language === 'fr' ? 'Une erreur est survenue.' : 'An error occurred.'));
+    } catch (err: unknown) {
+      const rawMessage = err instanceof Error ? err.message : '';
+      setErrorMsg(getLocalizedErrorMessage(rawMessage, language));
     } finally {
       setLoading(false);
     }

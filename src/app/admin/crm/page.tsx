@@ -88,7 +88,7 @@ export default function AdminCRMPage() {
       id: `note_${Date.now()}`,
       author: 'Paul & Edgar Goizet',
       text: newNote.trim(),
-      date: new Date().toLocaleDateString('fr-FR', { day: '2-digit', month: 'short', hour: '2-digit', minute: '2-digit' })
+      date: new Date().toLocaleDateString(language === 'fr' ? 'fr-FR' : 'en-US', { day: '2-digit', month: 'short', hour: '2-digit', minute: '2-digit' })
     };
 
     const updatedNotes = [...(selectedLead.notes || []), noteObj];
@@ -230,6 +230,183 @@ export default function AdminCRMPage() {
       return isFr ? 'Message de Contact' : 'Contact Message';
     }
     return isFr ? (type || 'Demande Contact') : (type || 'Contact Message');
+  };
+
+  const formatSource = (src: string) => {
+    if (!src) return '';
+    if (language === 'en') {
+      return src
+        .replace(/Hero Lead Form - Espace Propriétaire/gi, 'Hero Lead Form - Owner Portal')
+        .replace(/Hero Lead Form - Espace Locataire\/Acheteur/gi, 'Hero Lead Form - Tenant/Buyer Portal')
+        .replace(/Espace Propriétaire/gi, 'Owner Portal')
+        .replace(/Espace Locataire\/Acheteur/gi, 'Tenant/Buyer Portal')
+        .replace(/Formulaire Confier mon bien/gi, 'Entrust Property Form')
+        .replace(/Modal Visite Rapide/gi, 'Quick Viewing Modal')
+        .replace(/Page Dédiée \/confier-un-bien/gi, 'Dedicated Entrust Page')
+        .replace(/Page Détail Bien/gi, 'Property Detail Page')
+        .replace(/Calculateur Estimation En Ligne/gi, 'Online Valuation Tool')
+        .replace(/Catalogue Biens Off-Market Form/gi, 'Off-Market Property Catalog Form')
+        .replace(/Formulaire de contact rapide/gi, 'Quick Contact Form')
+        .replace(/Formulaire Contact/gi, 'Contact Form')
+        .replace(/Site Web/gi, 'Website Form')
+        .replace(/Recherche Google/gi, 'Google Search');
+    }
+    return src;
+  };
+
+  const formatPropertyAddress = (addr: string) => {
+    if (!addr) return '';
+    if (language === 'en') {
+      return addr
+        .replace(/\bappartement\b/gi, 'Apartment')
+        .replace(/\bmaison\b/gi, 'House')
+        .replace(/\bimmeuble\b/gi, 'Building')
+        .replace(/\bechoppe\b/gi, 'Échoppe')
+        .replace(/\bhotel-particulier\b/gi, 'Townhouse / Mansion')
+        .replace(/\bterrain\b/gi, 'Land / Plot')
+        .replace(/autre secteur/gi, 'Other district')
+        .replace(/triangle-dor/gi, 'Golden Triangle')
+        .replace(/bordeaux-centre/gi, 'Bordeaux Center')
+        .replace(/Non renseigné/gi, 'Not specified');
+    }
+    return addr
+      .replace(/\bapartment\b/gi, 'Appartement')
+      .replace(/\bhouse\b/gi, 'Maison')
+      .replace(/\bbuilding\b/gi, 'Immeuble');
+  };
+
+  const formatSubject = (subj: string) => {
+    if (!subj) return '';
+    if (language === 'en') {
+      return subj
+        .replace(/^Dossier\s*:\s*/i, 'File: ')
+        .replace(/^Recherche\s*:\s*/i, 'Search: ')
+        .replace(/Louer mon bien \(Propriétaire\)/gi, 'Rent out my property (Owner)')
+        .replace(/Vendre mon bien \(Propriétaire\)/gi, 'Sell my property (Owner)')
+        .replace(/Louer un bien \(Locataire\)/gi, 'Rent a property (Tenant)')
+        .replace(/Acheter un bien \(Acheteur\)/gi, 'Buy a property (Buyer)')
+        .replace(/Gestion Locative 360°/gi, '360° Rental Management')
+        .replace(/Mise en Location & Recherche Locataires/gi, 'Letting & Tenant Placement')
+        .replace(/Estimation Locative & Rendement/gi, 'Rental Valuation & Yield')
+        .replace(/Vente Immobilière de Prestige/gi, 'Luxury Property Sales')
+        .replace(/Demande d'information/gi, 'Information Request')
+        .replace(/Demande de contact/gi, 'Contact Request')
+        .replace(/Demande de visite/gi, 'Viewing Request')
+        .replace(/Demande de rappel rapide/gi, 'Quick Callback Request')
+        .replace(/Estimation Loyer\s*:\s*/gi, 'Rental Valuation: ')
+        .replace(/\(maison à /gi, '(House in ')
+        .replace(/\(appartement à /gi, '(Apartment in ')
+        .replace(/\(immeuble à /gi, '(Building in ')
+        .replace(/\(echoppe à /gi, '(Échoppe in ')
+        .replace(/\(autre à /gi, '(Other in ')
+        .replace(/\(maison\s*•\s*/gi, '(House • ')
+        .replace(/\(appartement\s*•\s*/gi, '(Apartment • ')
+        .replace(/\(immeuble\s*•\s*/gi, '(Building • ')
+        .replace(/\s+à\s+([A-Z])/g, ' in $1');
+    }
+    return subj;
+  };
+
+  const formatMessage = (msg: string) => {
+    if (!msg) return '';
+    if (language === 'en') {
+      return msg
+        .replace(/^Propriétaire pour\s*:\s*/gi, 'Owner for: ')
+        .replace(/^Client en recherche pour\s*:\s*/gi, 'Client search for: ')
+        .replace(/Louer mon bien \(Propriétaire\)/gi, 'Rent out my property (Owner)')
+        .replace(/Vendre mon bien \(Propriétaire\)/gi, 'Sell my property (Owner)')
+        .replace(/Louer un bien \(Locataire\)/gi, 'Rent a property (Tenant)')
+        .replace(/Acheter un bien \(Acheteur\)/gi, 'Buy a property (Buyer)')
+        .replace(/Gestion Locative 360°/gi, '360° Rental Management')
+        .replace(/Mise en Location & Recherche Locataires/gi, 'Letting & Tenant Placement')
+        .replace(/Estimation Locative & Rendement/gi, 'Rental Valuation & Yield')
+        .replace(/Bien\s*:\s*maison/gi, 'Property: House')
+        .replace(/Bien\s*:\s*appartement/gi, 'Property: Apartment')
+        .replace(/Bien\s*:\s*immeuble/gi, 'Property: Building')
+        .replace(/Bien\s*:\s*echoppe/gi, 'Property: Échoppe')
+        .replace(/Bien\s*:\s*hotel-particulier/gi, 'Property: Townhouse')
+        .replace(/Surface\s*:\s*/gi, 'Surface: ')
+        .replace(/Pièces\s*:\s*/gi, 'Rooms: ')
+        .replace(/Quartier\s*:\s*/gi, 'District: ')
+        .replace(/Loyer estimé\s*:\s*/gi, 'Estimated rent: ')
+        .replace(/Formulaire d'estimation propriétaire reçu\./gi, 'Owner valuation form received.')
+        .replace(/Type de visite souhaitée\s*:\s*/gi, 'Requested tour format: ')
+        .replace(/Type de visite\s*:\s*Sur place à Bordeaux/gi, 'Tour format: In person in Bordeaux')
+        .replace(/Type de visite\s*:\s*Vidéo à distance/gi, 'Tour format: Remote video')
+        .replace(/Créneau préféré\s*:\s*Matin \(9h - 12h\)/gi, 'Preferred slot: Morning (9am - 12pm)')
+        .replace(/Créneau préféré\s*:\s*Après-midi \(14h - 17h\)/gi, 'Preferred slot: Afternoon (2pm - 5pm)')
+        .replace(/Créneau préféré\s*:\s*Fin de journée \(17h - 19h\)/gi, 'Preferred slot: Late afternoon (5pm - 7pm)')
+        .replace(/Créneau préféré\s*:\s*Samedi/gi, 'Preferred slot: Saturday')
+        .replace(/Sujets demandés\s*:\s*/gi, 'Requested topics: ')
+        .replace(/Bonjour, je souhaite obtenir des renseignements complémentaires concernant vos services d'accompagnement immobilier à Bordeaux\./gi, 'Hello, I would like to get additional information regarding your real estate services in Bordeaux.')
+        .replace(/Propriété ciblée\s*:\s*/gi, 'Targeted property: ')
+        .replace(/Call me/gi, 'Please call me');
+    }
+    return msg;
+  };
+
+  const formatNoteAuthor = (author: string) => {
+    if (!author) return '';
+    if (language === 'en') {
+      return author
+        .replace(/Portail Propriétaire Goizet/gi, 'Goizet Owner Portal')
+        .replace(/Portail Recherche Goizet/gi, 'Goizet Search Portal')
+        .replace(/Calculateur Goizet/gi, 'Goizet Valuation Tool')
+        .replace(/Système/gi, 'System');
+    }
+    return author;
+  };
+
+  const formatNoteDate = (d: string) => {
+    if (!d) return '';
+    if (language === 'en') {
+      return d
+        .replace(/À l'instant/gi, 'Just now')
+        .replace(/Il y a (\d+) jours?/gi, '$1 days ago')
+        .replace(/Il y a (\d+) heures?/gi, '$1 hours ago')
+        .replace(/Hier/gi, 'Yesterday');
+    }
+    return d;
+  };
+
+  const formatNoteText = (txt: string) => {
+    if (!txt) return '';
+    if (language === 'en') {
+      return txt
+        .replace(/Demande reçue pour Louer mon bien \(Propriétaire\)\./gi, 'Request received for Rent out my property (Owner).')
+        .replace(/Demande reçue pour Vendre mon bien \(Propriétaire\)\./gi, 'Request received for Sell my property (Owner).')
+        .replace(/Demande reçue pour Louer un bien \(Locataire\)\./gi, 'Request received for Rent a property (Tenant).')
+        .replace(/Demande reçue pour Acheter un bien \(Acheteur\)\./gi, 'Request received for Buy a property (Buyer).')
+        .replace(/Demande reçue pour ([^.]+)\./gi, 'Request received for $1.')
+        .replace(/Rappel garanti au/gi, 'Guaranteed callback at')
+        .replace(/Premier contact qualifié avec succès par l'équipe commercial\./gi, 'First contact successfully qualified by the sales team.')
+        .replace(/Demande enregistrée en base CRM\./gi, 'Request registered in CRM database.')
+        .replace(/Estimation indicative\s*:\s*/gi, 'Indicative valuation: ')
+        .replace(/Dossier \(([^)]+)\) soumis depuis le site web\./gi, 'File ($1) submitted from website.');
+    }
+    return txt;
+  };
+
+  const formatTimeSlot = (slot: string) => {
+    if (!slot) return '';
+    if (language === 'en') {
+      return slot
+        .replace(/Matin \(9h - 12h\)/gi, 'Morning (9am - 12pm)')
+        .replace(/Après-midi \(14h - 17h\)/gi, 'Afternoon (2pm - 5pm)')
+        .replace(/Fin de journée \(17h - 19h\)/gi, 'Late afternoon (5pm - 7pm)')
+        .replace(/Samedi/gi, 'Saturday');
+    }
+    return slot;
+  };
+
+  const formatSurface = (surf: string) => {
+    if (!surf) return '';
+    if (language === 'en') {
+      return surf
+        .replace(/pièces?/gi, 'rooms')
+        .replace(/ch\./gi, 'bdrm');
+    }
+    return surf;
   };
 
   return (
@@ -384,7 +561,7 @@ export default function AdminCRMPage() {
                         {lead.surface && (
                           <div className="inline-flex items-center space-x-1 bg-[#F7F7F5] px-2 py-0.5 rounded-md text-[10px] font-medium text-stone-600 border border-[#171717]/5">
                             <Home className="w-3 h-3 text-[#748C8C]" />
-                            <span>{lead.surface}</span>
+                            <span>{formatSurface(lead.surface)}</span>
                           </div>
                         )}
 
@@ -392,7 +569,7 @@ export default function AdminCRMPage() {
                         {lead.propertyAddress && (
                           <div className="flex items-center space-x-1 text-[10px] text-[#6B6B6B] truncate">
                             <MapPin className="w-3 h-3 text-[#748C8C] shrink-0" />
-                            <span className="truncate">{lead.propertyAddress}</span>
+                            <span className="truncate">{formatPropertyAddress(lead.propertyAddress)}</span>
                           </div>
                         )}
 
@@ -400,7 +577,7 @@ export default function AdminCRMPage() {
                         {lead.preferredTimeSlot && (
                           <div className="flex items-center space-x-1 text-[9px] text-[#748C8C] font-semibold bg-[#748C8C]/10 px-2 py-0.5 rounded-md">
                             <Clock className="w-2.5 h-2.5 shrink-0" />
-                            <span className="truncate">{lead.preferredTimeSlot}</span>
+                            <span className="truncate">{formatTimeSlot(lead.preferredTimeSlot)}</span>
                           </div>
                         )}
 
@@ -466,7 +643,7 @@ export default function AdminCRMPage() {
                   <span className={`text-[10px] font-bold uppercase tracking-widest px-2.5 py-0.5 rounded-full border ${getBadgeStyle(selectedLead.leadType, selectedLead.serviceType)}`}>
                     {getLeadTypeLabel(selectedLead.leadType, selectedLead.serviceType)}
                   </span>
-                  <span className="text-xs text-[#6B6B6B]">Source: {selectedLead.source}</span>
+                  <span className="text-xs text-[#6B6B6B]">{language === 'fr' ? 'Source :' : 'Source:'} {formatSource(selectedLead.source)}</span>
                   <span className="text-xs text-[#6B6B6B]">
                     • {new Date(selectedLead.createdAt).toLocaleDateString(language === 'fr' ? 'fr-FR' : 'en-US', { day: '2-digit', month: 'long', year: 'numeric' })}
                   </span>
@@ -491,7 +668,19 @@ export default function AdminCRMPage() {
                   </select>
                 </div>
 
-                {selectedLead.status !== 'CONVERTED' && (
+                {selectedLead.status === 'CONVERTED' ? (
+                  <Link
+                    href={selectedLead.leadType?.toLowerCase().includes('tenant') ? '/admin/tenants' : '/admin/owners'}
+                    className="inline-flex items-center space-x-1.5 bg-emerald-600 hover:bg-emerald-700 text-white text-xs font-semibold px-3.5 py-1.5 rounded-xl shadow-xs transition-colors cursor-pointer"
+                  >
+                    <UserCheck className="w-3.5 h-3.5" />
+                    <span>
+                      {language === 'fr'
+                        ? (selectedLead.leadType?.toLowerCase().includes('tenant') ? 'Voir dans le module Locataires →' : 'Voir dans le module Propriétaires →')
+                        : (selectedLead.leadType?.toLowerCase().includes('tenant') ? 'View in Tenants Module →' : 'View in Owners Module →')}
+                    </span>
+                  </Link>
+                ) : (
                   <button
                     onClick={() => handleStatusChange(selectedLead.id, 'CONVERTED')}
                     className="inline-flex items-center space-x-1.5 bg-emerald-600 hover:bg-emerald-700 text-white text-xs font-semibold px-3 py-1.5 rounded-xl shadow-xs transition-colors cursor-pointer"
@@ -505,6 +694,32 @@ export default function AdminCRMPage() {
                   </button>
                 )}
               </div>
+
+              {/* Converted Status Banner */}
+              {selectedLead.status === 'CONVERTED' && (
+                <div className="flex items-center justify-between p-3.5 bg-emerald-50 border border-emerald-200 text-emerald-800 rounded-2xl text-xs">
+                  <div className="flex items-center space-x-2">
+                    <CheckCircle2 className="w-4 h-4 text-emerald-600 shrink-0" />
+                    <span>
+                      {language === 'fr'
+                        ? (selectedLead.leadType?.toLowerCase().includes('tenant')
+                            ? 'Dossier signé avec succès ! Ce contact est accessible dans le module Locataires sur la barre latérale.'
+                            : 'Dossier signé avec succès ! Ce contact est accessible dans le module Propriétaires sur la barre latérale.')
+                        : (selectedLead.leadType?.toLowerCase().includes('tenant')
+                            ? 'Won opportunity! This contact is active in the Tenants module on the left sidebar.'
+                            : 'Won opportunity! This contact is active in the Owners module on the left sidebar.')}
+                    </span>
+                  </div>
+                  <Link
+                    href={selectedLead.leadType?.toLowerCase().includes('tenant') ? '/admin/tenants' : '/admin/owners'}
+                    className="ml-3 font-bold text-emerald-700 hover:text-emerald-950 underline whitespace-nowrap text-xs"
+                  >
+                    {language === 'fr'
+                      ? (selectedLead.leadType?.toLowerCase().includes('tenant') ? 'Ouvrir Locataires →' : 'Ouvrir Propriétaires →')
+                      : (selectedLead.leadType?.toLowerCase().includes('tenant') ? 'Open Tenants →' : 'Open Owners →')}
+                  </Link>
+                </div>
+              )}
 
               {/* Property Details / Valuation Breakdown */}
               <div className="p-4 bg-white rounded-2xl border border-[#171717]/10 shadow-2xs space-y-3">
@@ -528,7 +743,7 @@ export default function AdminCRMPage() {
                       <span className="text-[10px] uppercase text-[#6B6B6B] block">
                         {language === 'fr' ? 'Créneau de Rappel' : 'Callback Time Slot'}
                       </span>
-                      <span className="font-semibold text-[#171717]">{selectedLead.preferredTimeSlot}</span>
+                      <span className="font-semibold text-[#171717]">{formatTimeSlot(selectedLead.preferredTimeSlot)}</span>
                     </div>
                   )}
 
@@ -537,7 +752,7 @@ export default function AdminCRMPage() {
                       <span className="text-[10px] uppercase text-[#6B6B6B] block">
                         {language === 'fr' ? 'Bien / Quartier' : 'Property / District'}
                       </span>
-                      <span className="font-semibold text-[#171717]">{selectedLead.propertyAddress}</span>
+                      <span className="font-semibold text-[#171717]">{formatPropertyAddress(selectedLead.propertyAddress)}</span>
                     </div>
                   )}
 
@@ -559,7 +774,7 @@ export default function AdminCRMPage() {
                       <span className="text-[10px] uppercase text-[#6B6B6B] block">
                         {language === 'fr' ? 'Surface & Pièces' : 'Surface & Rooms'}
                       </span>
-                      <span className="font-semibold text-[#171717]">{selectedLead.surface}</span>
+                      <span className="font-semibold text-[#171717]">{formatSurface(selectedLead.surface)}</span>
                     </div>
                   )}
 
@@ -568,7 +783,7 @@ export default function AdminCRMPage() {
                       <span className="text-[10px] uppercase text-[#6B6B6B] block">
                         {language === 'fr' ? 'Objet de la demande' : 'Subject of Request'}
                       </span>
-                      <span className="font-semibold text-[#171717]">{selectedLead.subject}</span>
+                      <span className="font-semibold text-[#171717]">{formatSubject(selectedLead.subject)}</span>
                     </div>
                   )}
                 </div>
@@ -578,17 +793,29 @@ export default function AdminCRMPage() {
               <div className="grid grid-cols-1 sm:grid-cols-3 gap-3 p-4 bg-[#F7F7F5] rounded-2xl border border-[#171717]/10 text-xs">
                 <div>
                   <span className="text-[10px] uppercase text-[#6B6B6B] block">Email</span>
-                  <a href={`mailto:${selectedLead.email}`} className="font-semibold text-[#748C8C] hover:underline truncate block">
-                    {selectedLead.email}
-                  </a>
+                  {selectedLead.email && !selectedLead.email.includes('@lead.goizet.fr') && !selectedLead.email.includes('@client.goizet') ? (
+                    <a href={`mailto:${selectedLead.email}`} className="font-semibold text-[#748C8C] hover:underline truncate block">
+                      {selectedLead.email}
+                    </a>
+                  ) : (
+                    <span className="text-stone-400 italic block">
+                      {language === 'fr' ? 'Non renseigné' : 'Not provided'}
+                    </span>
+                  )}
                 </div>
                 <div>
                   <span className="text-[10px] uppercase text-[#6B6B6B] block">
                     {language === 'fr' ? 'Téléphone' : 'Phone'}
                   </span>
-                  <a href={`tel:${selectedLead.phone}`} className="font-semibold text-[#171717] hover:underline block">
-                    {selectedLead.phone}
-                  </a>
+                  {selectedLead.phone && selectedLead.phone !== 'Non renseigné' ? (
+                    <a href={`tel:${selectedLead.phone}`} className="font-semibold text-[#171717] hover:underline block">
+                      {selectedLead.phone}
+                    </a>
+                  ) : (
+                    <span className="text-stone-400 italic block">
+                      {language === 'fr' ? 'Non renseigné' : 'Not provided'}
+                    </span>
+                  )}
                 </div>
                 <div>
                   <span className="text-[10px] uppercase text-[#6B6B6B] block">
@@ -604,7 +831,7 @@ export default function AdminCRMPage() {
                   <span className="text-[10px] uppercase text-[#6B6B6B] font-semibold block">
                     {language === 'fr' ? 'Message / Note du formulaire' : 'Form Message / Submission Note'}
                   </span>
-                  <p className="text-[#171717] leading-relaxed whitespace-pre-wrap">{selectedLead.message}</p>
+                  <p className="text-[#171717] leading-relaxed whitespace-pre-wrap">{formatMessage(selectedLead.message)}</p>
                 </div>
               )}
 
@@ -619,10 +846,10 @@ export default function AdminCRMPage() {
                     selectedLead.notes.map((n: any, idx: number) => (
                       <div key={idx} className="p-3 bg-[#F7F7F5] rounded-xl border border-[#171717]/5 space-y-1">
                         <div className="flex justify-between font-semibold">
-                          <span>{n.author}</span>
-                          <span className="text-[10px] text-[#6B6B6B]">{n.date}</span>
+                          <span>{formatNoteAuthor(n.author)}</span>
+                          <span className="text-[10px] text-[#6B6B6B]">{formatNoteDate(n.date)}</span>
                         </div>
-                        <p className="text-[#6B6B6B]">{n.text}</p>
+                        <p className="text-[#6B6B6B]">{formatNoteText(n.text)}</p>
                       </div>
                     ))
                   ) : (

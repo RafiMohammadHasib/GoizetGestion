@@ -3,18 +3,26 @@ import { sanitizeInjection, isValidEmail, isValidPhone, checkRateLimit } from '@
 import { getDb, saveDb, CRMLead } from '@/lib/db';
 
 export async function POST(req: NextRequest) {
+  let language = 'fr';
   try {
+    const body = await req.json();
+    language = body?.language === 'en' ? 'en' : 'fr';
+
     const ip = req.headers.get('x-forwarded-for') || '127.0.0.1';
     const rateCheck = checkRateLimit(ip, 5, 60000);
 
     if (!rateCheck.allowed) {
       return NextResponse.json(
-        { error: 'Trop de requêtes. Veuillez réessayer dans une minute.' },
+        { 
+          error: language === 'en'
+            ? 'Too many requests. Please try again in a minute.'
+            : 'Trop de requêtes. Veuillez réessayer dans une minute.',
+          errorCode: 'RATE_LIMIT'
+        },
         { status: 429, headers: { 'Retry-After': '60' } }
       );
     }
 
-    const body = await req.json();
     const { 
       fullName, 
       name, 
@@ -42,7 +50,24 @@ export async function POST(req: NextRequest) {
     const cleanPhone = (phone || '').trim();
 
     if (!sanitizedName || sanitizedName.length < 2) {
-      return NextResponse.json({ error: 'Le nom complet est obligatoire.' }, { status: 400 });
+      return NextResponse.json({ 
+        error: language === 'en' ? 'Full name is required.' : 'Le nom complet est obligatoire.',
+        errorCode: 'NAME_REQUIRED'
+      }, { status: 400 });
+    }
+
+    if (cleanEmail && !isValidEmail(cleanEmail)) {
+      return NextResponse.json({ 
+        error: language === 'en' ? 'Invalid email address.' : 'Adresse email invalide.',
+        errorCode: 'INVALID_EMAIL'
+      }, { status: 400 });
+    }
+
+    if (cleanPhone && !isValidPhone(cleanPhone)) {
+      return NextResponse.json({ 
+        error: language === 'en' ? 'Invalid phone number.' : 'Numéro de téléphone invalide.',
+        errorCode: 'INVALID_PHONE'
+      }, { status: 400 });
     }
 
     // Determine lead type accurately
@@ -86,8 +111,8 @@ export async function POST(req: NextRequest) {
     const newLead: CRMLead = {
       id: `lead_${Date.now()}`,
       name: sanitizedName,
-      email: cleanEmail || 'contact@client.goizet',
-      phone: cleanPhone || 'Non renseigné',
+      email: cleanEmail || '',
+      phone: cleanPhone || '',
       leadType: computedLeadType,
       serviceType: project || undefined,
       preferredTimeSlot: timeSlot || undefined,
@@ -170,7 +195,11 @@ export async function POST(req: NextRequest) {
     );
   } catch (error) {
     return NextResponse.json(
-      { error: 'Une erreur serveur est survenue. Traitement sécurisé.' },
+      { 
+        error: language === 'en'
+          ? 'A server error occurred. Please try again.'
+          : 'Une erreur serveur est survenue. Traitement sécurisé.' 
+      },
       { status: 500 }
     );
   }

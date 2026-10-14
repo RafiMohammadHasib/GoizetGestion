@@ -61,7 +61,8 @@ function PropertySearchContent() {
           leadType: transactionType === 'acheter' ? 'Buyer Request' : 'Tenant Request',
           subject: 'Recherche sur-mesure & Off-market',
           message: `Recherche personnalisée soumise depuis le catalogue de biens:\nQuartier souhaité: ${neighborhood || 'Tous les secteurs'}\nType de bien: ${propertyType || 'Indifférent'}\nBudget max: ${maxPrice || 'Non précisé'}\nSurface min: ${minSurface || 'Non précisée'} m²\n\nPrécisions: ${alertNotes}`,
-          source: 'Catalogue Biens Off-Market Form'
+          source: 'Catalogue Biens Off-Market Form',
+          language
         })
       });
       setAlertSuccess(true);

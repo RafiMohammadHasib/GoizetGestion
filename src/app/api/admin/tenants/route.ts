@@ -1,34 +1,11 @@
 import { NextRequest, NextResponse } from 'next/server';
-import { supabase } from '@/lib/supabase';
+import { supabase, withTimeout } from '@/lib/supabase';
 import { getDb, saveDb } from '@/lib/db';
 
 export async function GET() {
   try {
-    const { data, error } = await supabase
-      .from('tenants')
-      .select('*')
-      .order('created_at', { ascending: false });
-
-    if (!error && data && data.length > 0) {
-      const tenants = data.map((t: any) => ({
-        id: t.id,
-        name: t.name,
-        email: t.email,
-        phone: t.phone,
-        propertyId: t.property_id,
-        propertyTitle: t.property_title,
-        leaseStart: t.lease_start,
-        leaseEnd: t.lease_end,
-        rentAmount: Number(t.rent_amount || 0),
-        depositAmount: Number(t.deposit_amount || 0),
-        status: t.status,
-        createdAt: t.created_at
-      }));
-      return NextResponse.json({ tenants, total: tenants.length });
-    }
-
     const db = getDb();
-    const fallbackTenants = (db.tenants || []).length > 0 ? db.tenants : [
+    const localTenants = (db.tenants || []).length > 0 ? db.tenants : [
       {
         id: 'ten_1',
         name: 'Claire Fontaine',
@@ -40,7 +17,101 @@ export async function GET() {
         createdAt: '2026-01-15T10:00:00Z'
       }
     ];
-    return NextResponse.json({ tenants: fallbackTenants, total: fallbackTenants.length });
+
+    const tenantsMap = new Map<string, any>();
+
+    // 1. Add local tenants
+    localTenants.forEach((t: any) => {
+      tenantsMap.set(t.id, {
+        id: t.id,
+        name: t.name,
+        email: t.email,
+        phone: t.phone,
+        propertyId: t.propertyId || t.property_id,
+        propertyTitle: t.propertyTitle || t.property_title || 'Bordeaux Centre',
+        leaseStart: t.leaseStart || t.lease_start,
+        leaseEnd: t.leaseEnd || t.lease_end,
+        rentAmount: Number(t.rentAmount || t.rent_amount || 0),
+        depositAmount: Number(t.depositAmount || t.deposit_amount || 0),
+        status: t.status || 'Active',
+        createdAt: t.createdAt || t.created_at || new Date().toISOString()
+      });
+    });
+
+    // 2. Auto-sync any CONVERTED tenant leads from db.leads
+    let dbChanged = false;
+    (db.leads || []).forEach((l: any) => {
+      if (l.status === 'CONVERTED') {
+        const leadTypeStr = (l.leadType || l.lead_type || '').toLowerCase();
+        const serviceTypeStr = (l.serviceType || l.service_type || '').toLowerCase();
+        const isTenant = leadTypeStr.includes('tenant') ||
+                         leadTypeStr.includes('buyer') ||
+                         serviceTypeStr.includes('rent a') ||
+                         serviceTypeStr.includes('buy');
+
+        if (isTenant) {
+          const tenantId = `ten_${l.id.replace('lead_', '')}`;
+          const existingTenant = tenantsMap.get(tenantId) || Array.from(tenantsMap.values()).find((t: any) => t.email === l.email);
+          if (!existingTenant) {
+            const newTenant = {
+              id: tenantId,
+              name: l.name,
+              email: l.email,
+              phone: l.phone || 'Non renseigné',
+              propertyTitle: l.propertyAddress || l.property_address || 'Appartement Bordeaux',
+              rentAmount: parseInt((l.budget || '1500').replace(/[^0-9]/g, ''), 10) || 1500,
+              status: 'Active',
+              createdAt: l.createdAt || new Date().toISOString()
+            };
+            tenantsMap.set(tenantId, newTenant);
+            if (!db.tenants) db.tenants = [];
+            db.tenants.unshift(newTenant);
+            dbChanged = true;
+          }
+        }
+      }
+    });
+
+    if (dbChanged) {
+      saveDb(db);
+    }
+
+    // 3. Merge Supabase if available
+    try {
+      const { data, error } = await withTimeout(
+        supabase
+          .from('tenants')
+          .select('*')
+          .order('created_at', { ascending: false })
+      );
+
+      if (!error && data && data.length > 0) {
+        data.forEach((t: any) => {
+          if (!tenantsMap.has(t.id)) {
+            tenantsMap.set(t.id, {
+              id: t.id,
+              name: t.name,
+              email: t.email,
+              phone: t.phone,
+              propertyId: t.property_id,
+              propertyTitle: t.property_title,
+              leaseStart: t.lease_start,
+              leaseEnd: t.lease_end,
+              rentAmount: Number(t.rent_amount || 0),
+              depositAmount: Number(t.deposit_amount || 0),
+              status: t.status,
+              createdAt: t.created_at
+            });
+          }
+        });
+      }
+    } catch (sbErr) {
+      // Supabase offline / fallback
+    }
+
+    const allTenants = Array.from(tenantsMap.values());
+    allTenants.sort((a, b) => new Date(b.createdAt).getTime() - new Date(a.createdAt).getTime());
+    return NextResponse.json({ tenants: allTenants, total: allTenants.length });
   } catch (error) {
     return NextResponse.json({ error: 'Failed to fetch tenants' }, { status: 500 });
   }

@@ -288,7 +288,9 @@ export function LanguageProvider({ children }: { children: React.ReactNode }) {
     try {
       const savedLang = localStorage.getItem('simplerent_lang') as Language;
       if (savedLang === 'fr' || savedLang === 'en') {
-        setLanguageState(savedLang);
+        queueMicrotask(() => {
+          setLanguageState(savedLang);
+        });
         document.documentElement.lang = savedLang;
       }
     } catch {

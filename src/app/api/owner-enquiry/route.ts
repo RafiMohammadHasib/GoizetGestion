@@ -3,18 +3,26 @@ import { sanitizeInjection, isValidEmail, isValidPhone, checkRateLimit } from '@
 import { getDb, saveDb, CRMLead } from '@/lib/db';
 
 export async function POST(req: NextRequest) {
+  let language = 'fr';
   try {
+    const body = await req.json();
+    language = body?.language === 'en' ? 'en' : 'fr';
+
     const ip = req.headers.get('x-forwarded-for') || '127.0.0.1';
     const rateCheck = checkRateLimit(ip, 5, 60000);
 
     if (!rateCheck.allowed) {
       return NextResponse.json(
-        { error: 'Trop de requêtes. Veuillez patienter avant de réessayer.' },
+        { 
+          error: language === 'en' 
+            ? 'Too many requests. Please wait a moment before trying again.' 
+            : 'Trop de requêtes. Veuillez patienter avant de réessayer.',
+          errorCode: 'RATE_LIMIT'
+        },
         { status: 429, headers: { 'Retry-After': '60' } }
       );
     }
 
-    const body = await req.json();
     const { 
       name, 
       fullName, 
@@ -43,35 +51,55 @@ export async function POST(req: NextRequest) {
     const sanitizedNeighborhood = sanitizeInjection(neighborhood);
 
     if (!sanitizedName || sanitizedName.length < 2) {
-      return NextResponse.json({ error: 'Le nom complet est obligatoire.' }, { status: 400 });
+      return NextResponse.json({ 
+        error: language === 'en' ? 'Full name is required.' : 'Le nom complet est obligatoire.',
+        errorCode: 'NAME_REQUIRED'
+      }, { status: 400 });
     }
 
     if (cleanEmail && !isValidEmail(cleanEmail)) {
-      return NextResponse.json({ error: 'Adresse email invalide.' }, { status: 400 });
+      return NextResponse.json({ 
+        error: language === 'en' ? 'Invalid email address.' : 'Adresse email invalide.',
+        errorCode: 'INVALID_EMAIL'
+      }, { status: 400 });
     }
 
     if (!cleanPhone || !isValidPhone(cleanPhone)) {
-      return NextResponse.json({ error: 'Numéro de téléphone invalide.' }, { status: 400 });
+      return NextResponse.json({ 
+        error: language === 'en' ? 'Invalid phone number.' : 'Numéro de téléphone invalide.',
+        errorCode: 'INVALID_PHONE'
+      }, { status: 400 });
     }
+
+    const isEn = language === 'en';
 
     // Map serviceType to readable French/English label for subject
     const serviceLabels: Record<string, string> = {
-      'Rental management': 'Gestion Locative 360°',
-      'Property letting': 'Mise en Location & Recherche Locataires',
-      'Rent out my property': 'Louer mon bien (Propriétaire)',
-      'Sell my property': 'Vendre mon bien (Propriétaire)',
-      'Rent a property': 'Louer un bien (Locataire)',
-      'Buy a property': 'Acheter un bien (Acheteur)',
-      'Rental valuation': 'Estimation Locative & Rendement',
-      'Property sales': 'Vente Immobilière de Prestige'
+      'Rental management': isEn ? '360° Rental Management' : 'Gestion Locative 360°',
+      'Property letting': isEn ? 'Letting & Tenant Placement' : 'Mise en Location & Recherche Locataires',
+      'Rent out my property': isEn ? 'Rent out my property (Owner)' : 'Louer mon bien (Propriétaire)',
+      'Sell my property': isEn ? 'Sell my property (Owner)' : 'Vendre mon bien (Propriétaire)',
+      'Rent a property': isEn ? 'Rent a property (Tenant)' : 'Louer un bien (Locataire)',
+      'Buy a property': isEn ? 'Buy a property (Buyer)' : 'Acheter un bien (Acheteur)',
+      'Rental valuation': isEn ? 'Rental Valuation & Yield' : 'Estimation Locative & Rendement',
+      'Property sales': isEn ? 'Luxury Property Sales' : 'Vente Immobilière de Prestige'
     };
 
+    const propTypeLabels: Record<string, string> = {
+      'appartement': isEn ? 'Apartment' : 'Appartement',
+      'maison': isEn ? 'House / Villa' : 'Maison',
+      'immeuble': isEn ? 'Building' : 'Immeuble',
+      'echoppe': isEn ? 'Échoppe' : 'Échoppe',
+      'hotel-particulier': isEn ? 'Townhouse / Mansion' : 'Hôtel Particulier'
+    };
+
+    const displayPropType = propTypeLabels[sanitizedPropType.toLowerCase()] || sanitizedPropType;
     const displayService = serviceLabels[sanitizedService] || sanitizedService;
     const formattedLocation = sanitizedAddress 
       ? `${sanitizedAddress}, ${sanitizedNeighborhood}` 
       : sanitizedNeighborhood;
 
-    const surfaceDisplay = surface ? `${surface} m²${rooms ? ` • ${rooms} pièces` : ''}` : '';
+    const surfaceDisplay = surface ? `${surface} m²${rooms ? ` • ${rooms} ${isEn ? 'rooms' : 'pièces'}` : ''}` : '';
 
     let resolvedLeadType: CRMLead['leadType'] = 'Owner Enquiry';
     if (sanitizedService === 'Sell my property' || sanitizedService === 'Property sales') {
@@ -86,22 +114,30 @@ export async function POST(req: NextRequest) {
 
     const isClientSearch = resolvedLeadType === 'Tenant Request' || resolvedLeadType === 'Buyer Request';
     const leadSubject = isClientSearch 
-      ? `Recherche: ${displayService} (${sanitizedPropType}${budget ? ` • Budget: ${budget} €` : ''})`
-      : `Dossier: ${displayService} (${sanitizedPropType} à ${sanitizedNeighborhood})`;
+      ? (isEn
+          ? `Search: ${displayService} (${displayPropType}${budget ? ` • Budget: ${budget} €` : ''})`
+          : `Recherche: ${displayService} (${displayPropType}${budget ? ` • Budget: ${budget} €` : ''})`)
+      : (isEn
+          ? `File: ${displayService} (${displayPropType} in ${sanitizedNeighborhood})`
+          : `Dossier: ${displayService} (${displayPropType} à ${sanitizedNeighborhood})`);
 
-    const surfaceDisplayFinal = surfaceDisplay || (rooms ? `${rooms} ch.` : undefined);
+    const surfaceDisplayFinal = surfaceDisplay || (rooms ? `${rooms} ${isEn ? 'bdrm' : 'ch.'}` : undefined);
+
+    const defaultMsg = isEn
+      ? `${isClientSearch ? 'Client search' : 'Owner'} for: ${displayService}. Property: ${displayPropType}.${budget ? ` Budget: ${budget} €.` : ''}`
+      : `${isClientSearch ? 'Client en recherche' : 'Propriétaire'} pour: ${displayService}. Bien: ${displayPropType}.${budget ? ` Budget: ${budget} €.` : ''}`;
 
     const newLead: CRMLead = {
       id: `lead_${Date.now()}`,
       name: sanitizedName,
-      email: cleanEmail || `${cleanPhone.replace(/\D/g, '')}@lead.goizet.fr`,
+      email: cleanEmail || '',
       phone: cleanPhone,
       leadType: resolvedLeadType,
       serviceType: sanitizedService,
       status: 'NEW',
       subject: leadSubject,
-      message: sanitizedMessage || `${isClientSearch ? 'Client en recherche' : 'Propriétaire'} pour: ${displayService}. Bien: ${sanitizedPropType}.${budget ? ` Budget: ${budget} €.` : ''}`,
-      propertyAddress: `${sanitizedPropType} • ${formattedLocation}`,
+      message: sanitizedMessage || defaultMsg,
+      propertyAddress: `${displayPropType} • ${formattedLocation}`,
       propertyType: sanitizedPropType,
       budget: budget ? `${budget} €` : undefined,
       surface: surfaceDisplayFinal,
@@ -112,16 +148,22 @@ export async function POST(req: NextRequest) {
       notes: [
         {
           id: `note_${Date.now()}`,
-          author: isClientSearch ? 'Portail Recherche Goizet' : 'Portail Propriétaire Goizet',
-          text: `Demande reçue pour ${displayService}. Rappel garanti au ${cleanPhone}.`,
-          date: 'À l\'instant'
+          author: isClientSearch 
+            ? (isEn ? 'Goizet Search Portal' : 'Portail Recherche Goizet') 
+            : (isEn ? 'Goizet Owner Portal' : 'Portail Propriétaire Goizet'),
+          text: isEn
+            ? `Request received for ${displayService}. Guaranteed callback at ${cleanPhone}.`
+            : `Demande reçue pour ${displayService}. Rappel garanti au ${cleanPhone}.`,
+          date: isEn ? 'Just now' : 'À l\'instant'
         }
       ],
       activities: [
         {
           id: `act_${Date.now()}`,
-          text: `Dossier (${displayService}) soumis depuis le site web.`,
-          date: 'À l\'instant'
+          text: isEn
+            ? `File (${displayService}) submitted from website.`
+            : `Dossier (${displayService}) soumis depuis le site web.`,
+          date: isEn ? 'Just now' : 'À l\'instant'
         }
       ]
     };
@@ -176,7 +218,11 @@ export async function POST(req: NextRequest) {
   } catch (error) {
     console.error('Owner enquiry submission error:', error);
     return NextResponse.json(
-      { error: 'Une erreur serveur est survenue lors de l\'enregistrement de votre demande.' },
+      { 
+        error: language === 'en'
+          ? 'A server error occurred while processing your request.'
+          : 'Une erreur serveur est survenue lors de l\'enregistrement de votre demande.'
+      },
       { status: 500 }
     );
   }

@@ -261,11 +261,15 @@ export default function AdminDashboardPage() {
         <div className="lg:col-span-8 bg-white p-6 rounded-3xl border border-[#171717]/10 shadow-xs space-y-6">
           <div className="flex items-center justify-between">
             <div>
-              <h2 className="font-serif-display text-xl font-medium text-[#171717]">Leads & Enquiries Over Time</h2>
-              <p className="text-xs text-[#6B6B6B]">Live stream from Supabase PostgreSQL database.</p>
+              <h2 className="font-serif-display text-xl font-medium text-[#171717]">
+                {language === 'fr' ? 'Évolution des Prospects & Demandes' : 'Leads & Enquiries Over Time'}
+              </h2>
+              <p className="text-xs text-[#6B6B6B]">
+                {language === 'fr' ? 'Flux en temps réel de la base CRM centralisée.' : 'Live stream from centralized CRM database.'}
+              </p>
             </div>
             <span className="text-xs font-mono bg-[#F7F7F5] px-2.5 py-1 rounded-md border text-[#171717]">
-              +18% Growth
+              +18% {language === 'fr' ? 'Croissance' : 'Growth'}
             </span>
           </div>
 
@@ -278,7 +282,7 @@ export default function AdminDashboardPage() {
                   style={{ height: `${(val / 150) * 100}%` }}
                 >
                   <span className="opacity-0 group-hover:opacity-100 absolute -top-7 left-1/2 -translate-x-1/2 bg-[#171717] text-white text-[10px] px-1.5 py-0.5 rounded font-mono transition-opacity whitespace-nowrap">
-                    {val} leads
+                    {val} {language === 'fr' ? 'prospects' : 'leads'}
                   </span>
                 </div>
                 <span className="text-[9px] text-[#6B6B6B] font-mono">W{idx + 1}</span>
@@ -288,16 +292,22 @@ export default function AdminDashboardPage() {
 
           <div className="grid grid-cols-3 gap-4 text-center text-xs pt-2">
             <div>
-              <span className="text-[10px] text-[#6B6B6B] uppercase block">Owner Enquiries</span>
-              <span className="font-semibold text-[#171717]">{stats.ownerEnquiries} Leads</span>
+              <span className="text-[10px] text-[#6B6B6B] uppercase block">
+                {language === 'fr' ? 'Demandes Propriétaires' : 'Owner Enquiries'}
+              </span>
+              <span className="font-semibold text-[#171717]">{stats.ownerEnquiries} {language === 'fr' ? 'Dossiers' : 'Leads'}</span>
             </div>
             <div>
-              <span className="text-[10px] text-[#6B6B6B] uppercase block">Tenant Requests</span>
-              <span className="font-semibold text-[#171717]">{stats.tenantRequests} Leads</span>
+              <span className="text-[10px] text-[#6B6B6B] uppercase block">
+                {language === 'fr' ? 'Demandes Locataires' : 'Tenant Requests'}
+              </span>
+              <span className="font-semibold text-[#171717]">{stats.tenantRequests} {language === 'fr' ? 'Dossiers' : 'Leads'}</span>
             </div>
             <div>
-              <span className="text-[10px] text-[#6B6B6B] uppercase block">Valuations</span>
-              <span className="font-semibold text-[#171717]">{stats.valuationRequests} Leads</span>
+              <span className="text-[10px] text-[#6B6B6B] uppercase block">
+                {language === 'fr' ? 'Estimations' : 'Valuations'}
+              </span>
+              <span className="font-semibold text-[#171717]">{stats.valuationRequests} {language === 'fr' ? 'Dossiers' : 'Leads'}</span>
             </div>
           </div>
         </div>
@@ -306,19 +316,21 @@ export default function AdminDashboardPage() {
         <div className="lg:col-span-4 space-y-6">
           
           <div className="bg-white p-6 rounded-3xl border border-[#171717]/10 shadow-xs space-y-4">
-            <h2 className="font-serif-display text-xl font-medium text-[#171717]">Quick SaaS Actions</h2>
+            <h2 className="font-serif-display text-xl font-medium text-[#171717]">
+              {language === 'fr' ? 'Actions Rapides' : 'Quick Actions'}
+            </h2>
             <div className="grid grid-cols-2 gap-2 text-xs font-semibold">
               <Link href="/admin/crm" className="p-3 bg-[#F7F7F5] hover:bg-[#748C8C] hover:text-white rounded-xl transition-colors text-center block">
                 + Pipeline CRM
               </Link>
               <Link href="/admin/tenants" className="p-3 bg-[#F7F7F5] hover:bg-[#748C8C] hover:text-white rounded-xl transition-colors text-center block">
-                + Locataires
+                {language === 'fr' ? '+ Locataires' : '+ Tenants'}
               </Link>
               <Link href="/admin/owners" className="p-3 bg-[#F7F7F5] hover:bg-[#748C8C] hover:text-white rounded-xl transition-colors text-center block">
-                + Owner CRM
+                {language === 'fr' ? '+ Propriétaires' : '+ Owners'}
               </Link>
               <Link href="/admin/crm" className="p-3 bg-[#F7F7F5] hover:bg-[#748C8C] hover:text-white rounded-xl transition-colors text-center block">
-                Pipeline Funnel
+                {language === 'fr' ? 'Pipeline Funnel' : 'Pipeline Funnel'}
               </Link>
             </div>
           </div>
@@ -326,9 +338,11 @@ export default function AdminDashboardPage() {
           {/* Pending Tasks Panel */}
           <div className="bg-white p-6 rounded-3xl border border-[#171717]/10 shadow-xs space-y-4">
             <div className="flex items-center justify-between">
-              <h2 className="font-serif-display text-lg font-medium text-[#171717]">Follow-up Tasks</h2>
+              <h2 className="font-serif-display text-lg font-medium text-[#171717]">
+                {language === 'fr' ? 'Tâches de Suivi' : 'Follow-up Tasks'}
+              </h2>
               <span className="text-[10px] bg-red-100 text-red-700 font-bold px-2 py-0.5 rounded-full">
-                {tasks.length} Pending
+                {tasks.length} {language === 'fr' ? 'En attente' : 'Pending'}
               </span>
             </div>
 
@@ -340,8 +354,8 @@ export default function AdminDashboardPage() {
                     <span className="text-[10px] font-bold text-[#748C8C]">{t.priority}</span>
                   </div>
                   <div className="flex justify-between text-[10px] text-[#6B6B6B]">
-                    <span>Due: {t.due}</span>
-                    <span>Assignee: {t.assigned}</span>
+                    <span>{language === 'fr' ? 'Échéance :' : 'Due:'} {t.due}</span>
+                    <span>{language === 'fr' ? 'Assigné :' : 'Assignee:'} {t.assigned}</span>
                   </div>
                 </div>
               ))}
@@ -356,11 +370,13 @@ export default function AdminDashboardPage() {
       <div className="bg-white p-6 rounded-3xl border border-[#171717]/10 shadow-xs space-y-4">
         <div className="flex items-center justify-between">
           <div className="flex items-center space-x-2">
-            <h2 className="font-serif-display text-xl font-medium text-[#171717]">Recent Business Activity</h2>
-            <span className="text-[10px] font-mono text-[#6B6B6B]">(Last synced: {lastSync})</span>
+            <h2 className="font-serif-display text-xl font-medium text-[#171717]">
+              {language === 'fr' ? 'Activité Récente de l\'Agence' : 'Recent Business Activity'}
+            </h2>
+            <span className="text-[10px] font-mono text-[#6B6B6B]">({language === 'fr' ? 'Dernière synchro :' : 'Last synced:'} {lastSync})</span>
           </div>
           <Link href="/admin/crm" className="text-xs font-semibold text-[#748C8C] hover:underline flex items-center space-x-1">
-            <span>View All CRM Activities</span>
+            <span>{language === 'fr' ? 'Voir toutes les activités CRM' : 'View All CRM Activities'}</span>
             <ArrowUpRight className="w-3.5 h-3.5" />
           </Link>
         </div>

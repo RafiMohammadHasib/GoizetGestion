@@ -43,7 +43,7 @@ function AnimatedCounter({
   }, [inView, from, to, duration, decimals]);
 
   return (
-    <span ref={ref} className="tabular-nums font-serif-display font-medium text-4xl sm:text-5xl lg:text-6xl text-[#171512] tracking-tight">
+    <span ref={ref} suppressHydrationWarning className="tabular-nums font-serif-display font-medium text-4xl sm:text-5xl lg:text-6xl text-[#171512] tracking-tight">
       {prefix}{value.toLocaleString('fr-FR')}{suffix}
     </span>
   );

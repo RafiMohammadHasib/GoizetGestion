@@ -140,12 +140,12 @@ export default function AdminLayout({ children }: { children: React.ReactNode })
             className={`flex items-center text-xs font-semibold text-[#748C8C] hover:underline px-2 py-1.5 ${
               isSidebarOpen ? 'space-x-2' : 'justify-center'
             }`}
-            title="View Live Site"
+            title={language === 'fr' ? 'Voir le site public' : 'View Live Site'}
           >
             <Globe className="w-4 h-4 shrink-0" />
             {isSidebarOpen && (
               <>
-                <span className="truncate">View Live Site</span>
+                <span className="truncate">{language === 'fr' ? 'Voir le site public' : 'View Live Site'}</span>
                 <ExternalLink className="w-3 h-3 ml-auto shrink-0" />
               </>
             )}

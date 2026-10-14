@@ -50,10 +50,27 @@ export function isValidEmail(email: string): boolean {
  * Validate French / International phone format strictly
  */
 export function isValidPhone(phone: string): boolean {
-  if (!phone) return false;
+  if (!phone || typeof phone !== 'string') return false;
   const cleaned = phone.replace(/[\s\.\-\(\)]/g, '');
-  const phoneRegex = /^(\+33|0)[1-9]\d{8}$/;
-  return phoneRegex.test(cleaned);
+  
+  // French numbers: standard 10-digit starting with 0[1-9], or international +33 / 0033 followed by 9 digits ([1-9]XXXXXXXX)
+  const frenchRegex = /^(0[1-9]\d{8}|\+33[1-9]\d{8}|0033[1-9]\d{8})$/;
+  if (frenchRegex.test(cleaned)) return true;
+
+  // Rejects invalid French attempts like +330... or malformed +33
+  if (cleaned.startsWith('+33') || cleaned.startsWith('0033')) {
+    return false;
+  }
+
+  // International numbers with + (E.164: + followed by 7 to 14 digits)
+  const intlRegex = /^\+[1-9]\d{6,14}$/;
+  if (intlRegex.test(cleaned)) return true;
+
+  // Standard non-French numbers with 00 prefix (e.g. 0044...)
+  const intlPrefixRegex = /^00[1-9]\d{6,14}$/;
+  if (intlPrefixRegex.test(cleaned)) return true;
+
+  return false;
 }
 
 /**
@@ -107,4 +124,47 @@ export function maskSensitive(text: string): string {
     return `${text.substring(0, 3)}***${text.substring(text.length - 2)}`;
   }
   return '***';
+}
+
+/**
+ * Translate server error messages to user's active language
+ */
+export function getLocalizedErrorMessage(rawMsg: string, lang: 'fr' | 'en'): string {
+  if (!rawMsg) {
+    return lang === 'fr' ? 'Une erreur est survenue.' : 'An error occurred.';
+  }
+  if (/téléphone.*obligatoire|phone.*required/i.test(rawMsg)) {
+    return lang === 'fr' ? 'Le numéro de téléphone est obligatoire.' : 'Phone number is required.';
+  }
+  if (/téléphone|phone/i.test(rawMsg)) {
+    return lang === 'fr' ? 'Numéro de téléphone invalide.' : 'Invalid phone number.';
+  }
+  if (/nom.*obligatoire|name.*required|renseigner votre nom|saisir votre nom/i.test(rawMsg)) {
+    return lang === 'fr' ? 'Le nom complet est obligatoire.' : 'Full name is required.';
+  }
+  if (/identifiant/i.test(rawMsg)) {
+    return lang === 'fr' ? 'Identifiants ou informations invalides.' : 'Invalid details provided.';
+  }
+  if (/email.*obligatoire|email.*required/i.test(rawMsg)) {
+    return lang === 'fr' ? 'L\'adresse email est obligatoire.' : 'Email address is required.';
+  }
+  if (/email/i.test(rawMsg)) {
+    return lang === 'fr' ? 'Adresse email invalide.' : 'Invalid email address.';
+  }
+  if (/message/i.test(rawMsg) && (/caractère|character|court|short|obligatoire/i.test(rawMsg))) {
+    return lang === 'fr' ? 'Votre message doit contenir au moins 10 caractères.' : 'Your message must contain at least 10 characters.';
+  }
+  if (/requête|request|rate limit|trop de/i.test(rawMsg)) {
+    return lang === 'fr' ? 'Trop de requêtes. Veuillez patienter un instant.' : 'Too many requests. Please wait a moment.';
+  }
+  if (/serveur|server/i.test(rawMsg)) {
+    return lang === 'fr' ? 'Une erreur serveur est survenue.' : 'A server error occurred. Please try again.';
+  }
+  if (/soumission|submission|envoi|transmission|enregistrement/i.test(rawMsg)) {
+    return lang === 'fr' ? 'Erreur lors de la soumission. Veuillez réessayer.' : 'Submission error. Please try again.';
+  }
+  if (/erreur/i.test(rawMsg)) {
+    return lang === 'fr' ? rawMsg : 'An error occurred. Please try again.';
+  }
+  return rawMsg;
 }

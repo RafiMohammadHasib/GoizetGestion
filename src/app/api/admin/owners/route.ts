@@ -1,31 +1,104 @@
 import { NextRequest, NextResponse } from 'next/server';
-import { supabase } from '@/lib/supabase';
+import { supabase, withTimeout } from '@/lib/supabase';
 import { getDb, saveDb } from '@/lib/db';
 
 export async function GET() {
   try {
-    const { data, error } = await supabase
-      .from('owners')
-      .select('*')
-      .order('created_at', { ascending: false });
+    const db = getDb();
+    const localOwners = db.owners || [];
+    const ownersMap = new Map<string, any>();
 
-    if (!error && data && data.length > 0) {
-      const owners = data.map((o: any) => ({
+    // 1. Add local owners
+    localOwners.forEach((o: any) => {
+      ownersMap.set(o.id, {
         id: o.id,
         name: o.name,
         email: o.email,
         phone: o.phone,
         address: o.address,
         notes: o.notes,
-        status: o.status,
-        propertiesCount: Number(o.properties_count || 0),
-        createdAt: o.created_at
-      }));
-      return NextResponse.json({ owners, total: owners.length });
+        status: o.status || 'Managed',
+        propertiesCount: Number(o.propertiesCount || o.properties_count || 1),
+        createdAt: o.createdAt || o.created_at || new Date().toISOString()
+      });
+    });
+
+    // 2. Auto-sync any CONVERTED leads from db.leads that should be in owners
+    let dbChanged = false;
+    (db.leads || []).forEach((l: any) => {
+      if (l.status === 'CONVERTED') {
+        const leadTypeStr = (l.leadType || l.lead_type || '').toLowerCase();
+        const serviceTypeStr = (l.serviceType || l.service_type || '').toLowerCase();
+        const isOwner = leadTypeStr.includes('owner') ||
+                        leadTypeStr.includes('valuation') ||
+                        leadTypeStr.includes('seller') ||
+                        serviceTypeStr.includes('rent out') ||
+                        serviceTypeStr.includes('sell') ||
+                        serviceTypeStr.includes('gestion') ||
+                        serviceTypeStr.includes('management');
+
+        if (isOwner) {
+          const ownerId = `own_${l.id.replace('lead_', '')}`;
+          const existingOwner = ownersMap.get(ownerId) || Array.from(ownersMap.values()).find((o: any) => o.email === l.email);
+          if (!existingOwner) {
+            const newOwner = {
+              id: ownerId,
+              name: l.name,
+              email: l.email,
+              phone: l.phone || 'Non renseigné',
+              address: l.propertyAddress || l.property_address || 'Bordeaux Centre',
+              notes: `Converti depuis le CRM Opportunity Board (${l.leadType || 'Owner Enquiry'}). Budget: ${l.budget || 'N/A'}.`,
+              status: 'Managed',
+              propertiesCount: 1,
+              properties_count: 1,
+              createdAt: l.createdAt || new Date().toISOString()
+            };
+            ownersMap.set(ownerId, newOwner);
+            if (!db.owners) db.owners = [];
+            db.owners.unshift(newOwner);
+            dbChanged = true;
+          }
+        }
+      }
+    });
+
+    if (dbChanged) {
+      saveDb(db);
     }
 
-    const db = getDb();
-    return NextResponse.json({ owners: db.owners || [], total: (db.owners || []).length });
+    // 3. Merge Supabase data if available
+    try {
+      const { data, error } = await withTimeout(
+        supabase
+          .from('owners')
+          .select('*')
+          .order('created_at', { ascending: false })
+      );
+
+      if (!error && data && data.length > 0) {
+        data.forEach((o: any) => {
+          if (!ownersMap.has(o.id)) {
+            ownersMap.set(o.id, {
+              id: o.id,
+              name: o.name,
+              email: o.email,
+              phone: o.phone,
+              address: o.address,
+              notes: o.notes,
+              status: o.status,
+              propertiesCount: Number(o.properties_count || o.propertiesCount || 1),
+              createdAt: o.created_at || o.createdAt
+            });
+          }
+        });
+      }
+    } catch (sbErr) {
+      // Supabase offline / fallback
+    }
+
+    const allOwners = Array.from(ownersMap.values());
+    allOwners.sort((a, b) => new Date(b.createdAt).getTime() - new Date(a.createdAt).getTime());
+    return NextResponse.json({ owners: allOwners, total: allOwners.length });
   } catch (error) {
     return NextResponse.json({ error: 'Failed to fetch owners' }, { status: 500 });
   }

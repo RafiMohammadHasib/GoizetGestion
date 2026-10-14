@@ -9,7 +9,7 @@ import {
 import confetti from 'canvas-confetti';
 import { useLanguage } from '@/context/LanguageContext';
 import CustomSelect from '@/components/ui/CustomSelect';
-import { sanitizeInjection, isValidEmail, isValidPhone } from '@/lib/security';
+import { sanitizeInjection, isValidEmail, isValidPhone, getLocalizedErrorMessage } from '@/lib/security';
 
 import { CORE_SERVICES } from '@/data/services';
 
@@ -96,13 +96,14 @@ export default function EntrustPropertyModal({ isOpen, onClose, initialService =
           rooms: formData.rooms,
           timeSlot: formData.timeSlot,
           message: formData.message,
-          source: 'Modal Confier mon bien'
+          source: 'Modal Confier mon bien',
+          language
         })
       });
 
       const data = await res.json();
       if (!res.ok) {
-        throw new Error(data.error || 'Erreur lors de la soumission.');
+        throw new Error(data.error || (language === 'fr' ? 'Erreur lors de la soumission.' : 'Submission error.'));
       }
 
       setSubmitted(true);
@@ -112,7 +113,8 @@ export default function EntrustPropertyModal({ isOpen, onClose, initialService =
         origin: { y: 0.6 }
       });
     } catch (err: any) {
-      setErrorMsg(err.message || (language === 'fr' ? 'Erreur lors de l\'enregistrement.' : 'Submission error.'));
+      const rawMsg = err?.message || '';
+      setErrorMsg(getLocalizedErrorMessage(rawMsg, language));
     } finally {
       setLoading(false);
     }

@@ -124,7 +124,9 @@ export default function AdminOwnersPage() {
               <div className="flex items-start justify-between">
                 <div>
                   <span className="text-[10px] font-bold uppercase text-emerald-800 bg-emerald-50 border border-emerald-200 px-2.5 py-0.5 rounded-full">
-                    {owner.status || (language === 'fr' ? 'Sous Gestion' : 'Managed')}
+                    {language === 'fr'
+                      ? (owner.status === 'Managed' || owner.status === 'Sous Gestion' ? 'Sous Gestion' : owner.status === 'Qualified' || owner.status === 'Qualifié' ? 'Qualifié' : owner.status === 'New' || owner.status === 'Nouveau' ? 'Nouveau' : 'Contacté')
+                      : (owner.status === 'Managed' || owner.status === 'Sous Gestion' ? 'Managed' : owner.status === 'Qualified' || owner.status === 'Qualifié' ? 'Qualified' : owner.status === 'New' || owner.status === 'Nouveau' ? 'New' : owner.status || 'Managed')}
                   </span>
                   <h2 className="font-serif-display text-xl font-medium text-[#171717] mt-1.5">{owner.name}</h2>
                 </div>
@@ -136,21 +138,50 @@ export default function AdminOwnersPage() {
               <div className="space-y-2 text-[#6B6B6B] pt-1">
                 <div className="flex items-center space-x-2">
                   <Mail className="w-3.5 h-3.5 text-[#748C8C] shrink-0" />
-                  <a href={`mailto:${owner.email}`} className="hover:text-[#748C8C] truncate">{owner.email}</a>
+                  {owner.email && !owner.email.includes('@lead.goizet.fr') && !owner.email.includes('@client.goizet') ? (
+                    <a href={`mailto:${owner.email}`} className="hover:text-[#748C8C] truncate">{owner.email}</a>
+                  ) : (
+                    <span className="text-stone-400 italic text-[11px] truncate">
+                      {language === 'fr' ? 'Non renseigné' : 'Not provided'}
+                    </span>
+                  )}
                 </div>
                 <div className="flex items-center space-x-2">
                   <Phone className="w-3.5 h-3.5 text-[#748C8C] shrink-0" />
-                  <a href={`tel:${owner.phone}`} className="hover:text-[#748C8C]">{owner.phone}</a>
+                  {owner.phone && owner.phone !== 'Non renseigné' ? (
+                    <a href={`tel:${owner.phone}`} className="hover:text-[#748C8C]">{owner.phone}</a>
+                  ) : (
+                    <span className="text-stone-400 italic text-[11px] truncate">
+                      {language === 'fr' ? 'Non renseigné' : 'Not provided'}
+                    </span>
+                  )}
                 </div>
                 <div className="flex items-center space-x-2">
                   <MapPin className="w-3.5 h-3.5 text-[#748C8C] shrink-0" />
-                  <span className="truncate">{owner.address}</span>
+                  <span className="truncate">
+                    {language === 'en'
+                      ? (owner.address || '')
+                          .replace(/\bappartement\b/gi, 'Apartment')
+                          .replace(/\bmaison\b/gi, 'House')
+                          .replace(/\bimmeuble\b/gi, 'Building')
+                          .replace(/\bechoppe\b/gi, 'Échoppe')
+                          .replace(/\bhotel-particulier\b/gi, 'Townhouse / Mansion')
+                          .replace(/\bterrain\b/gi, 'Land / Plot')
+                          .replace(/Non renseigné/gi, 'Not specified')
+                      : owner.address}
+                  </span>
                 </div>
               </div>
 
               {owner.notes && (
                 <p className="p-3 bg-[#F7F7F5] rounded-xl text-stone-600 leading-relaxed text-[11px] border border-[#171717]/5">
-                  {owner.notes}
+                  {language === 'en'
+                    ? owner.notes
+                        .replace(/Converti depuis le CRM Opportunity Board/gi, 'Converted from CRM Opportunity Board')
+                        .replace(/Propriétaire bailleur sous gestion locative exclusive Goizet Gestion\./gi, 'Landlord under exclusive Goizet Gestion rental management.')
+                        .replace(/Nouveau propriétaire converti depuis le CRM\./gi, 'New owner converted from CRM.')
+                        .replace(/Non renseigné/gi, 'Not specified')
+                    : owner.notes}
                 </p>
               )}
             </div>

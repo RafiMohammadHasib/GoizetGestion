@@ -3,7 +3,7 @@
 import React, { useState } from 'react';
 import Breadcrumbs from '@/components/ui/Breadcrumbs';
 import { Phone, Mail, MapPin, Clock, Send, ShieldCheck, CheckCircle2, AlertCircle } from 'lucide-react';
-import { sanitizeInjection, isValidEmail, isValidPhone } from '@/lib/security';
+import { sanitizeInjection, isValidEmail, isValidPhone, getLocalizedErrorMessage } from '@/lib/security';
 import { useLanguage } from '@/context/LanguageContext';
 
 export default function ContactPage() {
@@ -59,18 +59,20 @@ export default function ContactPage() {
           email: cleanEmail,
           phone: cleanPhone,
           subject: formData.subject,
-          message: cleanMessage
+          message: cleanMessage,
+          language
         })
       });
 
       const data = await res.json();
       if (!res.ok) {
-        throw new Error(data.error || 'Erreur lors de l\'envoi');
+        throw new Error(data.error || (language === 'fr' ? 'Erreur lors de l\'envoi' : 'Error sending message'));
       }
 
       setSubmitted(true);
-    } catch (err: any) {
-      setErrorMsg(err.message || (language === 'fr' ? 'Erreur lors de l\'envoi du message.' : 'Error sending message.'));
+    } catch (err: unknown) {
+      const rawMessage = err instanceof Error ? err.message : '';
+      setErrorMsg(getLocalizedErrorMessage(rawMessage, language));
     } finally {
       setLoading(false);
     }

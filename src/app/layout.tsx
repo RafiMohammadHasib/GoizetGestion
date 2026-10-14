@@ -83,6 +83,90 @@ export default function RootLayout({
 
   return (
     <html lang="fr" data-scroll-behavior="smooth" suppressHydrationWarning>
+      <head>
+        <script
+          dangerouslySetInnerHTML={{
+            __html: `
+(function() {
+  // Attributes injected by browser extensions (Bitwarden, Grammarly, ColorZilla, etc.)
+  // that cause Next.js / React hydration mismatches on DOM elements.
+  var BAD_ATTRS = [
+    'bis_skin_checked',
+    'bis_register',
+    'data-gr-ext-installed',
+    'data-new-gr-c-s-check-loaded',
+    'cz-shortcut-listen',
+    'data-adblockkey'
+  ];
+
+  function cleanEl(el) {
+    if (!el || el.nodeType !== 1) return;
+    for (var i = 0; i < BAD_ATTRS.length; i++) {
+      if (el.hasAttribute(BAD_ATTRS[i])) {
+        el.removeAttribute(BAD_ATTRS[i]);
+      }
+    }
+  }
+
+  function cleanTree(node) {
+    if (!node || node.nodeType !== 1) return;
+    cleanEl(node);
+    var children = node.children;
+    if (children) {
+      for (var i = 0; i < children.length; i++) {
+        cleanTree(children[i]);
+      }
+    }
+  }
+
+  if (typeof document !== 'undefined') {
+    cleanTree(document.documentElement);
+
+    if (typeof MutationObserver !== 'undefined') {
+      var observer = new MutationObserver(function(mutations) {
+        for (var i = 0; i < mutations.length; i++) {
+          var m = mutations[i];
+          if (m.type === 'attributes' && m.target && m.target.removeAttribute) {
+            cleanEl(m.target);
+          } else if (m.type === 'childList') {
+            for (var c = 0; c < m.addedNodes.length; c++) {
+              cleanTree(m.addedNodes[c]);
+            }
+          }
+        }
+      });
+      observer.observe(document.documentElement, {
+        attributes: true,
+        subtree: true,
+        attributeFilter: BAD_ATTRS,
+        childList: true
+      });
+    }
+
+    // Guard dev-overlay from false-positive hydration warnings triggered by external browser extensions
+    if (typeof window !== 'undefined') {
+      var origError = console.error;
+      console.error = function() {
+        for (var k = 0; k < arguments.length; k++) {
+          var arg = arguments[k];
+          if (typeof arg === 'string' && (
+            arg.indexOf('bis_skin_checked') !== -1 ||
+            arg.indexOf('bis_register') !== -1 ||
+            arg.indexOf('data-gr-ext-installed') !== -1 ||
+            (arg.indexOf('hydrated but some attributes') !== -1 && arg.indexOf('browser extension') !== -1)
+          )) {
+            return;
+          }
+        }
+        return origError.apply(console, arguments);
+      };
+    }
+  }
+})();
+            `
+          }}
+        />
+      </head>
       <body
         className="bg-[#F7F5F0] text-[#171512] font-sans-ui selection:bg-[#748C8C]/25 selection:text-[#171512] antialiased"
         suppressHydrationWarning

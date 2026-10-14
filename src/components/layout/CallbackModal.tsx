@@ -5,6 +5,7 @@ import { motion, AnimatePresence } from 'framer-motion';
 import { X, PhoneCall, CheckCircle2, Clock, Calendar } from 'lucide-react';
 import { useLanguage } from '@/context/LanguageContext';
 import CustomSelect from '@/components/ui/CustomSelect';
+import { isValidPhone, getLocalizedErrorMessage } from '@/lib/security';
 
 interface CallbackModalProps {
   isOpen: boolean;
@@ -37,6 +38,11 @@ export default function CallbackModal({ isOpen, onClose }: CallbackModalProps) {
       return;
     }
 
+    if (!isValidPhone(formData.phone.trim())) {
+      setErrorMsg(language === 'fr' ? 'Numéro de téléphone invalide.' : 'Invalid phone number.');
+      return;
+    }
+
     setLoading(true);
 
     try {
@@ -44,20 +50,21 @@ export default function CallbackModal({ isOpen, onClose }: CallbackModalProps) {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
-          name: formData.name,
-          phone: formData.phone,
+          name: formData.name.trim(),
+          phone: formData.phone.trim(),
           leadType: 'Callback Request',
           project: formData.project,
           timeSlot: formData.timeSlot,
           subject: `Demande de Rappel: ${formData.project} (${formData.timeSlot})`,
           message: `Demande de rappel téléphonique. Projet: ${formData.project}. Créneau souhaité: ${formData.timeSlot}.`,
-          source: 'Modal Rappel Immédiat'
+          source: 'Modal Rappel Immédiat',
+          language
         })
       });
 
       if (!res.ok) {
         const data = await res.json();
-        throw new Error(data.error || 'Erreur lors de la transmission');
+        throw new Error(data.error || (language === 'fr' ? 'Erreur lors de la transmission' : 'Transmission error'));
       }
 
       setIsSubmitted(true);
@@ -68,7 +75,8 @@ export default function CallbackModal({ isOpen, onClose }: CallbackModalProps) {
         }, 3500);
       }, 500);
     } catch (err: any) {
-      setErrorMsg(err.message || (language === 'fr' ? 'Erreur lors de la demande de rappel.' : 'Callback request error.'));
+      const rawMsg = err?.message || '';
+      setErrorMsg(getLocalizedErrorMessage(rawMsg, language));
     } finally {
       setLoading(false);
     }

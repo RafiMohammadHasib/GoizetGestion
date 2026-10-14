@@ -2120,6 +2120,70 @@
   ],
   "leads": [
     {
+      "id": "lead_1791960660659",
+      "name": "Mr. Tester",
+      "email": "",
+      "phone": "+33 615211123",
+      "leadType": "Tenant Request",
+      "serviceType": "Rent a property",
+      "status": "CONVERTED",
+      "subject": "Search: Rent a property (Tenant) (Apartment • Budget: 1800 €)",
+      "message": "Search: Rental • Type: appartement • Max budget: 1800 € • Bedrooms: 2",
+      "propertyAddress": "Apartment • Bordeaux",
+      "propertyType": "appartement",
+      "budget": "1800 €",
+      "surface": "2 bdrm",
+      "source": "Hero Lead Form - Tenant/Buyer Portal",
+      "assignedTo": "Paul & Edgar Goizet",
+      "createdAt": "2026-10-14T06:51:00.659Z",
+      "notes": [
+        {
+          "id": "note_1791960660659",
+          "author": "Goizet Search Portal",
+          "text": "Request received for Rent a property (Tenant). Guaranteed callback at +33 615211123.",
+          "date": "Just now"
+        }
+      ],
+      "activities": [
+        {
+          "id": "act_1791960660659",
+          "text": "File (Rent a property (Tenant)) submitted from website.",
+          "date": "Just now"
+        }
+      ]
+    },
+    {
+      "id": "lead_1791956650159",
+      "name": "Rafi",
+      "email": "",
+      "phone": "+33 6 12345678",
+      "leadType": "Owner Enquiry",
+      "serviceType": "Rent out my property",
+      "status": "CONVERTED",
+      "subject": "Dossier: Louer mon bien (Propriétaire) (maison à Bordeaux)",
+      "message": "Propriétaire pour: Louer mon bien (Propriétaire). Bien: maison.",
+      "propertyAddress": "maison • Bordeaux",
+      "propertyType": "maison",
+      "source": "Hero Lead Form - Espace Propriétaire",
+      "assignedTo": "Paul & Edgar Goizet",
+      "createdAt": "2026-10-14T05:44:10.159Z",
+      "notes": [
+        {
+          "id": "note_1791956650159",
+          "author": "Portail Propriétaire Goizet",
+          "text": "Demande reçue pour Louer mon bien (Propriétaire). Rappel garanti au +33 6 12345678.",
+          "date": "À l'instant"
+        }
+      ],
+      "activities": [
+        {
+          "id": "act_1791956650159",
+          "text": "Dossier (Louer mon bien (Propriétaire)) soumis depuis le site web.",
+          "date": "À l'instant"
+        }
+      ]
+    },
+    {
       "id": "lead_1789558065673",
       "name": "Sarah Martin",
       "email": "sarah@exemple.fr",
@@ -2192,7 +2256,7 @@
     {
       "id": "lead_1789276150452",
       "name": "dsfsdf",
-      "email": "33612345678@lead.goizet.fr",
+      "email": "",
       "phone": "+33612345678",
       "leadType": "Owner Enquiry",
       "serviceType": "Rent out my property",
@@ -2223,7 +2287,7 @@
     {
       "id": "lead_1789275190935",
       "name": "Rafi Md. Hasib",
-      "email": "33612345678@lead.goizet.fr",
+      "email": "",
       "phone": "+33612345678",
       "leadType": "Owner Enquiry",
       "serviceType": "Rent out my property",
@@ -2254,7 +2318,7 @@
     {
       "id": "lead_1789207043731",
       "name": "Sophie Acheteuse",
-      "email": "0655667788@lead.goizet.fr",
+      "email": "",
       "phone": "0655667788",
       "leadType": "Buyer Request",
       "serviceType": "Buy a property",
@@ -2287,7 +2351,7 @@
     {
       "id": "lead_1789207041341",
       "name": "Thomas Vendeur",
-      "email": "0622334455@lead.goizet.fr",
+      "email": "",
       "phone": "0622334455",
       "leadType": "Seller Request",
       "serviceType": "Sell my property",
@@ -2318,7 +2382,7 @@
     {
       "id": "lead_1789206590933",
       "name": "Marie Test",
-      "email": "0698765432@lead.goizet.fr",
+      "email": "",
       "phone": "0698765432",
       "leadType": "Tenant Request",
       "serviceType": "Rent a property",
@@ -2350,7 +2414,7 @@
     {
       "id": "lead_1789206583991",
       "name": "Test Proprietaire",
-      "email": "0612345678@lead.goizet.fr",
+      "email": "",
       "phone": "0612345678",
       "leadType": "Owner Enquiry",
       "serviceType": "Rent out my property",
@@ -4099,6 +4163,18 @@
   ],
   "owners": [
     {
+      "id": "own_1791956650159",
+      "name": "Rafi",
+      "email": "",
+      "phone": "+33 6 12345678",
+      "address": "maison • Bordeaux",
+      "notes": "Converti depuis le CRM Opportunity Board (Owner Enquiry). Budget: N/A.",
+      "status": "Managed",
+      "propertiesCount": 1,
+      "properties_count": 1,
+      "createdAt": "2026-10-14T05:44:10.159Z"
+    },
+    {
       "id": "own_1787216904029",
       "name": "Rafi Md. Hasib",
       "email": "rmhasib.softifybd@gmail.com",
@@ -4401,6 +4477,28 @@
       "action": "Base de données réinitialisée avec succès",
       "object": "System Database",
       "timestamp": "2026-08-20T07:40:22.866Z"
+    }
+  ],
+  "tenants": [
+    {
+      "id": "ten_2",
+      "name": "Prospect Henri Lemaire #2",
+      "email": "prospect2@domaine.fr",
+      "phone": "06 79 69 59 49",
+      "propertyTitle": "6 Allée de Tourny, 33000 Bordeaux",
+      "rentAmount": 850,
+      "status": "Active",
+      "createdAt": "2026-08-19T07:40:22.866Z"
+    },
+    {
+      "id": "ten_1791960660659",
+      "name": "Mr. Tester",
+      "email": "",
+      "phone": "+33 615211123",
+      "property_title": "Apartment • Bordeaux",
+      "rent_amount": 1800,
+      "status": "Active",
+      "createdAt": "2026-10-14T06:52:11.062Z"
     }
   ]
 }

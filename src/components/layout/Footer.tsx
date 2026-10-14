@@ -245,7 +245,7 @@ export default function Footer({ onOpenCallback, onOpenEntrust, onOpenCookieSett
         <div className="pt-2 flex flex-col md:flex-row items-center justify-between text-[11px] text-[#A2B2B2] space-y-4 md:space-y-0">
           
           <div className="flex flex-col sm:flex-row sm:items-center space-y-1 sm:space-y-0 sm:space-x-4">
-            <span>
+            <span suppressHydrationWarning>
               © {new Date().getFullYear()} GOIZET GESTION. {language === 'fr' ? 'Tous droits réservés.' : 'All rights reserved.'}
             </span>
             <span className="hidden sm:inline text-white/20">•</span>

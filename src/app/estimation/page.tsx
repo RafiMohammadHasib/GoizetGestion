@@ -6,7 +6,7 @@ import confetti from 'canvas-confetti';
 import Breadcrumbs from '@/components/ui/Breadcrumbs';
 import { Calculator, ArrowRight, CheckCircle2, Building, Home, MapPin, Sparkles, Phone, Mail, User, ShieldCheck, AlertCircle } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { sanitizeInjection, isValidEmail, isValidPhone } from '@/lib/security';
+import { sanitizeInjection, isValidEmail, isValidPhone, getLocalizedErrorMessage } from '@/lib/security';
 import { useLanguage } from '@/context/LanguageContext';
 import CustomSelect from '@/components/ui/CustomSelect';
 
@@ -74,24 +74,14 @@ export default function EstimationPage() {
             firstName: cleanFirst,
             lastName: cleanLast,
             email: cleanEmail,
-            phone: cleanPhone
+            phone: cleanPhone,
+            language
           })
         });
 
         const data = await res.json();
         if (!res.ok) {
-          const serverErr = data.error || '';
-          let translatedErr = serverErr;
-          if (language === 'en') {
-            if (serverErr.includes('Identifiants') || serverErr.includes('email invalides')) {
-              translatedErr = 'Invalid name or email address.';
-            } else if (serverErr.includes('Trop de requêtes')) {
-              translatedErr = 'Too many requests. Please try again in a moment.';
-            } else {
-              translatedErr = 'Valuation calculation error. Please check your information.';
-            }
-          }
-          throw new Error(translatedErr || (language === 'fr' ? 'Erreur lors du calcul d\'estimation.' : 'Valuation calculation error.'));
+          throw new Error(data.error || (language === 'fr' ? 'Erreur lors du calcul d\'estimation.' : 'Valuation calculation error.'));
         }
 
         setEstimatedYield(data.valuation);
@@ -101,8 +91,9 @@ export default function EstimationPage() {
           spread: 70,
           origin: { y: 0.6 }
         });
-      } catch (err: any) {
-        setErrorMsg(err.message || (language === 'fr' ? 'Erreur lors du calcul d\'estimation.' : 'Valuation calculation error.'));
+      } catch (err: unknown) {
+        const rawMessage = err instanceof Error ? err.message : '';
+        setErrorMsg(getLocalizedErrorMessage(rawMessage, language));
       } finally {
         setLoading(false);
       }

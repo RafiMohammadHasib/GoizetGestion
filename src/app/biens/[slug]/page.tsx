@@ -17,6 +17,7 @@ import {
   getLocalizedPriceSuffix,
   getLocalizedLocation 
 } from '@/lib/propertyLocalization';
+import { isValidEmail, isValidPhone, getLocalizedErrorMessage } from '@/lib/security';
 
 export default function PropertyDetailPage() {
   const params = useParams();
@@ -156,6 +157,16 @@ export default function PropertyDetailPage() {
       return;
     }
 
+    if (phone.trim() && !isValidPhone(phone.trim())) {
+      setErrorMsg(language === 'fr' ? 'Numéro de téléphone invalide.' : 'Invalid phone number.');
+      return;
+    }
+
+    if (email.trim() && !isValidEmail(email.trim())) {
+      setErrorMsg(language === 'fr' ? 'Adresse email invalide.' : 'Invalid email address.');
+      return;
+    }
+
     setLoading(true);
 
     try {
@@ -177,10 +188,10 @@ export default function PropertyDetailPage() {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
-          fullName: name,
-          name,
-          email: email || 'contact-rappel@client.goizet',
-          phone: phone || 'Non renseigné',
+          fullName: name.trim(),
+          name: name.trim(),
+          email: email.trim() || 'contact-rappel@client.goizet',
+          phone: phone.trim() || 'Non renseigné',
           propertyId: property.id,
           propertySlug: property.slug,
           propertyTitle: property.title,
@@ -190,19 +201,21 @@ export default function PropertyDetailPage() {
           subject,
           message: `${compiledMessage}\n\nPropriété ciblée: ${property.title} - Ref ${property.reference || ''}`,
           timeSlot: preferredSlot,
-          source: 'Page Détail Bien'
+          source: 'Page Détail Bien',
+          language
         })
       });
 
+      const data = await res.json();
       if (!res.ok) {
-        const data = await res.json();
-        throw new Error(data.error || 'Erreur lors de la transmission');
+        throw new Error(data.error || (language === 'fr' ? 'Erreur lors de la transmission' : 'Error sending request'));
       }
 
       setProperty((prev: any) => prev ? { ...prev, enquiriesCount: (Number(prev.enquiriesCount) || 0) + 1 } : prev);
       setIsBooked(true);
-    } catch (e: any) {
-      setErrorMsg(e.message || (language === 'fr' ? 'Erreur lors de la transmission.' : 'Error sending request.'));
+    } catch (e: unknown) {
+      const rawMessage = e instanceof Error ? e.message : '';
+      setErrorMsg(getLocalizedErrorMessage(rawMessage, language));
     } finally {
       setLoading(false);
     }

@@ -4,17 +4,19 @@ import { getDb, saveDb, CRMLead } from '@/lib/db';
 
 export async function POST(req: NextRequest) {
   try {
+    const body = await req.json();
+    const language = body?.language === 'en' ? 'en' : 'fr';
+
     const ip = req.headers.get('x-forwarded-for') || '127.0.0.1';
     const rateCheck = checkRateLimit(ip, 5, 60000);
 
     if (!rateCheck.allowed) {
       return NextResponse.json(
-        { error: 'Trop de requêtes. Veuillez patienter.' },
+        { error: language === 'en' ? 'Too many requests. Please wait a moment.' : 'Trop de requêtes. Veuillez patienter.' },
         { status: 429 }
       );
     }
 
-    const body = await req.json();
     const { propertyType, surface, rooms, neighborhood, email, phone } = body;
     const rawName = body.name || [body.firstName, body.lastName].filter(Boolean).join(' ') || '';
 
@@ -23,7 +25,15 @@ export async function POST(req: NextRequest) {
     const cleanPhone = (phone || '').trim();
 
     if (!sanitizedName || sanitizedName.length < 2 || !isValidEmail(cleanEmail)) {
-      return NextResponse.json({ error: 'Identifiants ou email invalides.' }, { status: 400 });
+      return NextResponse.json({ 
+        error: language === 'en' ? 'Invalid name or email address.' : 'Identifiants ou email invalides.' 
+      }, { status: 400 });
+    }
+
+    if (cleanPhone && !isValidPhone(cleanPhone)) {
+      return NextResponse.json({
+        error: language === 'en' ? 'Invalid phone number.' : 'Numéro de téléphone invalide.'
+      }, { status: 400 });
     }
 
     const surfNum = parseInt(surface, 10) || 50;
