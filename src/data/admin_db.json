@@ -1,4 +1,32 @@
 {
+  "settings": {
+    "siteName": "GOIZET GESTION",
+    "tagline": "Immobilier & Gestion Locative à Bordeaux",
+    "phone": "+33 6 95 57 70 33",
+    "phoneEdgar": "+33 7 81 96 83 95",
+    "email": "goizetgestion@gmail.com",
+    "leadEmail": "goizetgestion@gmail.com",
+    "address": "48 rue Calvé, 33000 Bordeaux",
+    "openingHours": "Lundi - Vendredi : 09h00 - 19h00 | Samedi : Sur rendez-vous",
+    "siret": "944 393 487 00011",
+    "licenseNumber": "CPI33012025000000128 — CCI Bordeaux",
+    "financialGuarantee": "Galian Assurances — 120 000 €",
+    "managementFeeRate": 6.5,
+    "defaultDepositMonths": 1,
+    "gliInsuranceRate": 2.5,
+    "autoReplyTenant": true,
+    "autoReplyOwner": true,
+    "maintenanceMode": false,
+    "sessionTimeoutHours": 24,
+    "rateLimitingStrict": true,
+    "instagramUrl": "https://instagram.com/goizetgestion",
+    "linkedinUrl": "https://linkedin.com/company/goizet-gestion",
+    "gaMeasurementId": "G-GOIZET2026",
+    "gtmContainerId": "GTM-GOIZET01",
+    "defaultSeoTitle": "GOIZET GESTION | Immobilier & Gestion Locative à Bordeaux",
+    "defaultMetaDescription": "Maison de conseil immobilier et gestion locative sur-mesure à Bordeaux (Chartrons, Caudéran, Triangle d'Or). Mandat transparent et rendement optimisé.",
+    "updatedAt": "2026-10-17T09:00:08.080Z"
+  },
   "users": [
     {
       "id": "usr_admin",
@@ -9,7 +37,10 @@
       "avatar": "/apple-touch-icon.png",
       "active": true,
       "createdAt": "2026-02-01T00:00:00Z",
-      "updatedAt": "2026-10-17T08:54:47.193Z"
+      "updatedAt": "2026-10-17T09:00:08.049Z",
+      "phone": "+33 6 95 57 70 33",
+      "notifyLead": true,
+      "notifyTenant": true
     },
     {
       "id": "usr_1",
@@ -4039,6 +4070,34 @@
     }
   ],
   "activityLogs": [
+    {
+      "id": "log_1792227608080",
+      "user": "Administrateur Goizet Gestion",
+      "action": "a mis à jour les configurations et règles de gestion",
+      "object": "Paramètres Agence",
+      "timestamp": "2026-10-17T09:00:08.080Z"
+    },
+    {
+      "id": "log_1792227608049",
+      "user": "Administrateur Goizet Gestion",
+      "action": "a mis à jour son profil administrateur",
+      "object": "Profil & Notifications",
+      "timestamp": "2026-10-17T09:00:08.049Z"
+    },
+    {
+      "id": "log_1792227607949",
+      "user": "Paul Goizet - Direction",
+      "action": "a mis à jour son profil administrateur",
+      "object": "Profil & Notifications",
+      "timestamp": "2026-10-17T09:00:07.949Z"
+    },
+    {
+      "id": "log_1792227607280",
+      "user": "Administrateur Goizet Gestion",
+      "action": "a mis à jour les configurations et règles de gestion",
+      "object": "Paramètres Agence",
+      "timestamp": "2026-10-17T09:00:07.280Z"
+    },
     {
       "id": "log_1792227287193",
       "user": "Administrateur Goizet Gestion",

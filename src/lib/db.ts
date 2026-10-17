@@ -98,6 +98,35 @@ export interface ActivityLog {
   timestamp: string;
 }
 
+export interface AgencySettings {
+  siteName: string;
+  tagline: string;
+  phone: string;
+  phoneEdgar: string;
+  email: string;
+  leadEmail: string;
+  address: string;
+  openingHours: string;
+  siret: string;
+  licenseNumber: string;
+  financialGuarantee: string;
+  managementFeeRate: number;
+  defaultDepositMonths: number;
+  gliInsuranceRate: number;
+  autoReplyTenant: boolean;
+  autoReplyOwner: boolean;
+  maintenanceMode: boolean;
+  sessionTimeoutHours: number;
+  rateLimitingStrict: boolean;
+  instagramUrl: string;
+  linkedinUrl: string;
+  gaMeasurementId: string;
+  gtmContainerId: string;
+  defaultSeoTitle: string;
+  defaultMetaDescription: string;
+  updatedAt?: string;
+}
+
 // In-memory cache singleton fallback for client environment
 let memoryStoreCache: any = null;
 
