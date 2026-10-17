@@ -76,16 +76,6 @@ export default function AdminDashboardPage() {
     { id: 'closed', labelFr: 'Mandats Signés & Actifs', labelEn: 'Signed & Active Mandates', count: 13, percentage: 19, subtextFr: 'Intégration au portefeuille géré', subtextEn: 'Active portfolio onboarding' }
   ]);
 
-  // Portfolio mix & asset class yields
-  const [propertyMix, setPropertyMix] = useState<{
-    apartments: { count: number; percentage: number; avgYield: string };
-    houses: { count: number; percentage: number; avgYield: string };
-    commercial: { count: number; percentage: number; avgYield: string };
-  }>({
-    apartments: { count: 22, percentage: 62, avgYield: '4.8%' },
-    houses: { count: 9, percentage: 26, avgYield: '4.2%' },
-    commercial: { count: 5, percentage: 12, avgYield: '6.1%' }
-  });
 
   // Real financial & operational health indicators
   const [financialMetrics, setFinancialMetrics] = useState({
@@ -118,9 +108,6 @@ export default function AdminDashboardPage() {
         }
         if (data.funnel) {
           setFunnel(data.funnel);
-        }
-        if (data.propertyMix) {
-          setPropertyMix(data.propertyMix);
         }
         if (data.financialMetrics) {
           setFinancialMetrics(data.financialMetrics);
@@ -744,157 +731,6 @@ export default function AdminDashboardPage() {
             </div>
           </div>
 
-          {/* Growth Component 2: Portfolio Mix & Rental Yield Allocation */}
-          <div className="bg-[#FAF9F6] p-5 rounded-2xl border border-[#171717]/10 space-y-4">
-            <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2">
-              <div className="flex items-center space-x-2.5">
-                <div className="w-8 h-8 rounded-xl bg-[#748C8C]/15 text-[#748C8C] flex items-center justify-center">
-                  <Building className="w-4 h-4" />
-                </div>
-                <div>
-                  <h3 className="font-serif-display text-base font-semibold text-[#171717]">
-                    {language === 'fr' ? 'Distribution du Portefeuille & Rendement Locatif' : 'Portfolio Allocation & Rental Yield Growth'}
-                  </h3>
-                  <p className="text-[11px] text-[#6B6B6B]">
-                    {language === 'fr' 
-                      ? 'Répartition par typologie de biens et performances locatives moyennes à Bordeaux' 
-                      : 'Breakdown by property asset typology and average rental returns in Bordeaux'}
-                  </p>
-                </div>
-              </div>
-              <div className="flex items-center space-x-2 text-[10px] font-mono font-semibold">
-                <span className="bg-white px-2.5 py-1 rounded-lg border border-[#171717]/10 text-[#171717] shadow-2xs">
-                  {language === 'fr' ? 'Loyers gérés :' : 'Managed rent:'} {financialMetrics.totalMonthlyRent}/mois
-                </span>
-              </div>
-            </div>
-
-            {/* Proportional Segmented Bar */}
-            <div className="space-y-2">
-              <div className="h-3.5 w-full bg-white rounded-full overflow-hidden flex border border-[#171717]/10 p-0.5 shadow-2xs">
-                <div 
-                  style={{ width: `${propertyMix.apartments.percentage}%` }}
-                  className="h-full bg-[#748C8C] rounded-l-full relative cursor-pointer transition-all hover:opacity-90"
-                  title={`Appartements: ${propertyMix.apartments.percentage}%`}
-                />
-                <div 
-                  style={{ width: `${propertyMix.houses.percentage}%` }}
-                  className="h-full bg-[#C9A227] relative cursor-pointer transition-all hover:opacity-90"
-                  title={`Échoppes & Maisons: ${propertyMix.houses.percentage}%`}
-                />
-                <div 
-                  style={{ width: `${propertyMix.commercial.percentage}%` }}
-                  className="h-full bg-[#171717] rounded-r-full relative cursor-pointer transition-all hover:opacity-90"
-                  title={`Immeubles & Tertiaire: ${propertyMix.commercial.percentage}%`}
-                />
-              </div>
-
-              {/* Legend & Yield Tags */}
-              <div className="grid grid-cols-1 sm:grid-cols-3 gap-2.5 pt-1 text-xs">
-                <div className="p-2.5 rounded-xl bg-white border border-[#171717]/5 flex items-center justify-between">
-                  <div className="flex items-center space-x-2">
-                    <span className="w-2.5 h-2.5 rounded-full bg-[#748C8C] shrink-0" />
-                    <div>
-                      <span className="font-semibold text-[#171717] block text-[11px]">
-                        {language === 'fr' ? 'Appartements' : 'Apartments'}
-                      </span>
-                      <span className="text-[10px] text-[#6B6B6B]">
-                        {propertyMix.apartments.count} {language === 'fr' ? 'biens' : 'units'} • {propertyMix.apartments.percentage}%
-                      </span>
-                    </div>
-                  </div>
-                  <span className="text-[11px] font-mono font-bold text-[#748C8C] bg-[#748C8C]/10 px-1.5 py-0.5 rounded">
-                    {propertyMix.apartments.avgYield}
-                  </span>
-                </div>
-
-                <div className="p-2.5 rounded-xl bg-white border border-[#171717]/5 flex items-center justify-between">
-                  <div className="flex items-center space-x-2">
-                    <span className="w-2.5 h-2.5 rounded-full bg-[#C9A227] shrink-0" />
-                    <div>
-                      <span className="font-semibold text-[#171717] block text-[11px]">
-                        {language === 'fr' ? 'Échoppes & Maisons' : 'Houses & Villas'}
-                      </span>
-                      <span className="text-[10px] text-[#6B6B6B]">
-                        {propertyMix.houses.count} {language === 'fr' ? 'biens' : 'units'} • {propertyMix.houses.percentage}%
-                      </span>
-                    </div>
-                  </div>
-                  <span className="text-[11px] font-mono font-bold text-[#C9A227] bg-[#C9A227]/10 px-1.5 py-0.5 rounded">
-                    {propertyMix.houses.avgYield}
-                  </span>
-                </div>
-
-                <div className="p-2.5 rounded-xl bg-white border border-[#171717]/5 flex items-center justify-between">
-                  <div className="flex items-center space-x-2">
-                    <span className="w-2.5 h-2.5 rounded-full bg-[#171717] shrink-0" />
-                    <div>
-                      <span className="font-semibold text-[#171717] block text-[11px]">
-                        {language === 'fr' ? 'Immeubles & Tertiaire' : 'Commercial & Blocks'}
-                      </span>
-                      <span className="text-[10px] text-[#6B6B6B]">
-                        {propertyMix.commercial.count} {language === 'fr' ? 'biens' : 'units'} • {propertyMix.commercial.percentage}%
-                      </span>
-                    </div>
-                  </div>
-                  <span className="text-[11px] font-mono font-bold text-[#171717] bg-[#171717]/10 px-1.5 py-0.5 rounded">
-                    {propertyMix.commercial.avgYield}
-                  </span>
-                </div>
-              </div>
-            </div>
-
-            {/* 4 Performance Indicators Strip */}
-            <div className="grid grid-cols-2 sm:grid-cols-4 gap-2 pt-2 border-t border-[#171717]/10 text-center">
-              <div className="p-2 rounded-xl bg-white border border-[#171717]/5">
-                <span className="text-[9px] uppercase tracking-wider text-[#6B6B6B] font-bold block">
-                  {language === 'fr' ? 'Vacance Locative' : 'Vacancy Rate'}
-                </span>
-                <span className="text-xs font-mono font-bold text-emerald-600 block mt-0.5">
-                  {financialMetrics.occupancyRate ? (100 - parseFloat(financialMetrics.occupancyRate)).toFixed(1) + '%' : '1.2%'}
-                </span>
-                <span className="text-[9px] text-[#6B6B6B] block">
-                  {language === 'fr' ? 'Forte tension' : 'High demand'}
-                </span>
-              </div>
-
-              <div className="p-2 rounded-xl bg-white border border-[#171717]/5">
-                <span className="text-[9px] uppercase tracking-wider text-[#6B6B6B] font-bold block">
-                  {language === 'fr' ? 'Loyer Moyen' : 'Avg Rent / m²'}
-                </span>
-                <span className="text-xs font-mono font-bold text-[#171717] block mt-0.5">
-                  {financialMetrics.avgRentPerSqm}
-                </span>
-                <span className="text-[9px] text-[#6B6B6B] block">
-                  {language === 'fr' ? 'Bordeaux intra-muros' : 'Inner Bordeaux'}
-                </span>
-              </div>
-
-              <div className="p-2 rounded-xl bg-white border border-[#171717]/5">
-                <span className="text-[9px] uppercase tracking-wider text-[#6B6B6B] font-bold block">
-                  {language === 'fr' ? 'Délai Relocation' : 'Turnaround Time'}
-                </span>
-                <span className="text-xs font-mono font-bold text-[#748C8C] block mt-0.5">
-                  {financialMetrics.avgVacancyDays}
-                </span>
-                <span className="text-[9px] text-[#6B6B6B] block">
-                  {language === 'fr' ? 'Mise en location rapide' : 'Fast leasing'}
-                </span>
-              </div>
-
-              <div className="p-2 rounded-xl bg-white border border-[#171717]/5">
-                <span className="text-[9px] uppercase tracking-wider text-[#6B6B6B] font-bold block">
-                  {language === 'fr' ? 'Couverture GLI' : 'Rent Insurance'}
-                </span>
-                <span className="text-xs font-mono font-bold text-emerald-600 block mt-0.5">
-                  {financialMetrics.gliCoverage}
-                </span>
-                <span className="text-[9px] text-[#6B6B6B] block">
-                  {language === 'fr' ? 'Loyers 100% sécurisés' : 'Guaranteed rent'}
-                </span>
-              </div>
-            </div>
-          </div>
 
         </div>
 
