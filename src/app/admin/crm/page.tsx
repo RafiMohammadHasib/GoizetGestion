@@ -483,7 +483,7 @@ export default function AdminCRMPage() {
         <div className="py-24 flex flex-col items-center justify-center space-y-3">
           <Loader2 className="w-6 h-6 animate-spin text-[#748C8C]" />
           <span className="text-xs text-[#6B6B6B]">
-            {language === 'fr' ? 'Connexion au CRM Supabase...' : 'Connecting to Supabase CRM...'}
+            {language === 'fr' ? 'Chargement du Pipeline CRM...' : 'Loading Opportunity Pipeline...'}
           </span>
         </div>
       ) : (
