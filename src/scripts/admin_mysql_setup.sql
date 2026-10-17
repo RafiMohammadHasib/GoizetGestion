@@ -31,11 +31,11 @@ VALUES (
   'Super Admin',
   '/apple-touch-icon.png',
   1
-)
+) AS new_user
 ON DUPLICATE KEY UPDATE
-  `name` = VALUES(`name`),
-  `role` = VALUES(`role`),
-  `avatar` = VALUES(`avatar`),
+  `name` = new_user.`name`,
+  `role` = new_user.`role`,
+  `avatar` = new_user.`avatar`,
   `active` = 1;
 
 -- (Optionnel) Si votre table `admin_users` stocke également les colonnes de mot de passe :
@@ -144,32 +144,33 @@ INSERT INTO `agency_settings` (
   'GTM-GOIZET01',
   'GOIZET GESTION | Immobilier & Gestion Locative à Bordeaux',
   'Maison de conseil immobilier et gestion locative sur-mesure à Bordeaux (Chartrons, Caudéran, Triangle d\'Or). Mandat transparent et rendement optimisé.'
-) ON DUPLICATE KEY UPDATE
-  `site_name` = VALUES(`site_name`),
-  `tagline` = VALUES(`tagline`),
-  `phone` = VALUES(`phone`),
-  `phone_edgar` = VALUES(`phone_edgar`),
-  `email` = VALUES(`email`),
-  `lead_email` = VALUES(`lead_email`),
-  `address` = VALUES(`address`),
-  `opening_hours` = VALUES(`opening_hours`),
-  `siret` = VALUES(`siret`),
-  `license_number` = VALUES(`license_number`),
-  `financial_guarantee` = VALUES(`financial_guarantee`),
-  `management_fee_rate` = VALUES(`management_fee_rate`),
-  `default_deposit_months` = VALUES(`default_deposit_months`),
-  `gli_insurance_rate` = VALUES(`gli_insurance_rate`),
-  `auto_reply_tenant` = VALUES(`auto_reply_tenant`),
-  `auto_reply_owner` = VALUES(`auto_reply_owner`),
-  `maintenance_mode` = VALUES(`maintenance_mode`),
-  `session_timeout_hours` = VALUES(`session_timeout_hours`),
-  `rate_limiting_strict` = VALUES(`rate_limiting_strict`),
-  `instagram_url` = VALUES(`instagram_url`),
-  `linkedin_url` = VALUES(`linkedin_url`),
-  `ga_measurement_id` = VALUES(`ga_measurement_id`),
-  `gtm_container_id` = VALUES(`gtm_container_id`),
-  `default_seo_title` = VALUES(`default_seo_title`),
-  `default_meta_description` = VALUES(`default_meta_description`),
+) AS new_settings
+ON DUPLICATE KEY UPDATE
+  `site_name` = new_settings.`site_name`,
+  `tagline` = new_settings.`tagline`,
+  `phone` = new_settings.`phone`,
+  `phone_edgar` = new_settings.`phone_edgar`,
+  `email` = new_settings.`email`,
+  `lead_email` = new_settings.`lead_email`,
+  `address` = new_settings.`address`,
+  `opening_hours` = new_settings.`opening_hours`,
+  `siret` = new_settings.`siret`,
+  `license_number` = new_settings.`license_number`,
+  `financial_guarantee` = new_settings.`financial_guarantee`,
+  `management_fee_rate` = new_settings.`management_fee_rate`,
+  `default_deposit_months` = new_settings.`default_deposit_months`,
+  `gli_insurance_rate` = new_settings.`gli_insurance_rate`,
+  `auto_reply_tenant` = new_settings.`auto_reply_tenant`,
+  `auto_reply_owner` = new_settings.`auto_reply_owner`,
+  `maintenance_mode` = new_settings.`maintenance_mode`,
+  `session_timeout_hours` = new_settings.`session_timeout_hours`,
+  `rate_limiting_strict` = new_settings.`rate_limiting_strict`,
+  `instagram_url` = new_settings.`instagram_url`,
+  `linkedin_url` = new_settings.`linkedin_url`,
+  `ga_measurement_id` = new_settings.`ga_measurement_id`,
+  `gtm_container_id` = new_settings.`gtm_container_id`,
+  `default_seo_title` = new_settings.`default_seo_title`,
+  `default_meta_description` = new_settings.`default_meta_description`,
   `updated_at` = CURRENT_TIMESTAMP;
 
 
