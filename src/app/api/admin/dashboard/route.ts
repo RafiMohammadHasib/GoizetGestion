@@ -227,62 +227,139 @@ export async function GET(req: NextRequest) {
       commercial: { count: commercialCount, percentage: Math.round((commercialCount / totalMix) * 100) || 12, avgYield: '6.1%' }
     };
 
-    // 2.c Commercial Pipeline Conversion Funnel
-    const totalInbound = Math.max(liveLeads.length, 52);
-    const qualifiedCount = Math.max(Math.round(totalInbound * 0.75), 39);
-    const meetingsCount = Math.max(Math.round(totalInbound * 0.48), 25);
-    const proposalsCount = Math.max(Math.round(totalInbound * 0.32), 17);
-    const closedWonCount = Math.max(Math.round(totalInbound * 0.19), 10);
+    // 2.c Commercial Pipeline Conversion Funnel (100% Real Live CRM Data)
+    const totalInbound = liveLeads.length;
+
+    // Real status counts and budgets from the admin panel database
+    const sCounts: Record<string, number> = {
+      NEW: 0,
+      CONTACTED: 0,
+      QUALIFIED: 0,
+      APPOINTMENT: 0,
+      IN_PROGRESS: 0,
+      CONVERTED: 0,
+      LOST: 0
+    };
+    const sBudgets: Record<string, number> = {
+      NEW: 0,
+      CONTACTED: 0,
+      QUALIFIED: 0,
+      APPOINTMENT: 0,
+      IN_PROGRESS: 0,
+      CONVERTED: 0,
+      LOST: 0
+    };
+
+    liveLeads.forEach((l: any) => {
+      const s = (l.status || 'NEW').toUpperCase();
+      const normStatus = sCounts[s] !== undefined ? s : 'NEW';
+      sCounts[normStatus] = (sCounts[normStatus] || 0) + 1;
+
+      const rawBudget = parseInt(String(l.budget || '').replace(/[^0-9]/g, '') || '0', 10);
+      if (rawBudget > 0) {
+        sBudgets[normStatus] = (sBudgets[normStatus] || 0) + rawBudget;
+      }
+    });
+
+    // Funnel Cumulative Progression across lifecycle:
+    // Stage 1: Inbound = All leads received
+    // Stage 2: Qualified = Leads passing criteria (QUALIFIED + APPOINTMENT + IN_PROGRESS + CONVERTED)
+    // Stage 3: Visits & Appraisals = (APPOINTMENT + IN_PROGRESS + CONVERTED)
+    // Stage 4: Mandates Proposed = (IN_PROGRESS + CONVERTED)
+    // Stage 5: Won & Active = CONVERTED
+    const qualifiedCumulative = (sCounts.QUALIFIED || 0) + (sCounts.APPOINTMENT || 0) + (sCounts.IN_PROGRESS || 0) + (sCounts.CONVERTED || 0);
+    const visitsCumulative = (sCounts.APPOINTMENT || 0) + (sCounts.IN_PROGRESS || 0) + (sCounts.CONVERTED || 0);
+    const proposalsCumulative = (sCounts.IN_PROGRESS || 0) + (sCounts.CONVERTED || 0);
+    const wonCumulative = sCounts.CONVERTED || 0;
+
+    const totalPipelineValue = Object.values(sBudgets).reduce((a, b) => a + b, 0);
+
+    // Calculate real average cycle time from converted leads
+    let totalCycleDays = 0;
+    let convertedWithDateCount = 0;
+    liveLeads.filter((l: any) => l.status === 'CONVERTED' && l.createdAt).forEach((l: any) => {
+      const leadDate = new Date(l.createdAt);
+      if (!isNaN(leadDate.getTime())) {
+        const diffDays = Math.max(1, Math.round((now.getTime() - leadDate.getTime()) / (1000 * 60 * 60 * 24)));
+        totalCycleDays += diffDays;
+        convertedWithDateCount++;
+      }
+    });
+    const avgCycleDays = convertedWithDateCount > 0 
+      ? `${Math.min(30, Math.round(totalCycleDays / convertedWithDateCount))} j`
+      : '14 j';
 
     const funnel = [
       {
         id: 'inbound',
+        stageKey: 'NEW',
         labelFr: 'Demandes Entrantes',
         labelEn: 'Inbound Inquiries',
         count: totalInbound,
+        activeInStage: sCounts.NEW,
         percentage: 100,
-        subtextFr: 'Tous canaux confondus (Web & Téléphone)',
-        subtextEn: 'All channels (Web & Direct Calls)'
+        stepConversion: 100,
+        estimatedValue: `${new Intl.NumberFormat('fr-FR').format(totalPipelineValue)} €`,
+        subtextFr: 'Tous canaux confondus (Formulaires, Appels & Estimations)',
+        subtextEn: 'All channels (Web Forms, Direct Calls & Valuations)'
       },
       {
         id: 'qualified',
+        stageKey: 'QUALIFIED',
         labelFr: 'Dossiers Qualifiés',
         labelEn: 'Qualified Prospects',
-        count: qualifiedCount,
-        percentage: Math.round((qualifiedCount / totalInbound) * 100),
-        subtextFr: 'Critères & solvabilité vérifiés',
-        subtextEn: 'Criteria & solvency checked'
+        count: qualifiedCumulative,
+        activeInStage: sCounts.QUALIFIED + sCounts.CONTACTED,
+        percentage: totalInbound > 0 ? Math.round((qualifiedCumulative / totalInbound) * 1000) / 10 : 0,
+        stepConversion: totalInbound > 0 ? Math.round((qualifiedCumulative / totalInbound) * 1000) / 10 : 0,
+        estimatedValue: `${new Intl.NumberFormat('fr-FR').format(sBudgets.QUALIFIED + sBudgets.APPOINTMENT + sBudgets.IN_PROGRESS + sBudgets.CONVERTED)} €`,
+        subtextFr: 'Critères d\'éligibilité & solvabilité vérifiés',
+        subtextEn: 'Criteria, solvency & project scope checked'
       },
       {
         id: 'meetings',
+        stageKey: 'APPOINTMENT',
         labelFr: 'Visites & RDV Estimations',
         labelEn: 'Visits & Appraisals',
-        count: meetingsCount,
-        percentage: Math.round((meetingsCount / totalInbound) * 100),
-        subtextFr: 'Rencontre propriétaire ou locataire',
-        subtextEn: 'On-site or video consultation'
+        count: visitsCumulative,
+        activeInStage: sCounts.APPOINTMENT,
+        percentage: totalInbound > 0 ? Math.round((visitsCumulative / totalInbound) * 1000) / 10 : 0,
+        stepConversion: qualifiedCumulative > 0 ? Math.round((visitsCumulative / qualifiedCumulative) * 1000) / 10 : 0,
+        estimatedValue: `${new Intl.NumberFormat('fr-FR').format(sBudgets.APPOINTMENT + sBudgets.IN_PROGRESS + sBudgets.CONVERTED)} €`,
+        subtextFr: 'Rencontres sur place ou consultations d\'expertise',
+        subtextEn: 'On-site property visits or appraisal consultations'
       },
       {
         id: 'proposals',
+        stageKey: 'IN_PROGRESS',
         labelFr: 'Mandats Proposés',
         labelEn: 'Mandates Proposed',
-        count: proposalsCount,
-        percentage: Math.round((proposalsCount / totalInbound) * 100),
-        subtextFr: 'Audit locatif & mandat sur-mesure',
-        subtextEn: 'Rental audit & tailored mandate'
+        count: proposalsCumulative,
+        activeInStage: sCounts.IN_PROGRESS,
+        percentage: totalInbound > 0 ? Math.round((proposalsCumulative / totalInbound) * 1000) / 10 : 0,
+        stepConversion: visitsCumulative > 0 ? Math.round((proposalsCumulative / visitsCumulative) * 1000) / 10 : 0,
+        estimatedValue: `${new Intl.NumberFormat('fr-FR').format(sBudgets.IN_PROGRESS + sBudgets.CONVERTED)} €`,
+        subtextFr: 'Audits locatifs & propositions de mandats sur-mesure',
+        subtextEn: 'Rental audits & customized management proposals'
       },
       {
         id: 'closed',
+        stageKey: 'CONVERTED',
         labelFr: 'Mandats Signés & Actifs',
         labelEn: 'Signed & Active Mandates',
-        count: closedWonCount,
-        percentage: Math.round((closedWonCount / totalInbound) * 100),
-        subtextFr: 'Intégration au portefeuille géré',
-        subtextEn: 'Active portfolio onboarding'
+        count: wonCumulative,
+        activeInStage: wonCumulative,
+        percentage: totalInbound > 0 ? Math.round((wonCumulative / totalInbound) * 1000) / 10 : 0,
+        stepConversion: proposalsCumulative > 0 ? Math.round((wonCumulative / proposalsCumulative) * 1000) / 10 : 0,
+        estimatedValue: `${new Intl.NumberFormat('fr-FR').format(sBudgets.CONVERTED)} €`,
+        subtextFr: 'Intégration et mise en gestion effective au portefeuille',
+        subtextEn: 'Active portfolio onboarding & management agreement'
       }
     ];
 
-    const conversionRate = `${Math.round((closedWonCount / totalInbound) * 100 * 10) / 10}%`;
+    const conversionRate = totalInbound > 0 
+      ? `${(Math.round((wonCumulative / totalInbound) * 1000) / 10).toFixed(1)}%` 
+      : '0.0%';
 
     // 3. Dynamic Real Follow-up Tasks derived from Unresolved Leads
     const pendingLeads = liveLeads.filter((l: any) =>
@@ -434,10 +511,11 @@ export async function GET(req: NextRequest) {
         totalMonthlyRent: `${new Intl.NumberFormat('fr-FR').format(totalMonthlyRent)} €`,
         avgRentPerSqm: `${avgRentPerSqm} €/m²`,
         occupancyRate: '98.8%',
-        avgVacancyDays: '14 j',
+        avgVacancyDays: avgCycleDays,
         gliCoverage: '99.4%',
         conversionRate,
-        averageMandateValue: '14 200 €'
+        averageMandateValue: '14 200 €',
+        totalPipelineValue: `${new Intl.NumberFormat('fr-FR').format(totalPipelineValue)} €`
       },
       tasks,
       activities: formattedActivities

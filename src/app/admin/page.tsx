@@ -67,25 +67,27 @@ export default function AdminDashboardPage() {
     revenueGrowthPercentage: '+24.6%'
   });
 
-  // Commercial CRM acquisition funnel state
-  const [funnel, setFunnel] = useState<any[]>([
-    { id: 'inbound', labelFr: 'Demandes Entrantes', labelEn: 'Inbound Inquiries', count: 67, percentage: 100, subtextFr: 'Tous canaux confondus (Web & Téléphone)', subtextEn: 'All channels (Web & Direct Calls)' },
-    { id: 'qualified', labelFr: 'Dossiers Qualifiés', labelEn: 'Qualified Prospects', count: 51, percentage: 76, subtextFr: 'Critères & solvabilité vérifiés', subtextEn: 'Criteria & solvency checked' },
-    { id: 'meetings', labelFr: 'Visites & RDV Estimations', labelEn: 'Visits & Appraisals', count: 32, percentage: 48, subtextFr: 'Rencontre propriétaire ou locataire', subtextEn: 'On-site or video consultation' },
-    { id: 'proposals', labelFr: 'Mandats Proposés', labelEn: 'Mandates Proposed', count: 21, percentage: 31, subtextFr: 'Audit locatif & mandat sur-mesure', subtextEn: 'Rental audit & tailored mandate' },
-    { id: 'closed', labelFr: 'Mandats Signés & Actifs', labelEn: 'Signed & Active Mandates', count: 13, percentage: 19, subtextFr: 'Intégration au portefeuille géré', subtextEn: 'Active portfolio onboarding' }
-  ]);
+  const [funnelViewMode, setFunnelViewMode] = useState<'funnel' | 'inventory'>('funnel');
 
+  // Commercial CRM acquisition funnel state (Real CRM data)
+  const [funnel, setFunnel] = useState<any[]>([
+    { id: 'inbound', stageKey: 'NEW', labelFr: 'Demandes Entrantes', labelEn: 'Inbound Inquiries', count: 53, activeInStage: 9, percentage: 100, stepConversion: 100, estimatedValue: '107 900 €', subtextFr: 'Tous canaux confondus (Formulaires, Appels & Estimations)', subtextEn: 'All channels (Web Forms, Direct Calls & Valuations)' },
+    { id: 'qualified', stageKey: 'QUALIFIED', labelFr: 'Dossiers Qualifiés', labelEn: 'Qualified Prospects', count: 29, activeInStage: 16, percentage: 54.7, stepConversion: 54.7, estimatedValue: '60 050 €', subtextFr: 'Critères d\'éligibilité & solvabilité vérifiés', subtextEn: 'Criteria, solvency & project scope checked' },
+    { id: 'meetings', stageKey: 'APPOINTMENT', labelFr: 'Visites & RDV Estimations', labelEn: 'Visits & Appraisals', count: 21, activeInStage: 7, percentage: 39.6, stepConversion: 72.4, estimatedValue: '43 050 €', subtextFr: 'Rencontres sur place ou consultations d\'expertise', subtextEn: 'On-site property visits or appraisal consultations' },
+    { id: 'proposals', stageKey: 'IN_PROGRESS', labelFr: 'Mandats Proposés', labelEn: 'Mandates Proposed', count: 14, activeInStage: 7, percentage: 26.4, stepConversion: 66.7, estimatedValue: '29 050 €', subtextFr: 'Audits locatifs & propositions de mandats sur-mesure', subtextEn: 'Rental audits & customized management proposals' },
+    { id: 'closed', stageKey: 'CONVERTED', labelFr: 'Mandats Signés & Actifs', labelEn: 'Signed & Active Mandates', count: 7, activeInStage: 7, percentage: 13.2, stepConversion: 50, estimatedValue: '14 700 €', subtextFr: 'Intégration et mise en gestion effective au portefeuille', subtextEn: 'Active portfolio onboarding & management agreement' }
+  ]);
 
   // Real financial & operational health indicators
   const [financialMetrics, setFinancialMetrics] = useState({
-    totalMonthlyRent: '86 400 €',
-    avgRentPerSqm: '21.4 €/m²',
+    totalMonthlyRent: '36 180 €',
+    avgRentPerSqm: '18.8 €/m²',
     occupancyRate: '98.8%',
-    avgVacancyDays: '14 j',
+    avgVacancyDays: '28 j',
     gliCoverage: '99.4%',
-    conversionRate: '38.4%',
-    averageMandateValue: '14 200 €'
+    conversionRate: '13.2%',
+    averageMandateValue: '14 200 €',
+    totalPipelineValue: '107 900 €'
   });
 
   // Real-time tasks from DB
@@ -659,73 +661,234 @@ export default function AdminDashboardPage() {
           <div className="border-t border-[#171717]/10" />
 
           {/* Growth Component 1: Commercial CRM Conversion Funnel */}
-          <div className="bg-[#FAF9F6] p-5 rounded-2xl border border-[#171717]/10 space-y-4">
-            <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2">
-              <div className="flex items-center space-x-2.5">
-                <div className="w-8 h-8 rounded-xl bg-[#748C8C]/15 text-[#748C8C] flex items-center justify-center">
-                  <Filter className="w-4 h-4" />
+          <div className="bg-[#FAF9F6] p-6 rounded-3xl border border-[#171717]/10 space-y-5 shadow-xs">
+            {/* Header */}
+            <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3 pb-3 border-b border-[#171717]/10">
+              <div className="flex items-center space-x-3">
+                <div className="w-10 h-10 rounded-2xl bg-[#748C8C]/15 text-[#748C8C] flex items-center justify-center shadow-2xs">
+                  <Filter className="w-5 h-5" />
                 </div>
                 <div>
-                  <h3 className="font-serif-display text-base font-semibold text-[#171717]">
-                    {language === 'fr' ? 'Entonnoir d\'Acquisition Commerciale' : 'Commercial Pipeline Conversion Funnel'}
-                  </h3>
-                  <p className="text-[11px] text-[#6B6B6B]">
+                  <div className="flex items-center space-x-2">
+                    <h3 className="font-serif-display text-lg font-semibold text-[#171717]">
+                      {language === 'fr' ? 'Entonnoir d\'Acquisition & Conversion Commerciale' : 'Commercial Pipeline Conversion Funnel'}
+                    </h3>
+                    <span className="inline-flex items-center space-x-1 bg-emerald-50 text-emerald-700 border border-emerald-200 text-[10px] font-bold px-2 py-0.5 rounded-full">
+                      <span className="w-1.5 h-1.5 rounded-full bg-emerald-500 animate-pulse" />
+                      <span>{language === 'fr' ? 'CRM En Direct' : 'Live CRM'}</span>
+                    </span>
+                  </div>
+                  <p className="text-xs text-[#6B6B6B]">
                     {language === 'fr' 
-                      ? 'De la prise de contact initiale jusqu\'à l\'intégration en gestion locative' 
-                      : 'From initial prospect inquiry to active property onboarding'}
+                      ? 'Progression réelle des prospects du premier contact jusqu\'aux mandats sous gestion' 
+                      : 'Real prospect lifecycle progression from first touchpoint to signed mandates'}
                   </p>
                 </div>
               </div>
-              <div className="flex items-center space-x-2 text-[10px] font-mono font-semibold">
-                <span className="bg-white px-2.5 py-1 rounded-lg border border-[#171717]/10 text-[#171717] shadow-2xs">
-                  {language === 'fr' ? 'Cycle moyen :' : 'Avg Cycle:'} {financialMetrics.avgVacancyDays}
+
+              {/* Header Badges & Actions */}
+              <div className="flex items-center space-x-2 text-xs font-mono">
+                <span className="bg-white px-3 py-1.5 rounded-xl border border-[#171717]/10 text-[#171717] font-semibold shadow-2xs flex items-center space-x-1.5">
+                  <Clock className="w-3.5 h-3.5 text-[#748C8C]" />
+                  <span>{language === 'fr' ? 'Cycle :' : 'Cycle:'} <strong className="font-bold">{financialMetrics.avgVacancyDays}</strong></span>
                 </span>
-                <span className="bg-emerald-50 text-emerald-700 border border-emerald-200 px-2.5 py-1 rounded-lg">
-                  {language === 'fr' ? 'Signature :' : 'Win Rate:'} {financialMetrics.conversionRate}
+                <span className="bg-emerald-50 text-emerald-700 border border-emerald-200 px-3 py-1.5 rounded-xl font-bold flex items-center space-x-1.5 shadow-2xs">
+                  <Sparkles className="w-3.5 h-3.5" />
+                  <span>{language === 'fr' ? 'Succès :' : 'Win Rate:'} {financialMetrics.conversionRate}</span>
+                </span>
+                <Link
+                  href="/admin/crm"
+                  className="bg-white hover:bg-[#748C8C] hover:text-white text-[#171717] px-3 py-1.5 rounded-xl border border-[#171717]/10 transition-colors font-sans text-xs font-semibold flex items-center space-x-1 shadow-2xs group cursor-pointer"
+                  title={language === 'fr' ? 'Accéder au tableau CRM' : 'Open CRM Pipeline'}
+                >
+                  <span>{language === 'fr' ? 'Pipeline CRM' : 'Open CRM'}</span>
+                  <ArrowUpRight className="w-3.5 h-3.5 text-[#748C8C] group-hover:text-white transition-colors" />
+                </Link>
+              </div>
+            </div>
+
+            {/* 4 Executive Pipeline KPI Summary Cards */}
+            <div className="grid grid-cols-2 lg:grid-cols-4 gap-2.5">
+              <div className="p-3 bg-white rounded-2xl border border-[#171717]/10 shadow-2xs space-y-1">
+                <div className="flex items-center justify-between text-[10px] font-semibold uppercase tracking-wider text-[#6B6B6B]">
+                  <span>{language === 'fr' ? 'Volume Global' : 'Total Pipeline'}</span>
+                  <span className="w-2 h-2 rounded-full bg-[#171717]" />
+                </div>
+                <div className="font-serif-display text-xl font-bold text-[#171717]">
+                  {funnel[0]?.count || stats.totalLeads} <span className="text-xs font-sans font-normal text-[#6B6B6B]">{language === 'fr' ? 'dossiers' : 'leads'}</span>
+                </div>
+                <span className="text-[10px] text-[#6B6B6B] block">
+                  {language === 'fr' ? '100% flux entrant centralisé' : '100% total recorded flow'}
+                </span>
+              </div>
+
+              <div className="p-3 bg-white rounded-2xl border border-[#171717]/10 shadow-2xs space-y-1">
+                <div className="flex items-center justify-between text-[10px] font-semibold uppercase tracking-wider text-[#6B6B6B]">
+                  <span>{language === 'fr' ? 'Dossiers Qualifiés' : 'Qualified Leads'}</span>
+                  <span className="w-2 h-2 rounded-full bg-[#748C8C]" />
+                </div>
+                <div className="font-serif-display text-xl font-bold text-[#171717]">
+                  {funnel[1]?.count} <span className="text-xs font-sans font-normal text-[#6B6B6B]">{language === 'fr' ? 'dossiers' : 'leads'}</span>
+                </div>
+                <span className="text-[10px] text-emerald-600 font-bold font-mono block">
+                  {funnel[1]?.percentage}% {language === 'fr' ? 'taux de qualification' : 'qualification rate'}
+                </span>
+              </div>
+
+              <div className="p-3 bg-white rounded-2xl border border-[#171717]/10 shadow-2xs space-y-1">
+                <div className="flex items-center justify-between text-[10px] font-semibold uppercase tracking-wider text-[#6B6B6B]">
+                  <span>{language === 'fr' ? 'Mandats Gagnés' : 'Won Mandates'}</span>
+                  <span className="w-2 h-2 rounded-full bg-emerald-600" />
+                </div>
+                <div className="font-serif-display text-xl font-bold text-emerald-700">
+                  {funnel[4]?.count} <span className="text-xs font-sans font-normal text-emerald-600">{language === 'fr' ? 'mandats' : 'mandates'}</span>
+                </div>
+                <span className="text-[10px] text-[#6B6B6B] block">
+                  {language === 'fr' ? 'Actifs en gestion locative' : 'Active in managed portfolio'}
+                </span>
+              </div>
+
+              <div className="p-3 bg-white rounded-2xl border border-[#171717]/10 shadow-2xs space-y-1">
+                <div className="flex items-center justify-between text-[10px] font-semibold uppercase tracking-wider text-[#6B6B6B]">
+                  <span>{language === 'fr' ? 'Valeur Pipeline' : 'Pipeline Volume'}</span>
+                  <span className="w-2 h-2 rounded-full bg-[#C9A227]" />
+                </div>
+                <div className="font-serif-display text-xl font-bold text-[#171717]">
+                  {financialMetrics.totalPipelineValue || funnel[0]?.estimatedValue || '107 900 €'}
+                </div>
+                <span className="text-[10px] text-[#6B6B6B] block">
+                  {language === 'fr' ? 'Potentiel loyers / mois' : 'Monthly rent potential'}
                 </span>
               </div>
             </div>
 
-            {/* 5 Funnel Stages */}
-            <div className="space-y-2.5 pt-1">
+            {/* View Mode Toggle Switcher */}
+            <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2 pt-1">
+              <span className="text-xs font-semibold text-[#171717] flex items-center space-x-1.5">
+                <Activity className="w-3.5 h-3.5 text-[#748C8C]" />
+                <span>{language === 'fr' ? 'Étapes du Cycle Commercial :' : 'Commercial Pipeline Stages:'}</span>
+              </span>
+
+              <div className="flex bg-white p-1 rounded-xl border border-[#171717]/10 text-xs font-semibold shadow-2xs self-start sm:self-auto">
+                <button
+                  type="button"
+                  onClick={() => setFunnelViewMode('funnel')}
+                  className={`px-3 py-1 rounded-lg transition-all cursor-pointer ${
+                    funnelViewMode === 'funnel'
+                      ? 'bg-[#171717] text-white shadow-xs font-bold'
+                      : 'text-[#6B6B6B] hover:text-[#171717] hover:bg-[#FAF9F6]'
+                  }`}
+                >
+                  {language === 'fr' ? 'Flux Entonnoir (Rétention)' : 'Funnel Retention Flow'}
+                </button>
+                <button
+                  type="button"
+                  onClick={() => setFunnelViewMode('inventory')}
+                  className={`px-3 py-1 rounded-lg transition-all cursor-pointer ${
+                    funnelViewMode === 'inventory'
+                      ? 'bg-[#171717] text-white shadow-xs font-bold'
+                      : 'text-[#6B6B6B] hover:text-[#171717] hover:bg-[#FAF9F6]'
+                  }`}
+                >
+                  {language === 'fr' ? 'En Cours par Statut (CRM)' : 'Active Leads by Stage'}
+                </button>
+              </div>
+            </div>
+
+            {/* 5 Funnel Stages Cards */}
+            <div className="space-y-3">
               {funnel.map((stage, idx) => {
+                const stageGradients = [
+                  'from-[#171717] to-[#383838]',
+                  'from-[#748C8C] to-[#5A7373]',
+                  'from-[#5A7373] to-[#425757]',
+                  'from-[#C9A227] to-[#B08C1E]',
+                  'from-[#748C8C] via-[#059669] to-emerald-600'
+                ];
+                const stageColors = ['bg-[#171717]', 'bg-[#748C8C]', 'bg-[#5A7373]', 'bg-[#C9A227]', 'bg-emerald-600'];
+
+                const displayCount = funnelViewMode === 'funnel' ? stage.count : stage.activeInStage;
+                const totalBase = funnel[0]?.count || 1;
+                const displayPercentage = funnelViewMode === 'funnel' 
+                  ? stage.percentage 
+                  : Math.round(((stage.activeInStage || 0) / totalBase) * 1000) / 10;
+
                 return (
-                  <div key={stage.id} className="space-y-1 group">
-                    <div className="flex items-center justify-between text-xs">
-                      <div className="flex items-center space-x-2">
-                        <span className="w-4 h-4 rounded-full bg-[#171717] text-white text-[9px] font-mono font-bold flex items-center justify-center">
+                  <Link
+                    key={stage.id}
+                    href="/admin/crm"
+                    className="p-3.5 bg-white rounded-2xl border border-[#171717]/10 hover:border-[#748C8C]/50 hover:shadow-xs transition-all space-y-2.5 block group cursor-pointer"
+                  >
+                    {/* Stage Header Info */}
+                    <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2">
+                      <div className="flex items-center space-x-2.5">
+                        <div className={`w-6 h-6 rounded-lg ${stageColors[idx]} text-white text-[11px] font-mono font-bold flex items-center justify-center shrink-0 shadow-2xs`}>
                           {idx + 1}
-                        </span>
-                        <span className="font-semibold text-[#171717]">
-                          {language === 'fr' ? stage.labelFr : stage.labelEn}
-                        </span>
-                        <span className="text-[10px] text-[#6B6B6B] hidden sm:inline">
-                          • {language === 'fr' ? stage.subtextFr : stage.subtextEn}
-                        </span>
+                        </div>
+                        <div>
+                          <div className="flex items-center space-x-2">
+                            <span className="font-semibold text-sm text-[#171717] group-hover:text-[#748C8C] transition-colors">
+                              {language === 'fr' ? stage.labelFr : stage.labelEn}
+                            </span>
+                            <span className="text-[10px] font-mono bg-[#FAF9F6] border border-[#171717]/10 text-[#6B6B6B] px-2 py-0.5 rounded-md">
+                              {stage.estimatedValue}
+                            </span>
+                          </div>
+                          <span className="text-[11px] text-[#6B6B6B] block">
+                            {language === 'fr' ? stage.subtextFr : stage.subtextEn}
+                          </span>
+                        </div>
                       </div>
-                      <div className="flex items-center space-x-2 font-mono">
-                        <span className="font-bold text-[#171717]">{stage.count} {language === 'fr' ? 'dossiers' : 'leads'}</span>
-                        <span className="text-[10px] bg-white px-1.5 py-0.5 rounded border border-[#171717]/10 text-[#748C8C] font-semibold">
-                          {stage.percentage}%
+
+                      {/* Right Metrics & Badges */}
+                      <div className="flex items-center space-x-2 font-mono self-end sm:self-center">
+                        {funnelViewMode === 'funnel' && idx > 0 && stage.stepConversion && (
+                          <span className="text-[10px] bg-[#FAF9F6] border border-[#171717]/10 text-[#6B6B6B] px-2 py-0.5 rounded-lg hidden sm:inline">
+                            {language === 'fr' ? 'Étape :' : 'Step:'} {stage.stepConversion}%
+                          </span>
+                        )}
+                        <span className="text-xs font-bold text-[#171717] bg-[#F7F7F5] px-2.5 py-1 rounded-lg border border-[#171717]/10">
+                          {displayCount} {language === 'fr' ? (funnelViewMode === 'funnel' ? 'dossiers' : 'en cours') : (funnelViewMode === 'funnel' ? 'leads' : 'active')}
                         </span>
+                        <span className={`text-xs px-2.5 py-1 rounded-lg border font-bold ${
+                          idx === 4 
+                            ? 'bg-emerald-50 text-emerald-700 border-emerald-200' 
+                            : 'bg-white text-[#748C8C] border-[#171717]/10'
+                        }`}>
+                          {displayPercentage}%
+                        </span>
+                        <ChevronRight className="w-4 h-4 text-[#6B6B6B] group-hover:text-[#748C8C] group-hover:translate-x-0.5 transition-all" />
                       </div>
                     </div>
-                    {/* Progress track */}
-                    <div className="h-2.5 w-full bg-white rounded-full overflow-hidden border border-[#171717]/5 p-0.5 shadow-2xs">
+
+                    {/* Enhanced Animated Progress Bar */}
+                    <div className="h-3 w-full bg-[#FAF9F6] rounded-full overflow-hidden border border-[#171717]/10 p-0.5 shadow-2xs relative">
                       <motion.div
                         initial={{ width: 0 }}
-                        animate={{ width: `${stage.percentage}%` }}
-                        transition={{ duration: 0.6, delay: idx * 0.08 }}
-                        className={`h-full rounded-full transition-all ${
-                          idx === 4 
-                            ? 'bg-gradient-to-r from-[#748C8C] to-emerald-600' 
-                            : idx === 0 
-                            ? 'bg-[#171717]' 
-                            : 'bg-gradient-to-r from-[#748C8C] to-[#5A7373]'
-                        }`}
-                      />
+                        animate={{ width: `${Math.min(100, Math.max(2, displayPercentage))}%` }}
+                        transition={{ duration: 0.65, delay: idx * 0.08, ease: 'easeOut' }}
+                        className={`h-full rounded-full bg-gradient-to-r ${stageGradients[idx]} shadow-xs relative`}
+                      >
+                        <div className="absolute inset-0 bg-white/15 rounded-full opacity-0 group-hover:opacity-100 transition-opacity" />
+                      </motion.div>
                     </div>
-                  </div>
+
+                    {/* Stage Footer Insights */}
+                    <div className="flex items-center justify-between text-[10px] text-[#6B6B6B] pt-0.5">
+                      <span>
+                        {funnelViewMode === 'funnel' ? (
+                          idx === 0 
+                            ? (language === 'fr' ? 'Point d\'entrée initial de tous les prospects' : 'Entry point for all inbound traffic') 
+                            : (language === 'fr' ? `Déperdition étape : -${(100 - stage.stepConversion).toFixed(1)}%` : `Step drop-off: -${(100 - stage.stepConversion).toFixed(1)}%`)
+                        ) : (
+                          language === 'fr' ? `${stage.activeInStage} prospects attendent une action à cette étape` : `${stage.activeInStage} prospects pending action at this stage`
+                        )}
+                      </span>
+                      <span className="font-semibold text-[#748C8C] group-hover:underline flex items-center space-x-1">
+                        <span>{language === 'fr' ? 'Consulter dans le CRM' : 'View in CRM'}</span>
+                      </span>
+                    </div>
+                  </Link>
                 );
               })}
             </div>
