@@ -11,9 +11,8 @@ import { motion, AnimatePresence } from 'framer-motion';
 export default function AdminLoginPage() {
   const router = useRouter();
 
-  // Credentials requested by user
-  const [email, setEmail] = useState('admin@gg.fr.com');
-  const [password, setPassword] = useState('@dmin@gg.fr');
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
   const [showPassword, setShowPassword] = useState(false);
   const [rememberMe, setRememberMe] = useState(true);
   const [loading, setLoading] = useState(false);
@@ -80,12 +79,6 @@ export default function AdminLoginPage() {
     } finally {
       setLoading(false);
     }
-  };
-
-  const handleQuickFill = () => {
-    setEmail('admin@gg.fr.com');
-    setPassword('@dmin@gg.fr');
-    setErrorMsg('');
   };
 
   return (
@@ -254,30 +247,6 @@ export default function AdminLoginPage() {
                 ? 'Veuillez saisir vos identifiants pour accéder au tableau de bord.'
                 : 'Please enter your credentials to access the management workspace.'}
             </p>
-          </div>
-
-          {/* Quick Credential Badge Helper */}
-          <div 
-            onClick={handleQuickFill}
-            className="group p-3.5 bg-[#FAF9F6] hover:bg-[#F0F5F5] border border-[#171512]/10 hover:border-[#748C8C]/50 rounded-2xl transition-all cursor-pointer flex items-center justify-between"
-            title={lang === 'fr' ? 'Cliquer pour insérer automatiquement les identifiants' : 'Click to autofill credentials'}
-          >
-            <div className="flex items-center space-x-2.5">
-              <div className="w-7 h-7 rounded-lg bg-[#748C8C]/15 text-[#748C8C] flex items-center justify-center shrink-0">
-                <KeyRound className="w-3.5 h-3.5" />
-              </div>
-              <div className="text-[11px] leading-tight">
-                <span className="font-semibold text-[#171512] block">
-                  {lang === 'fr' ? 'Identifiants configurés' : 'Configured Credentials'}
-                </span>
-                <span className="text-[#6F6255] font-mono text-[10px]">
-                  admin@gg.fr.com • @dmin@gg.fr
-                </span>
-              </div>
-            </div>
-            <span className="text-[10px] font-bold text-[#748C8C] group-hover:underline">
-              {lang === 'fr' ? 'Insérer' : 'Fill'}
-            </span>
           </div>
 
           {/* Feedback Alerts */}
@@ -460,26 +429,19 @@ export default function AdminLoginPage() {
                 <KeyRound className="w-6 h-6" />
               </div>
               <h3 className="font-serif-display text-xl font-semibold text-[#171512]">
-                {lang === 'fr' ? 'Réinitialisation du compte' : 'Password Recovery'}
+                {lang === 'fr' ? 'Assistance de Connexion' : 'Account Assistance'}
               </h3>
               <p className="text-xs text-[#6F6255] leading-relaxed">
                 {lang === 'fr'
-                  ? 'Pour des raisons de conformité et de sécurité des mandats, contactez directement la direction Goizet Gestion ou connectez-vous avec les identifiants Super Admin :'
-                  : 'For security and regulatory compliance, please contact Goizet Gestion administration or use your Super Admin credentials:'}
+                  ? 'Pour des raisons de sécurité et de conformité des mandats, la réinitialisation de mot de passe est gérée directement par la direction Goizet Gestion. Veuillez contacter votre administrateur ou l\'agence au +33 6 95 57 70 33.'
+                  : 'For security and regulatory compliance, credentials reset is managed directly by Goizet Gestion administration. Please contact your administrator or call the office at +33 6 95 57 70 33.'}
               </p>
-              <div className="bg-[#FAF9F6] p-3 rounded-xl border border-[#171512]/10 text-[11px] font-mono text-[#171512] space-y-1">
-                <div>Email : <span className="font-bold text-[#748C8C]">admin@gg.fr.com</span></div>
-                <div>Pass : <span className="font-bold text-[#748C8C]">@dmin@gg.fr</span></div>
-              </div>
               <button
                 type="button"
-                onClick={() => {
-                  handleQuickFill();
-                  setShowForgotModal(false);
-                }}
-                className="w-full bg-[#171512] hover:bg-[#2C2723] text-white py-2.5 rounded-xl text-xs font-semibold transition-colors"
+                onClick={() => setShowForgotModal(false)}
+                className="w-full bg-brand-gradient hover:bg-brand-gradient-hover text-white py-2.5 rounded-xl text-xs font-semibold transition-all shadow-brand cursor-pointer"
               >
-                {lang === 'fr' ? 'Appliquer ces identifiants' : 'Apply These Credentials'}
+                {lang === 'fr' ? 'Fermer' : 'Close'}
               </button>
             </motion.div>
           </div>

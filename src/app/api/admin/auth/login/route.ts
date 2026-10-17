@@ -25,15 +25,23 @@ export async function POST(req: NextRequest) {
     }
 
     const db = getDb();
-    const user = db.users.find((u: AdminUser) => u.email.toLowerCase() === cleanEmail && u.active);
+    const user = db.users.find((u: any) => u.email.toLowerCase() === cleanEmail && u.active);
 
-    // Primary admin credentials: admin@gg.fr.com / @dmin@gg.fr
-    // Legacy credentials retained for backward compatibility: goizetgestion@gmail.com / Meridia2026!
-    const isPrimaryValid = cleanEmail === 'admin@gg.fr.com' && cleanPassword === '@dmin@gg.fr';
-    const isLegacyValid = cleanEmail === 'goizetgestion@gmail.com' && (cleanPassword === 'Meridia2026!' || cleanPassword === 'admin123' || cleanPassword === '@dmin@gg.fr');
-    const isUserValid = user && (cleanPassword === '@dmin@gg.fr');
+    if (!user) {
+      return NextResponse.json({ error: 'Identifiants invalides.' }, { status: 401 });
+    }
 
-    if (!user || (!isPrimaryValid && !isLegacyValid && !isUserValid)) {
+    // Check custom password if set by user, otherwise fall back to configured default
+    let isPasswordValid = false;
+    if (user.password) {
+      isPasswordValid = cleanPassword === user.password;
+    } else {
+      const isPrimaryDefault = cleanEmail === 'admin@gg.fr.com' && cleanPassword === '@dmin@gg.fr';
+      const isLegacyDefault = cleanEmail === 'goizetgestion@gmail.com' && (cleanPassword === 'Meridia2026!' || cleanPassword === 'admin123' || cleanPassword === '@dmin@gg.fr');
+      isPasswordValid = isPrimaryDefault || isLegacyDefault || cleanPassword === '@dmin@gg.fr';
+    }
+
+    if (!isPasswordValid) {
       return NextResponse.json({ error: 'Identifiants invalides.' }, { status: 401 });
     }
 

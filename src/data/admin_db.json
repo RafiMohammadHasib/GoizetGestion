@@ -4,10 +4,12 @@
       "id": "usr_admin",
       "name": "Administrateur Goizet Gestion",
       "email": "admin@gg.fr.com",
+      "password": "@dmin@gg.fr",
       "role": "Super Admin",
       "avatar": "/apple-touch-icon.png",
       "active": true,
-      "createdAt": "2026-02-01T00:00:00Z"
+      "createdAt": "2026-02-01T00:00:00Z",
+      "updatedAt": "2026-10-17T08:54:47.193Z"
     },
     {
       "id": "usr_1",
@@ -4037,6 +4039,20 @@
     }
   ],
   "activityLogs": [
+    {
+      "id": "log_1792227287193",
+      "user": "Administrateur Goizet Gestion",
+      "action": "a mis à jour son mot de passe de connexion sécurisé",
+      "object": "Sécurité Compte",
+      "timestamp": "2026-10-17T08:54:47.193Z"
+    },
+    {
+      "id": "log_1792227287121",
+      "user": "Administrateur Goizet Gestion",
+      "action": "a mis à jour son mot de passe de connexion sécurisé",
+      "object": "Sécurité Compte",
+      "timestamp": "2026-10-17T08:54:47.121Z"
+    },
     {
       "id": "log_seed_1",
       "user": "System Seed Engine",
