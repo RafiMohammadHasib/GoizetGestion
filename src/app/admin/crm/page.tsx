@@ -8,7 +8,6 @@ import {
   RefreshCw, Loader2, MapPin, Euro, GripVertical, Building, Sparkles, Home, ExternalLink
 } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { supabase } from '@/lib/supabase';
 import { useLanguage } from '@/context/LanguageContext';
 
 export default function AdminCRMPage() {
@@ -34,7 +33,7 @@ export default function AdminCRMPage() {
 
   async function fetchLeads() {
     try {
-      const res = await fetch('/api/admin/crm');
+      const res = await fetch('/api/admin/crm', { cache: 'no-store' });
       const data = await res.json();
       if (data.leads) {
         setLeads(data.leads);
@@ -48,18 +47,6 @@ export default function AdminCRMPage() {
 
   useEffect(() => {
     fetchLeads();
-
-    // Realtime Supabase Channel
-    const channel = supabase
-      .channel('admin-crm-live')
-      .on('postgres_changes', { event: '*', schema: 'public', table: 'crm_leads' }, () => {
-        fetchLeads();
-      })
-      .subscribe();
-
-    return () => {
-      supabase.removeChannel(channel);
-    };
   }, []);
 
   const handleStatusChange = async (leadId: string, newStatus: string) => {
@@ -70,13 +57,19 @@ export default function AdminCRMPage() {
     }
 
     try {
-      await fetch('/api/admin/crm', {
+      const res = await fetch('/api/admin/crm', {
         method: 'PATCH',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ id: leadId, status: newStatus })
       });
+      const data = await res.json();
+      if (!res.ok || data.error) {
+        console.error('Failed to update lead status:', data?.error);
+        fetchLeads();
+      }
     } catch (err) {
       console.error('Failed to update lead status:', err);
+      fetchLeads();
     }
   };
 

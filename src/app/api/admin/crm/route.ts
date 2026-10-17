@@ -2,6 +2,9 @@ import { NextRequest, NextResponse } from 'next/server';
 import { supabase, withTimeout } from '@/lib/supabase';
 import { getDb, saveDb } from '@/lib/db';
 
+export const dynamic = 'force-dynamic';
+export const revalidate = 0;
+
 export async function GET(req: NextRequest) {
   try {
     const { searchParams } = new URL(req.url);
@@ -221,10 +224,10 @@ export async function PATCH(req: NextRequest) {
       const res = await supabase.from('crm_leads').update(updateFields).eq('id', id).select().single();
       updatedLead = res.data;
     } catch (err) {
-      // Supabase offline / fallback
+      // Offline fallback
     }
 
-    const leadData = updatedLead || localLead;
+    const leadData = updatedLead || (localLead ? { ...localLead, ...updateFields } : { id, ...updateFields });
 
     // If status is CONVERTED, automatically create Owner or Tenant record
     if (status === 'CONVERTED' && leadData) {
@@ -311,8 +314,10 @@ export async function PATCH(req: NextRequest) {
     }
 
     // Sync to local cache
+    let matchedInDb = false;
     db.leads = (db.leads || []).map((l: any) => {
       if (l.id === id) {
+        matchedInDb = true;
         return {
           ...l,
           status: status || l.status,
@@ -322,10 +327,20 @@ export async function PATCH(req: NextRequest) {
       }
       return l;
     });
+
+    if (!matchedInDb && leadData) {
+      db.leads.unshift({
+        ...leadData,
+        status: status || leadData.status,
+        assignedTo: assignedTo || leadData.assignedTo,
+        notes: note ? [...(leadData.notes || []), note] : leadData.notes
+      });
+    }
     saveDb(db);
 
     return NextResponse.json({ success: true, lead: leadData });
-  } catch (error) {
-    return NextResponse.json({ error: 'Failed to update lead' }, { status: 500 });
+  } catch (error: any) {
+    console.error('PATCH CRM LEADS ERROR:', error);
+    return NextResponse.json({ error: error?.message || 'Failed to update lead' }, { status: 500 });
   }
 }

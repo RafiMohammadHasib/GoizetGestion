@@ -72,7 +72,7 @@ if ($action === 'ping') {
     exit();
 }
 
-// 2. INSTALL ACTION (Create Tables)
+// 2. INSTALL ACTION (Create Tables & Migrate Schema)
 if ($action === 'install') {
     try {
         $queries = [
@@ -95,7 +95,8 @@ if ($action === 'install') {
                 `notes` TEXT,
                 `status` VARCHAR(64) DEFAULT 'Active',
                 `properties_count` INT DEFAULT 0,
-                `created_at` DATETIME DEFAULT CURRENT_TIMESTAMP
+                `created_at` DATETIME DEFAULT CURRENT_TIMESTAMP,
+                `updated_at` DATETIME DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
             ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;",
 
             "CREATE TABLE IF NOT EXISTS `tenants` (
@@ -110,7 +111,8 @@ if ($action === 'install') {
                 `rent_amount` DECIMAL(10,2) DEFAULT 0,
                 `deposit_amount` DECIMAL(10,2) DEFAULT 0,
                 `status` VARCHAR(64) DEFAULT 'Active',
-                `created_at` DATETIME DEFAULT CURRENT_TIMESTAMP
+                `created_at` DATETIME DEFAULT CURRENT_TIMESTAMP,
+                `updated_at` DATETIME DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
             ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;",
 
             "CREATE TABLE IF NOT EXISTS `properties` (
@@ -175,6 +177,7 @@ if ($action === 'install') {
                 `notes` LONGTEXT,
                 `activities` LONGTEXT,
                 `created_at` DATETIME DEFAULT CURRENT_TIMESTAMP,
+                `updated_at` DATETIME DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
                 INDEX idx_status (`status`),
                 INDEX idx_lead_type (`lead_type`)
             ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;",
@@ -263,8 +266,8 @@ try {
     // Action: select
     if ($action === 'select') {
         $select = $body['select'] ?? '*';
-        $where = $body['where'] ?? []; // e.g. [['col', '=', 'val'], ['col', 'in', ['val1', 'val2']]]
-        $order = $body['order'] ?? null; // e.g. ['column' => 'created_at', 'direction' => 'DESC']
+        $where = $body['where'] ?? [];
+        $order = $body['order'] ?? null;
         $limit = isset($body['limit']) ? (int)$body['limit'] : null;
         $offset = isset($body['offset']) ? (int)$body['offset'] : null;
         $single = !empty($body['single']);
@@ -340,7 +343,6 @@ try {
         $data = $body['data'] ?? [];
         if (empty($data)) throw new Exception("Insert data cannot be empty");
 
-        // Handle single or multiple rows
         $isMultiple = isset($data[0]) && is_array($data[0]);
         $rows = $isMultiple ? $data : [$data];
 
@@ -409,18 +411,34 @@ try {
         }
 
         $whereParts = [];
+        $whereParams = [];
         foreach ($where as $w) {
             $col = preg_replace('/[^a-zA-Z0-9_]/', '', $w[0]);
             $op = strtoupper($w[1]);
             $whereParts[] = "`$col` $op ?";
-            $params[] = $w[2];
+            $whereParams[] = $w[2];
         }
 
+        $allParams = array_merge($params, $whereParams);
         $sql = "UPDATE `$table` SET " . implode(', ', $setParts) . " WHERE " . implode(' AND ', $whereParts);
         $stmt = $pdo->prepare($sql);
-        $stmt->execute($params);
+        $stmt->execute($allParams);
 
-        echo json_encode(['success' => true, 'affected' => $stmt->rowCount()]);
+        // Fetch updated representation
+        $selectSql = "SELECT * FROM `$table` WHERE " . implode(' AND ', $whereParts);
+        $selectStmt = $pdo->prepare($selectSql);
+        $selectStmt->execute($whereParams);
+        $rows = $selectStmt->fetchAll();
+        $formattedRows = array_map(function($r) use ($table) {
+            return parseRowData($table, $r);
+        }, $rows);
+
+        $single = !empty($body['single']);
+        echo json_encode([
+            'success' => true,
+            'affected' => $stmt->rowCount(),
+            'data' => $single ? (!empty($formattedRows) ? $formattedRows[0] : null) : $formattedRows
+        ]);
         exit();
     }
 
@@ -430,17 +448,17 @@ try {
         if (empty($where)) throw new Exception("Delete must include where condition");
 
         $whereParts = [];
-        $params = [];
+        $whereParams = [];
         foreach ($where as $w) {
             $col = preg_replace('/[^a-zA-Z0-9_]/', '', $w[0]);
             $op = strtoupper($w[1]);
             $whereParts[] = "`$col` $op ?";
-            $params[] = $w[2];
+            $whereParams[] = $w[2];
         }
 
         $sql = "DELETE FROM `$table` WHERE " . implode(' AND ', $whereParts);
         $stmt = $pdo->prepare($sql);
-        $stmt->execute($params);
+        $stmt->execute($whereParams);
 
         echo json_encode(['success' => true, 'deleted' => $stmt->rowCount()]);
         exit();
