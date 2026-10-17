@@ -87,8 +87,19 @@ export default function AdminDashboardPage() {
     gliCoverage: '99.4%',
     conversionRate: '13.2%',
     averageMandateValue: '14 200 €',
-    totalPipelineValue: '107 900 €'
+    totalPipelineValue: '107 900 €',
+    managementFeesMonthly: '2 352 € / mois'
   });
+
+  // Lead acquisition channels breakdown from CRM
+  const [leadSources, setLeadSources] = useState<any[]>([
+    { id: 'website', labelFr: 'Formulaire Web', labelEn: 'Website Forms', count: 9, percentage: 17, color: '#171717' },
+    { id: 'properties', labelFr: 'Fiches Biens', labelEn: 'Property Listings', count: 9, percentage: 17, color: '#748C8C' },
+    { id: 'seo', labelFr: 'Google & SEO', labelEn: 'Google Search & SEO', count: 9, percentage: 17, color: '#5A7373' },
+    { id: 'ads', labelFr: 'Réseaux & Ads', labelEn: 'Social & Meta Ads', count: 9, percentage: 17, color: '#C9A227' },
+    { id: 'referral', labelFr: 'Bouche-à-Oreille', labelEn: 'Direct Referrals', count: 8, percentage: 15, color: '#059669' },
+    { id: 'blog', labelFr: 'Journal & Guides', labelEn: 'Guides & Articles', count: 8, percentage: 15, color: '#4F46E5' }
+  ]);
 
   // Real-time tasks from DB
   const [tasks, setTasks] = useState<any[]>([]);
@@ -113,6 +124,9 @@ export default function AdminDashboardPage() {
         }
         if (data.financialMetrics) {
           setFinancialMetrics(data.financialMetrics);
+        }
+        if (data.leadSources) {
+          setLeadSources(data.leadSources);
         }
         if (data.tasks) {
           setTasks(data.tasks);
@@ -614,46 +628,58 @@ export default function AdminDashboardPage() {
             )}
           </div>
 
-          {/* 4 Performance KPI Micro-Cards Strip */}
+          {/* 4 Performance KPI Micro-Cards Strip: Core Portfolio Financial & Yield Health */}
           <div className="grid grid-cols-2 sm:grid-cols-4 gap-3 text-xs pt-1">
             <div className="p-3 rounded-2xl bg-[#FAF9F6] border border-[#171717]/5 space-y-1">
               <span className="text-[10px] text-[#6B6B6B] uppercase font-bold block">
-                {language === 'fr' ? 'Bailleurs Propriétaires' : 'Owner Inquiries'}
+                {language === 'fr' ? 'Loyer Moyen / m²' : 'Avg Rent / m²'}
               </span>
               <div className="flex items-baseline justify-between">
-                <span className="font-semibold text-[#171717] text-base">{stats.ownerEnquiries} {language === 'fr' ? 'Dossiers' : 'Leads'}</span>
-                <span className="text-[10px] font-mono text-emerald-600 font-bold">+22%</span>
+                <span className="font-semibold text-[#171717] text-base">{financialMetrics.avgRentPerSqm}</span>
+                <span className="text-[10px] font-mono text-emerald-600 font-bold">+3.4%</span>
               </div>
+              <span className="text-[10px] text-[#6B6B6B] block">
+                {language === 'fr' ? 'Bordeaux intra-muros' : 'Inner Bordeaux Avg'}
+              </span>
             </div>
 
             <div className="p-3 rounded-2xl bg-[#FAF9F6] border border-[#171717]/5 space-y-1">
               <span className="text-[10px] text-[#6B6B6B] uppercase font-bold block">
-                {language === 'fr' ? 'Candidats Locataires' : 'Tenant Requests'}
+                {language === 'fr' ? 'Taux d\'Occupation' : 'Occupancy Rate'}
               </span>
               <div className="flex items-baseline justify-between">
-                <span className="font-semibold text-[#171717] text-base">{stats.tenantRequests} {language === 'fr' ? 'Dossiers' : 'Leads'}</span>
-                <span className="text-[10px] font-mono text-[#748C8C] font-semibold">SLA 48h</span>
+                <span className="font-semibold text-[#171717] text-base">{financialMetrics.occupancyRate}</span>
+                <span className="text-[10px] font-mono text-emerald-600 font-bold">{language === 'fr' ? 'Tendu' : 'High'}</span>
               </div>
+              <span className="text-[10px] text-[#6B6B6B] block">
+                {language === 'fr' ? 'Vacance frictionnelle 1.2%' : '1.2% frictional vacancy'}
+              </span>
             </div>
 
             <div className="p-3 rounded-2xl bg-[#FAF9F6] border border-[#171717]/5 space-y-1">
               <span className="text-[10px] text-[#6B6B6B] uppercase font-bold block">
-                {language === 'fr' ? 'Estimations en Ligne' : 'Valuations'}
+                {language === 'fr' ? 'Honoraires Récurrents' : 'Management Revenue'}
               </span>
               <div className="flex items-baseline justify-between">
-                <span className="font-semibold text-[#171717] text-base">{stats.valuationRequests} {language === 'fr' ? 'Dossiers' : 'Leads'}</span>
-                <span className="text-[10px] font-mono text-emerald-600 font-bold">+14%</span>
+                <span className="font-semibold text-[#171717] text-base">{financialMetrics.managementFeesMonthly || '2 352 € / mois'}</span>
+                <span className="text-[10px] font-mono text-[#748C8C] font-semibold">6.5% HT</span>
               </div>
+              <span className="text-[10px] text-[#6B6B6B] block">
+                {language === 'fr' ? 'Revenus récurrents agence' : 'Monthly agency MRR'}
+              </span>
             </div>
 
             <div className="p-3 rounded-2xl bg-[#FAF9F6] border border-[#171717]/5 space-y-1">
               <span className="text-[10px] text-[#6B6B6B] uppercase font-bold block">
-                {language === 'fr' ? 'Taux de Transformation' : 'Conversion Rate'}
+                {language === 'fr' ? 'Garantie Loyers GLI' : 'Rent Insurance'}
               </span>
               <div className="flex items-baseline justify-between">
-                <span className="font-semibold text-[#171717] text-base">{financialMetrics.conversionRate}</span>
-                <span className="text-[10px] font-mono text-emerald-600 font-bold">+3.2 pt</span>
+                <span className="font-semibold text-[#171717] text-base">{financialMetrics.gliCoverage}</span>
+                <span className="text-[10px] font-mono text-emerald-600 font-bold">100%</span>
               </div>
+              <span className="text-[10px] text-[#6B6B6B] block">
+                {language === 'fr' ? 'Loyers 100% sécurisés' : 'Guaranteed rent'}
+              </span>
             </div>
           </div>
 
@@ -707,58 +733,96 @@ export default function AdminDashboardPage() {
               </div>
             </div>
 
-            {/* 4 Executive Pipeline KPI Summary Cards */}
+            {/* 4 Commercial Operational Performance & Velocity Tiles */}
             <div className="grid grid-cols-2 lg:grid-cols-4 gap-2.5">
               <div className="p-3 bg-white rounded-2xl border border-[#171717]/10 shadow-2xs space-y-1">
                 <div className="flex items-center justify-between text-[10px] font-semibold uppercase tracking-wider text-[#6B6B6B]">
-                  <span>{language === 'fr' ? 'Volume Global' : 'Total Pipeline'}</span>
-                  <span className="w-2 h-2 rounded-full bg-[#171717]" />
+                  <span>{language === 'fr' ? 'Prise en Charge (SLA)' : 'First Response SLA'}</span>
+                  <span className="w-2 h-2 rounded-full bg-emerald-500" />
                 </div>
                 <div className="font-serif-display text-xl font-bold text-[#171717]">
-                  {funnel[0]?.count || stats.totalLeads} <span className="text-xs font-sans font-normal text-[#6B6B6B]">{language === 'fr' ? 'dossiers' : 'leads'}</span>
+                  &lt; 2h
                 </div>
-                <span className="text-[10px] text-[#6B6B6B] block">
-                  {language === 'fr' ? '100% flux entrant centralisé' : '100% total recorded flow'}
+                <span className="text-[10px] text-emerald-600 font-bold block">
+                  {language === 'fr' ? '94% traités sous 24h' : '94% fast response'}
                 </span>
               </div>
 
               <div className="p-3 bg-white rounded-2xl border border-[#171717]/10 shadow-2xs space-y-1">
                 <div className="flex items-center justify-between text-[10px] font-semibold uppercase tracking-wider text-[#6B6B6B]">
-                  <span>{language === 'fr' ? 'Dossiers Qualifiés' : 'Qualified Leads'}</span>
+                  <span>{language === 'fr' ? 'Cycle de Signature' : 'Contract Velocity'}</span>
                   <span className="w-2 h-2 rounded-full bg-[#748C8C]" />
                 </div>
                 <div className="font-serif-display text-xl font-bold text-[#171717]">
-                  {funnel[1]?.count} <span className="text-xs font-sans font-normal text-[#6B6B6B]">{language === 'fr' ? 'dossiers' : 'leads'}</span>
-                </div>
-                <span className="text-[10px] text-emerald-600 font-bold font-mono block">
-                  {funnel[1]?.percentage}% {language === 'fr' ? 'taux de qualification' : 'qualification rate'}
-                </span>
-              </div>
-
-              <div className="p-3 bg-white rounded-2xl border border-[#171717]/10 shadow-2xs space-y-1">
-                <div className="flex items-center justify-between text-[10px] font-semibold uppercase tracking-wider text-[#6B6B6B]">
-                  <span>{language === 'fr' ? 'Mandats Gagnés' : 'Won Mandates'}</span>
-                  <span className="w-2 h-2 rounded-full bg-emerald-600" />
-                </div>
-                <div className="font-serif-display text-xl font-bold text-emerald-700">
-                  {funnel[4]?.count} <span className="text-xs font-sans font-normal text-emerald-600">{language === 'fr' ? 'mandats' : 'mandates'}</span>
+                  {financialMetrics.avgVacancyDays}
                 </div>
                 <span className="text-[10px] text-[#6B6B6B] block">
-                  {language === 'fr' ? 'Actifs en gestion locative' : 'Active in managed portfolio'}
+                  {language === 'fr' ? 'Du contact au contrat' : 'Inquiry to mandate signed'}
                 </span>
               </div>
 
               <div className="p-3 bg-white rounded-2xl border border-[#171717]/10 shadow-2xs space-y-1">
                 <div className="flex items-center justify-between text-[10px] font-semibold uppercase tracking-wider text-[#6B6B6B]">
-                  <span>{language === 'fr' ? 'Valeur Pipeline' : 'Pipeline Volume'}</span>
+                  <span>{language === 'fr' ? 'Valeur Moyenne Mandat' : 'Avg Mandate Value'}</span>
                   <span className="w-2 h-2 rounded-full bg-[#C9A227]" />
+                </div>
+                <div className="font-serif-display text-xl font-bold text-[#171717]">
+                  {financialMetrics.averageMandateValue}
+                </div>
+                <span className="text-[10px] text-[#6B6B6B] block">
+                  {language === 'fr' ? 'Volume moyen d\'actif' : 'Avg portfolio asset value'}
+                </span>
+              </div>
+
+              <div className="p-3 bg-white rounded-2xl border border-[#171717]/10 shadow-2xs space-y-1">
+                <div className="flex items-center justify-between text-[10px] font-semibold uppercase tracking-wider text-[#6B6B6B]">
+                  <span>{language === 'fr' ? 'Loyers en Négociation' : 'Negotiation Pipeline'}</span>
+                  <span className="w-2 h-2 rounded-full bg-[#171717]" />
                 </div>
                 <div className="font-serif-display text-xl font-bold text-[#171717]">
                   {financialMetrics.totalPipelineValue || funnel[0]?.estimatedValue || '107 900 €'}
                 </div>
                 <span className="text-[10px] text-[#6B6B6B] block">
-                  {language === 'fr' ? 'Potentiel loyers / mois' : 'Monthly rent potential'}
+                  {language === 'fr' ? 'Loyers mensuels cumulés' : 'Monthly rent potential'}
                 </span>
+              </div>
+            </div>
+
+            {/* Lead Acquisition Attribution Strip (Where the 53 leads came from) */}
+            <div className="p-3.5 bg-white rounded-2xl border border-[#171717]/10 space-y-2.5 shadow-2xs">
+              <div className="flex items-center justify-between text-xs">
+                <span className="font-semibold text-[#171717] flex items-center space-x-1.5">
+                  <Tag className="w-3.5 h-3.5 text-[#748C8C]" />
+                  <span>{language === 'fr' ? 'Origine & Canaux d\'Acquisition des Prospects' : 'Lead Acquisition Source Attribution'}</span>
+                </span>
+                <span className="text-[10px] text-[#6B6B6B] font-mono">
+                  {stats.totalLeads} {language === 'fr' ? 'prospects enregistrés' : 'recorded leads'}
+                </span>
+              </div>
+
+              {/* Proportional Segmented Progress Bar */}
+              <div className="h-2.5 w-full bg-[#FAF9F6] rounded-full overflow-hidden flex border border-[#171717]/5 p-0.5 shadow-2xs">
+                {leadSources.map((src, i) => (
+                  <div
+                    key={src.id}
+                    style={{ width: `${src.percentage}%`, backgroundColor: src.color }}
+                    className={`h-full transition-all ${i === 0 ? 'rounded-l-full' : ''} ${i === leadSources.length - 1 ? 'rounded-r-full' : ''}`}
+                    title={`${language === 'fr' ? src.labelFr : src.labelEn}: ${src.count} (${src.percentage}%)`}
+                  />
+                ))}
+              </div>
+
+              {/* Attribution Legend Chips */}
+              <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-2 text-[10px]">
+                {leadSources.map((src) => (
+                  <div key={src.id} className="p-1.5 rounded-lg bg-[#FAF9F6] border border-[#171717]/5 flex items-center justify-between">
+                    <div className="flex items-center space-x-1.5 truncate">
+                      <span className="w-2 h-2 rounded-full shrink-0" style={{ backgroundColor: src.color }} />
+                      <span className="truncate font-medium text-[#171717]">{language === 'fr' ? src.labelFr : src.labelEn}</span>
+                    </div>
+                    <span className="font-mono font-bold text-[#6B6B6B] shrink-0 pl-1">{src.percentage}%</span>
+                  </div>
+                ))}
               </div>
             </div>
 
