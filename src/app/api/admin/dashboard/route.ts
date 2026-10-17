@@ -6,6 +6,7 @@ export async function GET(req: NextRequest) {
   try {
     const { searchParams } = new URL(req.url);
     const period = searchParams.get('period') || '30d';
+    const lang = searchParams.get('lang') || 'fr';
 
     const db = getDb();
     const properties = db.properties || [];
@@ -109,7 +110,9 @@ export async function GET(req: NextRequest) {
         const d = new Date(now);
         d.setDate(d.getDate() - i);
         const dayStr = d.toISOString().split('T')[0];
-        const dayName = d.toLocaleDateString('fr-FR', { weekday: 'short' });
+        const rawDayName = d.toLocaleDateString(lang === 'en' ? 'en-US' : 'fr-FR', { weekday: 'short' });
+        // Clean trailing dot if present (e.g. 'dim.' -> 'Dim')
+        const dayName = rawDayName.replace(/\./g, '').trim();
 
         const count = liveLeads.filter((l: any) => {
           if (!l.createdAt) return false;
@@ -120,7 +123,7 @@ export async function GET(req: NextRequest) {
         const adjustedCount = count > 0 ? count : Math.max(1, Math.round((liveLeads.length / 14) + (i % 3)));
 
         chartBuckets.push({
-          label: dayName.charAt(0).toUpperCase() + dayName.slice(1, 3),
+          label: dayName.charAt(0).toUpperCase() + dayName.slice(1),
           count: adjustedCount,
           dateRange: dayStr
         });
@@ -141,7 +144,7 @@ export async function GET(req: NextRequest) {
 
         const fallback = Math.max(8, Math.round((liveLeads.length / 4) + (w === 0 ? 5 : -2)));
         chartBuckets.push({
-          label: `Sem ${4 - w}`,
+          label: lang === 'en' ? `Wk ${4 - w}` : `Sem ${4 - w}`,
           count: count > 0 ? count : fallback
         });
       }
@@ -168,7 +171,9 @@ export async function GET(req: NextRequest) {
       }
     } else {
       // 12 Months buckets (Jan to Dec)
-      const monthNames = ['Jan', 'Fév', 'Mar', 'Avr', 'Mai', 'Juin', 'Juil', 'Août', 'Sep', 'Oct', 'Nov', 'Déc'];
+      const monthNamesFr = ['Jan', 'Fév', 'Mar', 'Avr', 'Mai', 'Juin', 'Juil', 'Août', 'Sep', 'Oct', 'Nov', 'Déc'];
+      const monthNamesEn = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
+      const monthNames = lang === 'en' ? monthNamesEn : monthNamesFr;
       for (let m = 0; m < 12; m++) {
         const count = liveLeads.filter((l: any) => {
           if (!l.createdAt) return false;
@@ -369,29 +374,39 @@ export async function GET(req: NextRequest) {
     const tasks = pendingLeads.slice(0, 6).map((lead: any, idx: number) => {
       const leadType = lead.leadType || 'Demande';
       let title = '';
-      let priority = 'Moyenne';
-      let due = 'Demain, 11h00';
+      let priority = lang === 'en' ? 'Medium' : 'Moyenne';
+      let due = lang === 'en' ? 'Tomorrow, 11:00 AM' : 'Demain, 11h00';
 
       if (leadType === 'Valuation Request') {
-        title = `Rappeler ${lead.name} — Estimation ${lead.propertyAddress || 'Bien immobilier'}`;
-        priority = 'Haute';
-        due = 'Aujourd\'hui, 16h00';
+        title = lang === 'en'
+          ? `Call back ${lead.name} — Valuation for ${lead.propertyAddress || 'Property'}`
+          : `Rappeler ${lead.name} — Estimation ${lead.propertyAddress || 'Bien immobilier'}`;
+        priority = lang === 'en' ? 'High' : 'Haute';
+        due = lang === 'en' ? 'Today, 4:00 PM' : 'Aujourd\'hui, 16h00';
       } else if (leadType === 'Owner Enquiry') {
-        title = `Qualifier mandat de gestion avec ${lead.name} (${lead.propertyAddress || 'Bordeaux'})`;
-        priority = 'Haute';
-        due = 'Aujourd\'hui, 17h30';
+        title = lang === 'en'
+          ? `Qualify rental mandate with ${lead.name} (${lead.propertyAddress || 'Bordeaux'})`
+          : `Qualifier mandat de gestion avec ${lead.name} (${lead.propertyAddress || 'Bordeaux'})`;
+        priority = lang === 'en' ? 'High' : 'Haute';
+        due = lang === 'en' ? 'Today, 5:30 PM' : 'Aujourd\'hui, 17h30';
       } else if (leadType === 'Tenant Request') {
-        title = `Planifier visite pour ${lead.name}${lead.budget ? ` (Budget: ${lead.budget})` : ''}`;
-        priority = 'Moyenne';
-        due = 'Demain, 14h00';
+        title = lang === 'en'
+          ? `Schedule viewing for ${lead.name}${lead.budget ? ` (Budget: ${lead.budget})` : ''}`
+          : `Planifier visite pour ${lead.name}${lead.budget ? ` (Budget: ${lead.budget})` : ''}`;
+        priority = lang === 'en' ? 'Medium' : 'Moyenne';
+        due = lang === 'en' ? 'Tomorrow, 2:00 PM' : 'Demain, 14h00';
       } else if (leadType === 'Callback Request') {
-        title = `Rappeler ${lead.name} au ${lead.phone || 'téléphone'}${lead.preferredTimeSlot ? ` (${lead.preferredTimeSlot})` : ''}`;
-        priority = 'Haute';
-        due = 'Prioritaire';
+        title = lang === 'en'
+          ? `Call back ${lead.name} at ${lead.phone || 'phone'}${lead.preferredTimeSlot ? ` (${lead.preferredTimeSlot})` : ''}`
+          : `Rappeler ${lead.name} au ${lead.phone || 'téléphone'}${lead.preferredTimeSlot ? ` (${lead.preferredTimeSlot})` : ''}`;
+        priority = lang === 'en' ? 'High' : 'Haute';
+        due = lang === 'en' ? 'Priority' : 'Prioritaire';
       } else {
-        title = `Traiter demande de ${lead.name} (${lead.subject || lead.serviceType || 'Message'})`;
-        priority = 'Normale';
-        due = 'Sous 48h';
+        title = lang === 'en'
+          ? `Process inquiry from ${lead.name} (${lead.subject || lead.serviceType || 'Message'})`
+          : `Traiter demande de ${lead.name} (${lead.subject || lead.serviceType || 'Message'})`;
+        priority = lang === 'en' ? 'Normal' : 'Normale';
+        due = lang === 'en' ? 'Within 48h' : 'Sous 48h';
       }
 
       return {
@@ -413,11 +428,27 @@ export async function GET(req: NextRequest) {
     liveLeads.slice(0, 8).forEach((lead: any) => {
       let action = '';
       const lt = lead.leadType || 'Demande';
-      if (lt === 'Owner Enquiry') action = `a confié un bien en gestion locative (${lead.propertyAddress || 'Bordeaux'})`;
-      else if (lt === 'Tenant Request') action = `a déposé un dossier locataire (${lead.budget ? `Budget: ${lead.budget}` : 'Bordeaux'})`;
-      else if (lt === 'Valuation Request') action = `a demandé une estimation en ligne (${lead.propertyAddress || 'Bordeaux'})`;
-      else if (lt === 'Callback Request') action = `a sollicité un rappel téléphonique au ${lead.phone || ''}`;
-      else action = `a transmis une demande (${lead.subject || lt})`;
+      if (lt === 'Owner Enquiry') {
+        action = lang === 'en'
+          ? `entrusted a property for rental management (${lead.propertyAddress || 'Bordeaux'})`
+          : `a confié un bien en gestion locative (${lead.propertyAddress || 'Bordeaux'})`;
+      } else if (lt === 'Tenant Request') {
+        action = lang === 'en'
+          ? `submitted a tenant rental application (${lead.budget ? `Budget: ${lead.budget}` : 'Bordeaux'})`
+          : `a déposé un dossier locataire (${lead.budget ? `Budget: ${lead.budget}` : 'Bordeaux'})`;
+      } else if (lt === 'Valuation Request') {
+        action = lang === 'en'
+          ? `requested an online property appraisal (${lead.propertyAddress || 'Bordeaux'})`
+          : `a demandé une estimation en ligne (${lead.propertyAddress || 'Bordeaux'})`;
+      } else if (lt === 'Callback Request') {
+        action = lang === 'en'
+          ? `requested a phone callback at ${lead.phone || ''}`
+          : `a sollicité un rappel téléphonique au ${lead.phone || ''}`;
+      } else {
+        action = lang === 'en'
+          ? `submitted an inquiry (${lead.subject || lt})`
+          : `a transmis une demande (${lead.subject || lt})`;
+      }
 
       recentActivities.push({
         id: `act_${lead.id}`,
@@ -432,8 +463,10 @@ export async function GET(req: NextRequest) {
     properties.slice(0, 3).forEach((prop: any) => {
       recentActivities.push({
         id: `act_prop_${prop.id}`,
-        user: 'Équipe Goizet Gestion',
-        action: `a actualisé le mandat ${prop.reference || prop.title} (${prop.neighborhoodName || 'Bordeaux'})`,
+        user: lang === 'en' ? 'Goizet Gestion Team' : 'Équipe Goizet Gestion',
+        action: lang === 'en'
+          ? `updated mandate ${prop.reference || prop.title} (${prop.neighborhoodName || 'Bordeaux'})`
+          : `a actualisé le mandat ${prop.reference || prop.title} (${prop.neighborhoodName || 'Bordeaux'})`,
         timestamp: prop.updatedAt || new Date().toISOString(),
         type: 'property'
       });
@@ -443,7 +476,7 @@ export async function GET(req: NextRequest) {
     activityLogs.slice(0, 3).forEach((log: any) => {
       recentActivities.push({
         id: `act_log_${log.id}`,
-        user: log.user || 'Système',
+        user: log.user || (lang === 'en' ? 'System' : 'Système'),
         action: `${log.action} ${log.object ? `(${log.object})` : ''}`,
         timestamp: log.timestamp || new Date().toISOString(),
         type: 'system'
@@ -462,12 +495,12 @@ export async function GET(req: NextRequest) {
       const diffDays = Math.floor(diffMs / (1000 * 60 * 60 * 24));
 
       let timeLabel = '';
-      if (diffMins < 2) timeLabel = 'À l\'instant';
-      else if (diffMins < 60) timeLabel = `Il y a ${diffMins} min`;
-      else if (diffHours < 24) timeLabel = `Il y a ${diffHours} h`;
-      else if (diffDays === 1) timeLabel = 'Hier';
-      else if (diffDays < 7) timeLabel = `Il y a ${diffDays} j`;
-      else timeLabel = actDate.toLocaleDateString('fr-FR', { day: 'numeric', month: 'short' });
+      if (diffMins < 2) timeLabel = lang === 'en' ? 'Just now' : 'À l\'instant';
+      else if (diffMins < 60) timeLabel = lang === 'en' ? `${diffMins}m ago` : `Il y a ${diffMins} min`;
+      else if (diffHours < 24) timeLabel = lang === 'en' ? `${diffHours}h ago` : `Il y a ${diffHours} h`;
+      else if (diffDays === 1) timeLabel = lang === 'en' ? 'Yesterday' : 'Hier';
+      else if (diffDays < 7) timeLabel = lang === 'en' ? `${diffDays}d ago` : `Il y a ${diffDays} j`;
+      else timeLabel = actDate.toLocaleDateString(lang === 'en' ? 'en-US' : 'fr-FR', { day: 'numeric', month: 'short' });
 
       return {
         ...act,
@@ -477,7 +510,7 @@ export async function GET(req: NextRequest) {
 
     return NextResponse.json({
       success: true,
-      lastSync: new Date().toLocaleTimeString('fr-FR', { hour: '2-digit', minute: '2-digit', second: '2-digit' }),
+      lastSync: new Date().toLocaleTimeString(lang === 'en' ? 'en-US' : 'fr-FR', { hour: '2-digit', minute: '2-digit', second: '2-digit' }),
       stats: {
         totalProperties,
         activeMandates,

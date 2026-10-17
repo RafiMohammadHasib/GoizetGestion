@@ -100,7 +100,7 @@ export default function AdminDashboardPage() {
   const loadDashboardData = useCallback(async (period: '7d' | '30d' | '90d' | '12m' = timeFilter) => {
     setIsRefreshing(true);
     try {
-      const res = await fetch(`/api/admin/dashboard?period=${period}`);
+      const res = await fetch(`/api/admin/dashboard?period=${period}&lang=${language}`);
       const data = await res.json();
 
       if (data.success && data.stats) {
@@ -120,7 +120,7 @@ export default function AdminDashboardPage() {
         if (data.activities) {
           setRecentActivities(data.activities);
         }
-        setLastSync(data.lastSync || new Date().toLocaleTimeString());
+        setLastSync(data.lastSync || new Date().toLocaleTimeString(language === 'en' ? 'en-US' : 'fr-FR'));
       }
     } catch (err) {
       console.warn('Live dashboard fetch error, using resilient state:', err);
@@ -128,12 +128,12 @@ export default function AdminDashboardPage() {
       setLoading(false);
       setIsRefreshing(false);
     }
-  }, [timeFilter]);
+  }, [timeFilter, language]);
 
-  // Initial load and filter change
+  // Initial load and filter or language change
   useEffect(() => {
     loadDashboardData(timeFilter);
-  }, [timeFilter, loadDashboardData]);
+  }, [timeFilter, language, loadDashboardData]);
 
   // Realtime Polling (Every 15s) from Central Database
   useEffect(() => {
@@ -144,7 +144,7 @@ export default function AdminDashboardPage() {
     return () => {
       clearInterval(pollInterval);
     };
-  }, [timeFilter, loadDashboardData]);
+  }, [timeFilter, language, loadDashboardData]);
 
   // Dynamic 8 Primary KPI Cards computed live from database
   const kpis = [
