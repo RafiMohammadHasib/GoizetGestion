@@ -72,10 +72,10 @@ export async function POST(req: NextRequest) {
     db.leads.unshift(newLead);
     saveDb(db);
 
-    // Push to Supabase
+    // Push to MySQL Database
     try {
-      const { supabase } = await import('@/lib/supabase');
-      await supabase.from('crm_leads').insert({
+      const { mysqlDb } = await import('@/lib/mysql');
+      await mysqlDb.from('crm_leads').insert({
         id: newLead.id,
         name: newLead.name,
         email: newLead.email,
@@ -94,15 +94,15 @@ export async function POST(req: NextRequest) {
         activities: newLead.activities
       });
 
-      await supabase.from('activity_logs').insert({
+      await mysqlDb.from('activity_logs').insert({
         id: `log_${Date.now()}`,
         user_name: sanitizedName,
         action: `a calculé une estimation loyer (${estMin}€ - ${estMax}€/mois)`,
         object: newLead.propertyAddress || 'Bordeaux',
         timestamp: new Date().toISOString()
       });
-    } catch (sbErr) {
-      console.warn('Supabase sync warning in estimation route:', sbErr);
+    } catch (sqlErr) {
+      console.warn('MySQL sync warning in estimation route:', sqlErr);
     }
 
     return NextResponse.json({

@@ -134,10 +134,10 @@ export async function POST(req: NextRequest) {
     db.leads.unshift(newLead);
     saveDb(db);
 
-    // Push to Supabase
+    // Push to MySQL Database
     try {
-      const { supabase } = await import('@/lib/supabase');
-      await supabase.from('crm_leads').insert({
+      const { mysqlDb } = await import('@/lib/mysql');
+      await mysqlDb.from('crm_leads').insert({
         id: newLead.id,
         name: newLead.name,
         email: newLead.email,
@@ -158,31 +158,31 @@ export async function POST(req: NextRequest) {
         activities: newLead.activities
       });
 
-      // Increment enquiries_count on Supabase properties table
+      // Increment enquiries_count on MySQL properties table
       if (propertyId || propertySlug) {
-        let propQuery = supabase.from('properties').select('id, enquiries_count');
+        let propQuery = mysqlDb.from('properties').select('id, enquiries_count');
         if (propertyId) propQuery = propQuery.eq('id', propertyId);
         else if (propertySlug) propQuery = propQuery.eq('slug', propertySlug);
 
         const { data: propData } = await propQuery.maybeSingle();
         if (propData) {
           const currentCount = Number(propData.enquiries_count) || 0;
-          await supabase
+          await mysqlDb
             .from('properties')
             .update({ enquiries_count: currentCount + 1, updated_at: new Date().toISOString() })
             .eq('id', propData.id);
         }
       }
 
-      await supabase.from('activity_logs').insert({
+      await mysqlDb.from('activity_logs').insert({
         id: `log_${Date.now()}`,
         user_name: sanitizedName,
         action: propertySlug ? `a envoyé une demande de visite pour ${propertyTitle || propertySlug}` : 'a envoyé un message de contact depuis le site public',
         object: propertyTitle || sanitizedSubject,
         timestamp: new Date().toISOString()
       });
-    } catch (sbErr) {
-      console.warn('Supabase sync warning in contact route:', sbErr);
+    } catch (sqlErr) {
+      console.warn('MySQL sync warning in contact route:', sqlErr);
     }
 
     return NextResponse.json(

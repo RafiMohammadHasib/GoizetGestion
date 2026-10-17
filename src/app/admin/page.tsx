@@ -9,7 +9,6 @@ import {
   PieChart, ShieldCheck, Percent, Layers, ArrowRight, DollarSign, Wallet
 } from 'lucide-react';
 import { motion } from 'framer-motion';
-import { supabase } from '@/lib/supabase';
 import { useLanguage } from '@/context/LanguageContext';
 
 export default function AdminDashboardPage() {
@@ -147,28 +146,14 @@ export default function AdminDashboardPage() {
     loadDashboardData(timeFilter);
   }, [timeFilter, loadDashboardData]);
 
-  // Realtime Polling (Every 15s) + Supabase Realtime Listener
+  // Realtime Polling (Every 15s) from Central Database
   useEffect(() => {
     const pollInterval = setInterval(() => {
       loadDashboardData(timeFilter);
     }, 15000);
 
-    const channel = supabase
-      .channel('admin-dashboard-realtime')
-      .on('postgres_changes', { event: '*', schema: 'public', table: 'crm_leads' }, () => {
-        loadDashboardData(timeFilter);
-      })
-      .on('postgres_changes', { event: '*', schema: 'public', table: 'properties' }, () => {
-        loadDashboardData(timeFilter);
-      })
-      .on('postgres_changes', { event: '*', schema: 'public', table: 'owners' }, () => {
-        loadDashboardData(timeFilter);
-      })
-      .subscribe();
-
     return () => {
       clearInterval(pollInterval);
-      supabase.removeChannel(channel);
     };
   }, [timeFilter, loadDashboardData]);
 

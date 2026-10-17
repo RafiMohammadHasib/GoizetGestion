@@ -2,7 +2,6 @@
 
 import React, { useState, useEffect } from 'react';
 import { UserCheck, Phone, Mail, MapPin, Building, Plus, Search, RefreshCw, Loader2, Sparkles } from 'lucide-react';
-import { supabase } from '@/lib/supabase';
 import { useLanguage } from '@/context/LanguageContext';
 
 export default function AdminOwnersPage() {
@@ -28,17 +27,11 @@ export default function AdminOwnersPage() {
   useEffect(() => {
     fetchOwners();
 
-    // Supabase Realtime subscription
-    const channel = supabase
-      .channel('admin-owners-live')
-      .on('postgres_changes', { event: '*', schema: 'public', table: 'owners' }, () => {
-        fetchOwners();
-      })
-      .subscribe();
+    const interval = setInterval(() => {
+      fetchOwners();
+    }, 15000);
 
-    return () => {
-      supabase.removeChannel(channel);
-    };
+    return () => clearInterval(interval);
   }, []);
 
   const filteredOwners = owners.filter(o => {

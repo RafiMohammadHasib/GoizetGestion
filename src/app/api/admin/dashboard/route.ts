@@ -1,6 +1,6 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { getDb } from '@/lib/db';
-import { supabase, withTimeout } from '@/lib/supabase';
+import { mysqlDb, withTimeout } from '@/lib/mysql';
 
 export async function GET(req: NextRequest) {
   try {
@@ -14,17 +14,17 @@ export async function GET(req: NextRequest) {
     const tenants = db.tenants || [];
     const activityLogs = db.activityLogs || [];
 
-    // Also attempt to merge with live Supabase leads if available
+    // Also attempt to merge with live MySQL leads if available
     let liveLeads = [...leads];
     try {
-      const { data: sbLeads } = await withTimeout(
-        supabase.from('crm_leads').select('*').order('created_at', { ascending: false }).limit(200),
+      const { data: sqlLeads } = await withTimeout(
+        mysqlDb.from('crm_leads').select('*').order('created_at', { ascending: false }).limit(200),
         2500
       );
-      if (sbLeads && sbLeads.length > 0) {
+      if (sqlLeads && sqlLeads.length > 0) {
         const leadMap = new Map();
         leads.forEach((l: any) => leadMap.set(l.id, l));
-        sbLeads.forEach((sl: any) => {
+        sqlLeads.forEach((sl: any) => {
           if (!leadMap.has(sl.id)) {
             leadMap.set(sl.id, {
               id: sl.id,

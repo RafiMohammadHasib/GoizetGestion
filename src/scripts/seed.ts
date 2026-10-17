@@ -1,20 +1,14 @@
 import { resetAndSeedDb } from '../lib/db';
-import { generateSeedData } from '../lib/db_seed';
-import { createClient } from '@supabase/supabase-js';
+import { ovhDb } from '../lib/ovh_client';
 
-console.log('🌱 Starting GOIZET GESTION Database Seeding Process...');
-
-const supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL || 'https://gflxxtsgqmznnpjkgjpg.supabase.co';
-const supabaseKey = process.env.NEXT_PUBLIC_SUPABASE_PUBLISHABLE_KEY || process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY || 'sb_publishable_YjirgmGKhMPnNkJOkDtSmg_2gQwDdiV';
-
-const supabase = createClient(supabaseUrl, supabaseKey);
+console.log('🌱 Starting GOIZET GESTION MySQL Database Seeding Process...');
 
 async function seed() {
   try {
     const seedData = resetAndSeedDb();
     console.log(`✅ Local database cache successfully seeded!`);
 
-    console.log('📡 Connecting and seeding Supabase PostgreSQL database...');
+    console.log('📡 Connecting and seeding MySQL (OVH) database...');
 
     // 1. Seed Admin Users
     const formattedUsers = seedData.users.map((u: any) => ({
@@ -23,10 +17,10 @@ async function seed() {
       email: u.email,
       role: u.role,
       avatar: u.avatar,
-      active: u.active,
+      active: u.active ? 1 : 0,
       created_at: u.createdAt
     }));
-    const { error: userErr } = await supabase.from('admin_users').upsert(formattedUsers, { onConflict: 'id' });
+    const { error: userErr } = await ovhDb.from('admin_users').upsert(formattedUsers);
     if (userErr) console.warn('⚠️ admin_users seed notice:', userErr.message);
     else console.log(`   ✓ ${formattedUsers.length} Admin Users inserted`);
 
@@ -42,7 +36,7 @@ async function seed() {
       properties_count: o.propertiesCount,
       created_at: o.createdAt
     }));
-    const { error: ownerErr } = await supabase.from('owners').upsert(formattedOwners, { onConflict: 'id' });
+    const { error: ownerErr } = await ovhDb.from('owners').upsert(formattedOwners);
     if (ownerErr) console.warn('⚠️ owners seed notice:', ownerErr.message);
     else console.log(`   ✓ ${formattedOwners.length} Property Owners inserted`);
 
@@ -73,7 +67,7 @@ async function seed() {
       city: p.city,
       neighborhood_slug: p.neighborhoodSlug,
       neighborhood_name: p.neighborhoodName,
-      is_exclusive: p.isExclusive,
+      is_exclusive: p.isExclusive ? 1 : 0,
       status: p.status,
       features: p.features,
       images: p.images,
@@ -86,7 +80,7 @@ async function seed() {
       seo_description: p.seoDescription,
       updated_at: p.updatedAt
     }));
-    const { error: propErr } = await supabase.from('properties').upsert(formattedProperties, { onConflict: 'id' });
+    const { error: propErr } = await ovhDb.from('properties').upsert(formattedProperties);
     if (propErr) console.warn('⚠️ properties seed notice:', propErr.message);
     else console.log(`   ✓ ${formattedProperties.length} Properties inserted`);
 
@@ -109,7 +103,7 @@ async function seed() {
       activities: l.activities,
       created_at: l.createdAt
     }));
-    const { error: leadErr } = await supabase.from('crm_leads').upsert(formattedLeads, { onConflict: 'id' });
+    const { error: leadErr } = await ovhDb.from('crm_leads').upsert(formattedLeads);
     if (leadErr) console.warn('⚠️ crm_leads seed notice:', leadErr.message);
     else console.log(`   ✓ ${formattedLeads.length} CRM Leads inserted`);
 
@@ -121,11 +115,11 @@ async function seed() {
       object: a.object,
       timestamp: a.timestamp
     }));
-    const { error: logErr } = await supabase.from('activity_logs').upsert(formattedLogs, { onConflict: 'id' });
+    const { error: logErr } = await ovhDb.from('activity_logs').upsert(formattedLogs);
     if (logErr) console.warn('⚠️ activity_logs seed notice:', logErr.message);
     else console.log(`   ✓ ${formattedLogs.length} Activity Logs inserted`);
 
-    console.log('🎉 Supabase Database Seeding Complete and Verified!');
+    console.log('🎉 MySQL Database Seeding Complete and Verified!');
   } catch (err) {
     console.error('❌ Failed to seed database:', err);
     process.exit(1);

@@ -2,7 +2,6 @@
 
 import React, { useState, useEffect } from 'react';
 import { Users, Phone, Mail, Home, Euro, RefreshCw, Loader2, Search, Calendar } from 'lucide-react';
-import { supabase } from '@/lib/supabase';
 import { useLanguage } from '@/context/LanguageContext';
 
 export default function AdminTenantsPage() {
@@ -28,17 +27,11 @@ export default function AdminTenantsPage() {
   useEffect(() => {
     fetchTenants();
 
-    // Supabase Realtime subscription
-    const channel = supabase
-      .channel('admin-tenants-live')
-      .on('postgres_changes', { event: '*', schema: 'public', table: 'tenants' }, () => {
-        fetchTenants();
-      })
-      .subscribe();
+    const interval = setInterval(() => {
+      fetchTenants();
+    }, 15000);
 
-    return () => {
-      supabase.removeChannel(channel);
-    };
+    return () => clearInterval(interval);
   }, []);
 
   const filteredTenants = tenants.filter(t => {

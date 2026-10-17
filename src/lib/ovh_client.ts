@@ -180,11 +180,12 @@ export const ovhDb = {
   from,
   ping: pingBridge,
   install: installTables,
-  channel: (_name: string) => ({
-    on: () => ({
+  channel: (_name: string) => {
+    const handler: any = {
+      on: () => handler,
       subscribe: () => ({ unsubscribe: () => {} }),
-    }),
-    subscribe: () => ({ unsubscribe: () => {} }),
-  }),
+    };
+    return handler;
+  },
   removeChannel: (_channel?: any) => {},
 };
