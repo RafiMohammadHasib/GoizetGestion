@@ -7,7 +7,8 @@
     "build": "next build --webpack",
     "start": "next start",
     "lint": "eslint",
-    "db:seed": "npx tsx src/scripts/seed.ts"
+    "db:seed": "npx tsx src/scripts/seed.ts",
+    "db:seed:ovh": "npx tsx src/scripts/seed-ovh.ts"
   },
   "dependencies": {
     "@supabase/ssr": "^0.12.4",

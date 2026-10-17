@@ -66,7 +66,7 @@ export default function AdminDashboardPage() {
       // 3. Fetch Activity Logs
       const { data: logs } = await supabase.from('activity_logs').select('*').order('timestamp', { ascending: false }).limit(6);
       if (logs && logs.length > 0) {
-        setRecentActivities(logs.map(l => ({
+        setRecentActivities(logs.map((l: any) => ({
           user: l.user_name || 'System',
           action: `${l.action} ${l.object ? `(${l.object})` : ''}`,
           time: new Date(l.timestamp).toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' }),
