@@ -143,8 +143,45 @@ export default function RootLayout({
       });
     }
 
-    // Guard dev-overlay from false-positive hydration warnings triggered by external browser extensions
+    // Guard dev-overlay from errors and hydration warnings triggered by external browser extensions (Urban VPN, Bitwarden, Grammarly, etc.)
     if (typeof window !== 'undefined') {
+      function isExtensionError(msg, source, err) {
+        var s = String(source || (err && (err.stack || err.filename)) || '');
+        var m = String(msg || (err && err.message) || '');
+        return (
+          s.indexOf('chrome-extension://') !== -1 ||
+          s.indexOf('moz-extension://') !== -1 ||
+          s.indexOf('safari-extension://') !== -1 ||
+          s.indexOf('eppiocemhmnlbhjplcgkofciiegomcon') !== -1 ||
+          m.indexOf('M_ID') !== -1
+        );
+      }
+
+      window.addEventListener('error', function(event) {
+        if (isExtensionError(event.message, event.filename, event.error)) {
+          event.stopImmediatePropagation();
+          event.preventDefault();
+          return true;
+        }
+      }, true);
+
+      window.addEventListener('unhandledrejection', function(event) {
+        var reason = event.reason;
+        if (isExtensionError(reason && reason.message, reason && reason.stack, reason)) {
+          event.stopImmediatePropagation();
+          event.preventDefault();
+          return true;
+        }
+      }, true);
+
+      var origOnError = window.onerror;
+      window.onerror = function(message, source, lineno, colno, error) {
+        if (isExtensionError(message, source, error)) {
+          return true;
+        }
+        if (origOnError) return origOnError.apply(this, arguments);
+      };
+
       var origError = console.error;
       console.error = function() {
         for (var k = 0; k < arguments.length; k++) {
@@ -153,6 +190,8 @@ export default function RootLayout({
             arg.indexOf('bis_skin_checked') !== -1 ||
             arg.indexOf('bis_register') !== -1 ||
             arg.indexOf('data-gr-ext-installed') !== -1 ||
+            arg.indexOf('chrome-extension://') !== -1 ||
+            arg.indexOf('M_ID') !== -1 ||
             (arg.indexOf('hydrated but some attributes') !== -1 && arg.indexOf('browser extension') !== -1)
           )) {
             return;
