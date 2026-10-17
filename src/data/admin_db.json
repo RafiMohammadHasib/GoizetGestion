@@ -2180,6 +2180,38 @@
   ],
   "leads": [
     {
+      "id": "lead_1792214344666",
+      "name": "John Cena",
+      "email": "johncena@gmail.com",
+      "phone": "+33 6 01521112",
+      "lead_type": "Owner Enquiry",
+      "status": "LOST",
+      "subject": "File: Rent out my property (Owner) (Apartment in Bordeaux)",
+      "message": "Call me",
+      "property_address": "Apartment • Bordeaux",
+      "budget": null,
+      "surface": null,
+      "assigned_to": "Paul & Edgar Goizet",
+      "source": "Hero Lead Form - Owner Portal",
+      "notes": [
+        {
+          "id": "note_1792214344666",
+          "author": "Goizet Owner Portal",
+          "text": "Request received for Rent out my property (Owner). Guaranteed callback at +33 6 01521112.",
+          "date": "Just now"
+        }
+      ],
+      "activities": [
+        {
+          "id": "act_1792214344666",
+          "text": "File (Rent out my property (Owner)) submitted from website.",
+          "date": "Just now"
+        }
+      ],
+      "created_at": "2026-10-17 05:19:05",
+      "updated_at": "2026-10-17 10:40:12"
+    },
+    {
       "id": "lead_1",
       "name": "Prospect Sarah Martin #1",
       "email": "prospect1@domaine.fr",

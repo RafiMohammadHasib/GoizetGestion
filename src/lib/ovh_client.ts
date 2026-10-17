@@ -12,6 +12,37 @@ export interface QueryResult<T = any> {
   count?: number;
 }
 
+const JSON_FIELDS: Record<string, string[]> = {
+  properties: ['features', 'images'],
+  crm_leads: ['notes', 'activities'],
+};
+
+function formatForDb(table: string, row: any) {
+  if (!row || typeof row !== 'object') return row;
+  const clone = { ...row };
+  const jsonCols = JSON_FIELDS[table] || [];
+  for (const col of jsonCols) {
+    if (clone[col] !== undefined && typeof clone[col] !== 'string') {
+      clone[col] = JSON.stringify(clone[col]);
+    }
+  }
+  return clone;
+}
+
+function parseFromDb(table: string, row: any) {
+  if (!row || typeof row !== 'object') return row;
+  const clone = { ...row };
+  const jsonCols = JSON_FIELDS[table] || [];
+  for (const col of jsonCols) {
+    if (typeof clone[col] === 'string') {
+      try {
+        clone[col] = JSON.parse(clone[col]);
+      } catch {}
+    }
+  }
+  return clone;
+}
+
 export class QueryBuilder<T = any> implements PromiseLike<QueryResult<T>> {
   private table: string;
   private action: 'select' | 'insert' | 'update' | 'delete' | 'upsert' = 'select';
@@ -21,6 +52,7 @@ export class QueryBuilder<T = any> implements PromiseLike<QueryResult<T>> {
   private limitCount?: number;
   private offsetCount?: number;
   private isSingle: boolean = false;
+  private wantsSelectResult: boolean = false;
   private payloadData: any = null;
 
   constructor(table: string) {
@@ -28,8 +60,8 @@ export class QueryBuilder<T = any> implements PromiseLike<QueryResult<T>> {
   }
 
   select(columns: string = '*') {
-    this.action = 'select';
     this.selectedColumns = columns;
+    this.wantsSelectResult = true;
     return this;
   }
 
@@ -109,6 +141,91 @@ export class QueryBuilder<T = any> implements PromiseLike<QueryResult<T>> {
 
   async execute(): Promise<QueryResult<T>> {
     try {
+      // 1. UPDATE ACTION via direct raw_query for guaranteed consistency across any bridge version
+      if (this.action === 'update') {
+        const row = formatForDb(this.table, this.payloadData || {});
+        const cols = Object.keys(row);
+        if (cols.length === 0) {
+          return { data: null, error: { message: 'Update data cannot be empty' } };
+        }
+
+        const setSqlParts: string[] = [];
+        const params: any[] = [];
+        for (const col of cols) {
+          const cleanCol = col.replace(/[^a-zA-Z0-9_]/g, '');
+          setSqlParts.push(`\`${cleanCol}\` = ?`);
+          params.push(row[col]);
+        }
+
+        const whereSqlParts: string[] = [];
+        const whereParams: any[] = [];
+        for (const w of this.whereClauses) {
+          const col = w[0].replace(/[^a-zA-Z0-9_]/g, '');
+          const op = w[1].toUpperCase();
+          whereSqlParts.push(`\`${col}\` ${op} ?`);
+          whereParams.push(w[2]);
+        }
+
+        if (whereSqlParts.length === 0) {
+          return { data: null, error: { message: 'Update requires a where condition' } };
+        }
+
+        const updateSql = `UPDATE \`${this.table}\` SET ${setSqlParts.join(', ')} WHERE ${whereSqlParts.join(' AND ')}`;
+        const updateRes = await fetch(BRIDGE_URL, {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json', 'X-Bridge-Secret': BRIDGE_SECRET },
+          body: JSON.stringify({ action: 'raw_query', sql: updateSql, params: [...params, ...whereParams] }),
+        });
+        const updateJson = await updateRes.json();
+        if (!updateJson.success) {
+          return { data: null, error: { message: updateJson.error || 'Failed to update record in OVH MySQL' } };
+        }
+
+        // Fetch and return the updated row representation if single/select requested
+        const selectSql = `SELECT * FROM \`${this.table}\` WHERE ${whereSqlParts.join(' AND ')} LIMIT 1`;
+        const selectRes = await fetch(BRIDGE_URL, {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json', 'X-Bridge-Secret': BRIDGE_SECRET },
+          body: JSON.stringify({ action: 'raw_query', sql: selectSql, params: whereParams }),
+        });
+        const selectJson = await selectRes.json();
+        const updatedRow = selectJson.data && selectJson.data[0] ? parseFromDb(this.table, selectJson.data[0]) : null;
+
+        return {
+          data: (this.isSingle ? updatedRow : (updatedRow ? [updatedRow] : [])) as any,
+          error: null,
+        };
+      }
+
+      // 2. DELETE ACTION via raw_query
+      if (this.action === 'delete') {
+        const whereSqlParts: string[] = [];
+        const whereParams: any[] = [];
+        for (const w of this.whereClauses) {
+          const col = w[0].replace(/[^a-zA-Z0-9_]/g, '');
+          const op = w[1].toUpperCase();
+          whereSqlParts.push(`\`${col}\` ${op} ?`);
+          whereParams.push(w[2]);
+        }
+
+        if (whereSqlParts.length === 0) {
+          return { data: null, error: { message: 'Delete requires a where condition' } };
+        }
+
+        const deleteSql = `DELETE FROM \`${this.table}\` WHERE ${whereSqlParts.join(' AND ')}`;
+        const res = await fetch(BRIDGE_URL, {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json', 'X-Bridge-Secret': BRIDGE_SECRET },
+          body: JSON.stringify({ action: 'raw_query', sql: deleteSql, params: whereParams }),
+        });
+        const json = await res.json();
+        if (!json.success) {
+          return { data: null, error: { message: json.error || 'Failed to delete record' } };
+        }
+        return { data: json.data as any, error: null };
+      }
+
+      // 3. DEFAULT BRIDGE ACTIONS (select, insert, upsert)
       const res = await fetch(BRIDGE_URL, {
         method: 'POST',
         headers: {
