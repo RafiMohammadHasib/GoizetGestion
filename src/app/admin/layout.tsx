@@ -21,9 +21,64 @@ export default function AdminLayout({ children }: { children: React.ReactNode })
   const [isQuickCreateOpen, setIsQuickCreateOpen] = useState(false);
   const [isUserMenuOpen, setIsUserMenuOpen] = useState(false);
 
+  const [currentUser, setCurrentUser] = useState<any>(null);
+  const [isAuthChecking, setIsAuthChecking] = useState<boolean>(pathname !== '/admin/login');
+
+  useEffect(() => {
+    if (pathname === '/admin/login') {
+      setIsAuthChecking(false);
+      return;
+    }
+
+    let isMounted = true;
+    fetch('/api/admin/auth/session')
+      .then(res => {
+        if (!res.ok) throw new Error('Unauthenticated');
+        return res.json();
+      })
+      .then(data => {
+        if (!isMounted) return;
+        if (data.authenticated && data.user) {
+          setCurrentUser(data.user);
+          setIsAuthChecking(false);
+        } else {
+          router.replace('/admin/login');
+        }
+      })
+      .catch(() => {
+        if (isMounted) {
+          router.replace('/admin/login');
+        }
+      });
+
+    return () => { isMounted = false; };
+  }, [pathname, router]);
+
   // Skip layout for login route
   if (pathname === '/admin/login') {
     return <>{children}</>;
+  }
+
+  // Show luxury loading state while checking session
+  if (isAuthChecking) {
+    return (
+      <div className="min-h-screen bg-[#121818] flex flex-col items-center justify-center p-6 text-white font-sans-ui">
+        <div className="relative flex flex-col items-center space-y-5">
+          <div className="relative w-14 h-14 rounded-2xl bg-white/10 backdrop-blur-xl border border-white/20 p-2 shadow-2xl flex items-center justify-center">
+            <img
+              src="/apple-touch-icon.png"
+              alt="Goizet Gestion"
+              className="w-full h-full object-contain"
+            />
+            <div className="absolute -inset-1.5 rounded-2xl border-2 border-[#748C8C]/30 border-t-[#748C8C] animate-spin" />
+          </div>
+          <div className="text-center space-y-1">
+            <span className="font-serif-display text-base font-semibold tracking-tight block text-white">GOIZET GESTION</span>
+            <span className="text-[11px] text-[#90A5A5] uppercase font-bold tracking-widest">Vérification de session...</span>
+          </div>
+        </div>
+      </div>
+    );
   }
 
   const navGroups = [
@@ -155,16 +210,21 @@ export default function AdminLayout({ children }: { children: React.ReactNode })
             isSidebarOpen ? 'justify-between' : 'justify-center'
           }`}>
             <div className="flex items-center space-x-2.5 overflow-hidden">
-              <div className="w-8 h-8 rounded-full bg-[#748C8C]/15 border border-[#748C8C]/30 flex items-center justify-center p-1 shrink-0">
+              <div className="w-8 h-8 rounded-full bg-[#748C8C]/15 border border-[#748C8C]/30 flex items-center justify-center p-1 shrink-0 overflow-hidden">
                 <img
-                  src="/LOGOMARK_3@2x.png"
+                  src={currentUser?.avatar || '/apple-touch-icon.png'}
                   alt="Admin Avatar"
-                  className="w-full h-full object-contain"
+                  className="w-full h-full object-cover"
                 />
               </div>
               {isSidebarOpen && (
                 <div className="truncate text-xs">
-                  <span className="font-semibold block truncate text-[#171717]">Paul & Edgar Goizet</span>
+                  <span className="font-semibold block truncate text-[#171717]">
+                    {currentUser?.name || 'Administrateur'}
+                  </span>
+                  <span className="text-[10px] text-[#748C8C] block truncate">
+                    {currentUser?.email || 'admin@gg.fr.com'}
+                  </span>
                 </div>
               )}
             </div>

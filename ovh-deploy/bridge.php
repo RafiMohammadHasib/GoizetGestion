@@ -82,7 +82,7 @@ if ($action === 'install') {
                 `email` VARCHAR(255) NOT NULL,
                 `role` VARCHAR(64) NOT NULL,
                 `avatar` TEXT,
-                `active` TINYINT(1) DEFAULT 1,
+                `active` TINYINT DEFAULT 1,
                 `created_at` DATETIME DEFAULT CURRENT_TIMESTAMP
             ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;",
 
@@ -141,7 +141,7 @@ if ($action === 'install') {
                 `city` VARCHAR(64),
                 `neighborhood_slug` VARCHAR(64),
                 `neighborhood_name` VARCHAR(128),
-                `is_exclusive` TINYINT(1) DEFAULT 0,
+                `is_exclusive` TINYINT DEFAULT 0,
                 `status` VARCHAR(32) DEFAULT 'available',
                 `features` LONGTEXT,
                 `images` LONGTEXT,
@@ -188,6 +188,36 @@ if ($action === 'install') {
                 `action` VARCHAR(255),
                 `object` VARCHAR(255),
                 `timestamp` DATETIME DEFAULT CURRENT_TIMESTAMP
+            ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;",
+
+            "CREATE TABLE IF NOT EXISTS `agency_settings` (
+                `id` INT PRIMARY KEY DEFAULT 1,
+                `site_name` VARCHAR(255) DEFAULT 'GOIZET GESTION',
+                `tagline` VARCHAR(255) DEFAULT 'Immobilier & Gestion Locative à Bordeaux',
+                `phone` VARCHAR(64) DEFAULT '+33 6 95 57 70 33',
+                `phone_edgar` VARCHAR(64) DEFAULT '+33 7 81 96 83 95',
+                `email` VARCHAR(255) DEFAULT 'goizetgestion@gmail.com',
+                `lead_email` VARCHAR(255) DEFAULT 'goizetgestion@gmail.com',
+                `address` VARCHAR(255) DEFAULT '48 rue Calvé, 33000 Bordeaux',
+                `opening_hours` VARCHAR(255) DEFAULT 'Lundi - Vendredi : 09h00 - 19h00 | Samedi : Sur rendez-vous',
+                `siret` VARCHAR(64) DEFAULT '944 393 487 00011',
+                `license_number` VARCHAR(128) DEFAULT 'CPI33012025000000128 — CCI Bordeaux',
+                `financial_guarantee` VARCHAR(255) DEFAULT 'Galian Assurances — 120 000 €',
+                `management_fee_rate` DECIMAL(5,2) DEFAULT 6.50,
+                `default_deposit_months` INT DEFAULT 1,
+                `gli_insurance_rate` DECIMAL(5,2) DEFAULT 2.50,
+                `auto_reply_tenant` TINYINT DEFAULT 1,
+                `auto_reply_owner` TINYINT DEFAULT 1,
+                `maintenance_mode` TINYINT DEFAULT 0,
+                `session_timeout_hours` INT DEFAULT 24,
+                `rate_limiting_strict` TINYINT DEFAULT 1,
+                `instagram_url` VARCHAR(255) DEFAULT 'https://instagram.com/goizetgestion',
+                `linkedin_url` VARCHAR(255) DEFAULT 'https://linkedin.com/company/goizet-gestion',
+                `ga_measurement_id` VARCHAR(64) DEFAULT 'G-GOIZET2026',
+                `gtm_container_id` VARCHAR(64) DEFAULT 'GTM-GOIZET01',
+                `default_seo_title` VARCHAR(255) DEFAULT 'GOIZET GESTION | Immobilier & Gestion Locative à Bordeaux',
+                `default_meta_description` TEXT,
+                `updated_at` DATETIME DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
             ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;"
         ];
 

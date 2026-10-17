@@ -277,6 +277,8 @@ export function from(table: string) {
   return new QueryBuilder(table);
 }
 
+export const ovhQuery = from;
+
 export async function pingBridge() {
   const res = await fetch(`${BRIDGE_URL}?action=ping`, {
     headers: { 'X-Bridge-Secret': BRIDGE_SECRET },
@@ -295,4 +297,12 @@ export const ovhDb = {
   from,
   ping: pingBridge,
   install: installTables,
+  channel: (_name: string) => {
+    const handler: any = {
+      on: () => handler,
+      subscribe: () => ({ unsubscribe: () => {} }),
+    };
+    return handler;
+  },
+  removeChannel: (_channel?: any) => {},
 };

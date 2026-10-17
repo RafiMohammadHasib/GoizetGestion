@@ -25,10 +25,23 @@ export async function POST(req: NextRequest) {
     }
 
     const db = getDb();
-    const user = db.users.find((u: AdminUser) => u.email.toLowerCase() === cleanEmail && u.active);
+    const user = db.users.find((u: any) => u.email.toLowerCase() === cleanEmail && u.active);
 
-    // Default admin credentials check: goizetgestion@gmail.com / Meridia2026!
-    if (!user || (cleanPassword !== 'Meridia2026!' && cleanPassword !== 'admin123')) {
+    if (!user) {
+      return NextResponse.json({ error: 'Identifiants invalides.' }, { status: 401 });
+    }
+
+    // Check custom password if set by user, otherwise fall back to configured default
+    let isPasswordValid = false;
+    if (user.password) {
+      isPasswordValid = cleanPassword === user.password;
+    } else {
+      const isPrimaryDefault = cleanEmail === 'admin@gg.fr.com' && cleanPassword === '@dmin@gg.fr';
+      const isLegacyDefault = cleanEmail === 'goizetgestion@gmail.com' && (cleanPassword === 'Meridia2026!' || cleanPassword === 'admin123' || cleanPassword === '@dmin@gg.fr');
+      isPasswordValid = isPrimaryDefault || isLegacyDefault || cleanPassword === '@dmin@gg.fr';
+    }
+
+    if (!isPasswordValid) {
       return NextResponse.json({ error: 'Identifiants invalides.' }, { status: 401 });
     }
 
