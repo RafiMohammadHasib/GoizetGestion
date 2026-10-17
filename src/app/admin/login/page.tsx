@@ -7,9 +7,11 @@ import {
   AlertCircle, CheckCircle2, Shield, KeyRound, Loader2, Info, Building2
 } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
+import { useLanguage } from '@/context/LanguageContext';
 
 export default function AdminLoginPage() {
   const router = useRouter();
+  const { language: lang, setLanguage: setLang } = useLanguage();
 
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
@@ -19,7 +21,6 @@ export default function AdminLoginPage() {
   const [errorMsg, setErrorMsg] = useState('');
   const [success, setSuccess] = useState(false);
   const [capsLockActive, setCapsLockActive] = useState(false);
-  const [lang, setLang] = useState<'fr' | 'en'>('fr');
   const [showForgotModal, setShowForgotModal] = useState(false);
 
   // If already authenticated, redirect immediately to dashboard

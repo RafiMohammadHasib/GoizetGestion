@@ -4,6 +4,7 @@ import React, { useState, useEffect } from 'react';
 import { useRouter } from 'next/navigation';
 import { Search, Home, Users, FileText, Settings, Plus, Sparkles, X } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
+import { useLanguage } from '@/context/LanguageContext';
 
 interface CommandPaletteProps {
   isOpen: boolean;
@@ -12,6 +13,7 @@ interface CommandPaletteProps {
 
 export default function CommandPalette({ isOpen, onClose }: CommandPaletteProps) {
   const router = useRouter();
+  const { language } = useLanguage();
   const [query, setQuery] = useState('');
 
   useEffect(() => {
@@ -35,10 +37,13 @@ export default function CommandPalette({ isOpen, onClose }: CommandPaletteProps)
   if (!isOpen) return null;
 
   const actions = [
-    { label: 'View All CRM Leads', icon: Users, href: '/admin/crm', category: 'Navigation' },
-    { label: 'Owner CRM Directory', icon: Users, href: '/admin/owners', category: 'Navigation' },
-    { label: 'Homepage CMS Editor', icon: Sparkles, href: '/admin/cms/homepage', category: 'Content' },
-    { label: 'Global Website Settings', icon: Settings, href: '/admin/settings', category: 'System' }
+    { label: language === 'fr' ? 'Tableau de bord principal' : 'Overview Dashboard', icon: Home, href: '/admin', category: language === 'fr' ? 'Navigation' : 'Navigation' },
+    { label: language === 'fr' ? 'Pipeline CRM Prospects' : 'View All CRM Leads', icon: Users, href: '/admin/crm', category: language === 'fr' ? 'Navigation' : 'Navigation' },
+    { label: language === 'fr' ? 'Répertoire Propriétaires' : 'Owner CRM Directory', icon: Users, href: '/admin/owners', category: language === 'fr' ? 'Navigation' : 'Navigation' },
+    { label: language === 'fr' ? 'Gestionnaire Locataires' : 'Tenant Management', icon: Users, href: '/admin/tenants', category: language === 'fr' ? 'Navigation' : 'Navigation' },
+    { label: language === 'fr' ? 'Éditeur Page d\'Accueil CMS' : 'Homepage CMS Editor', icon: Sparkles, href: '/admin/cms/homepage', category: language === 'fr' ? 'Contenu' : 'Content' },
+    { label: language === 'fr' ? 'Audit SEO & Redirections' : 'SEO Audit & Redirects', icon: Search, href: '/admin/seo', category: language === 'fr' ? 'Système' : 'System' },
+    { label: language === 'fr' ? 'Paramètres & Règles Agence' : 'Global Website Settings', icon: Settings, href: '/admin/settings', category: language === 'fr' ? 'Système' : 'System' }
   ];
 
   const filtered = actions.filter((a) => a.label.toLowerCase().includes(query.toLowerCase()));
@@ -71,7 +76,9 @@ export default function CommandPalette({ isOpen, onClose }: CommandPaletteProps)
             <input
               type="text"
               autoFocus
-              placeholder="Search properties, leads, owners, content or actions... (Esc to exit)"
+              placeholder={language === 'fr' 
+                ? 'Rechercher mandats, prospects, propriétaires ou actions... (Échap pour fermer)'
+                : 'Search properties, leads, owners, content or actions... (Esc to exit)'}
               value={query}
               onChange={(e) => setQuery(e.target.value)}
               className="w-full bg-transparent text-sm focus:outline-none placeholder-[#6B6B6B]"
@@ -106,7 +113,9 @@ export default function CommandPalette({ isOpen, onClose }: CommandPaletteProps)
               })
             ) : (
               <div className="p-6 text-center text-[#6B6B6B]">
-                No matching results found for "{query}".
+                {language === 'fr' 
+                  ? `Aucun résultat pour "${query}".`
+                  : `No matching results found for "${query}".`}
               </div>
             )}
           </div>

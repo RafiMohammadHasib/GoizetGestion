@@ -2,8 +2,10 @@
 
 import React, { useState } from 'react';
 import { Image as ImageIcon, Upload, Search, Trash2, Copy, Check } from 'lucide-react';
+import { useLanguage } from '@/context/LanguageContext';
 
 export default function AdminMediaPage() {
+  const { language } = useLanguage();
   const [copiedIndex, setCopiedIndex] = useState<number | null>(null);
 
   const mediaAssets = [
@@ -24,16 +26,16 @@ export default function AdminMediaPage() {
       <div className="flex items-center justify-between pb-4 border-b border-[#171717]/10">
         <div>
           <span className="text-[10px] font-bold uppercase tracking-widest text-[#748C8C]">
-            GOIZET GESTION MEDIA ASSETS
+            {language === 'fr' ? 'MÉDIATHÈQUE GOIZET GESTION' : 'GOIZET GESTION MEDIA ASSETS'}
           </span>
           <h1 className="font-serif-display text-3xl font-semibold text-[#171717]">
-            Media Library ({mediaAssets.length})
+            {language === 'fr' ? 'Médiathèque' : 'Media Library'} ({mediaAssets.length})
           </h1>
         </div>
 
-        <button className="bg-brand-gradient hover:bg-brand-gradient-hover text-white px-5 py-2.5 rounded-xl text-xs font-semibold shadow-brand flex items-center space-x-2">
+        <button className="bg-brand-gradient hover:bg-brand-gradient-hover text-white px-5 py-2.5 rounded-xl text-xs font-semibold shadow-brand flex items-center space-x-2 cursor-pointer transition-all">
           <Upload className="w-4 h-4" />
-          <span>Upload Media</span>
+          <span>{language === 'fr' ? 'Importer un média' : 'Upload Media'}</span>
         </button>
       </div>
 
@@ -54,10 +56,15 @@ export default function AdminMediaPage() {
               <div className="pt-2 flex justify-between items-center border-t border-[#171717]/5">
                 <button
                   onClick={() => handleCopy(asset.url, idx)}
-                  className="text-[10px] font-semibold text-[#748C8C] hover:underline flex items-center space-x-1"
+                  className="text-[10px] font-semibold text-[#748C8C] hover:underline flex items-center space-x-1 cursor-pointer"
                 >
                   {copiedIndex === idx ? <Check className="w-3 h-3 text-emerald-600" /> : <Copy className="w-3 h-3" />}
-                  <span>{copiedIndex === idx ? 'Copied' : 'Copy URL'}</span>
+                  <span>
+                    {copiedIndex === idx 
+                      ? (language === 'fr' ? 'Copié !' : 'Copied!')
+                      : (language === 'fr' ? 'Copier URL' : 'Copy URL')
+                    }
+                  </span>
                 </button>
               </div>
             </div>

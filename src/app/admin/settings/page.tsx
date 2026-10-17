@@ -7,10 +7,13 @@ import {
   CheckCircle2, Loader2, UserCheck, ShieldAlert, Sparkles,
   Percent, Clock, Bell, Share2, Search, Sliders, Save, Check, RefreshCw
 } from 'lucide-react';
+import { useLanguage } from '@/context/LanguageContext';
 
 type TabType = 'agency' | 'rental' | 'system' | 'profile';
 
 export default function AdminSettingsPage() {
+  const { language } = useLanguage();
+
   const [activeTab, setActiveTab] = useState<TabType>('agency');
   const [loading, setLoading] = useState(true);
   const [savingGlobal, setSavingGlobal] = useState(false);
@@ -123,16 +126,18 @@ export default function AdminSettingsPage() {
 
       const data = await res.json();
       if (!res.ok) {
-        throw new Error(data.error || 'Erreur lors de l\'enregistrement.');
+        throw new Error(data.error || (language === 'fr' ? 'Erreur lors de l\'enregistrement.' : 'Error while saving settings.'));
       }
 
-      setGlobalSuccess('Paramètres de l\'agence enregistrés avec succès dans la base de données !');
+      setGlobalSuccess(language === 'fr' 
+        ? 'Paramètres de l\'agence enregistrés avec succès dans la base de données !' 
+        : 'Agency settings saved successfully to database!');
       if (data.settings?.updatedAt) {
         setSettings(prev => ({ ...prev, updatedAt: data.settings.updatedAt }));
       }
       setTimeout(() => setGlobalSuccess(''), 4500);
     } catch (err: any) {
-      setGlobalError(err.message || 'Une erreur est survenue lors de l\'enregistrement.');
+      setGlobalError(err.message || (language === 'fr' ? 'Une erreur est survenue lors de l\'enregistrement.' : 'An error occurred while saving.'));
     } finally {
       setSavingGlobal(false);
     }
@@ -160,13 +165,15 @@ export default function AdminSettingsPage() {
 
       const data = await res.json();
       if (!res.ok) {
-        throw new Error(data.error || 'Erreur lors de la mise à jour du profil.');
+        throw new Error(data.error || (language === 'fr' ? 'Erreur lors de la mise à jour du profil.' : 'Error updating profile.'));
       }
 
-      setProfileSuccess('Profil administrateur et notifications mis à jour avec succès !');
+      setProfileSuccess(language === 'fr' 
+        ? 'Profil administrateur et notifications mis à jour avec succès !' 
+        : 'Admin profile and notification preferences updated successfully!');
       setTimeout(() => setProfileSuccess(''), 4500);
     } catch (err: any) {
-      setProfileError(err.message || 'Une erreur est survenue.');
+      setProfileError(err.message || (language === 'fr' ? 'Une erreur est survenue.' : 'An error occurred.'));
     } finally {
       setSavingProfile(false);
     }
@@ -179,22 +186,22 @@ export default function AdminSettingsPage() {
     setPasswordSuccess('');
 
     if (!currentPassword) {
-      setPasswordError('Veuillez saisir votre mot de passe actuel.');
+      setPasswordError(language === 'fr' ? 'Veuillez saisir votre mot de passe actuel.' : 'Please enter your current password.');
       return;
     }
 
     if (!newPassword) {
-      setPasswordError('Veuillez saisir le nouveau mot de passe.');
+      setPasswordError(language === 'fr' ? 'Veuillez saisir le nouveau mot de passe.' : 'Please enter the new password.');
       return;
     }
 
     if (newPassword.length < 8) {
-      setPasswordError('Le nouveau mot de passe doit comporter au moins 8 caractères.');
+      setPasswordError(language === 'fr' ? 'Le nouveau mot de passe doit comporter au moins 8 caractères.' : 'The new password must be at least 8 characters long.');
       return;
     }
 
     if (newPassword !== confirmPassword) {
-      setPasswordError('La confirmation ne correspond pas au nouveau mot de passe.');
+      setPasswordError(language === 'fr' ? 'La confirmation ne correspond pas au nouveau mot de passe.' : 'Password confirmation does not match.');
       return;
     }
 
@@ -213,16 +220,18 @@ export default function AdminSettingsPage() {
 
       const data = await res.json();
       if (!res.ok) {
-        throw new Error(data.error || 'Erreur lors de la modification du mot de passe.');
+        throw new Error(data.error || (language === 'fr' ? 'Erreur lors de la modification du mot de passe.' : 'Error updating password.'));
       }
 
-      setPasswordSuccess(data.message || 'Votre mot de passe a été mis à jour avec succès !');
+      setPasswordSuccess(language === 'fr' 
+        ? (data.message || 'Votre mot de passe a été mis à jour avec succès !')
+        : 'Your password was updated successfully!');
       setCurrentPassword('');
       setNewPassword('');
       setConfirmPassword('');
       setTimeout(() => setPasswordSuccess(''), 5000);
     } catch (err: any) {
-      setPasswordError(err.message || 'Une erreur est survenue.');
+      setPasswordError(err.message || (language === 'fr' ? 'Une erreur est survenue.' : 'An error occurred.'));
     } finally {
       setChangingPassword(false);
     }
@@ -232,19 +241,23 @@ export default function AdminSettingsPage() {
     <div className="space-y-7 max-w-5xl mx-auto pb-16 font-sans-ui text-[#171717]">
       
       {/* ============================================================== */}
-      {/* UNIFIED HEADER BAR — ZERO DUPLICATE BUTTONS                    */}
+      {/* UNIFIED HEADER BAR — FULLY BILINGUAL [FR | EN]                 */}
       {/* ============================================================== */}
       <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between pb-5 border-b border-[#171717]/10 gap-4">
         <div>
           <div className="inline-flex items-center space-x-2 text-[10px] font-bold uppercase tracking-widest text-[#748C8C] mb-1">
             <Sparkles className="w-3.5 h-3.5" />
-            <span>GOIZET GESTION CONFIGURATION SYSTÈME</span>
+            <span>
+              {language === 'fr' ? 'GOIZET GESTION CONFIGURATION SYSTÈME' : 'GOIZET GESTION SYSTEM CONFIGURATION'}
+            </span>
           </div>
           <h1 className="font-serif-display text-3xl font-semibold text-[#171717]">
-            Paramètres & Règles Système
+            {language === 'fr' ? 'Paramètres & Règles Système' : 'Settings & System Rules'}
           </h1>
           <p className="text-xs text-[#6F6255] mt-0.5">
-            Gérez l'identité de l'agence, les règles de gestion locative, les intégrations et votre sécurité.
+            {language === 'fr'
+              ? "Gérez l'identité de l'agence, les règles de gestion locative, les intégrations et votre sécurité."
+              : 'Manage agency identity, rental rules, integrations, and account security.'}
           </p>
         </div>
 
@@ -253,7 +266,8 @@ export default function AdminSettingsPage() {
           <div className="flex items-center space-x-3 self-start sm:self-auto">
             {settings.updatedAt && (
               <span className="text-[10px] text-[#6F6255] hidden md:inline-block font-mono">
-                Dernière synchro : {new Date(settings.updatedAt).toLocaleTimeString('fr-FR', { hour: '2-digit', minute: '2-digit' })}
+                {language === 'fr' ? 'Dernière synchro :' : 'Last sync:'}{' '}
+                {new Date(settings.updatedAt).toLocaleTimeString(language === 'fr' ? 'fr-FR' : 'en-US', { hour: '2-digit', minute: '2-digit' })}
               </span>
             )}
             <button
@@ -264,12 +278,12 @@ export default function AdminSettingsPage() {
               {savingGlobal ? (
                 <>
                   <Loader2 className="w-3.5 h-3.5 animate-spin" />
-                  <span>Enregistrement...</span>
+                  <span>{language === 'fr' ? 'Enregistrement...' : 'Saving...'}</span>
                 </>
               ) : (
                 <>
                   <Save className="w-4 h-4" />
-                  <span>Enregistrer les paramètres</span>
+                  <span>{language === 'fr' ? 'Enregistrer les paramètres' : 'Save Settings'}</span>
                 </>
               )}
             </button>
@@ -293,7 +307,7 @@ export default function AdminSettingsPage() {
       )}
 
       {/* ============================================================== */}
-      {/* NAVIGATION TABS                                                */}
+      {/* NAVIGATION TABS (BILINGUAL)                                    */}
       {/* ============================================================== */}
       <div className="flex items-center space-x-1.5 p-1 bg-[#EAE8E2]/60 rounded-2xl border border-[#171717]/10 text-xs overflow-x-auto">
         <button
@@ -306,7 +320,7 @@ export default function AdminSettingsPage() {
           }`}
         >
           <Building2 className="w-4 h-4 text-[#748C8C]" />
-          <span>Identité & Agence</span>
+          <span>{language === 'fr' ? 'Identité & Agence' : 'Identity & Agency'}</span>
         </button>
 
         <button
@@ -319,7 +333,7 @@ export default function AdminSettingsPage() {
           }`}
         >
           <Percent className="w-4 h-4 text-[#748C8C]" />
-          <span>Gestion Locative & Tarifs</span>
+          <span>{language === 'fr' ? 'Gestion Locative & Tarifs' : 'Rental Rules & Rates'}</span>
         </button>
 
         <button
@@ -332,7 +346,7 @@ export default function AdminSettingsPage() {
           }`}
         >
           <Sliders className="w-4 h-4 text-[#748C8C]" />
-          <span>Système, SEO & Réseaux</span>
+          <span>{language === 'fr' ? 'Système, SEO & Réseaux' : 'System, SEO & Social'}</span>
         </button>
 
         <button
@@ -345,7 +359,7 @@ export default function AdminSettingsPage() {
           }`}
         >
           <ShieldCheck className="w-4 h-4 text-[#748C8C]" />
-          <span>Profil & Sécurité</span>
+          <span>{language === 'fr' ? 'Profil & Sécurité' : 'Profile & Security'}</span>
         </button>
       </div>
 
@@ -358,21 +372,23 @@ export default function AdminSettingsPage() {
             <div className="flex items-center justify-between pb-3 border-b border-[#171717]/10">
               <div>
                 <h2 className="font-serif-display text-xl font-medium text-[#171717]">
-                  1. Raison Sociale & Image de Marque
+                  {language === 'fr' ? '1. Raison Sociale & Image de Marque' : '1. Agency Identity & Branding'}
                 </h2>
                 <p className="text-[11px] text-[#6F6255]">
-                  Informations affichées publiquement sur le site et les documents de mandats.
+                  {language === 'fr'
+                    ? 'Informations affichées publiquement sur le site et les documents de mandats.'
+                    : 'Information displayed publicly on the website and mandate agreements.'}
                 </p>
               </div>
               <span className="text-[11px] font-semibold text-[#748C8C] bg-[#748C8C]/10 px-3 py-1 rounded-full border border-[#748C8C]/20">
-                Portail Public
+                {language === 'fr' ? 'Portail Public' : 'Public Portal'}
               </span>
             </div>
 
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 text-xs">
               <div>
                 <label className="block font-semibold uppercase tracking-wider text-[#171717] mb-1.5 text-[11px]">
-                  Nom Officiel de l'Agence
+                  {language === 'fr' ? "Nom Officiel de l'Agence" : 'Official Agency Name'}
                 </label>
                 <input
                   type="text"
@@ -384,7 +400,7 @@ export default function AdminSettingsPage() {
 
               <div>
                 <label className="block font-semibold uppercase tracking-wider text-[#171717] mb-1.5 text-[11px]">
-                  Slogan / Baseline Officielle
+                  {language === 'fr' ? 'Slogan / Baseline Officielle' : 'Official Tagline / Subtitle'}
                 </label>
                 <input
                   type="text"
@@ -398,7 +414,7 @@ export default function AdminSettingsPage() {
             <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 text-xs">
               <div>
                 <label className="block font-semibold uppercase tracking-wider text-[#171717] mb-1.5 text-[11px]">
-                  Ligne Paul Goizet
+                  {language === 'fr' ? 'Ligne Paul Goizet' : 'Paul Goizet Phone'}
                 </label>
                 <div className="relative">
                   <Phone className="w-3.5 h-3.5 text-[#748C8C] absolute left-3 top-1/2 -translate-y-1/2" />
@@ -413,7 +429,7 @@ export default function AdminSettingsPage() {
 
               <div>
                 <label className="block font-semibold uppercase tracking-wider text-[#171717] mb-1.5 text-[11px]">
-                  Ligne Edgar Goizet
+                  {language === 'fr' ? 'Ligne Edgar Goizet' : 'Edgar Goizet Phone'}
                 </label>
                 <div className="relative">
                   <Phone className="w-3.5 h-3.5 text-[#748C8C] absolute left-3 top-1/2 -translate-y-1/2" />
@@ -428,7 +444,7 @@ export default function AdminSettingsPage() {
 
               <div>
                 <label className="block font-semibold uppercase tracking-wider text-[#171717] mb-1.5 text-[11px]">
-                  Email Principal de l'Agence
+                  {language === 'fr' ? "Email Principal de l'Agence" : 'Primary Agency Email'}
                 </label>
                 <div className="relative">
                   <Mail className="w-3.5 h-3.5 text-[#748C8C] absolute left-3 top-1/2 -translate-y-1/2" />
@@ -445,7 +461,7 @@ export default function AdminSettingsPage() {
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 text-xs">
               <div>
                 <label className="block font-semibold uppercase tracking-wider text-[#171717] mb-1.5 text-[11px]">
-                  Adresse Siège Social Bordeaux
+                  {language === 'fr' ? 'Adresse Siège Social Bordeaux' : 'Bordeaux Office Address'}
                 </label>
                 <div className="relative">
                   <MapPin className="w-3.5 h-3.5 text-[#748C8C] absolute left-3 top-1/2 -translate-y-1/2" />
@@ -460,7 +476,7 @@ export default function AdminSettingsPage() {
 
               <div>
                 <label className="block font-semibold uppercase tracking-wider text-[#171717] mb-1.5 text-[11px]">
-                  Horaires d'Ouverture du Cabinet
+                  {language === 'fr' ? "Horaires d'Ouverture du Cabinet" : 'Office Opening Hours'}
                 </label>
                 <div className="relative">
                   <Clock className="w-3.5 h-3.5 text-[#748C8C] absolute left-3 top-1/2 -translate-y-1/2" />
@@ -478,13 +494,15 @@ export default function AdminSettingsPage() {
           {/* Legal Compliance Card */}
           <div className="bg-white p-6 sm:p-8 rounded-3xl border border-[#171717]/10 shadow-xs space-y-6">
             <h2 className="font-serif-display text-xl font-medium text-[#171717] pb-3 border-b border-[#171717]/10">
-              2. Mentions Légales & Agréments Professionnels (Loi Hoguet)
+              {language === 'fr'
+                ? '2. Mentions Légales & Agréments Professionnels (Loi Hoguet)'
+                : '2. Legal Notice & Professional Licenses (Hoguet Law)'}
             </h2>
 
             <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 text-xs">
               <div>
                 <label className="block font-semibold uppercase tracking-wider text-[#171717] mb-1.5 text-[11px]">
-                  Numéro SIRET
+                  {language === 'fr' ? 'Numéro SIRET' : 'SIRET Number'}
                 </label>
                 <input
                   type="text"
@@ -496,7 +514,7 @@ export default function AdminSettingsPage() {
 
               <div>
                 <label className="block font-semibold uppercase tracking-wider text-[#171717] mb-1.5 text-[11px]">
-                  Carte Professionnelle CPI (CCI Bordeaux)
+                  {language === 'fr' ? 'Carte Professionnelle CPI (CCI Bordeaux)' : 'Professional License CPI (CCI Bordeaux)'}
                 </label>
                 <input
                   type="text"
@@ -508,7 +526,7 @@ export default function AdminSettingsPage() {
 
               <div>
                 <label className="block font-semibold uppercase tracking-wider text-[#171717] mb-1.5 text-[11px]">
-                  Garantie Financière & Organisme
+                  {language === 'fr' ? 'Garantie Financière & Organisme' : 'Financial Guarantee & Provider'}
                 </label>
                 <input
                   type="text"
@@ -531,21 +549,23 @@ export default function AdminSettingsPage() {
             <div className="flex items-center justify-between pb-3 border-b border-[#171717]/10">
               <div>
                 <h2 className="font-serif-display text-xl font-medium text-[#171717]">
-                  Barèmes & Règles de Gestion Locative
+                  {language === 'fr' ? 'Barèmes & Règles de Gestion Locative' : 'Rental Management Fee Schedules & Rules'}
                 </h2>
                 <p className="text-[11px] text-[#6F6255]">
-                  Ces taux sont utilisés pour pré-remplir les simulateurs de rendement et les propositions de mandats.
+                  {language === 'fr'
+                    ? 'Ces taux sont utilisés pour pré-remplir les simulateurs de rendement et les propositions de mandats.'
+                    : 'These rates are used to prefill yield calculators and mandate proposals.'}
                 </p>
               </div>
               <span className="text-[11px] font-semibold text-[#748C8C] bg-[#748C8C]/10 px-3 py-1 rounded-full border border-[#748C8C]/20">
-                Gestion Métier
+                {language === 'fr' ? 'Gestion Métier' : 'Rental Operations'}
               </span>
             </div>
 
             <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 text-xs">
               <div className="p-4 bg-[#F7F7F5] rounded-2xl border border-[#171717]/10 space-y-2">
                 <span className="block font-semibold uppercase tracking-wider text-[#171717] text-[11px]">
-                  Honoraires de Gestion Standard
+                  {language === 'fr' ? 'Honoraires de Gestion Standard' : 'Standard Management Fee'}
                 </span>
                 <div className="relative">
                   <input
@@ -562,13 +582,15 @@ export default function AdminSettingsPage() {
                   </span>
                 </div>
                 <span className="text-[10px] text-[#6F6255] block">
-                  Soit {(settings.managementFeeRate * 1.2).toFixed(2)} % TTC pour le mandat Sérénité.
+                  {language === 'fr'
+                    ? `Soit ${(settings.managementFeeRate * 1.2).toFixed(2)} % TTC pour le mandat Sérénité.`
+                    : `Equal to ${(settings.managementFeeRate * 1.2).toFixed(2)} % incl. VAT for Serenity mandate.`}
                 </span>
               </div>
 
               <div className="p-4 bg-[#F7F7F5] rounded-2xl border border-[#171717]/10 space-y-2">
                 <span className="block font-semibold uppercase tracking-wider text-[#171717] text-[11px]">
-                  Garantie Loyers Impayés (GLI)
+                  {language === 'fr' ? 'Garantie Loyers Impayés (GLI)' : 'Rent Guarantee Insurance (GLI)'}
                 </span>
                 <div className="relative">
                   <input
@@ -585,13 +607,13 @@ export default function AdminSettingsPage() {
                   </span>
                 </div>
                 <span className="text-[10px] text-[#6F6255] block">
-                  Taux négocié avec l'assureur partenaire.
+                  {language === 'fr' ? 'Taux négocié avec l\'assureur partenaire.' : 'Negotiated rate with partner insurer.'}
                 </span>
               </div>
 
               <div className="p-4 bg-[#F7F7F5] rounded-2xl border border-[#171717]/10 space-y-2">
                 <span className="block font-semibold uppercase tracking-wider text-[#171717] text-[11px]">
-                  Dépôt de Garantie Standard
+                  {language === 'fr' ? 'Dépôt de Garantie Standard' : 'Standard Security Deposit'}
                 </span>
                 <div className="relative">
                   <input
@@ -604,11 +626,11 @@ export default function AdminSettingsPage() {
                     className="w-full pl-3.5 pr-14 py-2.5 bg-white border border-[#171717]/15 rounded-xl font-bold font-mono text-base text-[#171717] focus:border-[#748C8C] focus:ring-2 focus:ring-[#748C8C]/20 transition-all"
                   />
                   <span className="absolute right-3.5 top-1/2 -translate-y-1/2 font-bold text-[#748C8C] text-xs">
-                    Mois HC
+                    {language === 'fr' ? 'Mois HC' : 'Mo. (excl.)'}
                   </span>
                 </div>
                 <span className="text-[10px] text-[#6F6255] block">
-                  1 mois (non meublé) ou 2 mois (meublé).
+                  {language === 'fr' ? '1 mois (non meublé) ou 2 mois (meublé).' : '1 month (unfurnished) or 2 months (furnished).'}
                 </span>
               </div>
             </div>
@@ -616,7 +638,7 @@ export default function AdminSettingsPage() {
             {/* Automation Rules */}
             <div className="pt-4 border-t border-[#171717]/10 space-y-4">
               <h3 className="text-xs font-bold uppercase tracking-wider text-[#171717]">
-                Automatisations & Relations Clients
+                {language === 'fr' ? 'Automatisations & Relations Clients' : 'Automations & Customer Relations'}
               </h3>
 
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
@@ -629,10 +651,14 @@ export default function AdminSettingsPage() {
                   />
                   <div>
                     <span className="font-bold text-[#171717] text-xs block">
-                      Accusé de réception automatique (Candidats Locataires)
+                      {language === 'fr'
+                        ? 'Accusé de réception automatique (Candidats Locataires)'
+                        : 'Automated Receipt (Tenant Applicants)'}
                     </span>
                     <span className="text-[11px] text-[#6F6255]">
-                      Envoie un email immédiat accusant réception du dossier avec la liste des pièces justificatives.
+                      {language === 'fr'
+                        ? 'Envoie un email immédiat accusant réception du dossier avec la liste des pièces justificatives.'
+                        : 'Sends an immediate email confirming application receipt with checklist of required documents.'}
                     </span>
                   </div>
                 </label>
@@ -646,10 +672,14 @@ export default function AdminSettingsPage() {
                   />
                   <div>
                     <span className="font-bold text-[#171717] text-xs block">
-                      Accusé de réception automatique (Propriétaires Bailleurs)
+                      {language === 'fr'
+                        ? 'Accusé de réception automatique (Propriétaires Bailleurs)'
+                        : 'Automated Receipt (Property Owners)'}
                     </span>
                     <span className="text-[11px] text-[#6F6255]">
-                      Confirme la prise en charge de la demande d'estimation ou de mandat sous 24h ouvrées.
+                      {language === 'fr'
+                        ? 'Confirme la prise en charge de la demande d\'estimation ou de mandat sous 24h ouvrées.'
+                        : 'Confirms receipt of property valuation or mandate inquiry within 24 business hours.'}
                     </span>
                   </div>
                 </label>
@@ -667,13 +697,13 @@ export default function AdminSettingsPage() {
           {/* Operations & Routing */}
           <div className="bg-white p-6 sm:p-8 rounded-3xl border border-[#171717]/10 shadow-xs space-y-6">
             <h2 className="font-serif-display text-xl font-medium text-[#171717] pb-3 border-b border-[#171717]/10">
-              Routage des Leads & Sécurité Système
+              {language === 'fr' ? 'Routage des Leads & Sécurité Système' : 'Lead Routing & System Security'}
             </h2>
 
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 text-xs">
               <div>
                 <label className="block font-semibold uppercase tracking-wider text-[#171717] mb-1.5 text-[11px]">
-                  Email de Réception des Leads CRM
+                  {language === 'fr' ? 'Email de Réception des Leads CRM' : 'CRM Leads Inbound Email'}
                 </label>
                 <div className="relative">
                   <Mail className="w-3.5 h-3.5 text-[#748C8C] absolute left-3 top-1/2 -translate-y-1/2" />
@@ -685,13 +715,15 @@ export default function AdminSettingsPage() {
                   />
                 </div>
                 <span className="text-[10px] text-[#6F6255] mt-1 block">
-                  Toutes les alertes d'estimation et candidatures locataires seront transmises à cette adresse.
+                  {language === 'fr'
+                    ? 'Toutes les alertes d\'estimation et candidatures locataires seront transmises à cette adresse.'
+                    : 'All valuation alerts and tenant applications will be routed to this email address.'}
                 </span>
               </div>
 
               <div>
                 <label className="block font-semibold uppercase tracking-wider text-[#171717] mb-1.5 text-[11px]">
-                  Expiration de Session Admin (Heures)
+                  {language === 'fr' ? 'Expiration de Session Admin (Heures)' : 'Admin Session Expiration (Hours)'}
                 </label>
                 <div className="relative">
                   <Clock className="w-3.5 h-3.5 text-[#748C8C] absolute left-3 top-1/2 -translate-y-1/2" />
@@ -700,10 +732,10 @@ export default function AdminSettingsPage() {
                     onChange={(e) => setSettings({ ...settings, sessionTimeoutHours: parseInt(e.target.value) || 24 })}
                     className="w-full pl-9 pr-3.5 py-2.5 bg-[#F7F7F5] border border-[#171717]/15 rounded-xl text-[#171717] focus:border-[#748C8C] focus:ring-2 focus:ring-[#748C8C]/20 transition-all text-xs"
                   >
-                    <option value={8}>8 Heures (Poste de travail)</option>
-                    <option value={24}>24 Heures (Standard recommandé)</option>
-                    <option value={72}>72 Heures (3 jours)</option>
-                    <option value={168}>7 Jours (Longue durée)</option>
+                    <option value={8}>{language === 'fr' ? '8 Heures (Poste de travail)' : '8 Hours (Workstation)'}</option>
+                    <option value={24}>{language === 'fr' ? '24 Heures (Standard recommandé)' : '24 Hours (Standard recommended)'}</option>
+                    <option value={72}>{language === 'fr' ? '72 Heures (3 jours)' : '72 Hours (3 days)'}</option>
+                    <option value={168}>{language === 'fr' ? '7 Jours (Longue durée)' : '7 Days (Extended)'}</option>
                   </select>
                 </div>
               </div>
@@ -720,10 +752,12 @@ export default function AdminSettingsPage() {
                 />
                 <div>
                   <span className="font-bold text-[#171717] text-xs block">
-                    Mode Maintenance Public
+                    {language === 'fr' ? 'Mode Maintenance Public' : 'Public Maintenance Mode'}
                   </span>
                   <span className="text-[11px] text-[#6F6255]">
-                    Si activé, les visiteurs publics voient un écran d'attente soigné, pendant que vous conservez l'accès au tableau de bord.
+                    {language === 'fr'
+                      ? 'Si activé, les visiteurs publics voient un écran d\'attente soigné, pendant que vous conservez l\'accès au tableau de bord.'
+                      : 'When enabled, public visitors see a maintenance message, while managers retain full dashboard access.'}
                   </span>
                 </div>
               </label>
@@ -737,10 +771,12 @@ export default function AdminSettingsPage() {
                 />
                 <div>
                   <span className="font-bold text-[#171717] text-xs block">
-                    Protection Anti-Bruteforce Stricte
+                    {language === 'fr' ? 'Protection Anti-Bruteforce Stricte' : 'Strict Anti-Bruteforce Rate Limiting'}
                   </span>
                   <span className="text-[11px] text-[#6F6255]">
-                    Limite les tentatives de connexion abusives à 5 essais par minute par adresse IP.
+                    {language === 'fr'
+                      ? 'Limite les tentatives de connexion abusives à 5 essais par minute par adresse IP.'
+                      : 'Limits repeated sign-in attempts to 5 trials per minute per IP address.'}
                   </span>
                 </div>
               </label>
@@ -750,13 +786,13 @@ export default function AdminSettingsPage() {
           {/* Social Channels Card */}
           <div className="bg-white p-6 sm:p-8 rounded-3xl border border-[#171717]/10 shadow-xs space-y-6">
             <h2 className="font-serif-display text-xl font-medium text-[#171717] pb-3 border-b border-[#171717]/10">
-              Réseaux Sociaux & Présence Digitale
+              {language === 'fr' ? 'Réseaux Sociaux & Présence Digitale' : 'Social Channels & Digital Presence'}
             </h2>
 
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 text-xs">
               <div>
                 <label className="block font-semibold uppercase tracking-wider text-[#171717] mb-1.5 text-[11px]">
-                  Instagram de l'Agence
+                  {language === 'fr' ? 'Instagram de l\'Agence' : 'Agency Instagram'}
                 </label>
                 <input
                   type="url"
@@ -769,7 +805,7 @@ export default function AdminSettingsPage() {
 
               <div>
                 <label className="block font-semibold uppercase tracking-wider text-[#171717] mb-1.5 text-[11px]">
-                  LinkedIn Entreprise
+                  {language === 'fr' ? 'LinkedIn Entreprise' : 'Company LinkedIn'}
                 </label>
                 <input
                   type="url"
@@ -785,13 +821,13 @@ export default function AdminSettingsPage() {
           {/* Analytics & SEO */}
           <div className="bg-white p-6 sm:p-8 rounded-3xl border border-[#171717]/10 shadow-xs space-y-6">
             <h2 className="font-serif-display text-xl font-medium text-[#171717] pb-3 border-b border-[#171717]/10">
-              Mesure d'Audience & Référencement (SEO)
+              {language === 'fr' ? 'Mesure d\'Audience & Référencement (SEO)' : 'Audience Analytics & SEO'}
             </h2>
 
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 text-xs">
               <div>
                 <label className="block font-semibold uppercase tracking-wider text-[#171717] mb-1.5 text-[11px]">
-                  ID Google Analytics 4 (GA4)
+                  {language === 'fr' ? 'ID Google Analytics 4 (GA4)' : 'Google Analytics 4 ID (GA4)'}
                 </label>
                 <input
                   type="text"
@@ -803,7 +839,7 @@ export default function AdminSettingsPage() {
 
               <div>
                 <label className="block font-semibold uppercase tracking-wider text-[#171717] mb-1.5 text-[11px]">
-                  Conteneur Google Tag Manager (GTM)
+                  {language === 'fr' ? 'Conteneur Google Tag Manager (GTM)' : 'Google Tag Manager Container (GTM)'}
                 </label>
                 <input
                   type="text"
@@ -817,7 +853,7 @@ export default function AdminSettingsPage() {
             <div className="space-y-4 text-xs pt-2 border-t border-[#171717]/10">
               <div>
                 <label className="block font-semibold uppercase tracking-wider text-[#171717] mb-1.5 text-[11px]">
-                  Titre SEO Global (Balise Title)
+                  {language === 'fr' ? 'Titre SEO Global (Balise Title)' : 'Default Global SEO Title Tag'}
                 </label>
                 <input
                   type="text"
@@ -829,7 +865,7 @@ export default function AdminSettingsPage() {
 
               <div>
                 <label className="block font-semibold uppercase tracking-wider text-[#171717] mb-1.5 text-[11px]">
-                  Meta Description par Défaut
+                  {language === 'fr' ? 'Meta Description par Défaut' : 'Default Meta Description'}
                 </label>
                 <textarea
                   rows={3}
@@ -854,10 +890,12 @@ export default function AdminSettingsPage() {
             <div className="flex items-center justify-between pb-3 border-b border-[#171717]/10">
               <div>
                 <h2 className="font-serif-display text-xl font-medium text-[#171717]">
-                  Profil Administrateur & Notifications
+                  {language === 'fr' ? 'Profil Administrateur & Notifications' : 'Admin Profile & Notification Preferences'}
                 </h2>
                 <p className="text-[11px] text-[#6F6255]">
-                  Vos coordonnées professionnelles et vos préférences d'alertes instantanées.
+                  {language === 'fr'
+                    ? 'Vos coordonnées professionnelles et vos préférences d\'alertes instantanées.'
+                    : 'Your professional contact details and instant alert preferences.'}
                 </p>
               </div>
               <span className="text-[10px] font-bold uppercase tracking-wider text-[#748C8C] bg-[#748C8C]/10 px-3 py-1 rounded-full border border-[#748C8C]/25">
@@ -883,7 +921,7 @@ export default function AdminSettingsPage() {
               <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
                 <div>
                   <label className="block font-semibold uppercase tracking-wider text-[#171717] mb-1.5 text-[11px]">
-                    Nom Complet
+                    {language === 'fr' ? 'Nom Complet' : 'Full Name'}
                   </label>
                   <input
                     type="text"
@@ -896,7 +934,7 @@ export default function AdminSettingsPage() {
 
                 <div>
                   <label className="block font-semibold uppercase tracking-wider text-[#171717] mb-1.5 text-[11px]">
-                    Email de Connexion
+                    {language === 'fr' ? 'Email de Connexion' : 'Login Email'}
                   </label>
                   <input
                     type="email"
@@ -908,7 +946,7 @@ export default function AdminSettingsPage() {
 
                 <div>
                   <label className="block font-semibold uppercase tracking-wider text-[#171717] mb-1.5 text-[11px]">
-                    Téléphone Direct
+                    {language === 'fr' ? 'Téléphone Direct' : 'Direct Phone'}
                   </label>
                   <input
                     type="text"
@@ -923,7 +961,7 @@ export default function AdminSettingsPage() {
               {/* Notification preferences */}
               <div className="pt-2 border-t border-[#171717]/10 space-y-3">
                 <span className="block font-bold uppercase tracking-wider text-[#171717] text-[11px]">
-                  Préférences de Notification Email
+                  {language === 'fr' ? 'Préférences de Notification Email' : 'Email Notification Preferences'}
                 </span>
                 
                 <div className="grid grid-cols-1 sm:grid-cols-3 gap-3">
@@ -935,7 +973,7 @@ export default function AdminSettingsPage() {
                       className="w-4 h-4 rounded text-[#748C8C] accent-[#748C8C] focus:ring-[#748C8C]"
                     />
                     <span className="text-[11px] font-medium text-[#171717]">
-                      Nouveau Lead / Mandat
+                      {language === 'fr' ? 'Nouveau Lead / Mandat' : 'New Lead / Mandate'}
                     </span>
                   </label>
 
@@ -947,7 +985,7 @@ export default function AdminSettingsPage() {
                       className="w-4 h-4 rounded text-[#748C8C] accent-[#748C8C] focus:ring-[#748C8C]"
                     />
                     <span className="text-[11px] font-medium text-[#171717]">
-                      Dossier Locataire Soumis
+                      {language === 'fr' ? 'Dossier Locataire Soumis' : 'Tenant Application Submitted'}
                     </span>
                   </label>
 
@@ -959,7 +997,7 @@ export default function AdminSettingsPage() {
                       className="w-4 h-4 rounded text-[#748C8C] accent-[#748C8C] focus:ring-[#748C8C]"
                     />
                     <span className="text-[11px] font-medium text-[#171717]">
-                      Bilan Hebdomadaire
+                      {language === 'fr' ? 'Bilan Hebdomadaire' : 'Weekly Summary'}
                     </span>
                   </label>
                 </div>
@@ -975,12 +1013,12 @@ export default function AdminSettingsPage() {
                   {savingProfile ? (
                     <>
                       <Loader2 className="w-3.5 h-3.5 animate-spin" />
-                      <span>Enregistrement...</span>
+                      <span>{language === 'fr' ? 'Enregistrement...' : 'Saving...'}</span>
                     </>
                   ) : (
                     <>
                       <Save className="w-3.5 h-3.5" />
-                      <span>Mettre à jour mon profil</span>
+                      <span>{language === 'fr' ? 'Mettre à jour mon profil' : 'Update My Profile'}</span>
                     </>
                   )}
                 </button>
@@ -997,17 +1035,21 @@ export default function AdminSettingsPage() {
                 </div>
                 <div>
                   <h2 className="font-serif-display text-xl font-medium text-[#171717]">
-                    Modification du Mot de Passe
+                    {language === 'fr' ? 'Modification du Mot de Passe' : 'Password Management'}
                   </h2>
                   <p className="text-[11px] text-[#6F6255]">
-                    Modifiez le mot de passe d'accès sécurisé à l'URL <code className="bg-[#FAF9F6] px-1 py-0.5 rounded border border-[#171717]/10 text-[#748C8C] font-mono font-bold">/admin</code>.
+                    {language === 'fr'
+                      ? 'Modifiez le mot de passe d\'accès sécurisé à l\'URL '
+                      : 'Update your secure credentials for access to '
+                    }
+                    <code className="bg-[#FAF9F6] px-1 py-0.5 rounded border border-[#171717]/10 text-[#748C8C] font-mono font-bold">/admin</code>.
                   </p>
                 </div>
               </div>
 
               <div className="inline-flex items-center space-x-2 text-[11px] font-semibold text-[#748C8C] bg-[#748C8C]/10 px-3 py-1 rounded-full border border-[#748C8C]/20 self-start sm:self-auto">
                 <ShieldCheck className="w-3.5 h-3.5 text-[#748C8C]" />
-                <span>Chiffrement SHA-256</span>
+                <span>{language === 'fr' ? 'Chiffrement SHA-256' : 'SHA-256 Encryption'}</span>
               </div>
             </div>
 
@@ -1034,7 +1076,7 @@ export default function AdminSettingsPage() {
                     htmlFor="current-password-input"
                     className="block font-semibold uppercase tracking-wider text-[#171717] mb-1.5 text-[11px]"
                   >
-                    Mot de passe actuel
+                    {language === 'fr' ? 'Mot de passe actuel' : 'Current Password'}
                   </label>
                   <div className="relative">
                     <Lock className="w-3.5 h-3.5 text-[#6F6255] absolute left-3 top-1/2 -translate-y-1/2 pointer-events-none" />
@@ -1050,7 +1092,7 @@ export default function AdminSettingsPage() {
                     <button
                       type="button"
                       onClick={() => setShowCurrentPassword(!showCurrentPassword)}
-                      aria-label={showCurrentPassword ? 'Cacher le mot de passe' : 'Afficher le mot de passe'}
+                      aria-label={showCurrentPassword ? 'Hide password' : 'Show password'}
                       className="absolute right-2.5 top-1/2 -translate-y-1/2 text-[#6F6255] hover:text-[#171717] p-1 transition-colors"
                     >
                       {showCurrentPassword ? <EyeOff className="w-3.5 h-3.5" /> : <Eye className="w-3.5 h-3.5" />}
@@ -1064,7 +1106,7 @@ export default function AdminSettingsPage() {
                     htmlFor="new-password-input"
                     className="block font-semibold uppercase tracking-wider text-[#171717] mb-1.5 text-[11px]"
                   >
-                    Nouveau mot de passe
+                    {language === 'fr' ? 'Nouveau mot de passe' : 'New Password'}
                   </label>
                   <div className="relative">
                     <Lock className="w-3.5 h-3.5 text-[#6F6255] absolute left-3 top-1/2 -translate-y-1/2 pointer-events-none" />
@@ -1072,7 +1114,7 @@ export default function AdminSettingsPage() {
                       id="new-password-input"
                       type={showNewPassword ? 'text' : 'password'}
                       required
-                      placeholder="Minimum 8 caractères"
+                      placeholder={language === 'fr' ? 'Minimum 8 caractères' : 'Minimum 8 characters'}
                       value={newPassword}
                       onChange={(e) => setNewPassword(e.target.value)}
                       className="w-full pl-9 pr-10 py-2.5 bg-[#F7F7F5] border border-[#171717]/15 rounded-xl font-mono text-[#171717] placeholder:text-[#6F6255]/40 focus:outline-none focus:border-[#748C8C] focus:ring-2 focus:ring-[#748C8C]/20 transition-all text-xs"
@@ -1080,7 +1122,7 @@ export default function AdminSettingsPage() {
                     <button
                       type="button"
                       onClick={() => setShowNewPassword(!showNewPassword)}
-                      aria-label={showNewPassword ? 'Cacher le mot de passe' : 'Afficher le mot de passe'}
+                      aria-label={showNewPassword ? 'Hide password' : 'Show password'}
                       className="absolute right-2.5 top-1/2 -translate-y-1/2 text-[#6F6255] hover:text-[#171717] p-1 transition-colors"
                     >
                       {showNewPassword ? <EyeOff className="w-3.5 h-3.5" /> : <Eye className="w-3.5 h-3.5" />}
@@ -1088,7 +1130,12 @@ export default function AdminSettingsPage() {
                   </div>
                   <div className="mt-1 flex items-center space-x-1.5 text-[10px] text-[#6F6255]">
                     <span className={`w-1.5 h-1.5 rounded-full ${newPassword.length >= 8 ? 'bg-emerald-500' : 'bg-amber-400'}`} />
-                    <span>Minimum 8 caractères ({newPassword.length}/8)</span>
+                    <span>
+                      {language === 'fr' 
+                        ? `Minimum 8 caractères (${newPassword.length}/8)`
+                        : `Minimum 8 characters (${newPassword.length}/8)`
+                      }
+                    </span>
                   </div>
                 </div>
 
@@ -1098,7 +1145,7 @@ export default function AdminSettingsPage() {
                     htmlFor="confirm-password-input"
                     className="block font-semibold uppercase tracking-wider text-[#171717] mb-1.5 text-[11px]"
                   >
-                    Confirmer le mot de passe
+                    {language === 'fr' ? 'Confirmer le mot de passe' : 'Confirm Password'}
                   </label>
                   <div className="relative">
                     <Lock className="w-3.5 h-3.5 text-[#6F6255] absolute left-3 top-1/2 -translate-y-1/2 pointer-events-none" />
@@ -1106,7 +1153,7 @@ export default function AdminSettingsPage() {
                       id="confirm-password-input"
                       type={showConfirmPassword ? 'text' : 'password'}
                       required
-                      placeholder="Répétez le mot de passe"
+                      placeholder={language === 'fr' ? 'Répétez le mot de passe' : 'Repeat password'}
                       value={confirmPassword}
                       onChange={(e) => setConfirmPassword(e.target.value)}
                       className="w-full pl-9 pr-10 py-2.5 bg-[#F7F7F5] border border-[#171717]/15 rounded-xl font-mono text-[#171717] placeholder:text-[#6F6255]/40 focus:outline-none focus:border-[#748C8C] focus:ring-2 focus:ring-[#748C8C]/20 transition-all text-xs"
@@ -1114,7 +1161,7 @@ export default function AdminSettingsPage() {
                     <button
                       type="button"
                       onClick={() => setShowConfirmPassword(!showConfirmPassword)}
-                      aria-label={showConfirmPassword ? 'Cacher le mot de passe' : 'Afficher le mot de passe'}
+                      aria-label={showConfirmPassword ? 'Hide password' : 'Show password'}
                       className="absolute right-2.5 top-1/2 -translate-y-1/2 text-[#6F6255] hover:text-[#171717] p-1 transition-colors"
                     >
                       {showConfirmPassword ? <EyeOff className="w-3.5 h-3.5" /> : <Eye className="w-3.5 h-3.5" />}
@@ -1125,12 +1172,12 @@ export default function AdminSettingsPage() {
                       {confirmPassword === newPassword ? (
                         <span className="text-emerald-600 flex items-center space-x-1 font-medium">
                           <Check className="w-3 h-3" />
-                          <span>Les mots de passe correspondent</span>
+                          <span>{language === 'fr' ? 'Les mots de passe correspondent' : 'Passwords match'}</span>
                         </span>
                       ) : (
                         <span className="text-rose-600 flex items-center space-x-1 font-medium">
                           <ShieldAlert className="w-3 h-3" />
-                          <span>Ne correspond pas</span>
+                          <span>{language === 'fr' ? 'Ne correspond pas' : 'Does not match'}</span>
                         </span>
                       )}
                     </div>
@@ -1149,12 +1196,12 @@ export default function AdminSettingsPage() {
                   {changingPassword ? (
                     <>
                       <Loader2 className="w-3.5 h-3.5 animate-spin" />
-                      <span>Mise à jour en cours...</span>
+                      <span>{language === 'fr' ? 'Mise à jour en cours...' : 'Updating...'}</span>
                     </>
                   ) : (
                     <>
-                      <KeyRound className="w-3.5 h-3.5" />
-                      <span>Mettre à jour le mot de passe</span>
+                  <KeyRound className="w-3.5 h-3.5" />
+                  <span>{language === 'fr' ? 'Mettre à jour le mot de passe' : 'Update Password'}</span>
                     </>
                   )}
                 </button>

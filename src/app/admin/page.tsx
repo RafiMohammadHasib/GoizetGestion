@@ -410,7 +410,10 @@ export default function AdminDashboardPage() {
                       <span className={`text-[10px] font-bold px-1.5 py-0.5 rounded ${
                         t.priority === 'Haute' ? 'bg-red-50 text-red-700' : 'bg-[#748C8C]/15 text-[#748C8C]'
                       }`}>
-                        {t.priority}
+                        {language === 'fr' 
+                          ? t.priority 
+                          : (t.priority === 'Haute' ? 'High' : (t.priority === 'Normale' ? 'Normal' : t.priority))
+                        }
                       </span>
                     </div>
                     <div className="flex justify-between text-[10px] text-[#6B6B6B]">

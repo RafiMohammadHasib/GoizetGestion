@@ -160,6 +160,8 @@ export function from(table: string) {
   return new QueryBuilder(table);
 }
 
+export const ovhQuery = from;
+
 export async function pingBridge() {
   const res = await fetch(`${BRIDGE_URL}?action=ping`, {
     headers: { 'X-Bridge-Secret': BRIDGE_SECRET },
