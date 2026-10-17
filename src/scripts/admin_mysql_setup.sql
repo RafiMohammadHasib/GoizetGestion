@@ -68,13 +68,13 @@ CREATE TABLE IF NOT EXISTS `agency_settings` (
   `management_fee_rate` DECIMAL(5,2) DEFAULT 6.50 COMMENT 'Taux standard gestion locative %',
   `default_deposit_months` INT DEFAULT 1 COMMENT 'Dépôt de garantie en mois de loyer HC',
   `gli_insurance_rate` DECIMAL(5,2) DEFAULT 2.50 COMMENT 'Taux Garantie Loyers Impayés %',
-  `auto_reply_tenant` TINYINT(1) DEFAULT 1 COMMENT 'Accusé de réception auto candidat locataire',
-  `auto_reply_owner` TINYINT(1) DEFAULT 1 COMMENT 'Accusé de réception auto propriétaire bailleur',
+  `auto_reply_tenant` TINYINT DEFAULT 1 COMMENT 'Accusé de réception auto candidat locataire',
+  `auto_reply_owner` TINYINT DEFAULT 1 COMMENT 'Accusé de réception auto propriétaire bailleur',
 
   -- 3. Système & Exploitation
-  `maintenance_mode` TINYINT(1) DEFAULT 0 COMMENT 'Mode maintenance 0=Désactivé, 1=Activé',
+  `maintenance_mode` TINYINT DEFAULT 0 COMMENT 'Mode maintenance 0=Désactivé, 1=Activé',
   `session_timeout_hours` INT DEFAULT 24 COMMENT 'Durée validité session admin en heures',
-  `rate_limiting_strict` TINYINT(1) DEFAULT 1 COMMENT 'Protection anti-bruteforce active',
+  `rate_limiting_strict` TINYINT DEFAULT 1 COMMENT 'Protection anti-bruteforce active',
 
   -- 4. Réseaux Sociaux & Visibilité
   `instagram_url` VARCHAR(255) DEFAULT 'https://instagram.com/goizetgestion',
