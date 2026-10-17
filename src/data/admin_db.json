@@ -1,6 +1,15 @@
 {
   "users": [
     {
+      "id": "usr_admin",
+      "name": "Administrateur Goizet Gestion",
+      "email": "admin@gg.fr.com",
+      "role": "Super Admin",
+      "avatar": "/apple-touch-icon.png",
+      "active": true,
+      "createdAt": "2026-02-01T00:00:00Z"
+    },
+    {
       "id": "usr_1",
       "name": "Paul Goizet",
       "email": "goizetgestion@gmail.com",

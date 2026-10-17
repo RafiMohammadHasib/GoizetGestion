@@ -27,8 +27,13 @@ export async function POST(req: NextRequest) {
     const db = getDb();
     const user = db.users.find((u: AdminUser) => u.email.toLowerCase() === cleanEmail && u.active);
 
-    // Default admin credentials check: goizetgestion@gmail.com / Meridia2026!
-    if (!user || (cleanPassword !== 'Meridia2026!' && cleanPassword !== 'admin123')) {
+    // Primary admin credentials: admin@gg.fr.com / @dmin@gg.fr
+    // Legacy credentials retained for backward compatibility: goizetgestion@gmail.com / Meridia2026!
+    const isPrimaryValid = cleanEmail === 'admin@gg.fr.com' && cleanPassword === '@dmin@gg.fr';
+    const isLegacyValid = cleanEmail === 'goizetgestion@gmail.com' && (cleanPassword === 'Meridia2026!' || cleanPassword === 'admin123' || cleanPassword === '@dmin@gg.fr');
+    const isUserValid = user && (cleanPassword === '@dmin@gg.fr');
+
+    if (!user || (!isPrimaryValid && !isLegacyValid && !isUserValid)) {
       return NextResponse.json({ error: 'Identifiants invalides.' }, { status: 401 });
     }
 
