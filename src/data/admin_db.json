@@ -3826,6 +3826,18 @@
   ],
   "owners": [
     {
+      "id": "own_1792214344666",
+      "name": "John Cena",
+      "email": "johncena@gmail.com",
+      "phone": "+33 6 01521112",
+      "address": "Apartment • Bordeaux",
+      "notes": "Converti depuis le CRM Opportunity Board (Owner Enquiry). Budget: N/A.",
+      "status": "Managed",
+      "propertiesCount": 1,
+      "properties_count": 1,
+      "createdAt": "2026-10-17T10:23:24.397Z"
+    },
+    {
       "id": "own_1",
       "name": "Propriétaire 1 (Marie Laurent)",
       "email": "proprietaire1@exemple.fr",
