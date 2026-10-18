@@ -127,8 +127,9 @@ export async function POST(req: NextRequest) {
       ? `${isClientSearch ? 'Client search' : 'Owner'} for: ${displayService}. Property: ${displayPropType}.${budget ? ` Budget: ${budget} €.` : ''}`
       : `${isClientSearch ? 'Client en recherche' : 'Propriétaire'} pour: ${displayService}. Bien: ${displayPropType}.${budget ? ` Budget: ${budget} €.` : ''}`;
 
+    const entropy = Math.random().toString(36).substring(2, 7);
     const newLead: CRMLead = {
-      id: `lead_${Date.now()}`,
+      id: `lead_${Date.now()}_${entropy}`,
       name: sanitizedName,
       email: cleanEmail || '',
       phone: cleanPhone,

@@ -16,7 +16,6 @@ export function sanitizeXSS(input: string): string {
     .replace(/>/g, '&gt;')
     .replace(/"/g, '&quot;')
     .replace(/'/g, '&#x27;')
-    .replace(/\//g, '&#x2F;')
     .replace(/javascript:/gi, '')
     .replace(/data:/gi, '')
     .replace(/onload/gi, '')
@@ -84,8 +83,14 @@ export function sanitizeNumber(value: any, min: number = 0, max: number = 100000
 
 /**
  * In-Memory Simple Rate Limiter for Server API Routes
+ * Persisted on globalThis to preserve rate counter during dev server module re-evaluations
  */
-const ipStore = new Map<string, { count: number; firstAccess: number }>();
+declare global {
+  var __ipRateLimitStore: Map<string, { count: number; firstAccess: number }> | undefined;
+}
+
+const ipStore: Map<string, { count: number; firstAccess: number }> =
+  (globalThis as any).__ipRateLimitStore || ((globalThis as any).__ipRateLimitStore = new Map());
 
 export function checkRateLimit(ip: string, limit: number = 5, windowMs: number = 60000): { allowed: boolean; remaining: number } {
   const now = Date.now();

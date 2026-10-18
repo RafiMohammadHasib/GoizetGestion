@@ -38,13 +38,14 @@ export async function GET() {
                         serviceTypeStr.includes('management');
 
         if (isOwner) {
-          const ownerId = `own_${l.id.replace('lead_', '')}`;
-          const existingOwner = ownersMap.get(ownerId) || Array.from(ownersMap.values()).find((o: any) => o.email === l.email);
+          const rawId = l.id ? String(l.id) : String(Date.now());
+          const ownerId = `own_${rawId.replace('lead_', '')}`;
+          const existingOwner = ownersMap.get(ownerId) || (l.email ? Array.from(ownersMap.values()).find((o: any) => o.email === l.email) : undefined);
           if (!existingOwner) {
             const newOwner = {
               id: ownerId,
-              name: l.name,
-              email: l.email,
+              name: l.name || 'Propriétaire',
+              email: l.email || `${ownerId}@goizet-gestion.fr`,
               phone: l.phone || 'Non renseigné',
               address: l.propertyAddress || l.property_address || 'Bordeaux Centre',
               notes: `Converti depuis le CRM Opportunity Board (${l.leadType || 'Owner Enquiry'}). Budget: ${l.budget || 'N/A'}.`,
@@ -66,41 +67,48 @@ export async function GET() {
       saveDb(db);
     }
 
-    // 3. Merge Supabase data if available
+    // 3. Merge OVH MySQL / Supabase data if available
     try {
       const { data, error } = await withTimeout(
         supabase
           .from('owners')
           .select('*')
-          .order('created_at', { ascending: false })
+          .order('created_at', { ascending: false }),
+        1200
       );
 
-      if (!error && data && data.length > 0) {
+      if (!error && Array.isArray(data) && data.length > 0) {
         data.forEach((o: any) => {
-          if (!ownersMap.has(o.id)) {
-            ownersMap.set(o.id, {
-              id: o.id,
-              name: o.name,
-              email: o.email,
-              phone: o.phone,
-              address: o.address,
-              notes: o.notes,
-              status: o.status,
+          if (o && o.id && !ownersMap.has(String(o.id))) {
+            ownersMap.set(String(o.id), {
+              id: String(o.id),
+              name: o.name || 'Propriétaire',
+              email: o.email || '',
+              phone: o.phone || '',
+              address: o.address || '',
+              notes: o.notes || '',
+              status: o.status || 'Managed',
               propertiesCount: Number(o.properties_count || o.propertiesCount || 1),
-              createdAt: o.created_at || o.createdAt
+              createdAt: o.created_at || o.createdAt || new Date().toISOString()
             });
           }
         });
       }
     } catch (sbErr) {
-      // Supabase offline / fallback
+      // Supabase / OVH offline or timeout fallback — safely continue with local database
     }
 
     const allOwners = Array.from(ownersMap.values());
     allOwners.sort((a, b) => new Date(b.createdAt).getTime() - new Date(a.createdAt).getTime());
     return NextResponse.json({ owners: allOwners, total: allOwners.length });
-  } catch (error) {
-    return NextResponse.json({ error: 'Failed to fetch owners' }, { status: 500 });
+  } catch (error: any) {
+    console.error('Error in GET /api/admin/owners:', error);
+    try {
+      const fallbackDb = getDb();
+      return NextResponse.json({ owners: fallbackDb.owners || [], total: (fallbackDb.owners || []).length });
+    } catch {
+      return NextResponse.json({ error: 'Failed to fetch owners', details: String(error?.message || error) }, { status: 500 });
+    }
   }
 }
 

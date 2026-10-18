@@ -127,10 +127,14 @@ export interface AgencySettings {
   updatedAt?: string;
 }
 
-// In-memory cache singleton fallback for client environment
+// In-memory cache singleton fallback for client & server environment
 let memoryStoreCache: any = null;
+let writeTimeout: any = null;
 
 export function getDb() {
+  if (memoryStoreCache) {
+    return memoryStoreCache;
+  }
   if (typeof window === 'undefined') {
     try {
       const fs = require('fs');
@@ -149,9 +153,11 @@ export function getDb() {
         saveDb(seed);
         return seed;
       }
-      return parsed;
+      memoryStoreCache = parsed;
+      return memoryStoreCache;
     } catch (err) {
-      return generateSeedData();
+      memoryStoreCache = generateSeedData();
+      return memoryStoreCache;
     }
   } else {
     // Client-side execution
@@ -165,16 +171,21 @@ export function getDb() {
 export function saveDb(data: any) {
   memoryStoreCache = data;
   if (typeof window === 'undefined') {
-    try {
-      const fs = require('fs');
-      const path = require('path');
-      const dataFile = path.join(process.cwd(), 'src', 'data', 'admin_db.json');
-      const dir = path.dirname(dataFile);
-      if (!fs.existsSync(dir)) fs.mkdirSync(dir, { recursive: true });
-      fs.writeFileSync(dataFile, JSON.stringify(data, null, 2), 'utf-8');
-    } catch (err) {
-      console.error('Failed to write admin DB file:', err);
-    }
+    if (writeTimeout) clearTimeout(writeTimeout);
+    writeTimeout = setTimeout(() => {
+      try {
+        const fs = require('fs');
+        const path = require('path');
+        const dataFile = path.join(process.cwd(), 'src', 'data', 'admin_db.json');
+        const dir = path.dirname(dataFile);
+        if (!fs.existsSync(dir)) fs.mkdirSync(dir, { recursive: true });
+        fs.writeFile(dataFile, JSON.stringify(data, null, 2), 'utf-8', (err: any) => {
+          if (err) console.error('Failed to write admin DB file:', err);
+        });
+      } catch (err) {
+        console.error('Failed to write admin DB file:', err);
+      }
+    }, 180);
   }
 }
 

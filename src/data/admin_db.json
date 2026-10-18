@@ -141,7 +141,7 @@
         "https://images.unsplash.com/photo-1600566753190-17f0baa2a6c3?auto=format&fit=crop&w=1600&q=80"
       ],
       "coverImage": "https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=1600&q=80",
-      "views": 135,
+      "views": 144,
       "enquiriesCount": 7,
       "ownerId": "own_2",
       "ownerName": "Propriétaire Chartrons",
@@ -2180,6 +2180,2805 @@
   ],
   "leads": [
     {
+      "id": "lead_1792314977837_dl9tc",
+      "name": "Flood Test 4",
+      "email": "flood_1792314977805_4@test.fr",
+      "phone": "06 12 34 56 78",
+      "leadType": "Contact Message",
+      "status": "NEW",
+      "subject": "Demande de contact",
+      "message": "Flood test",
+      "source": "Formulaire de Contact Frontend",
+      "assignedTo": "Paul & Edgar Goizet",
+      "createdAt": "2026-10-18T09:16:17.837Z",
+      "notes": [],
+      "activities": [
+        {
+          "id": "act_1792314977837_dl9tc",
+          "text": "Demande (Contact Message) soumise depuis le site public.",
+          "date": "À l'instant"
+        }
+      ]
+    },
+    {
+      "id": "lead_1792314977375_rgck6",
+      "name": "Flood Test 3",
+      "email": "flood_1792314977358_3@test.fr",
+      "phone": "06 12 34 56 78",
+      "leadType": "Contact Message",
+      "status": "NEW",
+      "subject": "Demande de contact",
+      "message": "Flood test",
+      "source": "Formulaire de Contact Frontend",
+      "assignedTo": "Paul & Edgar Goizet",
+      "createdAt": "2026-10-18T09:16:17.375Z",
+      "notes": [],
+      "activities": [
+        {
+          "id": "act_1792314977375_rgck6",
+          "text": "Demande (Contact Message) soumise depuis le site public.",
+          "date": "À l'instant"
+        }
+      ]
+    },
+    {
+      "id": "lead_1792314976899_515v4",
+      "name": "Flood Test 2",
+      "email": "flood_1792314976885_2@test.fr",
+      "phone": "06 12 34 56 78",
+      "leadType": "Contact Message",
+      "status": "NEW",
+      "subject": "Demande de contact",
+      "message": "Flood test",
+      "source": "Formulaire de Contact Frontend",
+      "assignedTo": "Paul & Edgar Goizet",
+      "createdAt": "2026-10-18T09:16:16.899Z",
+      "notes": [],
+      "activities": [
+        {
+          "id": "act_1792314976899_515v4",
+          "text": "Demande (Contact Message) soumise depuis le site public.",
+          "date": "À l'instant"
+        }
+      ]
+    },
+    {
+      "id": "lead_1792314976522_y0qhe",
+      "name": "Flood Test 1",
+      "email": "flood_1792314976423_1@test.fr",
+      "phone": "06 12 34 56 78",
+      "leadType": "Contact Message",
+      "status": "NEW",
+      "subject": "Demande de contact",
+      "message": "Flood test",
+      "source": "Formulaire de Contact Frontend",
+      "assignedTo": "Paul & Edgar Goizet",
+      "createdAt": "2026-10-18T09:16:16.522Z",
+      "notes": [],
+      "activities": [
+        {
+          "id": "act_1792314976522_y0qhe",
+          "text": "Demande (Contact Message) soumise depuis le site public.",
+          "date": "À l'instant"
+        }
+      ]
+    },
+    {
+      "id": "lead_1792314976068_xjrcy",
+      "name": "Flood Test 0",
+      "email": "flood_1792314976052_0@test.fr",
+      "phone": "06 12 34 56 78",
+      "leadType": "Contact Message",
+      "status": "NEW",
+      "subject": "Demande de contact",
+      "message": "Flood test",
+      "source": "Formulaire de Contact Frontend",
+      "assignedTo": "Paul & Edgar Goizet",
+      "createdAt": "2026-10-18T09:16:16.068Z",
+      "notes": [],
+      "activities": [
+        {
+          "id": "act_1792314976068_xjrcy",
+          "text": "Demande (Contact Message) soumise depuis le site public.",
+          "date": "À l'instant"
+        }
+      ]
+    },
+    {
+      "id": "lead_1792314975154_u6v70",
+      "name": "&ltscript&gtalert(&quotxss&quot)&lt/script&gtJean Dupont",
+      "email": "xss.test.1792314975137@automated-audit.fr",
+      "phone": "06 11 22 33 44",
+      "leadType": "Contact Message",
+      "status": "NEW",
+      "subject": "Demande de contact",
+      "message": "&ltimg src=x =alert(1)&gtDemande urgente",
+      "source": "Formulaire de Contact Frontend",
+      "assignedTo": "Paul & Edgar Goizet",
+      "createdAt": "2026-10-18T09:16:15.154Z",
+      "notes": [],
+      "activities": [
+        {
+          "id": "act_1792314975154_u6v70",
+          "text": "Demande (Contact Message) soumise depuis le site public.",
+          "date": "À l'instant"
+        }
+      ]
+    },
+    {
+      "id": "lead_1792314965959_88tax",
+      "name": "Audit Estimateur 1792314964577",
+      "email": "test.estimation.1792314964577@automated-audit.fr",
+      "phone": "06 55 44 33 22",
+      "leadType": "Valuation Request",
+      "status": "CONVERTED",
+      "propertyAddress": "Appartement • Triangle d'Or, Bordeaux",
+      "budget": "Est. 964 € - 1286 € / mois",
+      "surface": "70 m² • 3 pièces",
+      "subject": "Estimation Loyer: Appartement (70 m²) à Triangle d'Or",
+      "message": "Formulaire d'estimation propriétaire reçu. Bien: Appartement, Surface: 70 m², Pièces: 3, Quartier: Triangle d'Or. Loyer estimé: 964 € à 1286 € / mois.",
+      "source": "Calculateur Estimation En Ligne",
+      "assignedTo": "Paul & Edgar Goizet",
+      "createdAt": "2026-10-18T09:16:05.959Z",
+      "notes": [
+        {
+          "id": "note_1792314965959",
+          "author": "Calculateur Goizet",
+          "text": "Estimation indicative: 964 € - 1286 € / mois (70 m² à Triangle d'Or).",
+          "date": "À l'instant"
+        }
+      ],
+      "activities": [
+        {
+          "id": "act_1792314965959",
+          "text": "Formulaire d'estimation propriétaire soumis.",
+          "date": "À l'instant"
+        }
+      ]
+    },
+    {
+      "id": "lead_1792314965322_sagig",
+      "name": "Audit Propriétaire 1792314964577",
+      "email": "test.owner.1792314964577@automated-audit.fr",
+      "phone": "06 98 76 54 32",
+      "leadType": "Owner Enquiry",
+      "serviceType": "Rental management",
+      "status": "NEW",
+      "subject": "Dossier: Gestion Locative 360° (Appartement à Chartrons)",
+      "message": "Audit automatique de conversion d unités.",
+      "propertyAddress": "Appartement • 22 Cours Portal, Chartrons",
+      "propertyType": "appartement",
+      "budget": "1950 €",
+      "surface": "82 m² • 4 pièces",
+      "source": "Formulaire Confier mon bien",
+      "assignedTo": "Paul & Edgar Goizet",
+      "createdAt": "2026-10-18T09:16:05.322Z",
+      "notes": [
+        {
+          "id": "note_1792314965322",
+          "author": "Portail Propriétaire Goizet",
+          "text": "Demande reçue pour Gestion Locative 360°. Rappel garanti au 06 98 76 54 32.",
+          "date": "À l'instant"
+        }
+      ],
+      "activities": [
+        {
+          "id": "act_1792314965322",
+          "text": "Dossier (Gestion Locative 360°) soumis depuis le site web.",
+          "date": "À l'instant"
+        }
+      ]
+    },
+    {
+      "id": "lead_1792314964602_nux0r",
+      "name": "Audit Contact 1792314964577",
+      "email": "test.contact.1792314964577@automated-audit.fr",
+      "phone": "06 12 34 56 78",
+      "leadType": "Owner Enquiry",
+      "status": "NEW",
+      "subject": "Demande de renseignement gestion",
+      "message": "Audit automatique de stockage et rendu unitaire.",
+      "budget": "1 750 € / mois",
+      "surface": "68 m² • 3 pièces",
+      "source": "Formulaire de Contact Frontend",
+      "assignedTo": "Paul & Edgar Goizet",
+      "createdAt": "2026-10-18T09:16:04.602Z",
+      "notes": [],
+      "activities": [
+        {
+          "id": "act_1792314964602_nux0r",
+          "text": "Demande (Owner Enquiry) soumise depuis le site public.",
+          "date": "À l'instant"
+        }
+      ]
+    },
+    {
+      "id": "lead_1792314935676_py7z0",
+      "name": "Flood Test 4",
+      "email": "flood_1792314935509_4@test.fr",
+      "phone": "06 12 34 56 78",
+      "leadType": "Contact Message",
+      "status": "NEW",
+      "subject": "Demande de contact",
+      "message": "Flood test",
+      "source": "Formulaire de Contact Frontend",
+      "assignedTo": "Paul & Edgar Goizet",
+      "createdAt": "2026-10-18T09:15:35.676Z",
+      "notes": [],
+      "activities": [
+        {
+          "id": "act_1792314935676_py7z0",
+          "text": "Demande (Contact Message) soumise depuis le site public.",
+          "date": "À l'instant"
+        }
+      ]
+    },
+    {
+      "id": "lead_1792314935123_l8jfz",
+      "name": "Flood Test 3",
+      "email": "flood_1792314935106_3@test.fr",
+      "phone": "06 12 34 56 78",
+      "leadType": "Contact Message",
+      "status": "NEW",
+      "subject": "Demande de contact",
+      "message": "Flood test",
+      "source": "Formulaire de Contact Frontend",
+      "assignedTo": "Paul & Edgar Goizet",
+      "createdAt": "2026-10-18T09:15:35.123Z",
+      "notes": [],
+      "activities": [
+        {
+          "id": "act_1792314935123_l8jfz",
+          "text": "Demande (Contact Message) soumise depuis le site public.",
+          "date": "À l'instant"
+        }
+      ]
+    },
+    {
+      "id": "lead_1792314934404_upa9d",
+      "name": "Flood Test 2",
+      "email": "flood_1792314934371_2@test.fr",
+      "phone": "06 12 34 56 78",
+      "leadType": "Contact Message",
+      "status": "NEW",
+      "subject": "Demande de contact",
+      "message": "Flood test",
+      "source": "Formulaire de Contact Frontend",
+      "assignedTo": "Paul & Edgar Goizet",
+      "createdAt": "2026-10-18T09:15:34.404Z",
+      "notes": [],
+      "activities": [
+        {
+          "id": "act_1792314934404_upa9d",
+          "text": "Demande (Contact Message) soumise depuis le site public.",
+          "date": "À l'instant"
+        }
+      ]
+    },
+    {
+      "id": "lead_1792314933854_7yue7",
+      "name": "Flood Test 1",
+      "email": "flood_1792314933829_1@test.fr",
+      "phone": "06 12 34 56 78",
+      "leadType": "Contact Message",
+      "status": "NEW",
+      "subject": "Demande de contact",
+      "message": "Flood test",
+      "source": "Formulaire de Contact Frontend",
+      "assignedTo": "Paul & Edgar Goizet",
+      "createdAt": "2026-10-18T09:15:33.854Z",
+      "notes": [],
+      "activities": [
+        {
+          "id": "act_1792314933854_7yue7",
+          "text": "Demande (Contact Message) soumise depuis le site public.",
+          "date": "À l'instant"
+        }
+      ]
+    },
+    {
+      "id": "lead_1792314933230_4x489",
+      "name": "Flood Test 0",
+      "email": "flood_1792314932686_0@test.fr",
+      "phone": "06 12 34 56 78",
+      "leadType": "Contact Message",
+      "status": "NEW",
+      "subject": "Demande de contact",
+      "message": "Flood test",
+      "source": "Formulaire de Contact Frontend",
+      "assignedTo": "Paul & Edgar Goizet",
+      "createdAt": "2026-10-18T09:15:33.230Z",
+      "notes": [],
+      "activities": [
+        {
+          "id": "act_1792314933230_4x489",
+          "text": "Demande (Contact Message) soumise depuis le site public.",
+          "date": "À l'instant"
+        }
+      ]
+    },
+    {
+      "id": "lead_1792314931458_n2krj",
+      "name": "&ltscript&gtalert(&quotxss&quot)&lt/script&gtJean Dupont",
+      "email": "xss.test.1792314931432@automated-audit.fr",
+      "phone": "06 11 22 33 44",
+      "leadType": "Contact Message",
+      "status": "NEW",
+      "subject": "Demande de contact",
+      "message": "&ltimg src=x =alert(1)&gtDemande urgente",
+      "source": "Formulaire de Contact Frontend",
+      "assignedTo": "Paul & Edgar Goizet",
+      "createdAt": "2026-10-18T09:15:31.458Z",
+      "notes": [],
+      "activities": [
+        {
+          "id": "act_1792314931458_n2krj",
+          "text": "Demande (Contact Message) soumise depuis le site public.",
+          "date": "À l'instant"
+        }
+      ]
+    },
+    {
+      "id": "lead_1792314905243_m5c4t",
+      "name": "Audit Estimateur 1792314899342",
+      "email": "test.estimation.1792314899342@automated-audit.fr",
+      "phone": "06 55 44 33 22",
+      "leadType": "Valuation Request",
+      "status": "CONVERTED",
+      "propertyAddress": "Appartement • Triangle d'Or, Bordeaux",
+      "budget": "Est. 964 € - 1286 € / mois",
+      "surface": "70 m² • 3 pièces",
+      "subject": "Estimation Loyer: Appartement (70 m²) à Triangle d'Or",
+      "message": "Formulaire d'estimation propriétaire reçu. Bien: Appartement, Surface: 70 m², Pièces: 3, Quartier: Triangle d'Or. Loyer estimé: 964 € à 1286 € / mois.",
+      "source": "Calculateur Estimation En Ligne",
+      "assignedTo": "Paul & Edgar Goizet",
+      "createdAt": "2026-10-18T09:15:05.243Z",
+      "notes": [
+        {
+          "id": "note_1792314905243",
+          "author": "Calculateur Goizet",
+          "text": "Estimation indicative: 964 € - 1286 € / mois (70 m² à Triangle d'Or).",
+          "date": "À l'instant"
+        }
+      ],
+      "activities": [
+        {
+          "id": "act_1792314905243",
+          "text": "Formulaire d'estimation propriétaire soumis.",
+          "date": "À l'instant"
+        }
+      ]
+    },
+    {
+      "id": "lead_1792314904069_xb61v",
+      "name": "Audit Propriétaire 1792314899342",
+      "email": "test.owner.1792314899342@automated-audit.fr",
+      "phone": "06 98 76 54 32",
+      "leadType": "Owner Enquiry",
+      "serviceType": "Rental management",
+      "status": "NEW",
+      "subject": "Dossier: Gestion Locative 360° (Appartement à Chartrons)",
+      "message": "Audit automatique de conversion d unités.",
+      "propertyAddress": "Appartement • 22 Cours Portal, Chartrons",
+      "propertyType": "appartement",
+      "budget": "1950 €",
+      "surface": "82 m² • 4 pièces",
+      "source": "Formulaire Confier mon bien",
+      "assignedTo": "Paul & Edgar Goizet",
+      "createdAt": "2026-10-18T09:15:04.069Z",
+      "notes": [
+        {
+          "id": "note_1792314904069",
+          "author": "Portail Propriétaire Goizet",
+          "text": "Demande reçue pour Gestion Locative 360°. Rappel garanti au 06 98 76 54 32.",
+          "date": "À l'instant"
+        }
+      ],
+      "activities": [
+        {
+          "id": "act_1792314904069",
+          "text": "Dossier (Gestion Locative 360°) soumis depuis le site web.",
+          "date": "À l'instant"
+        }
+      ]
+    },
+    {
+      "id": "lead_1792314899864_p3gbd",
+      "name": "Audit Contact 1792314899342",
+      "email": "test.contact.1792314899342@automated-audit.fr",
+      "phone": "06 12 34 56 78",
+      "leadType": "Owner Enquiry",
+      "status": "NEW",
+      "subject": "Demande de renseignement gestion",
+      "message": "Audit automatique de stockage et rendu unitaire.",
+      "budget": "1 750 € / mois",
+      "surface": "68 m² • 3 pièces",
+      "source": "Formulaire de Contact Frontend",
+      "assignedTo": "Paul & Edgar Goizet",
+      "createdAt": "2026-10-18T09:14:59.864Z",
+      "notes": [],
+      "activities": [
+        {
+          "id": "act_1792314899864_p3gbd",
+          "text": "Demande (Owner Enquiry) soumise depuis le site public.",
+          "date": "À l'instant"
+        }
+      ]
+    },
+    {
+      "id": "lead_1792314831139_cgg3m",
+      "name": "Flood Test 5",
+      "email": "flood_1792314831122_5@test.fr",
+      "phone": "06 12 34 56 78",
+      "leadType": "Contact Message",
+      "status": "NEW",
+      "subject": "Demande de contact",
+      "message": "Flood test",
+      "source": "Formulaire de Contact Frontend",
+      "assignedTo": "Paul & Edgar Goizet",
+      "createdAt": "2026-10-18T09:13:51.139Z",
+      "notes": [],
+      "activities": [
+        {
+          "id": "act_1792314831139_cgg3m",
+          "text": "Demande (Contact Message) soumise depuis le site public.",
+          "date": "À l'instant"
+        }
+      ]
+    },
+    {
+      "id": "lead_1792314830270_k12jq",
+      "name": "Flood Test 4",
+      "email": "flood_1792314830240_4@test.fr",
+      "phone": "06 12 34 56 78",
+      "leadType": "Contact Message",
+      "status": "NEW",
+      "subject": "Demande de contact",
+      "message": "Flood test",
+      "source": "Formulaire de Contact Frontend",
+      "assignedTo": "Paul & Edgar Goizet",
+      "createdAt": "2026-10-18T09:13:50.270Z",
+      "notes": [],
+      "activities": [
+        {
+          "id": "act_1792314830270_k12jq",
+          "text": "Demande (Contact Message) soumise depuis le site public.",
+          "date": "À l'instant"
+        }
+      ]
+    },
+    {
+      "id": "lead_1792314825354_47k0u",
+      "name": "Flood Test 2",
+      "email": "flood_1792314825339_2@test.fr",
+      "phone": "06 12 34 56 78",
+      "leadType": "Contact Message",
+      "status": "NEW",
+      "subject": "Demande de contact",
+      "message": "Flood test",
+      "source": "Formulaire de Contact Frontend",
+      "assignedTo": "Paul & Edgar Goizet",
+      "createdAt": "2026-10-18T09:13:45.354Z",
+      "notes": [],
+      "activities": [
+        {
+          "id": "act_1792314825354_47k0u",
+          "text": "Demande (Contact Message) soumise depuis le site public.",
+          "date": "À l'instant"
+        }
+      ]
+    },
+    {
+      "id": "lead_1792314824829_t8xom",
+      "name": "Flood Test 1",
+      "email": "flood_1792314824782_1@test.fr",
+      "phone": "06 12 34 56 78",
+      "leadType": "Contact Message",
+      "status": "NEW",
+      "subject": "Demande de contact",
+      "message": "Flood test",
+      "source": "Formulaire de Contact Frontend",
+      "assignedTo": "Paul & Edgar Goizet",
+      "createdAt": "2026-10-18T09:13:44.829Z",
+      "notes": [],
+      "activities": [
+        {
+          "id": "act_1792314824829_t8xom",
+          "text": "Demande (Contact Message) soumise depuis le site public.",
+          "date": "À l'instant"
+        }
+      ]
+    },
+    {
+      "id": "lead_1792314824317_h82hs",
+      "name": "Flood Test 0",
+      "email": "flood_1792314824278_0@test.fr",
+      "phone": "06 12 34 56 78",
+      "leadType": "Contact Message",
+      "status": "NEW",
+      "subject": "Demande de contact",
+      "message": "Flood test",
+      "source": "Formulaire de Contact Frontend",
+      "assignedTo": "Paul & Edgar Goizet",
+      "createdAt": "2026-10-18T09:13:44.317Z",
+      "notes": [],
+      "activities": [
+        {
+          "id": "act_1792314824317_h82hs",
+          "text": "Demande (Contact Message) soumise depuis le site public.",
+          "date": "À l'instant"
+        }
+      ]
+    },
+    {
+      "id": "lead_1792314821924_5bq1t",
+      "name": "&ltscript&gtalert(&quotxss&quot)&lt/script&gtJean Dupont",
+      "email": "xss.test.1792314821903@automated-audit.fr",
+      "phone": "06 11 22 33 44",
+      "leadType": "Contact Message",
+      "status": "NEW",
+      "subject": "Demande de contact",
+      "message": "&ltimg src=x =alert(1)&gtDemande urgente",
+      "source": "Formulaire de Contact Frontend",
+      "assignedTo": "Paul & Edgar Goizet",
+      "createdAt": "2026-10-18T09:13:41.924Z",
+      "notes": [],
+      "activities": [
+        {
+          "id": "act_1792314821924_5bq1t",
+          "text": "Demande (Contact Message) soumise depuis le site public.",
+          "date": "À l'instant"
+        }
+      ]
+    },
+    {
+      "id": "lead_1792314789907_gy1qo",
+      "name": "Audit Estimateur 1792314784734",
+      "email": "test.estimation.1792314784734@automated-audit.fr",
+      "phone": "06 55 44 33 22",
+      "leadType": "Valuation Request",
+      "status": "CONVERTED",
+      "propertyAddress": "Appartement • Triangle d'Or, Bordeaux",
+      "budget": "Est. 964 € - 1286 € / mois",
+      "surface": "70 m² • 3 pièces",
+      "subject": "Estimation Loyer: Appartement (70 m²) à Triangle d'Or",
+      "message": "Formulaire d'estimation propriétaire reçu. Bien: Appartement, Surface: 70 m², Pièces: 3, Quartier: Triangle d'Or. Loyer estimé: 964 € à 1286 € / mois.",
+      "source": "Calculateur Estimation En Ligne",
+      "assignedTo": "Paul & Edgar Goizet",
+      "createdAt": "2026-10-18T09:13:09.907Z",
+      "notes": [
+        {
+          "id": "note_1792314789907",
+          "author": "Calculateur Goizet",
+          "text": "Estimation indicative: 964 € - 1286 € / mois (70 m² à Triangle d'Or).",
+          "date": "À l'instant"
+        }
+      ],
+      "activities": [
+        {
+          "id": "act_1792314789907",
+          "text": "Formulaire d'estimation propriétaire soumis.",
+          "date": "À l'instant"
+        }
+      ]
+    },
+    {
+      "id": "lead_1792314787367_w4cje",
+      "name": "Audit Propriétaire 1792314784734",
+      "email": "test.owner.1792314784734@automated-audit.fr",
+      "phone": "06 98 76 54 32",
+      "leadType": "Owner Enquiry",
+      "serviceType": "Rental management",
+      "status": "NEW",
+      "subject": "Dossier: Gestion Locative 360° (Appartement à Chartrons)",
+      "message": "Audit automatique de conversion d unités.",
+      "propertyAddress": "Appartement • 22 Cours Portal, Chartrons",
+      "propertyType": "appartement",
+      "budget": "1950 €",
+      "surface": "82 m² • 4 pièces",
+      "source": "Formulaire Confier mon bien",
+      "assignedTo": "Paul & Edgar Goizet",
+      "createdAt": "2026-10-18T09:13:07.367Z",
+      "notes": [
+        {
+          "id": "note_1792314787367",
+          "author": "Portail Propriétaire Goizet",
+          "text": "Demande reçue pour Gestion Locative 360°. Rappel garanti au 06 98 76 54 32.",
+          "date": "À l'instant"
+        }
+      ],
+      "activities": [
+        {
+          "id": "act_1792314787367",
+          "text": "Dossier (Gestion Locative 360°) soumis depuis le site web.",
+          "date": "À l'instant"
+        }
+      ]
+    },
+    {
+      "id": "lead_1792314784763_otz52",
+      "name": "Audit Contact 1792314784734",
+      "email": "test.contact.1792314784734@automated-audit.fr",
+      "phone": "06 12 34 56 78",
+      "leadType": "Owner Enquiry",
+      "status": "NEW",
+      "subject": "Demande de renseignement gestion",
+      "message": "Audit automatique de stockage et rendu unitaire.",
+      "budget": "1 750 € / mois",
+      "surface": "68 m² • 3 pièces",
+      "source": "Formulaire de Contact Frontend",
+      "assignedTo": "Paul & Edgar Goizet",
+      "createdAt": "2026-10-18T09:13:04.763Z",
+      "notes": [],
+      "activities": [
+        {
+          "id": "act_1792314784763_otz52",
+          "text": "Demande (Owner Enquiry) soumise depuis le site public.",
+          "date": "À l'instant"
+        }
+      ]
+    },
+    {
+      "id": "lead_1792314761664_hfb2z",
+      "name": "Flood 4",
+      "email": "flood4@t.fr",
+      "phone": "0612345678",
+      "leadType": "Contact Message",
+      "status": "NEW",
+      "subject": "Demande de contact",
+      "message": "test",
+      "source": "Formulaire de Contact Frontend",
+      "assignedTo": "Paul & Edgar Goizet",
+      "createdAt": "2026-10-18T09:12:41.664Z",
+      "notes": [],
+      "activities": [
+        {
+          "id": "act_1792314761664_hfb2z",
+          "text": "Demande (Contact Message) soumise depuis le site public.",
+          "date": "À l'instant"
+        }
+      ]
+    },
+    {
+      "id": "lead_1792314761166_bsvgh",
+      "name": "Flood 3",
+      "email": "flood3@t.fr",
+      "phone": "0612345678",
+      "leadType": "Contact Message",
+      "status": "NEW",
+      "subject": "Demande de contact",
+      "message": "test",
+      "source": "Formulaire de Contact Frontend",
+      "assignedTo": "Paul & Edgar Goizet",
+      "createdAt": "2026-10-18T09:12:41.166Z",
+      "notes": [],
+      "activities": [
+        {
+          "id": "act_1792314761166_bsvgh",
+          "text": "Demande (Contact Message) soumise depuis le site public.",
+          "date": "À l'instant"
+        }
+      ]
+    },
+    {
+      "id": "lead_1792314760707_6ffe6",
+      "name": "Flood 2",
+      "email": "flood2@t.fr",
+      "phone": "0612345678",
+      "leadType": "Contact Message",
+      "status": "NEW",
+      "subject": "Demande de contact",
+      "message": "test",
+      "source": "Formulaire de Contact Frontend",
+      "assignedTo": "Paul & Edgar Goizet",
+      "createdAt": "2026-10-18T09:12:40.707Z",
+      "notes": [],
+      "activities": [
+        {
+          "id": "act_1792314760707_6ffe6",
+          "text": "Demande (Contact Message) soumise depuis le site public.",
+          "date": "À l'instant"
+        }
+      ]
+    },
+    {
+      "id": "lead_1792314760249_hbgba",
+      "name": "Flood 1",
+      "email": "flood1@t.fr",
+      "phone": "0612345678",
+      "leadType": "Contact Message",
+      "status": "NEW",
+      "subject": "Demande de contact",
+      "message": "test",
+      "source": "Formulaire de Contact Frontend",
+      "assignedTo": "Paul & Edgar Goizet",
+      "createdAt": "2026-10-18T09:12:40.249Z",
+      "notes": [],
+      "activities": [
+        {
+          "id": "act_1792314760249_hbgba",
+          "text": "Demande (Contact Message) soumise depuis le site public.",
+          "date": "À l'instant"
+        }
+      ]
+    },
+    {
+      "id": "lead_1792314759021_u2z1m",
+      "name": "Flood 0",
+      "email": "flood0@t.fr",
+      "phone": "0612345678",
+      "leadType": "Contact Message",
+      "status": "NEW",
+      "subject": "Demande de contact",
+      "message": "test",
+      "source": "Formulaire de Contact Frontend",
+      "assignedTo": "Paul & Edgar Goizet",
+      "createdAt": "2026-10-18T09:12:39.021Z",
+      "notes": [],
+      "activities": [
+        {
+          "id": "act_1792314759021_u2z1m",
+          "text": "Demande (Contact Message) soumise depuis le site public.",
+          "date": "À l'instant"
+        }
+      ]
+    },
+    {
+      "id": "lead_1792314556638_aw17w",
+      "name": "Flood Test 6",
+      "email": "flood_1792314556604_6@test.fr",
+      "phone": "06 12 34 56 78",
+      "leadType": "Contact Message",
+      "status": "NEW",
+      "subject": "Demande de contact",
+      "message": "Flood test",
+      "source": "Formulaire de Contact Frontend",
+      "assignedTo": "Paul & Edgar Goizet",
+      "createdAt": "2026-10-18T09:09:16.638Z",
+      "notes": [],
+      "activities": [
+        {
+          "id": "act_1792314556638_aw17w",
+          "text": "Demande (Contact Message) soumise depuis le site public.",
+          "date": "À l'instant"
+        }
+      ]
+    },
+    {
+      "id": "lead_1792314556050_nsp3v",
+      "name": "Flood Test 5",
+      "email": "flood_1792314556019_5@test.fr",
+      "phone": "06 12 34 56 78",
+      "leadType": "Contact Message",
+      "status": "NEW",
+      "subject": "Demande de contact",
+      "message": "Flood test",
+      "source": "Formulaire de Contact Frontend",
+      "assignedTo": "Paul & Edgar Goizet",
+      "createdAt": "2026-10-18T09:09:16.050Z",
+      "notes": [],
+      "activities": [
+        {
+          "id": "act_1792314556050_nsp3v",
+          "text": "Demande (Contact Message) soumise depuis le site public.",
+          "date": "À l'instant"
+        }
+      ]
+    },
+    {
+      "id": "lead_1792314555428_lycus",
+      "name": "Flood Test 4",
+      "email": "flood_1792314555249_4@test.fr",
+      "phone": "06 12 34 56 78",
+      "leadType": "Contact Message",
+      "status": "NEW",
+      "subject": "Demande de contact",
+      "message": "Flood test",
+      "source": "Formulaire de Contact Frontend",
+      "assignedTo": "Paul & Edgar Goizet",
+      "createdAt": "2026-10-18T09:09:15.428Z",
+      "notes": [],
+      "activities": [
+        {
+          "id": "act_1792314555428_lycus",
+          "text": "Demande (Contact Message) soumise depuis le site public.",
+          "date": "À l'instant"
+        }
+      ]
+    },
+    {
+      "id": "lead_1792314554763_4z3hg",
+      "name": "Flood Test 3",
+      "email": "flood_1792314554708_3@test.fr",
+      "phone": "06 12 34 56 78",
+      "leadType": "Contact Message",
+      "status": "NEW",
+      "subject": "Demande de contact",
+      "message": "Flood test",
+      "source": "Formulaire de Contact Frontend",
+      "assignedTo": "Paul & Edgar Goizet",
+      "createdAt": "2026-10-18T09:09:14.763Z",
+      "notes": [],
+      "activities": [
+        {
+          "id": "act_1792314554763_4z3hg",
+          "text": "Demande (Contact Message) soumise depuis le site public.",
+          "date": "À l'instant"
+        }
+      ]
+    },
+    {
+      "id": "lead_1792314554047_1ttev",
+      "name": "Flood Test 2",
+      "email": "flood_1792314553979_2@test.fr",
+      "phone": "06 12 34 56 78",
+      "leadType": "Contact Message",
+      "status": "NEW",
+      "subject": "Demande de contact",
+      "message": "Flood test",
+      "source": "Formulaire de Contact Frontend",
+      "assignedTo": "Paul & Edgar Goizet",
+      "createdAt": "2026-10-18T09:09:14.047Z",
+      "notes": [],
+      "activities": [
+        {
+          "id": "act_1792314554047_1ttev",
+          "text": "Demande (Contact Message) soumise depuis le site public.",
+          "date": "À l'instant"
+        }
+      ]
+    },
+    {
+      "id": "lead_1792314551025_zwjrf",
+      "name": "Flood Test 0",
+      "email": "flood_1792314550326_0@test.fr",
+      "phone": "06 12 34 56 78",
+      "leadType": "Contact Message",
+      "status": "NEW",
+      "subject": "Demande de contact",
+      "message": "Flood test",
+      "source": "Formulaire de Contact Frontend",
+      "assignedTo": "Paul & Edgar Goizet",
+      "createdAt": "2026-10-18T09:09:11.025Z",
+      "notes": [],
+      "activities": [
+        {
+          "id": "act_1792314551025_zwjrf",
+          "text": "Demande (Contact Message) soumise depuis le site public.",
+          "date": "À l'instant"
+        }
+      ]
+    },
+    {
+      "id": "lead_1792314549012_csbcu",
+      "name": "&ltscript&gtalert(&quotxss&quot)&lt/script&gtJean Dupont",
+      "email": "xss.test.1792314548966@automated-audit.fr",
+      "phone": "06 11 22 33 44",
+      "leadType": "Contact Message",
+      "status": "NEW",
+      "subject": "Demande de contact",
+      "message": "&ltimg src=x =alert(1)&gtDemande urgente",
+      "source": "Formulaire de Contact Frontend",
+      "assignedTo": "Paul & Edgar Goizet",
+      "createdAt": "2026-10-18T09:09:09.012Z",
+      "notes": [],
+      "activities": [
+        {
+          "id": "act_1792314549012_csbcu",
+          "text": "Demande (Contact Message) soumise depuis le site public.",
+          "date": "À l'instant"
+        }
+      ]
+    },
+    {
+      "id": "lead_1792314502961_4w9pm",
+      "name": "Audit Estimateur 1792314500825",
+      "email": "test.estimation.1792314500825@automated-audit.fr",
+      "phone": "06 55 44 33 22",
+      "leadType": "Valuation Request",
+      "status": "CONVERTED",
+      "propertyAddress": "Appartement • Triangle d'Or, Bordeaux",
+      "budget": "Est. 964 € - 1286 € / mois",
+      "surface": "70 m² • 3 pièces",
+      "subject": "Estimation Loyer: Appartement (70 m²) à Triangle d'Or",
+      "message": "Formulaire d'estimation propriétaire reçu. Bien: Appartement, Surface: 70 m², Pièces: 3, Quartier: Triangle d'Or. Loyer estimé: 964 € à 1286 € / mois.",
+      "source": "Calculateur Estimation En Ligne",
+      "assignedTo": "Paul & Edgar Goizet",
+      "createdAt": "2026-10-18T09:08:22.961Z",
+      "notes": [
+        {
+          "id": "note_1792314502961",
+          "author": "Calculateur Goizet",
+          "text": "Estimation indicative: 964 € - 1286 € / mois (70 m² à Triangle d'Or).",
+          "date": "À l'instant"
+        }
+      ],
+      "activities": [
+        {
+          "id": "act_1792314502961",
+          "text": "Formulaire d'estimation propriétaire soumis.",
+          "date": "À l'instant"
+        }
+      ]
+    },
+    {
+      "id": "lead_1792314501576_0u54s",
+      "name": "Audit Propriétaire 1792314500825",
+      "email": "test.owner.1792314500825@automated-audit.fr",
+      "phone": "06 98 76 54 32",
+      "leadType": "Owner Enquiry",
+      "serviceType": "Rental management",
+      "status": "NEW",
+      "subject": "Dossier: Gestion Locative 360° (Appartement à Chartrons)",
+      "message": "Audit automatique de conversion d unités.",
+      "propertyAddress": "Appartement • 22 Cours Portal, Chartrons",
+      "propertyType": "appartement",
+      "budget": "1950 €",
+      "surface": "82 m² • 4 pièces",
+      "source": "Formulaire Confier mon bien",
+      "assignedTo": "Paul & Edgar Goizet",
+      "createdAt": "2026-10-18T09:08:21.576Z",
+      "notes": [
+        {
+          "id": "note_1792314501576",
+          "author": "Portail Propriétaire Goizet",
+          "text": "Demande reçue pour Gestion Locative 360°. Rappel garanti au 06 98 76 54 32.",
+          "date": "À l'instant"
+        }
+      ],
+      "activities": [
+        {
+          "id": "act_1792314501576",
+          "text": "Dossier (Gestion Locative 360°) soumis depuis le site web.",
+          "date": "À l'instant"
+        }
+      ]
+    },
+    {
+      "id": "lead_1792314500855_0akcp",
+      "name": "Audit Contact 1792314500825",
+      "email": "test.contact.1792314500825@automated-audit.fr",
+      "phone": "06 12 34 56 78",
+      "leadType": "Owner Enquiry",
+      "status": "NEW",
+      "subject": "Demande de renseignement gestion",
+      "message": "Audit automatique de stockage et rendu unitaire.",
+      "budget": "1 750 € / mois",
+      "surface": "68 m² • 3 pièces",
+      "source": "Formulaire de Contact Frontend",
+      "assignedTo": "Paul & Edgar Goizet",
+      "createdAt": "2026-10-18T09:08:20.855Z",
+      "notes": [],
+      "activities": [
+        {
+          "id": "act_1792314500855_0akcp",
+          "text": "Demande (Owner Enquiry) soumise depuis le site public.",
+          "date": "À l'instant"
+        }
+      ]
+    },
+    {
+      "id": "lead_1792314319276_9mbt8",
+      "name": "Flood Test 4",
+      "email": "flood_1792314319199_4@test.fr",
+      "phone": "06 12 34 56 78",
+      "leadType": "Contact Message",
+      "status": "NEW",
+      "subject": "Demande de contact",
+      "message": "Flood test",
+      "source": "Formulaire de Contact Frontend",
+      "assignedTo": "Paul & Edgar Goizet",
+      "createdAt": "2026-10-18T09:05:19.276Z",
+      "notes": [],
+      "activities": [
+        {
+          "id": "act_1792314319276_9mbt8",
+          "text": "Demande (Contact Message) soumise depuis le site public.",
+          "date": "À l'instant"
+        }
+      ]
+    },
+    {
+      "id": "lead_1792314318709_f4yzl",
+      "name": "Flood Test 3",
+      "email": "flood_1792314318656_3@test.fr",
+      "phone": "06 12 34 56 78",
+      "leadType": "Contact Message",
+      "status": "NEW",
+      "subject": "Demande de contact",
+      "message": "Flood test",
+      "source": "Formulaire de Contact Frontend",
+      "assignedTo": "Paul & Edgar Goizet",
+      "createdAt": "2026-10-18T09:05:18.709Z",
+      "notes": [],
+      "activities": [
+        {
+          "id": "act_1792314318709_f4yzl",
+          "text": "Demande (Contact Message) soumise depuis le site public.",
+          "date": "À l'instant"
+        }
+      ]
+    },
+    {
+      "id": "lead_1792314318243_7moez",
+      "name": "Flood Test 2",
+      "email": "flood_1792314318221_2@test.fr",
+      "phone": "06 12 34 56 78",
+      "leadType": "Contact Message",
+      "status": "NEW",
+      "subject": "Demande de contact",
+      "message": "Flood test",
+      "source": "Formulaire de Contact Frontend",
+      "assignedTo": "Paul & Edgar Goizet",
+      "createdAt": "2026-10-18T09:05:18.243Z",
+      "notes": [],
+      "activities": [
+        {
+          "id": "act_1792314318243_7moez",
+          "text": "Demande (Contact Message) soumise depuis le site public.",
+          "date": "À l'instant"
+        }
+      ]
+    },
+    {
+      "id": "lead_1792314317575_secu7",
+      "name": "Flood Test 1",
+      "email": "flood_1792314317552_1@test.fr",
+      "phone": "06 12 34 56 78",
+      "leadType": "Contact Message",
+      "status": "NEW",
+      "subject": "Demande de contact",
+      "message": "Flood test",
+      "source": "Formulaire de Contact Frontend",
+      "assignedTo": "Paul & Edgar Goizet",
+      "createdAt": "2026-10-18T09:05:17.575Z",
+      "notes": [],
+      "activities": [
+        {
+          "id": "act_1792314317575_secu7",
+          "text": "Demande (Contact Message) soumise depuis le site public.",
+          "date": "À l'instant"
+        }
+      ]
+    },
+    {
+      "id": "lead_1792314317175_wn1mz",
+      "name": "Flood Test 0",
+      "email": "flood_1792314317110_0@test.fr",
+      "phone": "06 12 34 56 78",
+      "leadType": "Contact Message",
+      "status": "NEW",
+      "subject": "Demande de contact",
+      "message": "Flood test",
+      "source": "Formulaire de Contact Frontend",
+      "assignedTo": "Paul & Edgar Goizet",
+      "createdAt": "2026-10-18T09:05:17.175Z",
+      "notes": [],
+      "activities": [
+        {
+          "id": "act_1792314317175_wn1mz",
+          "text": "Demande (Contact Message) soumise depuis le site public.",
+          "date": "À l'instant"
+        }
+      ]
+    },
+    {
+      "id": "lead_1792314315524_4aodl",
+      "name": "&ltscript&gtalert(&quotxss&quot)&lt/script&gtJean Dupont",
+      "email": "xss.test.1792314315500@automated-audit.fr",
+      "phone": "06 11 22 33 44",
+      "leadType": "Contact Message",
+      "status": "NEW",
+      "subject": "Demande de contact",
+      "message": "&ltimg src=x =alert(1)&gtDemande urgente",
+      "source": "Formulaire de Contact Frontend",
+      "assignedTo": "Paul & Edgar Goizet",
+      "createdAt": "2026-10-18T09:05:15.524Z",
+      "notes": [],
+      "activities": [
+        {
+          "id": "act_1792314315524_4aodl",
+          "text": "Demande (Contact Message) soumise depuis le site public.",
+          "date": "À l'instant"
+        }
+      ]
+    },
+    {
+      "id": "lead_1792314291129_wuoon",
+      "name": "Audit Estimateur 1792314289034",
+      "email": "test.estimation.1792314289034@automated-audit.fr",
+      "phone": "06 55 44 33 22",
+      "leadType": "Valuation Request",
+      "status": "CONVERTED",
+      "propertyAddress": "Appartement • Triangle d'Or, Bordeaux",
+      "budget": "Est. 964 € - 1286 € / mois",
+      "surface": "70 m² • 3 pièces",
+      "subject": "Estimation Loyer: Appartement (70 m²) à Triangle d'Or",
+      "message": "Formulaire d'estimation propriétaire reçu. Bien: Appartement, Surface: 70 m², Pièces: 3, Quartier: Triangle d'Or. Loyer estimé: 964 € à 1286 € / mois.",
+      "source": "Calculateur Estimation En Ligne",
+      "assignedTo": "Paul & Edgar Goizet",
+      "createdAt": "2026-10-18T09:04:51.129Z",
+      "notes": [
+        {
+          "id": "note_1792314291129",
+          "author": "Calculateur Goizet",
+          "text": "Estimation indicative: 964 € - 1286 € / mois (70 m² à Triangle d'Or).",
+          "date": "À l'instant"
+        }
+      ],
+      "activities": [
+        {
+          "id": "act_1792314291129",
+          "text": "Formulaire d'estimation propriétaire soumis.",
+          "date": "À l'instant"
+        }
+      ]
+    },
+    {
+      "id": "lead_1792314290201_6tbs6",
+      "name": "Audit Propriétaire 1792314289034",
+      "email": "test.owner.1792314289034@automated-audit.fr",
+      "phone": "06 98 76 54 32",
+      "leadType": "Owner Enquiry",
+      "serviceType": "Rental management",
+      "status": "NEW",
+      "subject": "Dossier: Gestion Locative 360° (Appartement à Chartrons)",
+      "message": "Audit automatique de conversion d unités.",
+      "propertyAddress": "Appartement • 22 Cours Portal, Chartrons",
+      "propertyType": "appartement",
+      "budget": "1950 €",
+      "surface": "82 m² • 4 pièces",
+      "source": "Formulaire Confier mon bien",
+      "assignedTo": "Paul & Edgar Goizet",
+      "createdAt": "2026-10-18T09:04:50.201Z",
+      "notes": [
+        {
+          "id": "note_1792314290201",
+          "author": "Portail Propriétaire Goizet",
+          "text": "Demande reçue pour Gestion Locative 360°. Rappel garanti au 06 98 76 54 32.",
+          "date": "À l'instant"
+        }
+      ],
+      "activities": [
+        {
+          "id": "act_1792314290201",
+          "text": "Dossier (Gestion Locative 360°) soumis depuis le site web.",
+          "date": "À l'instant"
+        }
+      ]
+    },
+    {
+      "id": "lead_1792314289057_580pk",
+      "name": "Audit Contact 1792314289034",
+      "email": "test.contact.1792314289034@automated-audit.fr",
+      "phone": "06 12 34 56 78",
+      "leadType": "Owner Enquiry",
+      "status": "NEW",
+      "subject": "Demande de renseignement gestion",
+      "message": "Audit automatique de stockage et rendu unitaire.",
+      "budget": "1 750 € / mois",
+      "surface": "68 m² • 3 pièces",
+      "source": "Formulaire de Contact Frontend",
+      "assignedTo": "Paul & Edgar Goizet",
+      "createdAt": "2026-10-18T09:04:49.057Z",
+      "notes": [],
+      "activities": [
+        {
+          "id": "act_1792314289057_580pk",
+          "text": "Demande (Owner Enquiry) soumise depuis le site public.",
+          "date": "À l'instant"
+        }
+      ]
+    },
+    {
+      "id": "lead_1792314278964_wm07s",
+      "name": "Flood Test 4",
+      "email": "flood_1792314278946_4@test.fr",
+      "phone": "06 12 34 56 78",
+      "leadType": "Contact Message",
+      "status": "NEW",
+      "subject": "Demande de contact",
+      "message": "Flood test",
+      "source": "Formulaire de Contact Frontend",
+      "assignedTo": "Paul & Edgar Goizet",
+      "createdAt": "2026-10-18T09:04:38.964Z",
+      "notes": [],
+      "activities": [
+        {
+          "id": "act_1792314278964_wm07s",
+          "text": "Demande (Contact Message) soumise depuis le site public.",
+          "date": "À l'instant"
+        }
+      ]
+    },
+    {
+      "id": "lead_1792314278552_dkz4z",
+      "name": "Flood Test 3",
+      "email": "flood_1792314278524_3@test.fr",
+      "phone": "06 12 34 56 78",
+      "leadType": "Contact Message",
+      "status": "NEW",
+      "subject": "Demande de contact",
+      "message": "Flood test",
+      "source": "Formulaire de Contact Frontend",
+      "assignedTo": "Paul & Edgar Goizet",
+      "createdAt": "2026-10-18T09:04:38.552Z",
+      "notes": [],
+      "activities": [
+        {
+          "id": "act_1792314278552_dkz4z",
+          "text": "Demande (Contact Message) soumise depuis le site public.",
+          "date": "À l'instant"
+        }
+      ]
+    },
+    {
+      "id": "lead_1792314278112_pgk8s",
+      "name": "Flood Test 2",
+      "email": "flood_1792314278046_2@test.fr",
+      "phone": "06 12 34 56 78",
+      "leadType": "Contact Message",
+      "status": "NEW",
+      "subject": "Demande de contact",
+      "message": "Flood test",
+      "source": "Formulaire de Contact Frontend",
+      "assignedTo": "Paul & Edgar Goizet",
+      "createdAt": "2026-10-18T09:04:38.112Z",
+      "notes": [],
+      "activities": [
+        {
+          "id": "act_1792314278112_pgk8s",
+          "text": "Demande (Contact Message) soumise depuis le site public.",
+          "date": "À l'instant"
+        }
+      ]
+    },
+    {
+      "id": "lead_1792314277632_kkiza",
+      "name": "Flood Test 1",
+      "email": "flood_1792314277611_1@test.fr",
+      "phone": "06 12 34 56 78",
+      "leadType": "Contact Message",
+      "status": "NEW",
+      "subject": "Demande de contact",
+      "message": "Flood test",
+      "source": "Formulaire de Contact Frontend",
+      "assignedTo": "Paul & Edgar Goizet",
+      "createdAt": "2026-10-18T09:04:37.632Z",
+      "notes": [],
+      "activities": [
+        {
+          "id": "act_1792314277632_kkiza",
+          "text": "Demande (Contact Message) soumise depuis le site public.",
+          "date": "À l'instant"
+        }
+      ]
+    },
+    {
+      "id": "lead_1792314276533_w3qi8",
+      "name": "Flood Test 0",
+      "email": "flood_1792314276434_0@test.fr",
+      "phone": "06 12 34 56 78",
+      "leadType": "Contact Message",
+      "status": "NEW",
+      "subject": "Demande de contact",
+      "message": "Flood test",
+      "source": "Formulaire de Contact Frontend",
+      "assignedTo": "Paul & Edgar Goizet",
+      "createdAt": "2026-10-18T09:04:36.533Z",
+      "notes": [],
+      "activities": [
+        {
+          "id": "act_1792314276533_w3qi8",
+          "text": "Demande (Contact Message) soumise depuis le site public.",
+          "date": "À l'instant"
+        }
+      ]
+    },
+    {
+      "id": "lead_1792314229961_qtoow",
+      "name": "Flood 6",
+      "email": "flood6@test.fr",
+      "phone": "06 12 34 56 78",
+      "leadType": "Contact Message",
+      "status": "NEW",
+      "subject": "Demande de contact",
+      "message": "Flood",
+      "source": "Formulaire de Contact Frontend",
+      "assignedTo": "Paul & Edgar Goizet",
+      "createdAt": "2026-10-18T09:03:49.961Z",
+      "notes": [],
+      "activities": [
+        {
+          "id": "act_1792314229961_qtoow",
+          "text": "Demande (Contact Message) soumise depuis le site public.",
+          "date": "À l'instant"
+        }
+      ]
+    },
+    {
+      "id": "lead_1792314229123_8n1fn",
+      "name": "Flood 5",
+      "email": "flood5@test.fr",
+      "phone": "06 12 34 56 78",
+      "leadType": "Contact Message",
+      "status": "NEW",
+      "subject": "Demande de contact",
+      "message": "Flood",
+      "source": "Formulaire de Contact Frontend",
+      "assignedTo": "Paul & Edgar Goizet",
+      "createdAt": "2026-10-18T09:03:49.123Z",
+      "notes": [],
+      "activities": [
+        {
+          "id": "act_1792314229124_8n1fn",
+          "text": "Demande (Contact Message) soumise depuis le site public.",
+          "date": "À l'instant"
+        }
+      ]
+    },
+    {
+      "id": "lead_1792314227860_cjtj7",
+      "name": "Flood 4",
+      "email": "flood4@test.fr",
+      "phone": "06 12 34 56 78",
+      "leadType": "Contact Message",
+      "status": "NEW",
+      "subject": "Demande de contact",
+      "message": "Flood",
+      "source": "Formulaire de Contact Frontend",
+      "assignedTo": "Paul & Edgar Goizet",
+      "createdAt": "2026-10-18T09:03:47.860Z",
+      "notes": [],
+      "activities": [
+        {
+          "id": "act_1792314227860_cjtj7",
+          "text": "Demande (Contact Message) soumise depuis le site public.",
+          "date": "À l'instant"
+        }
+      ]
+    },
+    {
+      "id": "lead_1792314225281_zwv8m",
+      "name": "Flood 3",
+      "email": "flood3@test.fr",
+      "phone": "06 12 34 56 78",
+      "leadType": "Contact Message",
+      "status": "NEW",
+      "subject": "Demande de contact",
+      "message": "Flood",
+      "source": "Formulaire de Contact Frontend",
+      "assignedTo": "Paul & Edgar Goizet",
+      "createdAt": "2026-10-18T09:03:45.281Z",
+      "notes": [],
+      "activities": [
+        {
+          "id": "act_1792314225281_zwv8m",
+          "text": "Demande (Contact Message) soumise depuis le site public.",
+          "date": "À l'instant"
+        }
+      ]
+    },
+    {
+      "id": "lead_1792314216313_1b2mc",
+      "name": "Flood 1",
+      "email": "flood1@test.fr",
+      "phone": "06 12 34 56 78",
+      "leadType": "Contact Message",
+      "status": "NEW",
+      "subject": "Demande de contact",
+      "message": "Flood",
+      "source": "Formulaire de Contact Frontend",
+      "assignedTo": "Paul & Edgar Goizet",
+      "createdAt": "2026-10-18T09:03:36.313Z",
+      "notes": [],
+      "activities": [
+        {
+          "id": "act_1792314216313_1b2mc",
+          "text": "Demande (Contact Message) soumise depuis le site public.",
+          "date": "À l'instant"
+        }
+      ]
+    },
+    {
+      "id": "lead_1792314215443_x6yei",
+      "name": "Flood 0",
+      "email": "flood0@test.fr",
+      "phone": "06 12 34 56 78",
+      "leadType": "Contact Message",
+      "status": "NEW",
+      "subject": "Demande de contact",
+      "message": "Flood",
+      "source": "Formulaire de Contact Frontend",
+      "assignedTo": "Paul & Edgar Goizet",
+      "createdAt": "2026-10-18T09:03:35.443Z",
+      "notes": [],
+      "activities": [
+        {
+          "id": "act_1792314215443_x6yei",
+          "text": "Demande (Contact Message) soumise depuis le site public.",
+          "date": "À l'instant"
+        }
+      ]
+    },
+    {
+      "id": "lead_1792314185814_kxiz8",
+      "name": "Burst 4",
+      "email": "burst4@test.fr",
+      "phone": "06 12 34 56 78",
+      "leadType": "Contact Message",
+      "status": "NEW",
+      "subject": "Demande de contact",
+      "message": "Test",
+      "source": "Formulaire de Contact Frontend",
+      "assignedTo": "Paul & Edgar Goizet",
+      "createdAt": "2026-10-18T09:03:05.814Z",
+      "notes": [],
+      "activities": [
+        {
+          "id": "act_1792314185814_kxiz8",
+          "text": "Demande (Contact Message) soumise depuis le site public.",
+          "date": "À l'instant"
+        }
+      ]
+    },
+    {
+      "id": "lead_1792314184882_ogl7j",
+      "name": "Burst 3",
+      "email": "burst3@test.fr",
+      "phone": "06 12 34 56 78",
+      "leadType": "Contact Message",
+      "status": "NEW",
+      "subject": "Demande de contact",
+      "message": "Test",
+      "source": "Formulaire de Contact Frontend",
+      "assignedTo": "Paul & Edgar Goizet",
+      "createdAt": "2026-10-18T09:03:04.882Z",
+      "notes": [],
+      "activities": [
+        {
+          "id": "act_1792314184882_ogl7j",
+          "text": "Demande (Contact Message) soumise depuis le site public.",
+          "date": "À l'instant"
+        }
+      ]
+    },
+    {
+      "id": "lead_1792314184401_y5h54",
+      "name": "Burst 2",
+      "email": "burst2@test.fr",
+      "phone": "06 12 34 56 78",
+      "leadType": "Contact Message",
+      "status": "NEW",
+      "subject": "Demande de contact",
+      "message": "Test",
+      "source": "Formulaire de Contact Frontend",
+      "assignedTo": "Paul & Edgar Goizet",
+      "createdAt": "2026-10-18T09:03:04.401Z",
+      "notes": [],
+      "activities": [
+        {
+          "id": "act_1792314184401_y5h54",
+          "text": "Demande (Contact Message) soumise depuis le site public.",
+          "date": "À l'instant"
+        }
+      ]
+    },
+    {
+      "id": "lead_1792314183864_dxw1j",
+      "name": "Burst 1",
+      "email": "burst1@test.fr",
+      "phone": "06 12 34 56 78",
+      "leadType": "Contact Message",
+      "status": "NEW",
+      "subject": "Demande de contact",
+      "message": "Test",
+      "source": "Formulaire de Contact Frontend",
+      "assignedTo": "Paul & Edgar Goizet",
+      "createdAt": "2026-10-18T09:03:03.864Z",
+      "notes": [],
+      "activities": [
+        {
+          "id": "act_1792314183864_dxw1j",
+          "text": "Demande (Contact Message) soumise depuis le site public.",
+          "date": "À l'instant"
+        }
+      ]
+    },
+    {
+      "id": "lead_1792314182606_pjcne",
+      "name": "Burst 0",
+      "email": "burst0@test.fr",
+      "phone": "06 12 34 56 78",
+      "leadType": "Contact Message",
+      "status": "NEW",
+      "subject": "Demande de contact",
+      "message": "Test",
+      "source": "Formulaire de Contact Frontend",
+      "assignedTo": "Paul & Edgar Goizet",
+      "createdAt": "2026-10-18T09:03:02.606Z",
+      "notes": [],
+      "activities": [
+        {
+          "id": "act_1792314182606_pjcne",
+          "text": "Demande (Contact Message) soumise depuis le site public.",
+          "date": "À l'instant"
+        }
+      ]
+    },
+    {
+      "id": "lead_1792314166211_56ezs",
+      "name": "Flood Test 6",
+      "email": "flood_1792314166153_6@test.fr",
+      "phone": "06 12 34 56 78",
+      "leadType": "Contact Message",
+      "status": "NEW",
+      "subject": "Demande de contact",
+      "message": "Flood test",
+      "source": "Formulaire de Contact Frontend",
+      "assignedTo": "Paul & Edgar Goizet",
+      "createdAt": "2026-10-18T09:02:46.211Z",
+      "notes": [],
+      "activities": [
+        {
+          "id": "act_1792314166211_56ezs",
+          "text": "Demande (Contact Message) soumise depuis le site public.",
+          "date": "À l'instant"
+        }
+      ]
+    },
+    {
+      "id": "lead_1792314158335_pi8rh",
+      "name": "Flood Test 4",
+      "email": "flood_1792314158178_4@test.fr",
+      "phone": "06 12 34 56 78",
+      "leadType": "Contact Message",
+      "status": "NEW",
+      "subject": "Demande de contact",
+      "message": "Flood test",
+      "source": "Formulaire de Contact Frontend",
+      "assignedTo": "Paul & Edgar Goizet",
+      "createdAt": "2026-10-18T09:02:38.335Z",
+      "notes": [],
+      "activities": [
+        {
+          "id": "act_1792314158335_pi8rh",
+          "text": "Demande (Contact Message) soumise depuis le site public.",
+          "date": "À l'instant"
+        }
+      ]
+    },
+    {
+      "id": "lead_1792314157797_sfls2",
+      "name": "Flood Test 3",
+      "email": "flood_1792314157513_3@test.fr",
+      "phone": "06 12 34 56 78",
+      "leadType": "Contact Message",
+      "status": "NEW",
+      "subject": "Demande de contact",
+      "message": "Flood test",
+      "source": "Formulaire de Contact Frontend",
+      "assignedTo": "Paul & Edgar Goizet",
+      "createdAt": "2026-10-18T09:02:37.797Z",
+      "notes": [],
+      "activities": [
+        {
+          "id": "act_1792314157797_sfls2",
+          "text": "Demande (Contact Message) soumise depuis le site public.",
+          "date": "À l'instant"
+        }
+      ]
+    },
+    {
+      "id": "lead_1792314157004_8y08d",
+      "name": "Flood Test 2",
+      "email": "flood_1792314156954_2@test.fr",
+      "phone": "06 12 34 56 78",
+      "leadType": "Contact Message",
+      "status": "NEW",
+      "subject": "Demande de contact",
+      "message": "Flood test",
+      "source": "Formulaire de Contact Frontend",
+      "assignedTo": "Paul & Edgar Goizet",
+      "createdAt": "2026-10-18T09:02:37.004Z",
+      "notes": [],
+      "activities": [
+        {
+          "id": "act_1792314157004_8y08d",
+          "text": "Demande (Contact Message) soumise depuis le site public.",
+          "date": "À l'instant"
+        }
+      ]
+    },
+    {
+      "id": "lead_1792314156442_qt2sq",
+      "name": "Flood Test 1",
+      "email": "flood_1792314156393_1@test.fr",
+      "phone": "06 12 34 56 78",
+      "leadType": "Contact Message",
+      "status": "NEW",
+      "subject": "Demande de contact",
+      "message": "Flood test",
+      "source": "Formulaire de Contact Frontend",
+      "assignedTo": "Paul & Edgar Goizet",
+      "createdAt": "2026-10-18T09:02:36.442Z",
+      "notes": [],
+      "activities": [
+        {
+          "id": "act_1792314156443_qt2sq",
+          "text": "Demande (Contact Message) soumise depuis le site public.",
+          "date": "À l'instant"
+        }
+      ]
+    },
+    {
+      "id": "lead_1792314155776_2y8d1",
+      "name": "Flood Test 0",
+      "email": "flood_1792314155642_0@test.fr",
+      "phone": "06 12 34 56 78",
+      "leadType": "Contact Message",
+      "status": "NEW",
+      "subject": "Demande de contact",
+      "message": "Flood test",
+      "source": "Formulaire de Contact Frontend",
+      "assignedTo": "Paul & Edgar Goizet",
+      "createdAt": "2026-10-18T09:02:35.776Z",
+      "notes": [],
+      "activities": [
+        {
+          "id": "act_1792314155776_2y8d1",
+          "text": "Demande (Contact Message) soumise depuis le site public.",
+          "date": "À l'instant"
+        }
+      ]
+    },
+    {
+      "id": "lead_1792314154187_qsyhq",
+      "name": "&ltscript&gtalert(&quotxss&quot)&lt/script&gtJean Dupont",
+      "email": "xss.test.1792314154135@automated-audit.fr",
+      "phone": "06 11 22 33 44",
+      "leadType": "Contact Message",
+      "status": "NEW",
+      "subject": "Demande de contact",
+      "message": "&ltimg src=x =alert(1)&gtDemande urgente",
+      "source": "Formulaire de Contact Frontend",
+      "assignedTo": "Paul & Edgar Goizet",
+      "createdAt": "2026-10-18T09:02:34.187Z",
+      "notes": [],
+      "activities": [
+        {
+          "id": "act_1792314154187_qsyhq",
+          "text": "Demande (Contact Message) soumise depuis le site public.",
+          "date": "À l'instant"
+        }
+      ]
+    },
+    {
+      "id": "lead_1792314120880_591hm",
+      "name": "Audit Estimateur 1792314116005",
+      "email": "test.estimation.1792314116005@automated-audit.fr",
+      "phone": "06 55 44 33 22",
+      "leadType": "Valuation Request",
+      "status": "CONVERTED",
+      "propertyAddress": "Appartement • Triangle d'Or, Bordeaux",
+      "budget": "Est. 964 € - 1286 € / mois",
+      "surface": "70 m² • 3 pièces",
+      "subject": "Estimation Loyer: Appartement (70 m²) à Triangle d'Or",
+      "message": "Formulaire d'estimation propriétaire reçu. Bien: Appartement, Surface: 70 m², Pièces: 3, Quartier: Triangle d'Or. Loyer estimé: 964 € à 1286 € / mois.",
+      "source": "Calculateur Estimation En Ligne",
+      "assignedTo": "Paul & Edgar Goizet",
+      "createdAt": "2026-10-18T09:02:00.880Z",
+      "notes": [
+        {
+          "id": "note_1792314120880",
+          "author": "Calculateur Goizet",
+          "text": "Estimation indicative: 964 € - 1286 € / mois (70 m² à Triangle d'Or).",
+          "date": "À l'instant"
+        }
+      ],
+      "activities": [
+        {
+          "id": "act_1792314120880",
+          "text": "Formulaire d'estimation propriétaire soumis.",
+          "date": "À l'instant"
+        }
+      ]
+    },
+    {
+      "id": "lead_1792314118910_lfwnu",
+      "name": "Audit Propriétaire 1792314116005",
+      "email": "test.owner.1792314116005@automated-audit.fr",
+      "phone": "06 98 76 54 32",
+      "leadType": "Owner Enquiry",
+      "serviceType": "Rental management",
+      "status": "NEW",
+      "subject": "Dossier: Gestion Locative 360° (Appartement à Chartrons)",
+      "message": "Audit automatique de conversion d unités.",
+      "propertyAddress": "Appartement • 22 Cours Portal, Chartrons",
+      "propertyType": "appartement",
+      "budget": "1950 €",
+      "surface": "82 m² • 4 pièces",
+      "source": "Formulaire Confier mon bien",
+      "assignedTo": "Paul & Edgar Goizet",
+      "createdAt": "2026-10-18T09:01:58.910Z",
+      "notes": [
+        {
+          "id": "note_1792314118910",
+          "author": "Portail Propriétaire Goizet",
+          "text": "Demande reçue pour Gestion Locative 360°. Rappel garanti au 06 98 76 54 32.",
+          "date": "À l'instant"
+        }
+      ],
+      "activities": [
+        {
+          "id": "act_1792314118910",
+          "text": "Dossier (Gestion Locative 360°) soumis depuis le site web.",
+          "date": "À l'instant"
+        }
+      ]
+    },
+    {
+      "id": "lead_1792314116065_e9ij3",
+      "name": "Audit Contact 1792314116005",
+      "email": "test.contact.1792314116005@automated-audit.fr",
+      "phone": "06 12 34 56 78",
+      "leadType": "Owner Enquiry",
+      "status": "NEW",
+      "subject": "Demande de renseignement gestion",
+      "message": "Audit automatique de stockage et rendu unitaire.",
+      "budget": "1 750 € / mois",
+      "surface": "68 m² • 3 pièces",
+      "source": "Formulaire de Contact Frontend",
+      "assignedTo": "Paul & Edgar Goizet",
+      "createdAt": "2026-10-18T09:01:56.065Z",
+      "notes": [],
+      "activities": [
+        {
+          "id": "act_1792314116065_e9ij3",
+          "text": "Demande (Owner Enquiry) soumise depuis le site public.",
+          "date": "À l'instant"
+        }
+      ]
+    },
+    {
+      "id": "lead_1792314053027",
+      "name": "Burst 4",
+      "email": "burst4@test.fr",
+      "phone": "06 12 34 56 78",
+      "leadType": "Contact Message",
+      "status": "NEW",
+      "subject": "Demande de contact",
+      "message": "Test",
+      "source": "Formulaire de Contact Frontend",
+      "assignedTo": "Paul & Edgar Goizet",
+      "createdAt": "2026-10-18T09:00:53.027Z",
+      "notes": [],
+      "activities": [
+        {
+          "id": "act_1792314053027",
+          "text": "Demande (Contact Message) soumise depuis le site public.",
+          "date": "À l'instant"
+        }
+      ]
+    },
+    {
+      "id": "lead_1792314052194",
+      "name": "Burst 3",
+      "email": "burst3@test.fr",
+      "phone": "06 12 34 56 78",
+      "leadType": "Contact Message",
+      "status": "NEW",
+      "subject": "Demande de contact",
+      "message": "Test",
+      "source": "Formulaire de Contact Frontend",
+      "assignedTo": "Paul & Edgar Goizet",
+      "createdAt": "2026-10-18T09:00:52.194Z",
+      "notes": [],
+      "activities": [
+        {
+          "id": "act_1792314052194",
+          "text": "Demande (Contact Message) soumise depuis le site public.",
+          "date": "À l'instant"
+        }
+      ]
+    },
+    {
+      "id": "lead_1792314051703",
+      "name": "Burst 2",
+      "email": "burst2@test.fr",
+      "phone": "06 12 34 56 78",
+      "leadType": "Contact Message",
+      "status": "NEW",
+      "subject": "Demande de contact",
+      "message": "Test",
+      "source": "Formulaire de Contact Frontend",
+      "assignedTo": "Paul & Edgar Goizet",
+      "createdAt": "2026-10-18T09:00:51.703Z",
+      "notes": [],
+      "activities": [
+        {
+          "id": "act_1792314051703",
+          "text": "Demande (Contact Message) soumise depuis le site public.",
+          "date": "À l'instant"
+        }
+      ]
+    },
+    {
+      "id": "lead_1792314051032",
+      "name": "Burst 1",
+      "email": "burst1@test.fr",
+      "phone": "06 12 34 56 78",
+      "leadType": "Contact Message",
+      "status": "NEW",
+      "subject": "Demande de contact",
+      "message": "Test",
+      "source": "Formulaire de Contact Frontend",
+      "assignedTo": "Paul & Edgar Goizet",
+      "createdAt": "2026-10-18T09:00:51.032Z",
+      "notes": [],
+      "activities": [
+        {
+          "id": "act_1792314051032",
+          "text": "Demande (Contact Message) soumise depuis le site public.",
+          "date": "À l'instant"
+        }
+      ]
+    },
+    {
+      "id": "lead_1792314050005",
+      "name": "Burst 0",
+      "email": "burst0@test.fr",
+      "phone": "06 12 34 56 78",
+      "leadType": "Contact Message",
+      "status": "NEW",
+      "subject": "Demande de contact",
+      "message": "Test",
+      "source": "Formulaire de Contact Frontend",
+      "assignedTo": "Paul & Edgar Goizet",
+      "createdAt": "2026-10-18T09:00:50.005Z",
+      "notes": [],
+      "activities": [
+        {
+          "id": "act_1792314050005",
+          "text": "Demande (Contact Message) soumise depuis le site public.",
+          "date": "À l'instant"
+        }
+      ]
+    },
+    {
+      "id": "lead_1792314031427",
+      "name": "Burst 6",
+      "email": "burst6@test.fr",
+      "phone": "06 12 34 56 78",
+      "leadType": "Contact Message",
+      "status": "NEW",
+      "subject": "Demande de contact",
+      "message": "Test",
+      "source": "Formulaire de Contact Frontend",
+      "assignedTo": "Paul & Edgar Goizet",
+      "createdAt": "2026-10-18T09:00:31.427Z",
+      "notes": [],
+      "activities": [
+        {
+          "id": "act_1792314031427",
+          "text": "Demande (Contact Message) soumise depuis le site public.",
+          "date": "À l'instant"
+        }
+      ]
+    },
+    {
+      "id": "lead_1792314030619",
+      "name": "Burst 5",
+      "email": "burst5@test.fr",
+      "phone": "06 12 34 56 78",
+      "leadType": "Contact Message",
+      "status": "NEW",
+      "subject": "Demande de contact",
+      "message": "Test",
+      "source": "Formulaire de Contact Frontend",
+      "assignedTo": "Paul & Edgar Goizet",
+      "createdAt": "2026-10-18T09:00:30.619Z",
+      "notes": [],
+      "activities": [
+        {
+          "id": "act_1792314030620",
+          "text": "Demande (Contact Message) soumise depuis le site public.",
+          "date": "À l'instant"
+        }
+      ]
+    },
+    {
+      "id": "lead_1792314025823",
+      "name": "Burst 3",
+      "email": "burst3@test.fr",
+      "phone": "06 12 34 56 78",
+      "leadType": "Contact Message",
+      "status": "NEW",
+      "subject": "Demande de contact",
+      "message": "Test",
+      "source": "Formulaire de Contact Frontend",
+      "assignedTo": "Paul & Edgar Goizet",
+      "createdAt": "2026-10-18T09:00:25.823Z",
+      "notes": [],
+      "activities": [
+        {
+          "id": "act_1792314025823",
+          "text": "Demande (Contact Message) soumise depuis le site public.",
+          "date": "À l'instant"
+        }
+      ]
+    },
+    {
+      "id": "lead_1792314025350",
+      "name": "Burst 2",
+      "email": "burst2@test.fr",
+      "phone": "06 12 34 56 78",
+      "leadType": "Contact Message",
+      "status": "NEW",
+      "subject": "Demande de contact",
+      "message": "Test",
+      "source": "Formulaire de Contact Frontend",
+      "assignedTo": "Paul & Edgar Goizet",
+      "createdAt": "2026-10-18T09:00:25.350Z",
+      "notes": [],
+      "activities": [
+        {
+          "id": "act_1792314025350",
+          "text": "Demande (Contact Message) soumise depuis le site public.",
+          "date": "À l'instant"
+        }
+      ]
+    },
+    {
+      "id": "lead_1792314024777",
+      "name": "Burst 1",
+      "email": "burst1@test.fr",
+      "phone": "06 12 34 56 78",
+      "leadType": "Contact Message",
+      "status": "NEW",
+      "subject": "Demande de contact",
+      "message": "Test",
+      "source": "Formulaire de Contact Frontend",
+      "assignedTo": "Paul & Edgar Goizet",
+      "createdAt": "2026-10-18T09:00:24.777Z",
+      "notes": [],
+      "activities": [
+        {
+          "id": "act_1792314024777",
+          "text": "Demande (Contact Message) soumise depuis le site public.",
+          "date": "À l'instant"
+        }
+      ]
+    },
+    {
+      "id": "lead_1792314024022",
+      "name": "Burst 0",
+      "email": "burst0@test.fr",
+      "phone": "06 12 34 56 78",
+      "leadType": "Contact Message",
+      "status": "NEW",
+      "subject": "Demande de contact",
+      "message": "Test",
+      "source": "Formulaire de Contact Frontend",
+      "assignedTo": "Paul & Edgar Goizet",
+      "createdAt": "2026-10-18T09:00:24.022Z",
+      "notes": [],
+      "activities": [
+        {
+          "id": "act_1792314024022",
+          "text": "Demande (Contact Message) soumise depuis le site public.",
+          "date": "À l'instant"
+        }
+      ]
+    },
+    {
+      "id": "lead_1792314016697",
+      "name": "IP Test",
+      "email": "iptest@test.fr",
+      "phone": "06 12 34 56 78",
+      "leadType": "Contact Message",
+      "status": "NEW",
+      "subject": "Demande de contact",
+      "message": "Test IP",
+      "source": "Formulaire de Contact Frontend",
+      "assignedTo": "Paul & Edgar Goizet",
+      "createdAt": "2026-10-18T09:00:16.697Z",
+      "notes": [],
+      "activities": [
+        {
+          "id": "act_1792314016697",
+          "text": "Demande (Contact Message) soumise depuis le site public.",
+          "date": "À l'instant"
+        }
+      ]
+    },
+    {
+      "id": "lead_1792313984465",
+      "name": "Flood Test 6",
+      "email": "flood_1792313984328_6@test.fr",
+      "phone": "06 12 34 56 78",
+      "leadType": "Contact Message",
+      "status": "NEW",
+      "subject": "Demande de contact",
+      "message": "Flood test",
+      "source": "Formulaire de Contact Frontend",
+      "assignedTo": "Paul & Edgar Goizet",
+      "createdAt": "2026-10-18T08:59:44.465Z",
+      "notes": [],
+      "activities": [
+        {
+          "id": "act_1792313984465",
+          "text": "Demande (Contact Message) soumise depuis le site public.",
+          "date": "À l'instant"
+        }
+      ]
+    },
+    {
+      "id": "lead_1792313983970",
+      "name": "Flood Test 5",
+      "email": "flood_1792313983905_5@test.fr",
+      "phone": "06 12 34 56 78",
+      "leadType": "Contact Message",
+      "status": "NEW",
+      "subject": "Demande de contact",
+      "message": "Flood test",
+      "source": "Formulaire de Contact Frontend",
+      "assignedTo": "Paul & Edgar Goizet",
+      "createdAt": "2026-10-18T08:59:43.970Z",
+      "notes": [],
+      "activities": [
+        {
+          "id": "act_1792313983970",
+          "text": "Demande (Contact Message) soumise depuis le site public.",
+          "date": "À l'instant"
+        }
+      ]
+    },
+    {
+      "id": "lead_1792313983249",
+      "name": "Flood Test 4",
+      "email": "flood_1792313983213_4@test.fr",
+      "phone": "06 12 34 56 78",
+      "leadType": "Contact Message",
+      "status": "NEW",
+      "subject": "Demande de contact",
+      "message": "Flood test",
+      "source": "Formulaire de Contact Frontend",
+      "assignedTo": "Paul & Edgar Goizet",
+      "createdAt": "2026-10-18T08:59:43.249Z",
+      "notes": [],
+      "activities": [
+        {
+          "id": "act_1792313983249",
+          "text": "Demande (Contact Message) soumise depuis le site public.",
+          "date": "À l'instant"
+        }
+      ]
+    },
+    {
+      "id": "lead_1792313982673",
+      "name": "Flood Test 3",
+      "email": "flood_1792313982614_3@test.fr",
+      "phone": "06 12 34 56 78",
+      "leadType": "Contact Message",
+      "status": "NEW",
+      "subject": "Demande de contact",
+      "message": "Flood test",
+      "source": "Formulaire de Contact Frontend",
+      "assignedTo": "Paul & Edgar Goizet",
+      "createdAt": "2026-10-18T08:59:42.674Z",
+      "notes": [],
+      "activities": [
+        {
+          "id": "act_1792313982674",
+          "text": "Demande (Contact Message) soumise depuis le site public.",
+          "date": "À l'instant"
+        }
+      ]
+    },
+    {
+      "id": "lead_1792313981621",
+      "name": "Flood Test 2",
+      "email": "flood_1792313981571_2@test.fr",
+      "phone": "06 12 34 56 78",
+      "leadType": "Contact Message",
+      "status": "NEW",
+      "subject": "Demande de contact",
+      "message": "Flood test",
+      "source": "Formulaire de Contact Frontend",
+      "assignedTo": "Paul & Edgar Goizet",
+      "createdAt": "2026-10-18T08:59:41.621Z",
+      "notes": [],
+      "activities": [
+        {
+          "id": "act_1792313981621",
+          "text": "Demande (Contact Message) soumise depuis le site public.",
+          "date": "À l'instant"
+        }
+      ]
+    },
+    {
+      "id": "lead_1792313975340",
+      "name": "Flood Test 0",
+      "email": "flood_1792313975308_0@test.fr",
+      "phone": "06 12 34 56 78",
+      "leadType": "Contact Message",
+      "status": "NEW",
+      "subject": "Demande de contact",
+      "message": "Flood test",
+      "source": "Formulaire de Contact Frontend",
+      "assignedTo": "Paul & Edgar Goizet",
+      "createdAt": "2026-10-18T08:59:35.340Z",
+      "notes": [],
+      "activities": [
+        {
+          "id": "act_1792313975340",
+          "text": "Demande (Contact Message) soumise depuis le site public.",
+          "date": "À l'instant"
+        }
+      ]
+    },
+    {
+      "id": "lead_1792313974567",
+      "name": "&ltscript&gtalert(&quotxss&quot)&lt/script&gtJean Dupont",
+      "email": "xss.test.1792313974528@automated-audit.fr",
+      "phone": "06 11 22 33 44",
+      "leadType": "Contact Message",
+      "status": "NEW",
+      "subject": "Demande de contact",
+      "message": "&ltimg src=x =alert(1)&gtDemande urgente",
+      "source": "Formulaire de Contact Frontend",
+      "assignedTo": "Paul & Edgar Goizet",
+      "createdAt": "2026-10-18T08:59:34.567Z",
+      "notes": [],
+      "activities": [
+        {
+          "id": "act_1792313974567",
+          "text": "Demande (Contact Message) soumise depuis le site public.",
+          "date": "À l'instant"
+        }
+      ]
+    },
+    {
+      "id": "lead_1792313939676",
+      "name": "Audit Estimateur 1792313936067",
+      "email": "test.estimation.1792313936067@automated-audit.fr",
+      "phone": "06 55 44 33 22",
+      "leadType": "Valuation Request",
+      "status": "CONVERTED",
+      "propertyAddress": "Appartement • Triangle d'Or, Bordeaux",
+      "budget": "Est. 964 € - 1286 € / mois",
+      "surface": "70 m² • 3 pièces",
+      "subject": "Estimation Loyer: Appartement (70 m²) à Triangle d'Or",
+      "message": "Formulaire d'estimation propriétaire reçu. Bien: Appartement, Surface: 70 m², Pièces: 3, Quartier: Triangle d'Or. Loyer estimé: 964 € à 1286 € / mois.",
+      "source": "Calculateur Estimation En Ligne",
+      "assignedTo": "Paul & Edgar Goizet",
+      "createdAt": "2026-10-18T08:58:59.676Z",
+      "notes": [
+        {
+          "id": "note_1792313939676",
+          "author": "Calculateur Goizet",
+          "text": "Estimation indicative: 964 € - 1286 € / mois (70 m² à Triangle d'Or).",
+          "date": "À l'instant"
+        }
+      ],
+      "activities": [
+        {
+          "id": "act_1792313939676",
+          "text": "Formulaire d'estimation propriétaire soumis.",
+          "date": "À l'instant"
+        }
+      ]
+    },
+    {
+      "id": "lead_1792313938360",
+      "name": "Audit Propriétaire 1792313936067",
+      "email": "test.owner.1792313936067@automated-audit.fr",
+      "phone": "06 98 76 54 32",
+      "leadType": "Owner Enquiry",
+      "serviceType": "Rental management",
+      "status": "NEW",
+      "subject": "Dossier: Gestion Locative 360° (Appartement à Chartrons)",
+      "message": "Audit automatique de conversion d unités.",
+      "propertyAddress": "Appartement • 22 Cours Portal, Chartrons",
+      "propertyType": "appartement",
+      "budget": "1950 €",
+      "surface": "82 m² • 4 pièces",
+      "source": "Formulaire Confier mon bien",
+      "assignedTo": "Paul & Edgar Goizet",
+      "createdAt": "2026-10-18T08:58:58.360Z",
+      "notes": [
+        {
+          "id": "note_1792313938360",
+          "author": "Portail Propriétaire Goizet",
+          "text": "Demande reçue pour Gestion Locative 360°. Rappel garanti au 06 98 76 54 32.",
+          "date": "À l'instant"
+        }
+      ],
+      "activities": [
+        {
+          "id": "act_1792313938360",
+          "text": "Dossier (Gestion Locative 360°) soumis depuis le site web.",
+          "date": "À l'instant"
+        }
+      ]
+    },
+    {
+      "id": "lead_1792313936104",
+      "name": "Audit Contact 1792313936067",
+      "email": "test.contact.1792313936067@automated-audit.fr",
+      "phone": "06 12 34 56 78",
+      "leadType": "Owner Enquiry",
+      "status": "NEW",
+      "subject": "Demande de renseignement gestion",
+      "message": "Audit automatique de stockage et rendu unitaire.",
+      "budget": "1 750 € / mois",
+      "surface": "68 m² • 3 pièces",
+      "source": "Formulaire de Contact Frontend",
+      "assignedTo": "Paul & Edgar Goizet",
+      "createdAt": "2026-10-18T08:58:56.104Z",
+      "notes": [],
+      "activities": [
+        {
+          "id": "act_1792313936104",
+          "text": "Demande (Owner Enquiry) soumise depuis le site public.",
+          "date": "À l'instant"
+        }
+      ]
+    },
+    {
+      "id": "lead_1792313886886",
+      "name": "Rate Tester 4",
+      "email": "rate4@test.fr",
+      "phone": "06 12 34 56 78",
+      "leadType": "Contact Message",
+      "status": "NEW",
+      "subject": "Demande de contact",
+      "message": "Hello",
+      "source": "Formulaire de Contact Frontend",
+      "assignedTo": "Paul & Edgar Goizet",
+      "createdAt": "2026-10-18T08:58:06.886Z",
+      "notes": [],
+      "activities": [
+        {
+          "id": "act_1792313886886",
+          "text": "Demande (Contact Message) soumise depuis le site public.",
+          "date": "À l'instant"
+        }
+      ]
+    },
+    {
+      "id": "lead_1792313886429",
+      "name": "Rate Tester 3",
+      "email": "rate3@test.fr",
+      "phone": "06 12 34 56 78",
+      "leadType": "Contact Message",
+      "status": "NEW",
+      "subject": "Demande de contact",
+      "message": "Hello",
+      "source": "Formulaire de Contact Frontend",
+      "assignedTo": "Paul & Edgar Goizet",
+      "createdAt": "2026-10-18T08:58:06.429Z",
+      "notes": [],
+      "activities": [
+        {
+          "id": "act_1792313886429",
+          "text": "Demande (Contact Message) soumise depuis le site public.",
+          "date": "À l'instant"
+        }
+      ]
+    },
+    {
+      "id": "lead_1792313885943",
+      "name": "Rate Tester 2",
+      "email": "rate2@test.fr",
+      "phone": "06 12 34 56 78",
+      "leadType": "Contact Message",
+      "status": "NEW",
+      "subject": "Demande de contact",
+      "message": "Hello",
+      "source": "Formulaire de Contact Frontend",
+      "assignedTo": "Paul & Edgar Goizet",
+      "createdAt": "2026-10-18T08:58:05.943Z",
+      "notes": [],
+      "activities": [
+        {
+          "id": "act_1792313885943",
+          "text": "Demande (Contact Message) soumise depuis le site public.",
+          "date": "À l'instant"
+        }
+      ]
+    },
+    {
+      "id": "lead_1792313885376",
+      "name": "Rate Tester 1",
+      "email": "rate1@test.fr",
+      "phone": "06 12 34 56 78",
+      "leadType": "Contact Message",
+      "status": "NEW",
+      "subject": "Demande de contact",
+      "message": "Hello",
+      "source": "Formulaire de Contact Frontend",
+      "assignedTo": "Paul & Edgar Goizet",
+      "createdAt": "2026-10-18T08:58:05.376Z",
+      "notes": [],
+      "activities": [
+        {
+          "id": "act_1792313885376",
+          "text": "Demande (Contact Message) soumise depuis le site public.",
+          "date": "À l'instant"
+        }
+      ]
+    },
+    {
+      "id": "lead_1792313884283",
+      "name": "Rate Tester 0",
+      "email": "rate0@test.fr",
+      "phone": "06 12 34 56 78",
+      "leadType": "Contact Message",
+      "status": "NEW",
+      "subject": "Demande de contact",
+      "message": "Hello",
+      "source": "Formulaire de Contact Frontend",
+      "assignedTo": "Paul & Edgar Goizet",
+      "createdAt": "2026-10-18T08:58:04.283Z",
+      "notes": [],
+      "activities": [
+        {
+          "id": "act_1792313884283",
+          "text": "Demande (Contact Message) soumise depuis le site public.",
+          "date": "À l'instant"
+        }
+      ]
+    },
+    {
+      "id": "lead_1792313871163",
+      "name": "Flood Test 6",
+      "email": "flood6@test.fr",
+      "phone": "06 12 34 56 78",
+      "leadType": "Contact Message",
+      "status": "NEW",
+      "subject": "Demande de contact",
+      "message": "Flood test",
+      "source": "Formulaire de Contact Frontend",
+      "assignedTo": "Paul & Edgar Goizet",
+      "createdAt": "2026-10-18T08:57:51.163Z",
+      "notes": [],
+      "activities": [
+        {
+          "id": "act_1792313871163",
+          "text": "Demande (Contact Message) soumise depuis le site public.",
+          "date": "À l'instant"
+        }
+      ]
+    },
+    {
+      "id": "lead_1792313870613",
+      "name": "Flood Test 5",
+      "email": "flood5@test.fr",
+      "phone": "06 12 34 56 78",
+      "leadType": "Contact Message",
+      "status": "NEW",
+      "subject": "Demande de contact",
+      "message": "Flood test",
+      "source": "Formulaire de Contact Frontend",
+      "assignedTo": "Paul & Edgar Goizet",
+      "createdAt": "2026-10-18T08:57:50.613Z",
+      "notes": [],
+      "activities": [
+        {
+          "id": "act_1792313870613",
+          "text": "Demande (Contact Message) soumise depuis le site public.",
+          "date": "À l'instant"
+        }
+      ]
+    },
+    {
+      "id": "lead_1792313869805",
+      "name": "Flood Test 4",
+      "email": "flood4@test.fr",
+      "phone": "06 12 34 56 78",
+      "leadType": "Contact Message",
+      "status": "NEW",
+      "subject": "Demande de contact",
+      "message": "Flood test",
+      "source": "Formulaire de Contact Frontend",
+      "assignedTo": "Paul & Edgar Goizet",
+      "createdAt": "2026-10-18T08:57:49.805Z",
+      "notes": [],
+      "activities": [
+        {
+          "id": "act_1792313869805",
+          "text": "Demande (Contact Message) soumise depuis le site public.",
+          "date": "À l'instant"
+        }
+      ]
+    },
+    {
+      "id": "lead_1792313859761",
+      "name": "Flood Test 2",
+      "email": "flood2@test.fr",
+      "phone": "06 12 34 56 78",
+      "leadType": "Contact Message",
+      "status": "NEW",
+      "subject": "Demande de contact",
+      "message": "Flood test",
+      "source": "Formulaire de Contact Frontend",
+      "assignedTo": "Paul & Edgar Goizet",
+      "createdAt": "2026-10-18T08:57:39.761Z",
+      "notes": [],
+      "activities": [
+        {
+          "id": "act_1792313859761",
+          "text": "Demande (Contact Message) soumise depuis le site public.",
+          "date": "À l'instant"
+        }
+      ]
+    },
+    {
+      "id": "lead_1792313859302",
+      "name": "Flood Test 1",
+      "email": "flood1@test.fr",
+      "phone": "06 12 34 56 78",
+      "leadType": "Contact Message",
+      "status": "NEW",
+      "subject": "Demande de contact",
+      "message": "Flood test",
+      "source": "Formulaire de Contact Frontend",
+      "assignedTo": "Paul & Edgar Goizet",
+      "createdAt": "2026-10-18T08:57:39.302Z",
+      "notes": [],
+      "activities": [
+        {
+          "id": "act_1792313859302",
+          "text": "Demande (Contact Message) soumise depuis le site public.",
+          "date": "À l'instant"
+        }
+      ]
+    },
+    {
+      "id": "lead_1792313858797",
+      "name": "Flood Test 0",
+      "email": "flood0@test.fr",
+      "phone": "06 12 34 56 78",
+      "leadType": "Contact Message",
+      "status": "NEW",
+      "subject": "Demande de contact",
+      "message": "Flood test",
+      "source": "Formulaire de Contact Frontend",
+      "assignedTo": "Paul & Edgar Goizet",
+      "createdAt": "2026-10-18T08:57:38.797Z",
+      "notes": [],
+      "activities": [
+        {
+          "id": "act_1792313858797",
+          "text": "Demande (Contact Message) soumise depuis le site public.",
+          "date": "À l'instant"
+        }
+      ]
+    },
+    {
+      "id": "lead_1792313858171",
+      "name": "&ltscript&gtalert(&quotxss&quot)&lt/script&gtJean Dupont",
+      "email": "xss.test.1792313858146@automated-audit.fr",
+      "phone": "06 11 22 33 44",
+      "leadType": "Contact Message",
+      "status": "NEW",
+      "subject": "Demande de contact",
+      "message": "&ltimg src=x =alert(1)&gtDemande urgente",
+      "source": "Formulaire de Contact Frontend",
+      "assignedTo": "Paul & Edgar Goizet",
+      "createdAt": "2026-10-18T08:57:38.171Z",
+      "notes": [],
+      "activities": [
+        {
+          "id": "act_1792313858171",
+          "text": "Demande (Contact Message) soumise depuis le site public.",
+          "date": "À l'instant"
+        }
+      ]
+    },
+    {
+      "id": "lead_1792313834358",
+      "name": "Audit Estimateur 1792313831093",
+      "email": "test.estimation.1792313831093@automated-audit.fr",
+      "phone": "06 55 44 33 22",
+      "leadType": "Valuation Request",
+      "status": "CONVERTED",
+      "propertyAddress": "Appartement • Triangle d'Or, Bordeaux",
+      "budget": "Est. 964 € - 1286 € / mois",
+      "surface": "70 m² • 3 pièces",
+      "subject": "Estimation Loyer: Appartement (70 m²) à Triangle d'Or",
+      "message": "Formulaire d'estimation propriétaire reçu. Bien: Appartement, Surface: 70 m², Pièces: 3, Quartier: Triangle d'Or. Loyer estimé: 964 € à 1286 € / mois.",
+      "source": "Calculateur Estimation En Ligne",
+      "assignedTo": "Paul & Edgar Goizet",
+      "createdAt": "2026-10-18T08:57:14.358Z",
+      "notes": [
+        {
+          "id": "note_1792313834358",
+          "author": "Calculateur Goizet",
+          "text": "Estimation indicative: 964 € - 1286 € / mois (70 m² à Triangle d'Or).",
+          "date": "À l'instant"
+        }
+      ],
+      "activities": [
+        {
+          "id": "act_1792313834358",
+          "text": "Formulaire d'estimation propriétaire soumis.",
+          "date": "À l'instant"
+        }
+      ]
+    },
+    {
+      "id": "lead_1792313833280",
+      "name": "Audit Propriétaire 1792313831093",
+      "email": "test.owner.1792313831093@automated-audit.fr",
+      "phone": "06 98 76 54 32",
+      "leadType": "Owner Enquiry",
+      "serviceType": "Rental management",
+      "status": "NEW",
+      "subject": "Dossier: Gestion Locative 360° (Appartement à Chartrons)",
+      "message": "Audit automatique de conversion d unités.",
+      "propertyAddress": "Appartement • 22 Cours Portal, Chartrons",
+      "propertyType": "appartement",
+      "budget": "1950 €",
+      "surface": "82 m² • 4 pièces",
+      "source": "Formulaire Confier mon bien",
+      "assignedTo": "Paul & Edgar Goizet",
+      "createdAt": "2026-10-18T08:57:13.280Z",
+      "notes": [
+        {
+          "id": "note_1792313833280",
+          "author": "Portail Propriétaire Goizet",
+          "text": "Demande reçue pour Gestion Locative 360°. Rappel garanti au 06 98 76 54 32.",
+          "date": "À l'instant"
+        }
+      ],
+      "activities": [
+        {
+          "id": "act_1792313833280",
+          "text": "Dossier (Gestion Locative 360°) soumis depuis le site web.",
+          "date": "À l'instant"
+        }
+      ]
+    },
+    {
+      "id": "lead_1792313831451",
+      "name": "Audit Contact 1792313831093",
+      "email": "test.contact.1792313831093@automated-audit.fr",
+      "phone": "06 12 34 56 78",
+      "leadType": "Owner Enquiry",
+      "status": "NEW",
+      "subject": "Demande de renseignement gestion",
+      "message": "Audit automatique de stockage et rendu unitaire.",
+      "budget": "1 750 € / mois",
+      "surface": "68 m² • 3 pièces",
+      "source": "Formulaire de Contact Frontend",
+      "assignedTo": "Paul & Edgar Goizet",
+      "createdAt": "2026-10-18T08:57:11.451Z",
+      "notes": [],
+      "activities": [
+        {
+          "id": "act_1792313831451",
+          "text": "Demande (Owner Enquiry) soumise depuis le site public.",
+          "date": "À l'instant"
+        }
+      ]
+    },
+    {
+      "id": "lead_1792313613829",
+      "name": "Flood Test 4",
+      "email": "flood4@test.fr",
+      "phone": "06 12 34 56 78",
+      "leadType": "Contact Message",
+      "status": "NEW",
+      "subject": "Demande de contact",
+      "message": "Flood test",
+      "source": "Formulaire de Contact Frontend",
+      "assignedTo": "Paul & Edgar Goizet",
+      "createdAt": "2026-10-18T08:53:33.829Z",
+      "notes": [],
+      "activities": [
+        {
+          "id": "act_1792313613829",
+          "text": "Demande (Contact Message) soumise depuis le site public.",
+          "date": "À l'instant"
+        }
+      ]
+    },
+    {
+      "id": "lead_1792313613372",
+      "name": "Flood Test 3",
+      "email": "flood3@test.fr",
+      "phone": "06 12 34 56 78",
+      "leadType": "Contact Message",
+      "status": "NEW",
+      "subject": "Demande de contact",
+      "message": "Flood test",
+      "source": "Formulaire de Contact Frontend",
+      "assignedTo": "Paul & Edgar Goizet",
+      "createdAt": "2026-10-18T08:53:33.372Z",
+      "notes": [],
+      "activities": [
+        {
+          "id": "act_1792313613372",
+          "text": "Demande (Contact Message) soumise depuis le site public.",
+          "date": "À l'instant"
+        }
+      ]
+    },
+    {
+      "id": "lead_1792313612947",
+      "name": "Flood Test 2",
+      "email": "flood2@test.fr",
+      "phone": "06 12 34 56 78",
+      "leadType": "Contact Message",
+      "status": "NEW",
+      "subject": "Demande de contact",
+      "message": "Flood test",
+      "source": "Formulaire de Contact Frontend",
+      "assignedTo": "Paul & Edgar Goizet",
+      "createdAt": "2026-10-18T08:53:32.947Z",
+      "notes": [],
+      "activities": [
+        {
+          "id": "act_1792313612947",
+          "text": "Demande (Contact Message) soumise depuis le site public.",
+          "date": "À l'instant"
+        }
+      ]
+    },
+    {
+      "id": "lead_1792313612509",
+      "name": "Flood Test 1",
+      "email": "flood1@test.fr",
+      "phone": "06 12 34 56 78",
+      "leadType": "Contact Message",
+      "status": "NEW",
+      "subject": "Demande de contact",
+      "message": "Flood test",
+      "source": "Formulaire de Contact Frontend",
+      "assignedTo": "Paul & Edgar Goizet",
+      "createdAt": "2026-10-18T08:53:32.509Z",
+      "notes": [],
+      "activities": [
+        {
+          "id": "act_1792313612509",
+          "text": "Demande (Contact Message) soumise depuis le site public.",
+          "date": "À l'instant"
+        }
+      ]
+    },
+    {
+      "id": "lead_1792313612000",
+      "name": "Flood Test 0",
+      "email": "flood0@test.fr",
+      "phone": "06 12 34 56 78",
+      "leadType": "Contact Message",
+      "status": "NEW",
+      "subject": "Demande de contact",
+      "message": "Flood test",
+      "source": "Formulaire de Contact Frontend",
+      "assignedTo": "Paul & Edgar Goizet",
+      "createdAt": "2026-10-18T08:53:32.000Z",
+      "notes": [],
+      "activities": [
+        {
+          "id": "act_1792313612000",
+          "text": "Demande (Contact Message) soumise depuis le site public.",
+          "date": "À l'instant"
+        }
+      ]
+    },
+    {
+      "id": "lead_1792313611344",
+      "name": "&ltscript&gtalert(&quotxss&quot)&lt&#x2Fscript&gtJean Dupont",
+      "email": "xss.test.1792313611303@automated-audit.fr",
+      "phone": "06 11 22 33 44",
+      "leadType": "Contact Message",
+      "status": "NEW",
+      "subject": "Demande de contact",
+      "message": "&ltimg src=x =alert(1)&gtDemande urgente",
+      "source": "Formulaire de Contact Frontend",
+      "assignedTo": "Paul & Edgar Goizet",
+      "createdAt": "2026-10-18T08:53:31.344Z",
+      "notes": [],
+      "activities": [
+        {
+          "id": "act_1792313611344",
+          "text": "Demande (Contact Message) soumise depuis le site public.",
+          "date": "À l'instant"
+        }
+      ]
+    },
+    {
+      "id": "lead_1792313588510",
+      "name": "Audit Estimateur 1792313585532",
+      "email": "test.estimation.1792313585532@automated-audit.fr",
+      "phone": "06 55 44 33 22",
+      "leadType": "Valuation Request",
+      "status": "CONVERTED",
+      "propertyAddress": "Appartement • Triangle d'Or, Bordeaux",
+      "budget": "Est. 964 € - 1286 € / mois",
+      "surface": "70 m² • 3 pièces",
+      "subject": "Estimation Loyer: Appartement (70 m²) à Triangle d'Or",
+      "message": "Formulaire d'estimation propriétaire reçu. Bien: Appartement, Surface: 70 m², Pièces: 3, Quartier: Triangle d'Or. Loyer estimé: 964 € à 1286 € / mois.",
+      "source": "Calculateur Estimation En Ligne",
+      "assignedTo": "Paul & Edgar Goizet",
+      "createdAt": "2026-10-18T08:53:08.510Z",
+      "notes": [
+        {
+          "id": "note_1792313588510",
+          "author": "Calculateur Goizet",
+          "text": "Estimation indicative: 964 € - 1286 € / mois (70 m² à Triangle d'Or).",
+          "date": "À l'instant"
+        }
+      ],
+      "activities": [
+        {
+          "id": "act_1792313588510",
+          "text": "Formulaire d'estimation propriétaire soumis.",
+          "date": "À l'instant"
+        }
+      ]
+    },
+    {
+      "id": "lead_1792313587498",
+      "name": "Audit Propriétaire 1792313585532",
+      "email": "test.owner.1792313585532@automated-audit.fr",
+      "phone": "06 98 76 54 32",
+      "leadType": "Owner Enquiry",
+      "serviceType": "Rental management",
+      "status": "NEW",
+      "subject": "Dossier: Gestion Locative 360° (Appartement à Chartrons)",
+      "message": "Audit automatique de conversion d unités.",
+      "propertyAddress": "Appartement • 22 Cours Portal, Chartrons",
+      "propertyType": "appartement",
+      "budget": "1950 €",
+      "surface": "82 m² • 4 pièces",
+      "source": "Formulaire Confier mon bien",
+      "assignedTo": "Paul & Edgar Goizet",
+      "createdAt": "2026-10-18T08:53:07.498Z",
+      "notes": [
+        {
+          "id": "note_1792313587498",
+          "author": "Portail Propriétaire Goizet",
+          "text": "Demande reçue pour Gestion Locative 360°. Rappel garanti au 06 98 76 54 32.",
+          "date": "À l'instant"
+        }
+      ],
+      "activities": [
+        {
+          "id": "act_1792313587498",
+          "text": "Dossier (Gestion Locative 360°) soumis depuis le site web.",
+          "date": "À l'instant"
+        }
+      ]
+    },
+    {
+      "id": "lead_1792313585876",
+      "name": "Audit Contact 1792313585532",
+      "email": "test.contact.1792313585532@automated-audit.fr",
+      "phone": "06 12 34 56 78",
+      "leadType": "Owner Enquiry",
+      "status": "NEW",
+      "subject": "Demande de renseignement gestion",
+      "message": "Audit automatique de stockage et rendu unitaire.",
+      "budget": "1 750 € &#x2F mois",
+      "surface": "68 m² • 3 pièces",
+      "source": "Formulaire de Contact Frontend",
+      "assignedTo": "Paul & Edgar Goizet",
+      "createdAt": "2026-10-18T08:53:05.876Z",
+      "notes": [],
+      "activities": [
+        {
+          "id": "act_1792313585876",
+          "text": "Demande (Owner Enquiry) soumise depuis le site public.",
+          "date": "À l'instant"
+        }
+      ]
+    },
+    {
       "id": "lead_1792214344666",
       "name": "John Cena",
       "email": "johncena@gmail.com",
@@ -3825,6 +6624,114 @@
     }
   ],
   "owners": [
+    {
+      "id": "own_1792314965959_88tax",
+      "name": "Audit Estimateur 1792314964577",
+      "email": "test.estimation.1792314964577@automated-audit.fr",
+      "phone": "06 55 44 33 22",
+      "address": "Appartement • Triangle d'Or, Bordeaux",
+      "notes": "Converti depuis le CRM Opportunity Board (Valuation Request). Budget: Est. 964 € - 1286 € / mois.",
+      "status": "Managed",
+      "propertiesCount": 1,
+      "properties_count": 1,
+      "createdAt": "2026-10-18T09:16:08.550Z"
+    },
+    {
+      "id": "own_1792314905243_m5c4t",
+      "name": "Audit Estimateur 1792314899342",
+      "email": "test.estimation.1792314899342@automated-audit.fr",
+      "phone": "06 55 44 33 22",
+      "address": "Appartement • Triangle d'Or, Bordeaux",
+      "notes": "Converti depuis le CRM Opportunity Board (Valuation Request). Budget: Est. 964 € - 1286 € / mois.",
+      "status": "Managed",
+      "propertiesCount": 1,
+      "properties_count": 1,
+      "createdAt": "2026-10-18T09:15:08.872Z"
+    },
+    {
+      "id": "own_1792314789907_gy1qo",
+      "name": "Audit Estimateur 1792314784734",
+      "email": "test.estimation.1792314784734@automated-audit.fr",
+      "phone": "06 55 44 33 22",
+      "address": "Appartement • Triangle d'Or, Bordeaux",
+      "notes": "Converti depuis le CRM Opportunity Board (Valuation Request). Budget: Est. 964 € - 1286 € / mois.",
+      "status": "Managed",
+      "propertiesCount": 1,
+      "properties_count": 1,
+      "createdAt": "2026-10-18T09:13:14.885Z"
+    },
+    {
+      "id": "own_1792314502961_4w9pm",
+      "name": "Audit Estimateur 1792314500825",
+      "email": "test.estimation.1792314500825@automated-audit.fr",
+      "phone": "06 55 44 33 22",
+      "address": "Appartement • Triangle d'Or, Bordeaux",
+      "notes": "Converti depuis le CRM Opportunity Board (Valuation Request). Budget: Est. 964 € - 1286 € / mois.",
+      "status": "Managed",
+      "propertiesCount": 1,
+      "properties_count": 1,
+      "createdAt": "2026-10-18T09:08:25.687Z"
+    },
+    {
+      "id": "own_1792314291129_wuoon",
+      "name": "Audit Estimateur 1792314289034",
+      "email": "test.estimation.1792314289034@automated-audit.fr",
+      "phone": "06 55 44 33 22",
+      "address": "Appartement • Triangle d'Or, Bordeaux",
+      "notes": "Converti depuis le CRM Opportunity Board (Valuation Request). Budget: Est. 964 € - 1286 € / mois.",
+      "status": "Managed",
+      "propertiesCount": 1,
+      "properties_count": 1,
+      "createdAt": "2026-10-18T09:04:55.838Z"
+    },
+    {
+      "id": "own_1792314120880_591hm",
+      "name": "Audit Estimateur 1792314116005",
+      "email": "test.estimation.1792314116005@automated-audit.fr",
+      "phone": "06 55 44 33 22",
+      "address": "Appartement • Triangle d'Or, Bordeaux",
+      "notes": "Converti depuis le CRM Opportunity Board (Valuation Request). Budget: Est. 964 € - 1286 € / mois.",
+      "status": "Managed",
+      "propertiesCount": 1,
+      "properties_count": 1,
+      "createdAt": "2026-10-18T09:02:09.361Z"
+    },
+    {
+      "id": "own_1792313939676",
+      "name": "Audit Estimateur 1792313936067",
+      "email": "test.estimation.1792313936067@automated-audit.fr",
+      "phone": "06 55 44 33 22",
+      "address": "Appartement • Triangle d'Or, Bordeaux",
+      "notes": "Converti depuis le CRM Opportunity Board (Valuation Request). Budget: Est. 964 € - 1286 € / mois.",
+      "status": "Managed",
+      "propertiesCount": 1,
+      "properties_count": 1,
+      "createdAt": "2026-10-18T08:59:05.498Z"
+    },
+    {
+      "id": "own_1792313834358",
+      "name": "Audit Estimateur 1792313831093",
+      "email": "test.estimation.1792313831093@automated-audit.fr",
+      "phone": "06 55 44 33 22",
+      "address": "Appartement • Triangle d'Or, Bordeaux",
+      "notes": "Converti depuis le CRM Opportunity Board (Valuation Request). Budget: Est. 964 € - 1286 € / mois.",
+      "status": "Managed",
+      "propertiesCount": 1,
+      "properties_count": 1,
+      "createdAt": "2026-10-18T08:57:17.685Z"
+    },
+    {
+      "id": "own_1792313588510",
+      "name": "Audit Estimateur 1792313585532",
+      "email": "test.estimation.1792313585532@automated-audit.fr",
+      "phone": "06 55 44 33 22",
+      "address": "Appartement • Triangle d'Or, Bordeaux",
+      "notes": "Converti depuis le CRM Opportunity Board (Valuation Request). Budget: Est. 964 € - 1286 € / mois.",
+      "status": "Managed",
+      "propertiesCount": 1,
+      "properties_count": 1,
+      "createdAt": "2026-10-18T08:53:11.466Z"
+    },
     {
       "id": "own_1792214344666",
       "name": "John Cena",

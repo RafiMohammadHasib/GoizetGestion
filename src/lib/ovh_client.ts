@@ -85,6 +85,34 @@ export class QueryBuilder<T = any> implements PromiseLike<QueryResult<T>> {
     return this;
   }
 
+  lte(column: string, value: any) {
+    this.whereClauses.push([column, '<=', value]);
+    return this;
+  }
+
+  gte(column: string, value: any) {
+    this.whereClauses.push([column, '>=', value]);
+    return this;
+  }
+
+  lt(column: string, value: any) {
+    this.whereClauses.push([column, '<', value]);
+    return this;
+  }
+
+  gt(column: string, value: any) {
+    this.whereClauses.push([column, '>', value]);
+    return this;
+  }
+
+  or(filterStr: string) {
+    const match = filterStr.match(/slug\.eq\.([^,]+)/);
+    if (match) {
+      this.whereClauses.push(['slug', '=', match[1]]);
+    }
+    return this;
+  }
+
   order(column: string, options?: { ascending?: boolean }) {
     this.orderConfig = {
       column,
@@ -175,6 +203,7 @@ export class QueryBuilder<T = any> implements PromiseLike<QueryResult<T>> {
           method: 'POST',
           headers: { 'Content-Type': 'application/json', 'X-Bridge-Secret': BRIDGE_SECRET },
           body: JSON.stringify({ action: 'raw_query', sql: updateSql, params: [...params, ...whereParams] }),
+          signal: AbortSignal.timeout(1800)
         });
         const updateJson = await updateRes.json();
         if (!updateJson.success) {
@@ -187,6 +216,7 @@ export class QueryBuilder<T = any> implements PromiseLike<QueryResult<T>> {
           method: 'POST',
           headers: { 'Content-Type': 'application/json', 'X-Bridge-Secret': BRIDGE_SECRET },
           body: JSON.stringify({ action: 'raw_query', sql: selectSql, params: whereParams }),
+          signal: AbortSignal.timeout(1800)
         });
         const selectJson = await selectRes.json();
         const updatedRow = selectJson.data && selectJson.data[0] ? parseFromDb(this.table, selectJson.data[0]) : null;
@@ -217,6 +247,7 @@ export class QueryBuilder<T = any> implements PromiseLike<QueryResult<T>> {
           method: 'POST',
           headers: { 'Content-Type': 'application/json', 'X-Bridge-Secret': BRIDGE_SECRET },
           body: JSON.stringify({ action: 'raw_query', sql: deleteSql, params: whereParams }),
+          signal: AbortSignal.timeout(1800)
         });
         const json = await res.json();
         if (!json.success) {
@@ -243,6 +274,7 @@ export class QueryBuilder<T = any> implements PromiseLike<QueryResult<T>> {
           single: this.isSingle,
           data: this.payloadData,
         }),
+        signal: AbortSignal.timeout(1800)
       });
 
       if (!res.ok) {

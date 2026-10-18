@@ -143,11 +143,11 @@ export default function MaisonCalveSection() {
               aria-label="Découvrir Maison Calvé à Bordeaux"
               className="block group relative rounded-2xl sm:rounded-3xl overflow-hidden border border-white/15 shadow-xl aspect-[16/11] sm:aspect-[16/11]"
             >
-              {/* Main Exterior Image */}
+              {/* Main Workspace Image */}
               {/* eslint-disable-next-line @next/next/no-img-element */}
               <img
-                src="/images/maisonclave/calve-exterior.jpg"
-                alt="Maison Calvé - Hôtel particulier au 48 rue Calvé, Bordeaux"
+                src="/images/maisonclave/WhatsApp Image 2026-09-24 at 5.51.45 PM.jpeg"
+                alt="Maison Calvé - Bureaux & Coworking de standing au 48 rue Calvé, Bordeaux"
                 className="w-full h-full object-cover object-center transition-transform duration-700 group-hover:scale-105"
               />
               <div className="absolute inset-0 bg-gradient-to-t from-[#141A1A]/90 via-black/20 to-transparent" />
