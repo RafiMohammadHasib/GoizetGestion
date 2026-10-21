@@ -342,6 +342,15 @@ function extractLocation(caption: string): string {
   return 'Bordeaux, France';
 }
 
+// Helper to proxy remote Instagram CDN URLs to prevent referrer and CORS blocks
+function formatImageUrl(url: string): string {
+  if (!url) return '/images/instagram/post_1_hd.jpg';
+  if (url.startsWith('http://') || url.startsWith('https://')) {
+    return `/api/instagram/image?url=${encodeURIComponent(url)}`;
+  }
+  return url;
+}
+
 export async function GET() {
   const feedUrl = process.env.INSTAGRAM_FEED_URL;
   const accessToken = process.env.INSTAGRAM_ACCESS_TOKEN;
@@ -363,23 +372,26 @@ export async function GET() {
         if (Array.isArray(items) && items.length > 0) {
           const feedPosts: InstagramPostData[] = items.map((item: any, idx: number) => {
             const isCarousel = item.mediaType === 'CAROUSEL_ALBUM' || (item.children && item.children.length > 1);
-            let slides: string[] = [];
+            let rawSlides: string[] = [];
 
             if (item.children && Array.isArray(item.children)) {
-              slides = item.children.map((c: any) => c.mediaUrl || c.thumbnailUrl || c.url).filter(Boolean);
+              rawSlides = item.children.map((c: any) => c.mediaUrl || c.thumbnailUrl || c.url).filter(Boolean);
             } else if (item.slides && Array.isArray(item.slides)) {
-              slides = item.slides;
+              rawSlides = item.slides;
             } else {
-              slides = [item.mediaUrl || item.thumbnailUrl || item.sizes?.large?.mediaUrl];
+              rawSlides = [item.mediaUrl || item.thumbnailUrl || item.sizes?.large?.mediaUrl].filter(Boolean);
             }
 
-            const primaryImage = slides[0] || item.mediaUrl || item.thumbnailUrl || '/images/instagram/post_1_hd.jpg';
+            const rawPrimary = rawSlides[0] || item.mediaUrl || item.thumbnailUrl || '/images/instagram/post_1_hd.jpg';
+            const primaryImage = formatImageUrl(rawPrimary);
+            const slides = rawSlides.map(formatImageUrl);
+            const thumbnail = formatImageUrl(item.thumbnailUrl || rawPrimary);
             const rawCaption = item.caption || item.prunedCaption || '';
             const timestamp = item.timestamp || new Date().toISOString();
 
             return {
               id: String(item.id || `feed_post_${idx}`),
-              thumbnail: item.thumbnailUrl || primaryImage,
+              thumbnail: thumbnail,
               fullImage: primaryImage,
               slides: slides.length > 0 ? slides : [primaryImage],
               type: isCarousel ? 'carousel' : 'image',
@@ -436,20 +448,23 @@ export async function GET() {
           const isCarousel = item.media_type === 'CAROUSEL_ALBUM';
           const childrenData = item.children?.data;
           
-          let slides: string[] = [];
+          let rawSlides: string[] = [];
           if (isCarousel && Array.isArray(childrenData) && childrenData.length > 0) {
-            slides = childrenData.map((c: any) => c.media_url || c.thumbnail_url).filter(Boolean);
+            rawSlides = childrenData.map((c: any) => c.media_url || c.thumbnail_url).filter(Boolean);
           } else {
-            slides = [item.media_url || item.thumbnail_url];
+            rawSlides = [item.media_url || item.thumbnail_url].filter(Boolean);
           }
 
-          const primaryImage = slides[0] || item.media_url || item.thumbnail_url || '/images/instagram/post_1_hd.jpg';
+          const rawPrimary = rawSlides[0] || item.media_url || item.thumbnail_url || '/images/instagram/post_1_hd.jpg';
+          const primaryImage = formatImageUrl(rawPrimary);
+          const slides = rawSlides.map(formatImageUrl);
+          const thumbnail = formatImageUrl(item.thumbnail_url || rawPrimary);
           const timeFr = item.timestamp ? getRelativeTime(item.timestamp, 'fr') : 'Récemment';
           const timeEn = item.timestamp ? getRelativeTime(item.timestamp, 'en') : 'Recently';
 
           return {
             id: item.id || `live_post_${index}`,
-            thumbnail: item.thumbnail_url || primaryImage,
+            thumbnail: thumbnail,
             fullImage: primaryImage,
             slides: slides.length > 0 ? slides : [primaryImage],
             type: isCarousel ? 'carousel' : 'image',

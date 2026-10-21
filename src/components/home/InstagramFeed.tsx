@@ -592,9 +592,9 @@ export default function InstagramFeed() {
             </a>
           </div>
 
-          {/* 10 Posts Grid with High Definition Imagery */}
+          {/* 5 Posts Grid (Single Clean Row) with High Definition Imagery */}
           <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-3 sm:gap-4 lg:gap-5">
-            {posts.map((post) => (
+            {posts.slice(0, 5).map((post) => (
               <motion.div
                 key={post.id}
                 initial={{ opacity: 0, scale: 0.95 }}
@@ -610,6 +610,7 @@ export default function InstagramFeed() {
                   src={post.thumbnail}
                   alt={post.captionFr}
                   loading="lazy"
+                  referrerPolicy="no-referrer"
                   className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500 ease-out"
                 />
 
@@ -737,6 +738,7 @@ export default function InstagramFeed() {
                       key={currentSlideUrl}
                       src={currentSlideUrl}
                       alt={selectedPost.captionFr}
+                      referrerPolicy="no-referrer"
                       initial={{ opacity: 0.4 }}
                       animate={{ opacity: 1 }}
                       exit={{ opacity: 0.4 }}

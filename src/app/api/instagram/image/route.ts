@@ -1,0 +1,45 @@
+import { NextRequest, NextResponse } from 'next/server';
+
+export const dynamic = 'force-dynamic';
+
+export async function GET(req: NextRequest) {
+  const url = req.nextUrl.searchParams.get('url');
+  if (!url) {
+    return new NextResponse('Missing url parameter', { status: 400 });
+  }
+
+  // Security check: only proxy Meta / Instagram CDN image URLs
+  const isAllowedHost = 
+    url.includes('cdninstagram.com') || 
+    url.includes('fbcdn.net') || 
+    url.includes('instagram.com');
+
+  if (!isAllowedHost) {
+    return new NextResponse('Invalid image host', { status: 403 });
+  }
+
+  try {
+    const res = await fetch(url, {
+      headers: {
+        'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/126.0.0.0 Safari/537.36'
+      }
+    });
+
+    if (!res.ok) {
+      return new NextResponse('Failed to fetch remote image', { status: res.status });
+    }
+
+    const contentType = res.headers.get('content-type') || 'image/jpeg';
+    const buffer = await res.arrayBuffer();
+
+    return new NextResponse(buffer, {
+      headers: {
+        'Content-Type': contentType,
+        'Cache-Control': 'public, max-age=86400, s-maxage=604800, stale-while-revalidate=86400',
+        'Access-Control-Allow-Origin': '*'
+      }
+    });
+  } catch (err: any) {
+    return new NextResponse('Image proxy error: ' + err.message, { status: 500 });
+  }
+}
