@@ -323,6 +323,25 @@ function extractTags(caption: string): string[] {
   return matches ? matches.slice(0, 6) : ['#GoizetGestion', '#ImmobilierBordeaux'];
 }
 
+// Helper to extract location from post caption
+function extractLocation(caption: string): string {
+  const normalized = caption.toLowerCase();
+  if (normalized.includes('jean renaud') || normalized.includes('dandicolle')) return 'Rue Jean Renaud Dandicolle, Bordeaux';
+  if (normalized.includes('chartrons')) return 'Chartrons, Bordeaux';
+  if (normalized.includes('triangle')) return 'Triangle d’Or, Bordeaux';
+  if (normalized.includes('caudéran') || normalized.includes('cauderan')) return 'Caudéran, Bordeaux';
+  if (normalized.includes('saint-seurin') || normalized.includes('saint seurin') || normalized.includes('fondaudège') || normalized.includes('fondaudege')) return 'Saint-Seurin, Bordeaux';
+  if (normalized.includes('saint-pierre') || normalized.includes('saint pierre')) return 'Saint-Pierre, Bordeaux';
+  if (normalized.includes('saint-jean') || normalized.includes('saint jean')) return 'Saint-Jean, Bordeaux';
+  if (normalized.includes('nansouty')) return 'Nansouty, Bordeaux';
+  if (normalized.includes('bastide')) return 'Bastide, Bordeaux';
+  if (normalized.includes('mérignac') || normalized.includes('merignac')) return 'Mérignac';
+  if (normalized.includes('talence')) return 'Talence';
+  if (normalized.includes('hypercentre') || normalized.includes('hyper-centre')) return 'Bordeaux Hypercentre';
+  if (normalized.includes('bordeaux centre')) return 'Bordeaux Centre';
+  return 'Bordeaux, France';
+}
+
 export async function GET() {
   const feedUrl = process.env.INSTAGRAM_FEED_URL;
   const accessToken = process.env.INSTAGRAM_ACCESS_TOKEN;
@@ -367,7 +386,7 @@ export async function GET() {
               slidesCount: slides.length,
               likes: Number(item.likeCount ?? item.likes ?? 16),
               commentsCount: Number(item.commentsCount ?? item.comments ?? 0),
-              location: item.location || 'Bordeaux, France',
+              location: item.location || extractLocation(rawCaption),
               timeAgoFr: getRelativeTime(timestamp, 'fr'),
               timeAgoEn: getRelativeTime(timestamp, 'en'),
               captionFr: rawCaption,
@@ -406,7 +425,7 @@ export async function GET() {
       // 2. Fetch live media feed with real like_count and comments_count
       const mediaPromise = fetch(
         `https://graph.instagram.com/me/media?fields=id,caption,media_type,media_url,permalink,thumbnail_url,timestamp,like_count,comments_count,children{id,media_type,media_url,thumbnail_url}&limit=18&access_token=${accessToken}`,
-        { next: { revalidate: 600 } } // revalidate every 10 minutes
+        { next: { revalidate: 300 } } // revalidate every 5 minutes
       ).then(res => (res.ok ? res.json() : null)).catch(() => null);
 
       const [profileRes, mediaRes] = await Promise.all([profilePromise, mediaPromise]);
@@ -437,7 +456,7 @@ export async function GET() {
             slidesCount: slides.length,
             likes: typeof item.like_count === 'number' ? item.like_count : 16,
             commentsCount: typeof item.comments_count === 'number' ? item.comments_count : 0,
-            location: 'Bordeaux, France',
+            location: extractLocation(caption),
             timeAgoFr: timeFr,
             timeAgoEn: timeEn,
             captionFr: caption,
