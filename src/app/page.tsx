@@ -5,6 +5,7 @@ import ServicesGrid from '@/components/home/ServicesGrid';
 import InstagramFeed from '@/components/home/InstagramFeed';
 import LandlordCTA from '@/components/home/LandlordCTA';
 import ProcessTimeline from '@/components/home/ProcessTimeline';
+import MaisonCalveSection from '@/components/home/MaisonCalveSection';
 import Testimonials from '@/components/home/Testimonials';
 
 export default function HomePage() {
@@ -28,10 +29,13 @@ export default function HomePage() {
       {/* 06: Rental Management Process Timeline */}
       <ProcessTimeline />
 
-      {/* 07: Verified Client Testimonials */}
+      {/* 07: Maison Calvé — Signature Coworking & Commercial Workspace Showcase */}
+      <MaisonCalveSection />
+
+      {/* 08: Verified Client Testimonials */}
       <Testimonials />
 
-      {/* 08: Official Instagram Feed @goizetgestion (Gallery Right Before Footer) */}
+      {/* 09: Official Instagram Feed @goizetgestion (Gallery Right Before Footer) */}
       <InstagramFeed />
     </>
   );

@@ -528,27 +528,30 @@ export async function GET(req: NextRequest) {
 
     const feeAmount = Math.round(totalMonthlyRent * 0.065);
 
+    const statsObj = {
+      totalProperties,
+      activeMandates,
+      activeRentals,
+      activeSales,
+      totalLeads,
+      ownerEnquiries,
+      tenantRequests,
+      valuationRequests,
+      callbackRequests,
+      buyerRequests,
+      sellerRequests,
+      totalOwners: owners.length,
+      totalTenants: tenants.length,
+      retentionRate,
+      clientRating,
+      statusCounts
+    };
+
     return NextResponse.json({
       success: true,
       lastSync: new Date().toLocaleTimeString(lang === 'en' ? 'en-US' : 'fr-FR', { hour: '2-digit', minute: '2-digit', second: '2-digit' }),
-      stats: {
-        totalProperties,
-        activeMandates,
-        activeRentals,
-        activeSales,
-        totalLeads,
-        ownerEnquiries,
-        tenantRequests,
-        valuationRequests,
-        callbackRequests,
-        buyerRequests,
-        sellerRequests,
-        totalOwners: owners.length,
-        totalTenants: tenants.length,
-        retentionRate,
-        clientRating,
-        statusCounts
-      },
+      stats: statsObj,
+      kpis: statsObj,
       chart: {
         period,
         buckets: chartBuckets,

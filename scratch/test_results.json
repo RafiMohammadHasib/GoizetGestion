@@ -1,0 +1,624 @@
+{
+  "timestamp": "2026-10-18T09:16:03.317Z",
+  "environment": {
+    "nodeVersion": "v26.8.1",
+    "baseUrl": "http://localhost:3000",
+    "dbPath": "D:\\RAFIMDHASIB\\Work\\Projects\\Goizet Gestion\\SimpleRent\\src\\data\\admin_db.json"
+  },
+  "suites": [
+    {
+      "name": "1. Authentication & Session Security",
+      "tests": [
+        {
+          "name": "Reject invalid credentials with HTTP 401",
+          "status": "PASS",
+          "durationMs": 78.9,
+          "details": {
+            "status": 401,
+            "durationMs": 78.7
+          }
+        },
+        {
+          "name": "Session check without cookie returns HTTP 401",
+          "status": "PASS",
+          "durationMs": 25,
+          "details": {
+            "status": 401,
+            "durationMs": 24.9
+          }
+        },
+        {
+          "name": "Accept valid credentials (admin@gg.fr.com / @dmin@gg.fr) with HTTP 200 & JWT cookie",
+          "status": "PASS",
+          "durationMs": 15.3,
+          "details": {
+            "status": 200,
+            "user": {
+              "id": "usr_admin",
+              "name": "Administrateur Goizet Gestion",
+              "email": "admin@gg.fr.com",
+              "role": "Super Admin",
+              "avatar": "/apple-touch-icon.png"
+            },
+            "cookieSet": true,
+            "durationMs": 15
+          }
+        },
+        {
+          "name": "Verify authenticated session with valid cookie returns HTTP 200",
+          "status": "PASS",
+          "durationMs": 32.6,
+          "details": {
+            "status": 200,
+            "user": {
+              "id": "usr_admin",
+              "name": "Administrateur Goizet Gestion",
+              "email": "admin@gg.fr.com",
+              "password": "@dmin@gg.fr",
+              "role": "Super Admin",
+              "avatar": "/apple-touch-icon.png",
+              "active": true,
+              "createdAt": "2026-02-01T00:00:00Z",
+              "updatedAt": "2026-10-17T09:00:08.049Z",
+              "phone": "+33 6 95 57 70 33",
+              "notifyLead": true,
+              "notifyTenant": true
+            },
+            "durationMs": 32.4
+          }
+        }
+      ],
+      "passed": 4,
+      "failed": 0,
+      "startTime": "2026-10-18T09:16:03.320Z",
+      "endTime": "2026-10-18T09:16:03.473Z"
+    },
+    {
+      "name": "2. Database Storage & Unit Parity Check",
+      "tests": [
+        {
+          "name": "Database schema structure validation",
+          "status": "PASS",
+          "durationMs": 0.1,
+          "details": {
+            "propertiesCount": 36,
+            "leadsCount": 167,
+            "ownersCount": 34,
+            "usersCount": 6
+          }
+        },
+        {
+          "name": "Property Units Parity (DB vs API)",
+          "status": "PASS",
+          "durationMs": 1101.7,
+          "details": {
+            "sampledCount": 10,
+            "sampleProperty": {
+              "id": "prop_1",
+              "price": "820 €",
+              "surface": "39 m²",
+              "rating": "DPE B"
+            }
+          }
+        },
+        {
+          "name": "Agency Settings Units Parity",
+          "status": "PASS",
+          "durationMs": 0.1,
+          "details": {
+            "managementFeeRate": "6.5%",
+            "gliInsuranceRate": "2.5%",
+            "financialGuarantee": "Galian Assurances — 120 000 €",
+            "siret": "944 393 487 00011"
+          }
+        }
+      ],
+      "passed": 3,
+      "failed": 0,
+      "startTime": "2026-10-18T09:16:03.473Z",
+      "endTime": "2026-10-18T09:16:04.577Z"
+    },
+    {
+      "name": "3. Public Forms Ingestion & Storage Parity",
+      "tests": [
+        {
+          "name": "Contact Form submission (POST /api/contact) with budget & surface units",
+          "status": "PASS",
+          "durationMs": 716,
+          "details": {
+            "leadId": "lead_1792314964602_nux0r",
+            "storedBudget": "1 750 € / mois",
+            "storedSurface": "68 m² • 3 pièces",
+            "durationMs": 602.5
+          }
+        },
+        {
+          "name": "Owner Enquiry Form (POST /api/owner-enquiry) with numeric surface & rooms",
+          "status": "PASS",
+          "durationMs": 583.1,
+          "details": {
+            "leadId": "lead_1792314965322_sagig",
+            "storedBudget": "1950 €",
+            "storedSurface": "82 m² • 4 pièces",
+            "durationMs": 467
+          }
+        },
+        {
+          "name": "Rental Valuation Form (POST /api/estimation) with auto-computed rent brackets",
+          "status": "PASS",
+          "durationMs": 575.9,
+          "details": {
+            "leadId": "lead_1792314965959_88tax",
+            "min": "964 €",
+            "max": "1286 €",
+            "durationMs": 466.2
+          }
+        }
+      ],
+      "passed": 3,
+      "failed": 0,
+      "startTime": "2026-10-18T09:16:04.577Z",
+      "endTime": "2026-10-18T09:16:06.453Z"
+    },
+    {
+      "name": "4. Counter Mutation & Atomic DB Sync",
+      "tests": [
+        {
+          "name": "Increment view counter on prop_1 via POST /api/properties/view",
+          "status": "PASS",
+          "durationMs": 844.9,
+          "details": {
+            "propertyId": "prop_1",
+            "initialViews": 143,
+            "updatedViews": 144,
+            "durationMs": 550.8
+          }
+        }
+      ],
+      "passed": 1,
+      "failed": 0,
+      "startTime": "2026-10-18T09:16:06.453Z",
+      "endTime": "2026-10-18T09:16:07.300Z"
+    },
+    {
+      "name": "5. CRM Lifecycle & Automatic Entity Provisioning",
+      "tests": [
+        {
+          "name": "Fetch unified leads pipeline via GET /api/admin/crm",
+          "status": "PASS",
+          "durationMs": 482.1,
+          "details": {
+            "totalLeads": 170,
+            "durationMs": 481.9
+          }
+        },
+        {
+          "name": "Update lead status to QUALIFIED via PATCH /api/admin/crm",
+          "status": "PASS",
+          "durationMs": 368.9,
+          "details": {
+            "leadId": "lead_1792314965959_88tax",
+            "newStatus": "QUALIFIED",
+            "durationMs": 368.8
+          }
+        },
+        {
+          "name": "Update lead status to CONVERTED and trigger auto-provisioning",
+          "status": "PASS",
+          "durationMs": 1074,
+          "details": {
+            "leadId": "lead_1792314965959_88tax",
+            "status": "CONVERTED",
+            "autoOwnerId": "own_1792314965959_88tax",
+            "durationMs": 783.3
+          }
+        }
+      ],
+      "passed": 3,
+      "failed": 0,
+      "startTime": "2026-10-18T09:16:07.300Z",
+      "endTime": "2026-10-18T09:16:09.227Z"
+    },
+    {
+      "name": "6. Admin Dashboard & Backoffice Endpoints",
+      "tests": [
+        {
+          "name": "Admin Dashboard KPIs (GET /api/admin/dashboard)",
+          "status": "PASS",
+          "durationMs": 327,
+          "details": {
+            "kpis": {
+              "totalProperties": 36,
+              "activeMandates": 30,
+              "activeRentals": 15,
+              "activeSales": 15,
+              "totalLeads": 170,
+              "ownerEnquiries": 26,
+              "tenantRequests": 8,
+              "valuationRequests": 16,
+              "callbackRequests": 104,
+              "buyerRequests": 8,
+              "sellerRequests": 7,
+              "totalOwners": 35,
+              "totalTenants": 0,
+              "retentionRate": 98,
+              "clientRating": "4.9/5",
+              "statusCounts": {
+                "CONVERTED": 16,
+                "NEW": 116,
+                "LOST": 8,
+                "CONTACTED": 8,
+                "QUALIFIED": 8,
+                "APPOINTMENT": 7,
+                "IN_PROGRESS": 7
+              }
+            },
+            "durationMs": 326.9
+          }
+        },
+        {
+          "name": "Admin Settings endpoint (GET /api/admin/settings) with session cookie",
+          "status": "PASS",
+          "durationMs": 15.3,
+          "details": {
+            "siteName": "GOIZET GESTION",
+            "email": "goizetgestion@gmail.com",
+            "durationMs": 15.2
+          }
+        },
+        {
+          "name": "Admin Owners list (GET /api/admin/owners)",
+          "status": "PASS",
+          "durationMs": 179.3,
+          "details": {
+            "ownersCount": 35,
+            "durationMs": 179.2
+          }
+        },
+        {
+          "name": "Admin Tenants list (GET /api/admin/tenants)",
+          "status": "PASS",
+          "durationMs": 182.5,
+          "details": {
+            "tenantsCount": 1,
+            "durationMs": 182.3
+          }
+        }
+      ],
+      "passed": 4,
+      "failed": 0,
+      "startTime": "2026-10-18T09:16:09.227Z",
+      "endTime": "2026-10-18T09:16:09.932Z"
+    },
+    {
+      "name": "7. Search Filters & Property Catalog Queries",
+      "tests": [
+        {
+          "name": "Filter by transactionType=louer",
+          "status": "PASS",
+          "durationMs": 196.3,
+          "details": {
+            "count": 18,
+            "durationMs": 196.1
+          }
+        },
+        {
+          "name": "Filter by maxPrice=1200",
+          "status": "PASS",
+          "durationMs": 177.7,
+          "details": {
+            "count": 3,
+            "maxReturned": 1100,
+            "durationMs": 177.4
+          }
+        },
+        {
+          "name": "Filter by minSurface=70",
+          "status": "PASS",
+          "durationMs": 194.7,
+          "details": {
+            "count": 28,
+            "minReturned": 71,
+            "durationMs": 194.4
+          }
+        },
+        {
+          "name": "Lookup single property by slug",
+          "status": "PASS",
+          "durationMs": 191.6,
+          "details": {
+            "propertyTitle": "Appartement Haussmannien avec Moulures & Balcon - Chartrons",
+            "durationMs": 190
+          }
+        }
+      ],
+      "passed": 4,
+      "failed": 0,
+      "startTime": "2026-10-18T09:16:09.932Z",
+      "endTime": "2026-10-18T09:16:10.693Z"
+    },
+    {
+      "name": "8. Public SSR Pages & Asset Health",
+      "tests": [
+        {
+          "name": "GET / (Homepage (with Maison Calvé workspace section))",
+          "status": "PASS",
+          "durationMs": 272.9,
+          "details": {
+            "status": 200,
+            "durationMs": 272.8
+          }
+        },
+        {
+          "name": "GET /biens (Property Catalog)",
+          "status": "PASS",
+          "durationMs": 649.7,
+          "details": {
+            "status": 200,
+            "durationMs": 649.7
+          }
+        },
+        {
+          "name": "GET /gestion-locative (Rental Management (Gestion Locative))",
+          "status": "PASS",
+          "durationMs": 126,
+          "details": {
+            "status": 200,
+            "durationMs": 126
+          }
+        },
+        {
+          "name": "GET /estimation (Rental Valuation Calculator)",
+          "status": "PASS",
+          "durationMs": 88.8,
+          "details": {
+            "status": 200,
+            "durationMs": 88.8
+          }
+        },
+        {
+          "name": "GET /confier-un-bien (Entrust Property Form)",
+          "status": "PASS",
+          "durationMs": 107.4,
+          "details": {
+            "status": 200,
+            "durationMs": 107.3
+          }
+        },
+        {
+          "name": "GET /contact (Contact Agency Page)",
+          "status": "PASS",
+          "durationMs": 102.6,
+          "details": {
+            "status": 200,
+            "durationMs": 102.5
+          }
+        },
+        {
+          "name": "GET /a-propos (About Agency Page)",
+          "status": "PASS",
+          "durationMs": 93.8,
+          "details": {
+            "status": 200,
+            "durationMs": 93.8
+          }
+        },
+        {
+          "name": "GET /admin (Admin Login / Portal)",
+          "status": "PASS",
+          "durationMs": 72.1,
+          "details": {
+            "status": 200,
+            "durationMs": 72.1
+          }
+        },
+        {
+          "name": "GET /robots.txt (Robots.txt)",
+          "status": "PASS",
+          "durationMs": 15.2,
+          "details": {
+            "status": 200,
+            "durationMs": 15.2
+          }
+        },
+        {
+          "name": "GET /sitemap.xml (Sitemap XML)",
+          "status": "PASS",
+          "durationMs": 9.5,
+          "details": {
+            "status": 200,
+            "durationMs": 9.5
+          }
+        }
+      ],
+      "passed": 10,
+      "failed": 0,
+      "startTime": "2026-10-18T09:16:10.693Z",
+      "endTime": "2026-10-18T09:16:12.232Z"
+    },
+    {
+      "name": "9. Latency & Response Speed Benchmarks",
+      "tests": [
+        {
+          "name": "Benchmark API Properties List (3 iterations)",
+          "status": "PASS",
+          "durationMs": 568.2,
+          "details": {
+            "runs": [
+              186.4,
+              198.6,
+              182.8
+            ],
+            "minMs": 182.8,
+            "avgMs": 189.3,
+            "maxMs": 198.6
+          }
+        },
+        {
+          "name": "Benchmark API Admin Dashboard (3 iterations)",
+          "status": "PASS",
+          "durationMs": 569,
+          "details": {
+            "runs": [
+              196.4,
+              195.5,
+              177
+            ],
+            "minMs": 177,
+            "avgMs": 189.6,
+            "maxMs": 196.4
+          }
+        },
+        {
+          "name": "Benchmark API Admin CRM Leads (3 iterations)",
+          "status": "PASS",
+          "durationMs": 584.6,
+          "details": {
+            "runs": [
+              202,
+              188.1,
+              194.5
+            ],
+            "minMs": 188.1,
+            "avgMs": 194.9,
+            "maxMs": 202
+          }
+        },
+        {
+          "name": "Benchmark API Admin Settings (3 iterations)",
+          "status": "PASS",
+          "durationMs": 89.5,
+          "details": {
+            "runs": [
+              25.3,
+              32,
+              32.1
+            ],
+            "minMs": 25.3,
+            "avgMs": 29.8,
+            "maxMs": 32.1
+          }
+        },
+        {
+          "name": "Benchmark Page Homepage (SSR) (3 iterations)",
+          "status": "PASS",
+          "durationMs": 413.2,
+          "details": {
+            "runs": [
+              145.7,
+              122.5,
+              144.9
+            ],
+            "minMs": 122.5,
+            "avgMs": 137.7,
+            "maxMs": 145.7
+          }
+        },
+        {
+          "name": "Benchmark Page Catalog (SSR) (3 iterations)",
+          "status": "PASS",
+          "durationMs": 203.7,
+          "details": {
+            "runs": [
+              71,
+              59.3,
+              73.4
+            ],
+            "minMs": 59.3,
+            "avgMs": 67.9,
+            "maxMs": 73.4
+          }
+        },
+        {
+          "name": "Benchmark Page Estimation (SSR) (3 iterations)",
+          "status": "PASS",
+          "durationMs": 241.1,
+          "details": {
+            "runs": [
+              86.8,
+              65.1,
+              89.3
+            ],
+            "minMs": 65.1,
+            "avgMs": 80.4,
+            "maxMs": 89.3
+          }
+        },
+        {
+          "name": "Benchmark Page Contact (SSR) (3 iterations)",
+          "status": "PASS",
+          "durationMs": 234.1,
+          "details": {
+            "runs": [
+              87.3,
+              71.1,
+              75.7
+            ],
+            "minMs": 71.1,
+            "avgMs": 78,
+            "maxMs": 87.3
+          }
+        }
+      ],
+      "passed": 8,
+      "failed": 0,
+      "startTime": "2026-10-18T09:16:12.232Z",
+      "endTime": "2026-10-18T09:16:15.137Z"
+    },
+    {
+      "name": "10. Security, Rate Limiting & Input Sanitization",
+      "tests": [
+        {
+          "name": "Input Sanitization strips/escapes HTML/Script tags in Contact form",
+          "status": "PASS",
+          "durationMs": 877.8,
+          "details": {
+            "sanitizedName": "&ltscript&gtalert(&quotxss&quot)&lt/script&gtJean Dupont",
+            "sanitizedMsg": "&ltimg src=x =alert(1)&gtDemande urgente",
+            "durationMs": 586.2
+          }
+        },
+        {
+          "name": "Reject invalid email format with HTTP 400",
+          "status": "PASS",
+          "durationMs": 25.3,
+          "details": {
+            "status": 400,
+            "errorCode": "INVALID_EMAIL",
+            "durationMs": 25.1
+          }
+        },
+        {
+          "name": "Reject missing name with HTTP 400",
+          "status": "PASS",
+          "durationMs": 11.1,
+          "details": {
+            "status": 400,
+            "errorCode": "NAME_REQUIRED",
+            "durationMs": 10.8
+          }
+        },
+        {
+          "name": "Rate limiting triggers HTTP 429 upon request flooding",
+          "status": "PASS",
+          "durationMs": 2276.2,
+          "details": {
+            "burstAttempts": 6,
+            "finalStatus": 429
+          }
+        }
+      ],
+      "passed": 4,
+      "failed": 0,
+      "startTime": "2026-10-18T09:16:15.137Z",
+      "endTime": "2026-10-18T09:16:18.328Z"
+    }
+  ],
+  "summary": {
+    "totalSuites": 10,
+    "totalTests": 44,
+    "totalPassed": 44,
+    "totalFailed": 0,
+    "successRate": "100%"
+  }
+}

@@ -187,6 +187,17 @@ export default function Footer({ onOpenCallback, onOpenEntrust, onOpenCookieSett
                   {language === 'fr' ? 'Nous Contacter' : 'Contact Us'}
                 </Link>
               </li>
+              <li className="pt-1">
+                <a
+                  href="https://www.maisoncalve.fr/"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="text-[#748C8C] hover:text-white font-semibold transition-colors inline-flex items-center space-x-1"
+                >
+                  <span>Maison Calvé (Bureaux & Coworking)</span>
+                  <ArrowUpRight className="w-3 h-3 shrink-0" />
+                </a>
+              </li>
             </ul>
           </div>
 

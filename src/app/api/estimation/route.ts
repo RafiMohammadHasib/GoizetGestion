@@ -46,8 +46,9 @@ export async function POST(req: NextRequest) {
 
     // Save lead to CRM database
     const db = getDb();
+    const entropy = Math.random().toString(36).substring(2, 7);
     const newLead: CRMLead = {
-      id: `lead_${Date.now()}`,
+      id: `lead_${Date.now()}_${entropy}`,
       name: sanitizedName,
       email: cleanEmail,
       phone: cleanPhone || 'Non renseigné',
@@ -109,6 +110,11 @@ export async function POST(req: NextRequest) {
       success: true,
       estimationMin: estMin,
       estimationMax: estMax,
+      estimation: {
+        min: estMin,
+        max: estMax,
+        unit: '€ / mois'
+      },
       valuation: {
         rentMin: estMin,
         rentMax: estMax,

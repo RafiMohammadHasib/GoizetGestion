@@ -8,7 +8,8 @@ export async function POST(req: NextRequest) {
     const body = await req.json();
     language = body?.language === 'en' ? 'en' : 'fr';
 
-    const ip = req.headers.get('x-forwarded-for') || '127.0.0.1';
+    const rawIp = req.headers.get('x-forwarded-for') || '127.0.0.1';
+    const ip = rawIp.split(',')[0].trim();
     const rateCheck = checkRateLimit(ip, 5, 60000);
 
     if (!rateCheck.allowed) {
@@ -108,8 +109,9 @@ export async function POST(req: NextRequest) {
       }
     }
 
+    const entropy = Math.random().toString(36).substring(2, 7);
     const newLead: CRMLead = {
-      id: `lead_${Date.now()}`,
+      id: `lead_${Date.now()}_${entropy}`,
       name: sanitizedName,
       email: cleanEmail || '',
       phone: cleanPhone || '',
@@ -127,7 +129,7 @@ export async function POST(req: NextRequest) {
       createdAt: new Date().toISOString(),
       notes: [],
       activities: [
-        { id: `act_${Date.now()}`, text: `Demande (${computedLeadType}) soumise depuis le site public.`, date: 'À l\'instant' }
+        { id: `act_${Date.now()}_${entropy}`, text: `Demande (${computedLeadType}) soumise depuis le site public.`, date: 'À l\'instant' }
       ]
     };
 
@@ -193,12 +195,14 @@ export async function POST(req: NextRequest) {
       },
       { status: 200 }
     );
-  } catch (error) {
+  } catch (error: any) {
+    console.error('Contact route error:', error);
     return NextResponse.json(
       { 
         error: language === 'en'
           ? 'A server error occurred. Please try again.'
-          : 'Une erreur serveur est survenue. Traitement sécurisé.' 
+          : 'Une erreur serveur est survenue. Traitement sécurisé.',
+        debug: error?.message 
       },
       { status: 500 }
     );

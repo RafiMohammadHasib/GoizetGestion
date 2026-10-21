@@ -1,5 +1,5 @@
 import { NextRequest, NextResponse } from 'next/server';
-import { supabase } from '@/lib/supabase';
+import { supabase, withTimeout } from '@/lib/supabase';
 import { getDb, saveDb } from '@/lib/db';
 import {
   getLocalizedTitle,
@@ -86,56 +86,74 @@ export async function GET(req: NextRequest) {
 
     // Single property lookup
     if (slug) {
-      const { data, error } = await supabase
-        .from('properties')
-        .select('*')
-        .or(`slug.eq.${slug},id.eq.${slug}`)
-        .maybeSingle();
+      try {
+        const { data } = await withTimeout(
+          supabase
+            .from('properties')
+            .select('*')
+            .or(`slug.eq.${slug},id.eq.${slug}`)
+            .maybeSingle(),
+          1500
+        );
 
-      if (data) {
-        return NextResponse.json({ property: mapPropertyFromDb(data) });
+        if (data) {
+          return NextResponse.json({ property: mapPropertyFromDb(data) });
+        }
+      } catch (err) {
+        // Fallback to local
       }
     }
 
     if (id) {
-      const { data, error } = await supabase
-        .from('properties')
-        .select('*')
-        .eq('id', id)
-        .maybeSingle();
+      try {
+        const { data } = await withTimeout(
+          supabase
+            .from('properties')
+            .select('*')
+            .eq('id', id)
+            .maybeSingle(),
+          1500
+        );
 
-      if (data) {
-        return NextResponse.json({ property: mapPropertyFromDb(data) });
+        if (data) {
+          return NextResponse.json({ property: mapPropertyFromDb(data) });
+        }
+      } catch (err) {
+        // Fallback to local
       }
     }
 
     // Filter list
-    let query = supabase.from('properties').select('*');
+    try {
+      let query = supabase.from('properties').select('*');
 
-    if (status && status !== 'ALL') {
-      query = query.eq('status', status);
-    }
-    if (type) {
-      query = query.eq('transaction_type', type);
-    }
-    if (neighborhood) {
-      query = query.eq('neighborhood_slug', neighborhood);
-    }
-    if (propertyType) {
-      query = query.eq('property_type', propertyType);
-    }
-    if (maxPrice) {
-      query = query.lte('price', parseInt(maxPrice, 10));
-    }
-    if (minSurface) {
-      query = query.gte('surface', parseInt(minSurface, 10));
-    }
+      if (status && status !== 'ALL') {
+        query = query.eq('status', status);
+      }
+      if (type) {
+        query = query.eq('transaction_type', type);
+      }
+      if (neighborhood) {
+        query = query.eq('neighborhood_slug', neighborhood);
+      }
+      if (propertyType) {
+        query = query.eq('property_type', propertyType);
+      }
+      if (maxPrice) {
+        query = query.lte('price', parseInt(maxPrice, 10));
+      }
+      if (minSurface) {
+        query = query.gte('surface', parseInt(minSurface, 10));
+      }
 
-    const { data, error } = await query.order('created_at', { ascending: false });
+      const { data, error } = await withTimeout(query.order('created_at', { ascending: false }), 2000);
 
-    if (!error && data && data.length > 0) {
-      const properties = data.map(mapPropertyFromDb);
-      return NextResponse.json({ properties, total: properties.length });
+      if (!error && data && data.length > 0) {
+        const properties = data.map(mapPropertyFromDb);
+        return NextResponse.json({ properties, total: properties.length });
+      }
+    } catch (err) {
+      // Fallback to local
     }
 
     // Fallback to local DB store
